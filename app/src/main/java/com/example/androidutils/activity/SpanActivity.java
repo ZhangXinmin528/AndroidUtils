@@ -21,6 +21,7 @@ import com.example.androidutils.utils.SpanUtils;
  * <p>
  * Display how to use {@link com.example.androidutils.utils.SpanUtils} to
  * create series of styles {@link android.widget.TextView}.
+ * </p>
  */
 
 public class SpanActivity extends BaseActivity {

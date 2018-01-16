@@ -38,9 +38,9 @@ import android.text.style.UnderlineSpan;
 import static android.graphics.BlurMaskFilter.Blur;
 
 /**
- * <pre>
- *     desc  : SpannableString相关工具类
- * </pre>
+ * Created by Administrator on 2018/1/16.
+ * Copyright (c) 2018 . All rights reserved.
+ * Easy way to set {@link SpannableStringBuilder} for {@link android.widget.TextView}.
  */
 public final class SpanUtils {
 
