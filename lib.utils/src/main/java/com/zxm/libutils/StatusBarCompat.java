@@ -1,4 +1,4 @@
-package com.example.androidutils.utils;
+package com.zxm.libutils;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -13,8 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
-
-import com.example.androidutils.R;
 
 
 /**

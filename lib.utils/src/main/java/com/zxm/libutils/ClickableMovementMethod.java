@@ -1,4 +1,4 @@
-package com.example.androidutils.utils;
+package com.zxm.libutils;
 
 import android.text.Layout;
 import android.text.Selection;

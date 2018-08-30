@@ -1,9 +1,8 @@
-package com.example.androidutils.utils;
+package com.zxm.libutils;
 
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
-import java.security.PublicKey;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;

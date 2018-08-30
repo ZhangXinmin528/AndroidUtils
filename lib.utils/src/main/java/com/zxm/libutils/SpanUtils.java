@@ -1,4 +1,4 @@
-package com.example.androidutils.utils;
+package com.zxm.libutils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
