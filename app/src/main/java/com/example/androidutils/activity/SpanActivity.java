@@ -12,14 +12,14 @@ import android.widget.Toast;
 
 import com.example.androidutils.R;
 import com.example.androidutils.base.BaseActivity;
-import com.example.androidutils.utils.ClickableMovementMethod;
-import com.example.androidutils.utils.SpanUtils;
+import com.zxm.libutils.ClickableMovementMethod;
+import com.zxm.libutils.SpanUtils;
 
 /**
  * Created by Administrator on 2018/1/16.
  * Copyright (c) 2018 . All rights reserved.
  * <p>
- * Display how to use {@link com.example.androidutils.utils.SpanUtils} to
+ * Display how to use {@link SpanUtils} to
  * create series of styles {@link android.widget.TextView}.
  * </p>
  */

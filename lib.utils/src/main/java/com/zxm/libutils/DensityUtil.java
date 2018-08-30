@@ -1,6 +1,8 @@
 package com.zxm.libutils;
 
 import android.content.Context;
+import android.support.annotation.FloatRange;
+import android.support.annotation.NonNull;
 import android.util.DisplayMetrics;
 
 /**
@@ -20,7 +22,7 @@ public class DensityUtil {
      * @param context
      * @return
      */
-    public static int getScreenWidth(Context context) {
+    public static int getScreenWidth(@NonNull Context context) {
         final DisplayMetrics dm = context.getResources().getDisplayMetrics();
         return dm.widthPixels;
     }
@@ -31,7 +33,7 @@ public class DensityUtil {
      * @param context
      * @return
      */
-    public static int getScreenHeight(Context context) {
+    public static int getScreenHeight(@NonNull Context context) {
         final DisplayMetrics dm = context.getResources().getDisplayMetrics();
         return dm.heightPixels;
     }
@@ -39,7 +41,7 @@ public class DensityUtil {
     /**
      * dp to px
      */
-    public static int dp2px(Context context, float dpValue) {
+    public static int dp2px(@NonNull Context context, @FloatRange(from = 0.0) float dpValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
     }
@@ -47,7 +49,7 @@ public class DensityUtil {
     /**
      * px to dp
      */
-    public static int px2dp(Context context, float pxValue) {
+    public static int px2dp(@NonNull Context context, @FloatRange(from = 0.0) float pxValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (pxValue / scale + 0.5f);
     }
@@ -60,7 +62,7 @@ public class DensityUtil {
      * @param spValue The value of sp.
      * @return value of px
      */
-    public static int sp2px(Context context, final float spValue) {
+    public static int sp2px(@NonNull Context context, @FloatRange(from = 0.0) final float spValue) {
         final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
         return (int) (spValue * fontScale + 0.5f);
     }
@@ -72,7 +74,7 @@ public class DensityUtil {
      * @param pxValue The value of px.
      * @return value of sp
      */
-    public static int px2sp(Context context, final float pxValue) {
+    public static int px2sp(@NonNull Context context, @FloatRange(from = 0.0) final float pxValue) {
         final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
         return (int) (pxValue / fontScale + 0.5f);
     }
