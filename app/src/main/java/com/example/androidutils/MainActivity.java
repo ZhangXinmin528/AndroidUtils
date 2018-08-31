@@ -2,25 +2,14 @@ package com.example.androidutils;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.text.Layout;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.androidutils.activity.ScreenActivity;
 import com.example.androidutils.activity.SpanActivity;
 import com.example.androidutils.base.BaseActivity;
-import com.example.androidutils.utils.ClickableMovementMethod;
-import com.example.androidutils.utils.SpanUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +45,7 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
         super.initData();
 
         mDataList.add("文字样式-->SpanUtils的使用");
+        mDataList.add("屏幕属性-->ScreenUtil的使用");
         mAdapter.notifyDataSetChanged();
     }
 
@@ -66,8 +56,10 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
             case 0:
                 intent.setClass(mContext, SpanActivity.class);
                 break;
+            case 1:
+                intent.setClass(mContext, ScreenActivity.class);
+                break;
             default:
-                intent.setClass(mContext, SpanActivity.class);
                 break;
         }
         startActivity(intent);

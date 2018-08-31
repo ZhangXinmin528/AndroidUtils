@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.example.androidutils.R;
 import com.example.androidutils.base.BaseActivity;
 import com.zxm.libutils.ClickableMovementMethod;
+import com.zxm.libutils.ScreenUtil;
 import com.zxm.libutils.SpanUtils;
 
 /**
@@ -40,7 +41,6 @@ public class SpanActivity extends BaseActivity {
 
     @Override
     protected void initViews() {
-
         //引线
         TextView quoteTv = findViewById(R.id.tv_quote);
 

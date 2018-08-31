@@ -21,6 +21,9 @@
         <activity
             android:name=".activity.SpanActivity"
             android:screenOrientation="portrait" />
+
+        <!--屏幕相关-->
+        <activity android:name=".activity.ScreenActivity" />
     </application>
 
 </manifest>

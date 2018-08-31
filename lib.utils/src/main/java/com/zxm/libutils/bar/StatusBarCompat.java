@@ -1,4 +1,4 @@
-package com.zxm.libutils;
+package com.zxm.libutils.bar;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
+
+import com.zxm.libutils.R;
 
 
 /**
