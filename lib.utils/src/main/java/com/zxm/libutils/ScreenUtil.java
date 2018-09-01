@@ -25,7 +25,7 @@ import static android.Manifest.permission.WRITE_SETTINGS;
  * Copyright (c) 2018 . All rights reserved.
  * ScreenUtil is used to provide the methods to get screen attribute.
  */
-public class ScreenUtil {
+public final class ScreenUtil {
 
     private ScreenUtil() {
         throw new UnsupportedOperationException("You must not do this!");

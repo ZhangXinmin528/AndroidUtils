@@ -9,7 +9,7 @@ import android.util.Log;
  * Copyright (c) 2018 . All rights reserved.
  * log
  */
-public class Logger {
+public final class Logger {
 
     private static String LOG_TAG = "Utils";
 

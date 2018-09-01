@@ -28,6 +28,9 @@
         <!--软键盘使用-->
         <activity android:name=".activity.KeyboradActivity" />
 
+        <!--图片工具使用-->
+        <activity android:name=".activity.ImageActivity" />
+
     </application>
 
 </manifest>

@@ -18,7 +18,7 @@ import java.lang.reflect.Field;
  * Created by ZhangXinmin on 2018/9/1.
  * Copyright (c) 2018 . All rights reserved.
  */
-public class KeyboradUtil {
+public final class KeyboradUtil {
     private static int sContentViewInvisibleHeightPre;
     private static ViewTreeObserver.OnGlobalLayoutListener onGlobalLayoutListener;
     private static OnSoftInputChangedListener onSoftInputChangedListener;

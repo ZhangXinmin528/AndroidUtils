@@ -2,9 +2,7 @@ package com.example.androidutils.activity;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -67,5 +65,11 @@ public class KeyboradActivity extends BaseActivity implements View.OnClickListen
                 .append("\n软键盘是否可见：" + KeyboradUtil.isSoftInputVisible(this), true)
                 .append("\n软键盘高度：" + height, true)
                 .create());
+    }
+
+    @Override
+    protected void onDestroy() {
+        KeyboradUtil.unregisterSoftInputChangedListener(this);
+        super.onDestroy();
     }
 }

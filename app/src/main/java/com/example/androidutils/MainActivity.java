@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.example.androidutils.activity.ImageActivity;
 import com.example.androidutils.activity.KeyboradActivity;
 import com.example.androidutils.activity.ScreenActivity;
 import com.example.androidutils.activity.SpanActivity;
@@ -51,6 +52,7 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
         mDataList.add("文字样式-->SpanUtils的使用");
         mDataList.add("屏幕属性-->ScreenUtil的使用");
         mDataList.add("软键盘使用-->KeyboradUtil的使用");
+        mDataList.add("图片工具-->ImageUtil的使用");
         mAdapter.notifyDataSetChanged();
     }
 
@@ -66,6 +68,8 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
                 break;
             case 2:
                 intent.setClass(mContext, KeyboradActivity.class);
+            case 3:
+                intent.setClass(mContext, ImageActivity.class);
                 break;
             default:
                 break;

@@ -1,4 +1,30 @@
 <resources>
     <string name="app_name">AndroidUtils</string>
     <string name="all_screen_info">设备屏幕信息：%1$s</string>
+
+    <!--Image 相关-->
+    <string name="image_src">Src</string>
+    <string name="image_add_color">Add Color</string>
+    <string name="image_scale">Scale</string>
+    <string name="image_clip">Clip</string>
+    <string name="image_skew">Skew</string>
+    <string name="image_rotate">Rotate</string>
+    <string name="image_to_round">To Round</string>
+    <string name="image_to_round_border">To Round Border</string>
+    <string name="image_to_round_corner">To Round Corner</string>
+    <string name="image_to_round_corner_border">To Round Corner Border</string>
+    <string name="image_add_corner_border">Add Corner Border</string>
+    <string name="image_add_circle_border">Add Circle Border</string>
+    <string name="image_add_reflection">Add Reflection</string>
+    <string name="image_add_text_watermark">Add Text Watermark</string>
+    <string name="image_add_image_watermark">Add Image Watermark</string>
+    <string name="image_to_gray">Gray</string>
+    <string name="image_fast_blur">Fast Blur</string>
+    <string name="image_render_script_blur">Render Script Blur</string>
+    <string name="image_stack_blur">Stack Blur</string>
+    <string name="image_save">Save</string>
+    <string name="image_compress_by_scale">Compress By Scale</string>
+    <string name="image_compress_by_quality_half">Compress By Quality Half</string>
+    <string name="image_compress_by_quality_max_size">Compress By Quality Max Size</string>
+    <string name="image_compress_by_sample_size">Compress By Sample Size</string>
 </resources>
