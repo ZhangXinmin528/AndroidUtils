@@ -47,9 +47,50 @@ public class SpanActivity extends BaseActivity {
         SpannableStringBuilder quoteBuilder =
                 SpanUtils.getBuilder(mContext, "这是引线示例！", true)
                         .setQuoteColor(Color.BLUE)
-                        .setBullet(10, Color.RED)
                         .create();
         quoteTv.setText(quoteBuilder);
+
+        //列表标记
+        TextView bulletTv = findViewById(R.id.tv_bullet);
+
+        SpannableStringBuilder bulletBuilder =
+                SpanUtils.getBuilder(mContext, "这是列表示例！", true)
+                        .setBullet(10, Color.RED)
+                        .create();
+        bulletTv.setText(bulletBuilder);
+
+        //删除线和下划线
+        TextView lineTv = findViewById(R.id.tv_line);
+
+        SpannableStringBuilder lineBuilder =
+                SpanUtils.getBuilder(mContext, "这是删除线和下划线！", true)
+                        .setBullet(10, Color.RED)
+                        .setUnderline()
+                        .setStrikethrough()
+                        .create();
+        lineTv.setText(lineBuilder);
+
+        //上标
+        TextView scriptTv = findViewById(R.id.tv_script);
+
+        SpannableStringBuilder scriptBuilder =
+                SpanUtils.getBuilder(mContext, "这是上标", true)
+                        .setSuperscript()
+                        .setBullet(10, Color.RED)
+                        .append("th", true)
+                        .create();
+        scriptTv.setText(scriptBuilder);
+
+        //粗体和斜体
+        TextView boldTv = findViewById(R.id.tv_bold);
+
+        SpannableStringBuilder boldBuilder =
+                SpanUtils.getBuilder(mContext, "这是粗体和斜体", true)
+                        .setBold()
+                        .setBullet(10, Color.RED)
+                        .setItalic()
+                        .create();
+        boldTv.setText(boldBuilder);
 
         //点击
         TextView clickedTv = findViewById(R.id.tv_click);
@@ -70,7 +111,8 @@ public class SpanActivity extends BaseActivity {
                                 ds.setUnderlineText(true);
                             }
                         })
-                        .append("追加第二个点击", false)
+                        .setBackgroundColor(mContext.getResources().getColor(R.color.clickspan_color))
+                        .append("追加第二个点击", true)
                         .setClickSpan(new ClickableSpan() {
                             @Override
                             public void onClick(View widget) {
@@ -94,6 +136,7 @@ public class SpanActivity extends BaseActivity {
         TextView complexTv = findViewById(R.id.tv_complex);
         SpannableStringBuilder complexBuilder =
                 SpanUtils.getBuilder(mContext, "此示例展示复杂的情况：", false)
+                        .setBullet(10, Color.RED)
                         .setFlag(Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
                         .setBackgroundColor(Color.parseColor("#ededed"))
                         .setTextColor(Color.RED)

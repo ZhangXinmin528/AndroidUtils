@@ -13,6 +13,38 @@
         android:paddingBottom="@dimen/dp_12"
         android:paddingTop="@dimen/dp_12" />
 
+    <!--设置列表标记-->
+    <TextView
+        android:id="@+id/tv_bullet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/dp_12"
+        android:paddingTop="@dimen/dp_12" />
+
+    <!--设置删除线和下划线-->
+    <TextView
+        android:id="@+id/tv_line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/dp_12"
+        android:paddingTop="@dimen/dp_12" />
+
+    <!--设置上标和下标-->
+    <TextView
+        android:id="@+id/tv_script"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/dp_12"
+        android:paddingTop="@dimen/dp_12" />
+
+    <!--设置粗体和斜体-->
+    <TextView
+        android:id="@+id/tv_bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/dp_12"
+        android:paddingTop="@dimen/dp_12" />
+
     <!--点击事件-->
     <TextView
         android:id="@+id/tv_click"
