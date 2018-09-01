@@ -24,6 +24,10 @@
 
         <!--屏幕相关-->
         <activity android:name=".activity.ScreenActivity" />
+
+        <!--软键盘使用-->
+        <activity android:name=".activity.KeyboradActivity" />
+
     </application>
 
 </manifest>

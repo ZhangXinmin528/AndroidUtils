@@ -74,9 +74,8 @@ public class SpanActivity extends BaseActivity {
         TextView scriptTv = findViewById(R.id.tv_script);
 
         SpannableStringBuilder scriptBuilder =
-                SpanUtils.getBuilder(mContext, "这是上标", true)
+                SpanUtils.getBuilder(mContext, "这是上标", false)
                         .setSuperscript()
-                        .setBullet(10, Color.RED)
                         .append("th", true)
                         .create();
         scriptTv.setText(scriptBuilder);
@@ -136,7 +135,6 @@ public class SpanActivity extends BaseActivity {
         TextView complexTv = findViewById(R.id.tv_complex);
         SpannableStringBuilder complexBuilder =
                 SpanUtils.getBuilder(mContext, "此示例展示复杂的情况：", false)
-                        .setBullet(10, Color.RED)
                         .setFlag(Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
                         .setBackgroundColor(Color.parseColor("#ededed"))
                         .setTextColor(Color.RED)
@@ -150,6 +148,11 @@ public class SpanActivity extends BaseActivity {
 
         complexTv.setText(complexBuilder);
 
+        //富文本应用示例
+        TextView exampleTv = findViewById(R.id.tv_example);
+        SpannableStringBuilder exampleBuilder = SpanUtils
+                .showBeautfulText(mContext, "富文本应用示例：看过来，看过来，看过来，看过来，看过来！", "过来");
+        exampleTv.setText(exampleBuilder);
 
     }
 }

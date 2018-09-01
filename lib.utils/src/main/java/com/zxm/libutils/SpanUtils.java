@@ -3,6 +3,7 @@ package com.zxm.libutils;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BlurMaskFilter;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -34,6 +35,9 @@ import android.text.style.SuperscriptSpan;
 import android.text.style.TypefaceSpan;
 import android.text.style.URLSpan;
 import android.text.style.UnderlineSpan;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static android.graphics.BlurMaskFilter.Blur;
 
@@ -221,6 +225,7 @@ public final class SpanUtils {
          * 设置列表标记
          * <p>
          * 若 isApplyInitial = false, it's ineffective;
+         * 某些情况下会失效！
          * </p>
          *
          * @param gapWidth 列表标记和文字间距离
@@ -587,5 +592,63 @@ public final class SpanUtils {
 
         }
 
+    }
+
+    /**
+     * 截取字符串
+     *
+     * @param origin
+     * @param regex
+     */
+    private static List<String> matchString(String origin, String regex) {
+        final List<String> list = new ArrayList<>();
+        if (!TextUtils.isEmpty(origin) && !TextUtils.isEmpty(regex)) {
+            if (origin.contains(regex)) {
+                if (origin.equals(regex)) {
+                    list.add(origin);
+                } else {
+                    final String[] arr = origin.replaceAll(regex, "-" + regex + "-").split("-");
+                    for (String item : arr) {
+                        if (!TextUtils.isEmpty(item)) {
+                            list.add(item);
+                        }
+                    }
+                }
+            } else {
+                list.add(origin);
+            }
+        }
+        return list;
+    }
+
+    /**
+     * 展示富文本:只是个例子
+     *
+     * @param origin 原始文本
+     * @param regex  匹配文字
+     */
+    public static SpannableStringBuilder showBeautfulText(Context context, String origin, String regex) {
+        if (TextUtils.isEmpty(origin) || TextUtils.isEmpty(regex)) {
+            return null;
+        }
+
+        final List<String> list = matchString(origin, regex);
+
+        if (!list.isEmpty()) {
+            final int size = list.size();
+            SpanUtils.Builder builder =
+                    SpanUtils.getBuilder(context, list.get(0), list.get(0).equals(regex))
+                            .setTextColor(Color.parseColor("#32b0ed"));
+            for (int i = 1; i < size; i++) {
+                final String item = list.get(i);
+                builder.append(item, item.equals(regex));
+            }
+
+            return builder.create();
+        } else {
+            SpanUtils.Builder builder =
+                    SpanUtils.getBuilder(context, origin, false);
+            return builder.create();
+        }
     }
 }

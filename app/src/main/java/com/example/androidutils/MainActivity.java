@@ -2,11 +2,15 @@ package com.example.androidutils;
 
 import android.content.Context;
 import android.content.Intent;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 
+import com.example.androidutils.activity.KeyboradActivity;
 import com.example.androidutils.activity.ScreenActivity;
 import com.example.androidutils.activity.SpanActivity;
 import com.example.androidutils.base.BaseActivity;
@@ -46,6 +50,7 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
 
         mDataList.add("文字样式-->SpanUtils的使用");
         mDataList.add("屏幕属性-->ScreenUtil的使用");
+        mDataList.add("软键盘使用-->KeyboradUtil的使用");
         mAdapter.notifyDataSetChanged();
     }
 
@@ -59,9 +64,13 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
             case 1:
                 intent.setClass(mContext, ScreenActivity.class);
                 break;
+            case 2:
+                intent.setClass(mContext, KeyboradActivity.class);
+                break;
             default:
                 break;
         }
         startActivity(intent);
     }
+
 }
