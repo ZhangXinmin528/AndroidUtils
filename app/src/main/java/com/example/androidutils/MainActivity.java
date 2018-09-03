@@ -68,6 +68,7 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
                 break;
             case 2:
                 intent.setClass(mContext, KeyboradActivity.class);
+                break;
             case 3:
                 intent.setClass(mContext, ImageActivity.class);
                 break;
