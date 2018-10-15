@@ -2,14 +2,12 @@ package com.example.androidutils;
 
 import android.content.Context;
 import android.content.Intent;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
 
+import com.example.androidutils.activity.DialogActivity;
 import com.example.androidutils.activity.ImageActivity;
 import com.example.androidutils.activity.KeyboradActivity;
 import com.example.androidutils.activity.ScreenActivity;
@@ -53,6 +51,7 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
         mDataList.add("屏幕属性-->ScreenUtil的使用");
         mDataList.add("软键盘使用-->KeyboradUtil的使用");
         mDataList.add("图片工具-->ImageUtil的使用");
+        mDataList.add("Dialog的使用-->Dialog的使用");
         mAdapter.notifyDataSetChanged();
     }
 
@@ -71,6 +70,9 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
                 break;
             case 3:
                 intent.setClass(mContext, ImageActivity.class);
+                break;
+            case 4:
+                intent.setClass(mContext, DialogActivity.class);
                 break;
             default:
                 break;

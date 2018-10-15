@@ -23,13 +23,24 @@
             android:screenOrientation="portrait" />
 
         <!--屏幕相关-->
-        <activity android:name=".activity.ScreenActivity" />
+        <activity
+            android:name=".activity.ScreenActivity"
+            android:screenOrientation="portrait" />
 
         <!--软键盘使用-->
-        <activity android:name=".activity.KeyboradActivity" />
+        <activity
+            android:name=".activity.KeyboradActivity"
+            android:screenOrientation="portrait" />
 
         <!--图片工具使用-->
-        <activity android:name=".activity.ImageActivity" />
+        <activity
+            android:name=".activity.ImageActivity"
+            android:screenOrientation="portrait" />
+
+        <!--Dialog的使用-->
+        <activity
+            android:name=".activity.DialogActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 

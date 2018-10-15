@@ -54,7 +54,7 @@ public class ImageActivity extends BaseActivity {
         mList.add(new ImageEntity(mResources, R.string.image_src, src));
         mList.add(new ImageEntity(mResources, R.string.image_add_color, ImageUtil.drawColor(src, Color.parseColor("#8000FF00"))));
         mList.add(new ImageEntity(mResources, R.string.image_scale, ImageUtil.scale(src, width / 2, height / 2)));
-        mList.add(new ImageEntity(mResources, R.string.image_clip, ImageUtil.clip(src, 0, 0, width / 2, height / 2)));
+        mList.add(new ImageEntity(mResources, R.string.image_clip, ImageUtil.clip(src, (width - width / 2) / 2, (height - height / 2) / 2, width / 2, height / 2)));
         mList.add(new ImageEntity(mResources, R.string.image_skew, ImageUtil.skew(src, 0.2f, 0.1f)));
         mList.add(new ImageEntity(mResources, R.string.image_rotate, ImageUtil.rotate(src, 90, width / 2, height / 2)));
         mList.add(new ImageEntity(mResources, R.string.image_to_round, ImageUtil.toRound(src)));
