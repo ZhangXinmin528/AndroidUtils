@@ -135,7 +135,7 @@ public class CommonDialog extends Dialog {
          * @return This Builder object to allow for chaining of calls to set methods
          */
         public Builder setTitle(@StringRes int titleId, @IdRes int viewId) {
-            P.mMessage = P.mContext.getText(titleId);
+            P.mTilte = P.mContext.getText(titleId);
             P.mTitleId = viewId;
             return this;
         }
@@ -182,6 +182,21 @@ public class CommonDialog extends Dialog {
         }
 
         /**
+         * Set a listener to be invoked when the positive button of the dialog is pressed.
+         *
+         * @param text     The text to display in the positive button
+         * @param listener The {@link OnClickListener} to use.
+         * @param viewId
+         * @return This Builder object to allow for chaining of calls to set methods
+         */
+        public Builder setPositiveButton(CharSequence text, @IdRes int viewId, final OnClickListener listener) {
+            P.mPositiveButtonText = text;
+            P.mPositiveButtonListener = listener;
+            P.mPositiveBtnId = viewId;
+            return this;
+        }
+
+        /**
          * Set a listener to be invoked when the negative button of the dialog is pressed.
          *
          * @param textId   The resource id of the text to display in the negative button
@@ -211,20 +226,6 @@ public class CommonDialog extends Dialog {
             return this;
         }
 
-        /**
-         * Set a listener to be invoked when the positive button of the dialog is pressed.
-         *
-         * @param text     The text to display in the positive button
-         * @param listener The {@link OnClickListener} to use.
-         * @param viewId
-         * @return This Builder object to allow for chaining of calls to set methods
-         */
-        public Builder setPositiveButton(CharSequence text, @IdRes int viewId, final OnClickListener listener) {
-            P.mPositiveButtonText = text;
-            P.mPositiveButtonListener = listener;
-            P.mPositiveBtnId = viewId;
-            return this;
-        }
 
         /**
          * Sets the callback that will be called if the dialog is canceled.
