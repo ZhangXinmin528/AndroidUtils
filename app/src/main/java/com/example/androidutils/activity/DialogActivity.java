@@ -2,6 +2,7 @@ package com.example.androidutils.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -62,7 +63,7 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
                             public void onClick(CommonDialog dialog) {
                                 Toast.makeText(mContext, "点击了再想想", Toast.LENGTH_SHORT).show();
                             }
-                        }).show(300, 300);
+                        }).display(300, 300);
                 break;
             case R.id.btn_show_window:
                 mConfirmWindow.showWindow(mRootLayout);

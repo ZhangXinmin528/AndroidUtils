@@ -269,13 +269,36 @@ public class CommonDialog extends Dialog {
         }
 
         /**
+         * Creates an {@link CommonDialog} with the arguments supplied to this
+         * builder.
+         * <p>
+         * Calling this method does not display the dialog. If no additional
+         * processing is needed, {@link #show()} may be called instead to both
+         * create and display the dialog.
+         */
+        public CommonDialog create(@IntRange(from = 0) int width, @IntRange(from = 0) int height) {
+            final CommonDialog dialog = new CommonDialog(P.mContext, P.mTheme);
+            setUpView(dialog, width, height);
+            dialog.setCancelable(P.mCancelable);
+            if (P.mCancelable) {
+                dialog.setCanceledOnTouchOutside(true);
+            }
+            dialog.setOnCancelListener(P.mOnCancelListener);
+            dialog.setOnDismissListener(P.mOnDismissListener);
+            if (P.mOnKeyListener != null) {
+                dialog.setOnKeyListener(P.mOnKeyListener);
+            }
+            return dialog;
+        }
+
+        /**
          * Start the dialog and display it on screen.{@link CommonDialog#show()}
          *
          * @param width
          * @param height
          */
-        public void show(@IntRange(from = 0) int width, @IntRange(from = 0) int height) {
-            show(width, height, -1);
+        public void display(@IntRange(from = 0) int width, @IntRange(from = 0) int height) {
+            display(width, height, -1);
         }
 
         /**
@@ -286,25 +309,15 @@ public class CommonDialog extends Dialog {
          * @param height
          * @param gravity Placement of window within the screen as per {@link Gravity}.
          */
-        public void show(@IntRange(from = 0) int width, @IntRange(from = 0) int height, int gravity) {
-            final CommonDialog dialog = new CommonDialog(P.mContext, P.mTheme);
-            setUpView(dialog);
-            dialog.setCancelable(P.mCancelable);
-            if (P.mCancelable) {
-                dialog.setCanceledOnTouchOutside(true);
-            }
-            dialog.setOnCancelListener(P.mOnCancelListener);
-            dialog.setOnDismissListener(P.mOnDismissListener);
-            if (P.mOnKeyListener != null) {
-                dialog.setOnKeyListener(P.mOnKeyListener);
-            }
+        public void display(@IntRange(from = 0) int width, @IntRange(from = 0) int height, int gravity) {
+            final CommonDialog dialog = create(width, height);
             dialog.show();
             Window window = dialog.getWindow();
             WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
             if (window != null) {
                 lp.copyFrom(window.getAttributes());
-                lp.width = ScreenUtil.dp2px(window.getContext(), width);
-                lp.height = ScreenUtil.dp2px(window.getContext(), height);
+                lp.width = P.mWidth;
+                lp.height = P.mHeight;
                 if (gravity == -1) {
                     lp.gravity = Gravity.CENTER;
                 } else {
@@ -314,7 +327,7 @@ public class CommonDialog extends Dialog {
             }
         }
 
-        private void setUpView(@NonNull final CommonDialog dialog) {
+        private void setUpView(@NonNull final CommonDialog dialog, int width, int height) {
             if (P.mRootView == null) {
                 if (P.layoutResID != 0) {
                     P.mRootView = LayoutInflater.from(P.mContext)
@@ -325,6 +338,8 @@ public class CommonDialog extends Dialog {
                 dialog.cancel();
                 return;
             }
+            P.mWidth = ScreenUtil.dp2px(dialog.getContext(), width);
+            P.mHeight = ScreenUtil.dp2px(dialog.getContext(), width);
             //itle
             if (!TextUtils.isEmpty(P.mTilte) && P.mTitleId != 0) {
                 final TextView titleView = P.mRootView.findViewById(P.mTitleId);
@@ -375,6 +390,8 @@ public class CommonDialog extends Dialog {
         public int mTheme;
         public int layoutResID;
         public View mRootView;
+        public int mWidth;
+        public int mHeight;
         //title
         public CharSequence mTilte;
         public int mTitleId;
@@ -389,7 +406,6 @@ public class CommonDialog extends Dialog {
         public CharSequence mNegativeButtonText;
         public int mNegativeBtnId;
         public OnClickListener mNegativeButtonListener;
-
         public boolean mCancelable;
         public OnCancelListener mOnCancelListener;
         public OnDismissListener mOnDismissListener;
