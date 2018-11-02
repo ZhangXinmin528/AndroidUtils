@@ -1,10 +1,11 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 27
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
@@ -20,8 +21,8 @@ android {
             buildConfigField 'boolean', 'IS_DEBUG', 'false'
             //是否输出日志
             buildConfigField("boolean", "LOG_ENABLE", "false")
-        }
 
+        }
         debug {
             //当前模式
             buildConfigField 'boolean', 'IS_DEBUG', 'true'
@@ -30,10 +31,9 @@ android {
 
         }
     }
-    buildToolsVersion '27.0.3'
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
 }
