@@ -55,6 +55,11 @@
             android:name=".activity.NetWatcherActivity"
             android:screenOrientation="portrait" />
 
+        <!--取色演示-->
+        <activity
+            android:name=".activity.PaletteActivity"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>
