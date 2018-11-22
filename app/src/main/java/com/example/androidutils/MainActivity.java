@@ -10,6 +10,7 @@ import android.widget.ListView;
 import com.example.androidutils.activity.DialogActivity;
 import com.example.androidutils.activity.ImageActivity;
 import com.example.androidutils.activity.KeyboradActivity;
+import com.example.androidutils.activity.NetWatcherActivity;
 import com.example.androidutils.activity.ScreenActivity;
 import com.example.androidutils.activity.SpanActivity;
 import com.example.androidutils.base.BaseActivity;
@@ -52,6 +53,7 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
         mDataList.add("软键盘使用-->KeyboradUtil的使用");
         mDataList.add("图片工具-->ImageUtil的使用");
         mDataList.add("Dialog的使用-->Dialog的使用");
+//        mDataList.add("网络检测-->NetWatchdog的使用");
         mAdapter.notifyDataSetChanged();
     }
 
@@ -74,6 +76,9 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
             case 4:
                 intent.setClass(mContext, DialogActivity.class);
                 break;
+            /*case 5:
+                intent.setClass(mContext, NetWatcherActivity.class);
+                break;*/
             default:
                 break;
         }

@@ -1,5 +1,6 @@
 package com.zxm.libutils;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.KeyguardManager;
 import android.content.Context;
@@ -98,6 +99,7 @@ public final class ScreenUtil {
      * @param context
      * @return the height of screen, in pixel
      */
+    @SuppressLint("ObsoleteSdkInt")
     public static int getScreenHeight(Context context) {
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         if (wm == null) {
@@ -110,6 +112,68 @@ public final class ScreenUtil {
             wm.getDefaultDisplay().getSize(point);
         }
         return point.y;
+    }
+
+    /**
+     * Return the width of physical screen
+     *
+     * @param context
+     * @return
+     */
+    public static double getPhysicsScreenWidth(Context context) {
+        WindowManager manager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        double width = 0;
+        if (manager != null) {
+            Point point = new Point();
+            manager.getDefaultDisplay().getRealSize(point);
+            DisplayMetrics dm = context.getResources().getDisplayMetrics();
+            width = Math.pow(point.x / dm.xdpi, 2);//dm.xdpi是屏幕x方向的真实密度值
+        }
+        return Math.sqrt(width);
+    }
+
+    /**
+     * Return the height of physical screen
+     *
+     * @param context
+     * @return
+     */
+    public static double getPhysicsScreenHeight(Context context) {
+        WindowManager manager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        double height = 0;
+        if (manager != null) {
+            Point point = new Point();
+            manager.getDefaultDisplay().getRealSize(point);
+            DisplayMetrics dm = context.getResources().getDisplayMetrics();
+            height = Math.pow(point.y / dm.ydpi, 2);//dm.ydpi是屏幕y方向的真实密度值
+        }
+//        return Math.sqrt(height) * 2.54;
+        return Math.sqrt(height);
+    }
+
+
+    /**
+     * Return the physical screen size.
+     * 得到屏幕的物理尺寸，由于该尺寸是在出厂时，厂商写死的，所以仅供参考
+     * 计算方法：获取到屏幕的分辨率:point.x和point.y，再取出屏幕的DPI（每英寸的像素数量），
+     * 计算长和宽有多少英寸，即：point.x / dm.xdpi，point.y / dm.ydpi，屏幕的长和宽算出来了，
+     * 再用勾股定理，计算出斜角边的长度，即屏幕尺寸。
+     *
+     * @param context
+     * @return 英寸
+     */
+    public static double getPhysicsScreenSize(Context context) {
+        WindowManager manager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        double screenInches = 0;
+        if (manager != null) {
+            Point point = new Point();
+            manager.getDefaultDisplay().getRealSize(point);
+            DisplayMetrics dm = context.getResources().getDisplayMetrics();
+            double x = Math.pow(point.x / dm.xdpi, 2);//dm.xdpi是屏幕x方向的真实密度值，比上面的densityDpi真实。
+            double y = Math.pow(point.y / dm.ydpi, 2);//dm.xdpi是屏幕y方向的真实密度值，比上面的densityDpi真实。
+            screenInches = Math.sqrt(x + y);
+        }
+        return screenInches;
     }
 
     /**

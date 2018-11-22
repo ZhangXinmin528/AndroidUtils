@@ -51,6 +51,9 @@ public class ScreenActivity extends BaseActivity implements View.OnClickListener
         sb.append("屏幕DPI：" + ScreenUtil.getScreenDensityDpi(mContext) + "\n");
         sb.append("屏幕宽度：" + ScreenUtil.getScreenWidth(mContext) + "\n");
         sb.append("屏幕高度：" + ScreenUtil.getScreenHeight(mContext) + "\n");
+        sb.append("屏幕物理尺寸(英寸)：" + ScreenUtil.getPhysicsScreenSize(mContext) + "\n");
+        sb.append("屏幕物理宽度(cm)：" + ScreenUtil.getPhysicsScreenWidth(mContext) + "\n");
+        sb.append("屏幕物理高度(cm)：" + ScreenUtil.getPhysicsScreenHeight(mContext) + "\n");
         sb.append("是否横屏：" + ScreenUtil.isLandscape(mContext) + "\n");
         sb.append("屏幕旋转角度：" + ScreenUtil.getScreenRotation(this) + "\n");
         sb.append("是否锁屏：" + ScreenUtil.isScreenLock(mContext) + "\n");
@@ -65,7 +68,7 @@ public class ScreenActivity extends BaseActivity implements View.OnClickListener
                 ScreenUtil.setFullScreen(ScreenActivity.this);
                 break;
             case R.id.btn_screenShot:
-              final Bitmap bitmap =  ScreenUtil.screenShot(ScreenActivity.this);
+                final Bitmap bitmap = ScreenUtil.screenShot(ScreenActivity.this);
                 mTestIv.post(new Runnable() {
                     @Override
                     public void run() {
