@@ -16,7 +16,8 @@ import com.zxm.libutils.SpanUtils;
  * Copyright (c) 2018 . All rights reserved.
  * User guide for {@link com.zxm.libutils.KeyboradUtil}
  */
-public class KeyboradActivity extends BaseActivity implements View.OnClickListener, KeyboradUtil.OnSoftInputChangedListener {
+public class KeyboradActivity extends BaseActivity implements View.OnClickListener,
+        KeyboradUtil.OnSoftInputChangedListener {
 
     private Context mContext;
     private TextView mResutltTv;

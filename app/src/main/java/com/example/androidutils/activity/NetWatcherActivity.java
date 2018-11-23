@@ -7,13 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.example.androidutils.R;
+import com.example.androidutils.base.BaseActivity;
 import com.zxm.libutils.NetWatchdog;
 
 /**
  * Created by ZhangXinmin on 2018/11/14.
  * Copyright (c) 2018 . All rights reserved.
  */
-public class NetWatcherActivity extends AppCompatActivity implements NetWatchdog.NetChangeListener, NetWatchdog.NetConnectedListener {
+public class NetWatcherActivity extends BaseActivity implements NetWatchdog.NetChangeListener, NetWatchdog.NetConnectedListener {
 
     private static final String TAG = NetWatcherActivity.class.getSimpleName();
 
@@ -22,15 +23,8 @@ public class NetWatcherActivity extends AppCompatActivity implements NetWatchdog
     private NetWatchdog mNetWatchdog;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_netwatcher);
-
-        initParamsAndValues();
-
-        initViews();
-
-        initNetWatchdog();
+    protected Object setLayout() {
+        return R.layout.activity_netwatcher;
     }
 
     private void initNetWatchdog() {
@@ -39,13 +33,15 @@ public class NetWatcherActivity extends AppCompatActivity implements NetWatchdog
         mNetWatchdog.setNetConnectedListener(this);
     }
 
-    private void initParamsAndValues() {
+    @Override
+    protected void initParamsAndValues() {
         mContext = this;
 
     }
 
-    private void initViews() {
-
+    @Override
+    protected void initViews() {
+        initNetWatchdog();
     }
 
     @Override

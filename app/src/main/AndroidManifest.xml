@@ -59,6 +59,7 @@
         <activity
             android:name=".activity.PaletteActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".activity.DeviceActivity" />
 
     </application>
 

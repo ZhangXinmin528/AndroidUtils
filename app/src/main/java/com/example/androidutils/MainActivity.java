@@ -53,9 +53,10 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
         mDataList.add("屏幕属性-->ScreenUtil的使用");
         mDataList.add("软键盘使用-->KeyboradUtil的使用");
         mDataList.add("图片工具-->ImageUtil的使用");
-        mDataList.add("Dialog的使用-->Dialog的使用");
+        mDataList.add("自定义弹窗-->Dialog的使用");
         mDataList.add("网络检测-->NetWatchdog的使用");
-        mDataList.add("Palette的使用-->Palette的使用");
+        mDataList.add("图片取色-->Palette的使用");
+        mDataList.add("获取设备信息-->DeviceUtil的使用");
         mAdapter.notifyDataSetChanged();
     }
 
@@ -82,6 +83,9 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
                 intent.setClass(mContext, NetWatcherActivity.class);
                 break;
             case 6:
+                intent.setClass(mContext, PaletteActivity.class);
+                break;
+            case 7:
                 intent.setClass(mContext, PaletteActivity.class);
                 break;
             default:

@@ -11,31 +11,30 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.androidutils.R;
+import com.example.androidutils.base.BaseActivity;
 
 /**
  * Created by ZhangXinmin on 2018/11/20.
  * Copyright (c) 2018.
  * 取色功能
  */
-public class PaletteActivity extends AppCompatActivity {
+public class PaletteActivity extends BaseActivity {
     private Context mContext;
 
     private ImageView mSimpleIV;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_palette);
-
-        initParamsAndValues();
-        initViews();
+    protected Object setLayout() {
+        return R.layout.activity_palette;
     }
 
-    private void initParamsAndValues() {
+    @Override
+    protected void initParamsAndValues() {
         mContext = this;
     }
 
-    private void initViews() {
+    @Override
+    protected void initViews() {
         mSimpleIV = findViewById(R.id.iv_palette_simple);
 
         final Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.palette_simple);
