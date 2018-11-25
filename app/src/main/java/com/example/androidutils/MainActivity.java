@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.androidutils.activity.DeviceActivity;
 import com.example.androidutils.activity.DialogActivity;
 import com.example.androidutils.activity.ImageActivity;
 import com.example.androidutils.activity.KeyboradActivity;
@@ -86,7 +87,7 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
                 intent.setClass(mContext, PaletteActivity.class);
                 break;
             case 7:
-                intent.setClass(mContext, PaletteActivity.class);
+                intent.setClass(mContext, DeviceActivity.class);
                 break;
             default:
                 break;
