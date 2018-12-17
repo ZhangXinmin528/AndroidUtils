@@ -29,8 +29,7 @@
 
         <!--屏幕相关-->
         <activity
-            android:name=".activity.ScreenActivity"
-            android:screenOrientation="portrait" />
+            android:name=".activity.ScreenActivity" />
 
         <!--软键盘使用-->
         <activity
