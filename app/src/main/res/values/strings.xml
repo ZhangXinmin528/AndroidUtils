@@ -27,4 +27,6 @@
     <string name="image_compress_by_quality_half">Compress By Quality Half</string>
     <string name="image_compress_by_quality_max_size">Compress By Quality Max Size</string>
     <string name="image_compress_by_sample_size">Compress By Sample Size</string>
+
+    <string name="all_deny_write_stroge_permission">禁用文件读写权限，将不能很好的使用本应用！</string>
 </resources>

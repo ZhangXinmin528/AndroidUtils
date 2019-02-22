@@ -13,6 +13,7 @@ import com.example.androidutils.activity.ImageActivity;
 import com.example.androidutils.activity.KeyboradActivity;
 import com.example.androidutils.activity.NetWatcherActivity;
 import com.example.androidutils.activity.PaletteActivity;
+import com.example.androidutils.activity.PermissionActivity;
 import com.example.androidutils.activity.ScreenActivity;
 import com.example.androidutils.activity.SpanActivity;
 import com.example.androidutils.base.BaseActivity;
@@ -49,7 +50,6 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
     @Override
     protected void initData() {
         super.initData();
-
         mDataList.add("文字样式-->SpanUtils的使用");
         mDataList.add("屏幕属性-->ScreenUtil的使用");
         mDataList.add("软键盘使用-->KeyboradUtil的使用");
@@ -58,6 +58,7 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
         mDataList.add("网络检测-->NetWatchdog的使用");
         mDataList.add("图片取色-->Palette的使用");
         mDataList.add("获取设备信息-->DeviceUtil的使用");
+        mDataList.add("请求权限-->Android权限申请");
         mAdapter.notifyDataSetChanged();
     }
 
@@ -88,6 +89,9 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
                 break;
             case 7:
                 intent.setClass(mContext, DeviceActivity.class);
+                break;
+            case 8:
+                intent.setClass(mContext, PermissionActivity.class);
                 break;
             default:
                 break;

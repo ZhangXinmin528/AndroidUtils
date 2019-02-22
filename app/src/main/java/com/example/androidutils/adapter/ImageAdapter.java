@@ -1,16 +1,17 @@
 package com.example.androidutils.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.annotation.Nullable;
 import android.widget.ImageView;
-import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.androidutils.R;
-import com.example.androidutils.bean.GlideApp;
 import com.example.androidutils.bean.ImageEntity;
 
+import java.io.ByteArrayOutputStream;
 import java.util.List;
 
 /**
@@ -30,8 +31,11 @@ public class ImageAdapter extends BaseQuickAdapter<ImageEntity, BaseViewHolder> 
     protected void convert(BaseViewHolder holder, ImageEntity item) {
         holder.setText(R.id.tv_image_name, item.getName());
         final ImageView imageView = holder.getView(R.id.iv_image);
-        GlideApp.with(mContext)
-                .load(item.getImage())
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        item.getImage().compress(Bitmap.CompressFormat.PNG, 100, baos);
+        byte[] bytes = baos.toByteArray();
+        Glide.with(mContext)
+                .load(bytes)
                 .into(imageView);
     }
 }
