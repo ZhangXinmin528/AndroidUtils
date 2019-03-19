@@ -11,6 +11,7 @@ import com.example.androidutils.activity.DeviceActivity;
 import com.example.androidutils.activity.DialogActivity;
 import com.example.androidutils.activity.ImageActivity;
 import com.example.androidutils.activity.KeyboradActivity;
+import com.example.androidutils.activity.LogActivity;
 import com.example.androidutils.activity.NetWatcherActivity;
 import com.example.androidutils.activity.PaletteActivity;
 import com.example.androidutils.activity.PermissionActivity;
@@ -59,6 +60,7 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
         mDataList.add("图片取色-->Palette的使用");
         mDataList.add("获取设备信息-->DeviceUtil的使用");
         mDataList.add("请求权限-->Android权限申请");
+        mDataList.add("日志工具-->日志输出和存储");
         mAdapter.notifyDataSetChanged();
     }
 
@@ -92,6 +94,9 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
                 break;
             case 8:
                 intent.setClass(mContext, PermissionActivity.class);
+                break;
+            case 9:
+                intent.setClass(mContext, LogActivity.class);
                 break;
             default:
                 break;

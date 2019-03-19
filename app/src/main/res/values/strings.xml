@@ -29,4 +29,25 @@
     <string name="image_compress_by_sample_size">Compress By Sample Size</string>
 
     <string name="all_deny_write_stroge_permission">禁用文件读写权限，将不能很好的使用本应用！</string>
+
+    <!--log 相关-->
+    <string name="log_toggle_log">Toggle Log</string>
+    <string name="log_toggle_console">Toggle Console</string>
+    <string name="log_toggle_tag">Toggle Tag</string>
+    <string name="log_toggle_head">Toggle Head</string>
+    <string name="log_toggle_border">Toggle Border</string>
+    <string name="log_toggle_single">Toggle Single</string>
+    <string name="log_toggle_console_filter">Toggle Console Filter</string>
+    <string name="log_toggle_file_filter">Toggle File Filter</string>
+    <string name="log_toggle_file">Toggle File</string>
+    <string name="log_toggle_dir">Toggle Dir</string>
+    <string name="log_with_no_tag">Log With No Tag</string>
+    <string name="log_with_tag">Log With Tag</string>
+    <string name="log_in_new_thread">Log In New Thread</string>
+    <string name="log_null">Log Null</string>
+    <string name="log_many_params">Log Many Params</string>
+    <string name="log_long_string">Log Long String</string>
+    <string name="log_to_file">Log To File</string>
+    <string name="log_json">Log Json</string>
+    <string name="log_xml">Log Xml</string>
 </resources>

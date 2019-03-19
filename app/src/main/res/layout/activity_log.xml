@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/dp_16">
+
+        <TextView
+            android:id="@+id/tv_about_log"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black" />
+
+        <Button
+            android:id="@+id/btn_toggle_log"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/log_toggle_log" />
+
+        <Button
+            android:id="@+id/btn_toggle_console"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/log_toggle_console" />
+
+        <Button
+            android:id="@+id/btn_toggle_tag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/log_toggle_tag" />
+
+        <Button
+            android:id="@+id/btn_toggle_head"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/log_toggle_head" />
+
+        <Button
+            android:id="@+id/btn_toggle_file"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/log_toggle_file" />
+
+        <Button
+            android:id="@+id/btn_toggle_dir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/log_toggle_dir" />
+
+        <Button
+            android:id="@+id/btn_toggle_border"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/log_toggle_border" />
+
+        <Button
+            android:id="@+id/btn_toggle_single"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/log_toggle_single" />
+
+        <Button
+            android:id="@+id/btn_toggle_conole_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/log_toggle_console_filter" />
+
+        <Button
+            android:id="@+id/btn_toggle_file_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/log_toggle_file_filter" />
+
+        <Button
+            android:id="@+id/btn_log_no_tag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/log_with_no_tag" />
+
+        <Button
+            android:id="@+id/btn_log_with_tag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/log_with_tag" />
+
+        <Button
+            android:id="@+id/btn_log_in_new_thread"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/log_in_new_thread" />
+
+        <Button
+            android:id="@+id/btn_log_null"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/log_null" />
+
+        <Button
+            android:id="@+id/btn_log_many_params"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/log_many_params" />
+
+        <Button
+            android:id="@+id/btn_log_long"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/log_long_string" />
+
+        <Button
+            android:id="@+id/btn_log_file"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/log_to_file" />
+
+        <Button
+            android:id="@+id/btn_log_json"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/log_json" />
+
+        <Button
+            android:id="@+id/btn_log_xml"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/log_xml" />
+    </LinearLayout>
+
+
+</android.support.v4.widget.NestedScrollView>
