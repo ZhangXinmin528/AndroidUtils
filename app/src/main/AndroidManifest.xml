@@ -50,7 +50,6 @@
         <!--模拟Dialog-->
         <activity
             android:name=".activity.ImitateDialogActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/DialogTheme" />
 
         <!--网络检测-->

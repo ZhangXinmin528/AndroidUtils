@@ -18,7 +18,7 @@ public class ImitateDialogActivity extends BaseActivity implements View.OnClickL
 
     @Override
     protected Object setLayout() {
-        return R.layout.layout_confirm_window;
+        return R.layout.activity_imitate_dialog;
     }
 
     @Override
@@ -29,7 +29,9 @@ public class ImitateDialogActivity extends BaseActivity implements View.OnClickL
     @Override
     protected void initViews() {
         final TextView message = findViewById(R.id.tv_message);
-        message.setText("模拟Dialog");
+        message.setText("Activity模拟Dialog");
+        findViewById(R.id.tv_cancel).setOnClickListener(this);
+        findViewById(R.id.tv_confirm).setOnClickListener(this);
     }
 
     @Override

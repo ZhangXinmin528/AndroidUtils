@@ -68,12 +68,12 @@ public final class MLogger {
     private static final String LINE_SEP = System.getProperty("line.separator");
 
     //border
-    private static final String TOP_CORNER = "┌";
-    private static final String MIDDLE_CORNER = "├";
-    private static final String LEFT_BORDER = "│ ";
-    private static final String BOTTOM_CORNER = "└";
+    private static final String TOP_CORNER = "╔";
+    private static final String MIDDLE_CORNER ="╟";
+    private static final String LEFT_BORDER = "║ ";
+    private static final String BOTTOM_CORNER = "╚";
     private static final String SIDE_DIVIDER =
-            "────────────────────────────────────────────────────────";
+            "═════════════════════════════════════════════════════════";
     private static final String MIDDLE_DIVIDER =
             "┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄";
     private static final String TOP_BORDER = TOP_CORNER + SIDE_DIVIDER + SIDE_DIVIDER;
