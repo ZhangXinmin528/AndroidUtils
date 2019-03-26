@@ -69,7 +69,7 @@ public final class MLogger {
 
     //border
     private static final String TOP_CORNER = "╔";
-    private static final String MIDDLE_CORNER ="╟";
+    private static final String MIDDLE_CORNER = "╟";
     private static final String LEFT_BORDER = "║ ";
     private static final String BOTTOM_CORNER = "╚";
     private static final String SIDE_DIVIDER =
@@ -91,7 +91,7 @@ public final class MLogger {
     private static final String ARGS = "args";
     private static final String PLACEHOLDER = " ";
 
-    private static ConfigBuilder CONFIG_BUILDER;
+    private static LogConfig LOG_CONFIG;
 
     private static ExecutorService sExecutor;
 
@@ -102,24 +102,24 @@ public final class MLogger {
     /**
      * Get log config
      *
-     * @return {@link ConfigBuilder}
+     * @return {@link LogConfig}
      */
-    public static ConfigBuilder getLogConfig() {
-        return CONFIG_BUILDER;
+    public static LogConfig getLogConfig() {
+        return LOG_CONFIG;
     }
 
     /**
      * Set log config
      *
-     * @param builder {@link ConfigBuilder}
+     * @param config {@link LogConfig}
      */
-    public static void resetLogConfig(@NonNull ConfigBuilder builder) {
-        CONFIG_BUILDER = builder;
+    public static void resetLogConfig(@NonNull LogConfig config) {
+        LOG_CONFIG = config;
     }
 
     public static void v(final Object... contents) {
-        if (CONFIG_BUILDER != null) {
-            log(V, CONFIG_BUILDER.mGlobalTag, contents);
+        if (LOG_CONFIG != null) {
+            log(V, LOG_CONFIG.globalTag, contents);
         }
     }
 
@@ -128,8 +128,8 @@ public final class MLogger {
     }
 
     public static void d(final Object... contents) {
-        if (CONFIG_BUILDER != null) {
-            log(D, CONFIG_BUILDER.mGlobalTag, contents);
+        if (LOG_CONFIG != null) {
+            log(D, LOG_CONFIG.globalTag, contents);
         }
     }
 
@@ -138,8 +138,8 @@ public final class MLogger {
     }
 
     public static void i(final Object... contents) {
-        if (CONFIG_BUILDER != null) {
-            log(I, CONFIG_BUILDER.mGlobalTag, contents);
+        if (LOG_CONFIG != null) {
+            log(I, LOG_CONFIG.globalTag, contents);
         }
     }
 
@@ -148,8 +148,8 @@ public final class MLogger {
     }
 
     public static void w(final Object... contents) {
-        if (CONFIG_BUILDER != null) {
-            log(W, CONFIG_BUILDER.mGlobalTag, contents);
+        if (LOG_CONFIG != null) {
+            log(W, LOG_CONFIG.globalTag, contents);
         }
     }
 
@@ -158,8 +158,8 @@ public final class MLogger {
     }
 
     public static void e(final Object... contents) {
-        if (CONFIG_BUILDER != null) {
-            log(E, CONFIG_BUILDER.mGlobalTag, contents);
+        if (LOG_CONFIG != null) {
+            log(E, LOG_CONFIG.globalTag, contents);
         }
     }
 
@@ -168,8 +168,8 @@ public final class MLogger {
     }
 
     public static void a(final Object... contents) {
-        if (CONFIG_BUILDER != null) {
-            log(A, CONFIG_BUILDER.mGlobalTag, contents);
+        if (LOG_CONFIG != null) {
+            log(A, LOG_CONFIG.globalTag, contents);
         }
     }
 
@@ -178,17 +178,17 @@ public final class MLogger {
     }
 
     public static void file(final Object content) {
-        if (CONFIG_BUILDER != null)
-            log(FILE | D, CONFIG_BUILDER.mGlobalTag, content);
+        if (LOG_CONFIG != null)
+            log(FILE | I, LOG_CONFIG.globalTag, content);
     }
 
     public static void file(@TYPE final int type, final Object content) {
-        if (CONFIG_BUILDER != null)
-            log(FILE | type, CONFIG_BUILDER.mGlobalTag, content);
+        if (LOG_CONFIG != null)
+            log(FILE | type, LOG_CONFIG.globalTag, content);
     }
 
     public static void file(final String tag, final Object content) {
-        log(FILE | D, tag, content);
+        log(FILE | I, tag, content);
     }
 
     public static void file(@TYPE final int type, final String tag, final Object content) {
@@ -196,17 +196,17 @@ public final class MLogger {
     }
 
     public static void json(final String content) {
-        if (CONFIG_BUILDER != null)
-            log(JSON | D, CONFIG_BUILDER.mGlobalTag, content);
+        if (LOG_CONFIG != null)
+            log(JSON | I, LOG_CONFIG.globalTag, content);
     }
 
     public static void json(@TYPE final int type, final String content) {
-        if (CONFIG_BUILDER != null)
-            log(JSON | type, CONFIG_BUILDER.mGlobalTag, content);
+        if (LOG_CONFIG != null)
+            log(JSON | type, LOG_CONFIG.globalTag, content);
     }
 
     public static void json(final String tag, final String content) {
-        log(JSON | D, tag, content);
+        log(JSON | I, tag, content);
     }
 
     public static void json(@TYPE final int type, final String tag, final String content) {
@@ -214,17 +214,17 @@ public final class MLogger {
     }
 
     public static void xml(final String content) {
-        if (CONFIG_BUILDER != null)
-            log(XML | D, CONFIG_BUILDER.mGlobalTag, content);
+        if (LOG_CONFIG != null)
+            log(XML | I, LOG_CONFIG.globalTag, content);
     }
 
     public static void xml(@TYPE final int type, final String content) {
-        if (CONFIG_BUILDER != null)
-            log(XML | type, CONFIG_BUILDER.mGlobalTag, content);
+        if (LOG_CONFIG != null)
+            log(XML | type, LOG_CONFIG.globalTag, content);
     }
 
     public static void xml(final String tag, final String content) {
-        log(XML | D, tag, content);
+        log(XML | I, tag, content);
     }
 
     public static void xml(@TYPE final int type, final String tag, final String content) {
@@ -232,30 +232,38 @@ public final class MLogger {
     }
 
     /**
-     * log
+     * The main method control is to output log information to the console or to a file.
+     * <li> If the attribute {@link LogConfig #logSwitch} is false, you con't output log information
+     * to console or to a file.
+     *
+     * <li> If the attribute {@link LogConfig #log2ConsoleSwitch} is true &&
+     * {@link LogConfig #consoleFilter} meet the demand, you con output log information to console.
+     *
+     * <li> If the attribute {@link LogConfig #log2FileSwitch} is true &&
+     * the log type meet the demand, you con output log information to a file.
      *
      * @param type     log level,maybe one of{@link #V,#D,#I,#W,#E,#A}
      * @param tag      log tag
      * @param contents information to print
      */
     public static void log(final int type, final String tag, final Object... contents) {
-        if (CONFIG_BUILDER == null)
+        if (LOG_CONFIG == null)
             return;
-        if (!CONFIG_BUILDER.mLogSwitch || (!CONFIG_BUILDER.mLog2ConsoleSwitch && !CONFIG_BUILDER.mLog2FileSwitch))
+        if (!LOG_CONFIG.logSwitch || (!LOG_CONFIG.log2ConsoleSwitch && !LOG_CONFIG.log2FileSwitch))
             return;
 
         final int type_low = type & 0x0f, type_high = type & 0xf0;
 
-        if (type_low < CONFIG_BUILDER.mConsoleFilter && type_low < CONFIG_BUILDER.mFileFilter)
+        if (type_low < LOG_CONFIG.consoleFilter && type_low < LOG_CONFIG.fileFilter)
             return;
 
         final TagHead tagHead = processTagAndHead(tag);
 
         final String body = processBody(type_high, contents);
-        if (CONFIG_BUILDER.mLog2ConsoleSwitch && type_low >= CONFIG_BUILDER.mConsoleFilter && type_high != FILE) {
+        if (LOG_CONFIG.log2ConsoleSwitch && type_low >= LOG_CONFIG.consoleFilter) {
             print2Console(type_low, tagHead.tag, tagHead.consoleHead, body);
         }
-        if ((CONFIG_BUILDER.mLog2FileSwitch && type_high == FILE) && type_low >= CONFIG_BUILDER.mFileFilter) {
+        if ((LOG_CONFIG.log2FileSwitch && type_high == FILE) && type_low >= LOG_CONFIG.fileFilter) {
             print2File(type_low, tagHead.tag, tagHead.fileHead + body);
         }
     }
@@ -268,15 +276,15 @@ public final class MLogger {
      */
     private static TagHead processTagAndHead(String tag) {
 
-        if (!CONFIG_BUILDER.mTagIsSpace && !CONFIG_BUILDER.mLogHeadSwitch) {
-            tag = CONFIG_BUILDER.mGlobalTag;
+        if (!LOG_CONFIG.tagIsSpace && !LOG_CONFIG.logHeadSwitch) {
+            tag = LOG_CONFIG.globalTag;
         } else {
             final StackTraceElement[] stackTrace = new Throwable().getStackTrace();
-            final int stackIndex = 3 + CONFIG_BUILDER.mStackOffset;
+            final int stackIndex = 3 + LOG_CONFIG.stackOffset;
             if (stackIndex >= stackTrace.length) {
                 StackTraceElement targetElement = stackTrace[3];
                 final String fileName = getFileName(targetElement);
-                if (CONFIG_BUILDER.mTagIsSpace && isSpace(tag)) {
+                if (LOG_CONFIG.tagIsSpace && isSpace(tag)) {
                     int index = fileName.indexOf('.');// Use proguard may not find '.'.
                     tag = index == -1 ? fileName : fileName.substring(0, index);
                 }
@@ -284,11 +292,11 @@ public final class MLogger {
             }
             StackTraceElement targetElement = stackTrace[stackIndex];
             final String fileName = getFileName(targetElement);
-            if (CONFIG_BUILDER.mTagIsSpace && isSpace(tag)) {
+            if (LOG_CONFIG.tagIsSpace && isSpace(tag)) {
                 int index = fileName.indexOf('.');// Use proguard may not find '.'.
                 tag = index == -1 ? fileName : fileName.substring(0, index);
             }
-            if (CONFIG_BUILDER.mLogHeadSwitch) {
+            if (LOG_CONFIG.logHeadSwitch) {
                 String tName = Thread.currentThread().getName();
                 final String head = new Formatter()
                         .format("%s, %s.%s(%s:%d)",
@@ -299,12 +307,12 @@ public final class MLogger {
                                 targetElement.getLineNumber())
                         .toString();
                 final String fileHead = " [" + head + "]: ";
-                if (CONFIG_BUILDER.mStackDeep <= 1) {
+                if (LOG_CONFIG.stackDeep <= 1) {
                     return new TagHead(tag, new String[]{head}, fileHead);
                 } else {
                     final String[] consoleHead =
                             new String[Math.min(
-                                    CONFIG_BUILDER.mStackDeep,
+                                    LOG_CONFIG.stackDeep,
                                     stackTrace.length - stackIndex
                             )];
                     consoleHead[0] = head;
@@ -406,10 +414,10 @@ public final class MLogger {
                                       final String tag,
                                       final String[] head,
                                       final String msg) {
-        if (CONFIG_BUILDER.mSingleTagSwitch) {
+        if (LOG_CONFIG.singleTagSwitch) {
             StringBuilder sb = new StringBuilder();
             sb.append(PLACEHOLDER).append(LINE_SEP);
-            if (CONFIG_BUILDER.mLogBorderSwitch) {
+            if (LOG_CONFIG.logBorderSwitch) {
                 sb.append(TOP_BORDER).append(LINE_SEP);
                 if (head != null) {
                     for (String aHead : head) {
@@ -446,7 +454,7 @@ public final class MLogger {
      * @param isTop true or false
      */
     private static void printBorder(final int type, final String tag, boolean isTop) {
-        if (CONFIG_BUILDER.mLogBorderSwitch) {
+        if (LOG_CONFIG.logBorderSwitch) {
             Log.println(type, tag, isTop ? TOP_BORDER : BOTTOM_BORDER);
         }
     }
@@ -461,9 +469,9 @@ public final class MLogger {
     private static void printHead(final int type, final String tag, final String[] head) {
         if (head != null) {
             for (String aHead : head) {
-                Log.println(type, tag, CONFIG_BUILDER.mLogBorderSwitch ? LEFT_BORDER + aHead : aHead);
+                Log.println(type, tag, LOG_CONFIG.logBorderSwitch ? LEFT_BORDER + aHead : aHead);
             }
-            if (CONFIG_BUILDER.mLogBorderSwitch)
+            if (LOG_CONFIG.logBorderSwitch)
                 Log.println(type, tag, MIDDLE_BORDER);
         }
     }
@@ -496,7 +504,7 @@ public final class MLogger {
         int len = msg.length();
         int countOfSub = len / MAX_LEN;
         if (countOfSub > 0) {
-            if (CONFIG_BUILDER.mLogBorderSwitch) {
+            if (LOG_CONFIG.logBorderSwitch) {
                 Log.println(type, tag, msg.substring(0, MAX_LEN) + LINE_SEP + BOTTOM_BORDER);
                 int index = MAX_LEN;
                 for (int i = 1; i < countOfSub; i++) {
@@ -525,7 +533,7 @@ public final class MLogger {
     }
 
     private static void printSubMsg(final int type, final String tag, final String msg) {
-        if (!CONFIG_BUILDER.mLogBorderSwitch) {
+        if (!LOG_CONFIG.logBorderSwitch) {
             Log.println(type, tag, msg);
             return;
         }
@@ -541,8 +549,8 @@ public final class MLogger {
         final String date = format.substring(0, 5);
         final String time = format.substring(6);
         final String fullPath =
-                (TextUtils.isEmpty(CONFIG_BUILDER.mDir) ? CONFIG_BUILDER.mDefaultDir : CONFIG_BUILDER.mDir)
-                        + CONFIG_BUILDER.mFilePrefix + "-" + date + ".txt";
+                (TextUtils.isEmpty(LOG_CONFIG.dir) ? LOG_CONFIG.defaultDir : LOG_CONFIG.dir)
+                        + LOG_CONFIG.filePrefix + "-" + date + ".txt";
 
         if (!createOrExistsFile(fullPath)) {
             return;
@@ -576,9 +584,9 @@ public final class MLogger {
         String versionName = "";
         int versionCode = 0;
         try {
-            PackageInfo pi = CONFIG_BUILDER.mContext
+            PackageInfo pi = LOG_CONFIG.context
                     .getPackageManager()
-                    .getPackageInfo(CONFIG_BUILDER.mContext.getPackageName(), 0);
+                    .getPackageInfo(LOG_CONFIG.context.getPackageName(), 0);
             if (pi != null) {
                 versionName = pi.versionName;
                 versionCode = pi.versionCode;
@@ -655,58 +663,58 @@ public final class MLogger {
     }
 
     /**
-     * ConfigBuilder class
+     * LogConfig class
      */
-    public static class ConfigBuilder {
-        private Context mContext;
+    public static class LogConfig {
+        private Context context;
         // The default storage directory of log.
-        private String mDefaultDir;
+        private String defaultDir;
         // The storage directory of log.
-        private String mDir;
+        private String dir;
         // The file prefix of log.
-        private String mFilePrefix = "log";
+        private String filePrefix = "log";
         // The switch of log.
-        private boolean mLogSwitch = true;
+        private boolean logSwitch = true;
         // The switch of logcat to print info in console.
-        private boolean mLog2ConsoleSwitch = true;
+        private boolean log2ConsoleSwitch = true;
         // The global tag of log.
-        private String mGlobalTag = null;
+        private String globalTag = null;
         // The global tag is space.
-        private boolean mTagIsSpace = true;
+        private boolean tagIsSpace = true;
         // The head's switch of log.
-        private boolean mLogHeadSwitch = true;
+        private boolean logHeadSwitch = true;
         // The file's switch of log.
-        private boolean mLog2FileSwitch = false;
+        private boolean log2FileSwitch = false;
         // The border's switch of log.
-        private boolean mLogBorderSwitch = true;
+        private boolean logBorderSwitch = true;
         // The single tag of log.
-        private boolean mSingleTagSwitch = true;
+        private boolean singleTagSwitch = true;
         // The console's filter of log.
-        private int mConsoleFilter = V;
+        private int consoleFilter = V;
         // The file's filter of log.
-        private int mFileFilter = V;
+        private int fileFilter = V;
         // The stack's deep of log.
-        private int mStackDeep = 1;
+        private int stackDeep = 1;
         // The stack's offset of log.
-        private int mStackOffset = 0;
+        private int stackOffset = 0;
 
         /**
-         * ConfigBuilder Constructor
+         * LogConfig Constructor
          *
          * @param context You'd better use application context.
          */
-        public ConfigBuilder(@NonNull Context context) {
-            if (context == null || mDefaultDir != null) {
+        public LogConfig(@NonNull Context context) {
+            if (context == null || defaultDir != null) {
                 return;
             }
 
-            mContext = context;
+            this.context = context;
 
             if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())
                     && context.getExternalCacheDir() != null) {
-                mDefaultDir = context.getExternalCacheDir() + FILE_SEP + "log" + FILE_SEP;
+                defaultDir = context.getExternalCacheDir() + FILE_SEP + "log" + FILE_SEP;
             } else {
-                mDefaultDir = context.getCacheDir() + FILE_SEP + "log" + FILE_SEP;
+                defaultDir = context.getCacheDir() + FILE_SEP + "log" + FILE_SEP;
             }
         }
 
@@ -716,8 +724,8 @@ public final class MLogger {
          * @param logSwitch true or false
          * @return
          */
-        public ConfigBuilder setLogSwitch(@NonNull final boolean logSwitch) {
-            mLogSwitch = logSwitch;
+        public LogConfig setLogSwitch(@NonNull final boolean logSwitch) {
+            this.logSwitch = logSwitch;
             return this;
         }
 
@@ -727,8 +735,8 @@ public final class MLogger {
          * @param consoleSwitch true or false
          * @return
          */
-        public ConfigBuilder setConsoleSwitch(final boolean consoleSwitch) {
-            mLog2ConsoleSwitch = consoleSwitch;
+        public LogConfig setConsoleSwitch(final boolean consoleSwitch) {
+            log2ConsoleSwitch = consoleSwitch;
             return this;
         }
 
@@ -738,13 +746,13 @@ public final class MLogger {
          * @param tag
          * @return
          */
-        public ConfigBuilder setGlobalTag(final String tag) {
+        public LogConfig setGlobalTag(final String tag) {
             if (isSpace(tag)) {
-                mGlobalTag = "";
-                mTagIsSpace = true;
+                globalTag = "";
+                tagIsSpace = true;
             } else {
-                mGlobalTag = tag;
-                mTagIsSpace = false;
+                globalTag = tag;
+                tagIsSpace = false;
             }
             return this;
         }
@@ -755,8 +763,8 @@ public final class MLogger {
          * @param logHeadSwitch true or false
          * @return
          */
-        public ConfigBuilder setLogHeadSwitch(final boolean logHeadSwitch) {
-            mLogHeadSwitch = logHeadSwitch;
+        public LogConfig setLogHeadSwitch(final boolean logHeadSwitch) {
+            this.logHeadSwitch = logHeadSwitch;
             return this;
         }
 
@@ -766,8 +774,8 @@ public final class MLogger {
          * @param log2FileSwitch true or false
          * @return
          */
-        public ConfigBuilder setLog2FileSwitch(final boolean log2FileSwitch) {
-            mLog2FileSwitch = log2FileSwitch;
+        public LogConfig setLog2FileSwitch(final boolean log2FileSwitch) {
+            this.log2FileSwitch = log2FileSwitch;
             return this;
         }
 
@@ -777,11 +785,11 @@ public final class MLogger {
          * @param dir
          * @return
          */
-        public ConfigBuilder setDir(final String dir) {
+        public LogConfig setDir(final String dir) {
             if (isSpace(dir)) {
-                mDir = null;
+                this.dir = null;
             } else {
-                mDir = dir.endsWith(FILE_SEP) ? dir : dir + FILE_SEP;
+                this.dir = dir.endsWith(FILE_SEP) ? dir : dir + FILE_SEP;
             }
             return this;
         }
@@ -792,8 +800,8 @@ public final class MLogger {
          * @param dir
          * @return
          */
-        public ConfigBuilder setDir(final File dir) {
-            mDir = dir == null ? null : dir.getAbsolutePath() + FILE_SEP;
+        public LogConfig setDir(final File dir) {
+            this.dir = dir == null ? null : dir.getAbsolutePath() + FILE_SEP;
             return this;
         }
 
@@ -803,11 +811,11 @@ public final class MLogger {
          * @param filePrefix
          * @return
          */
-        public ConfigBuilder setFilePrefix(final String filePrefix) {
+        public LogConfig setFilePrefix(final String filePrefix) {
             if (isSpace(filePrefix)) {
-                mFilePrefix = "util";
+                this.filePrefix = "util";
             } else {
-                mFilePrefix = filePrefix;
+                this.filePrefix = filePrefix;
             }
             return this;
         }
@@ -818,8 +826,8 @@ public final class MLogger {
          * @param borderSwitch true or false
          * @return
          */
-        public ConfigBuilder setBorderSwitch(final boolean borderSwitch) {
-            mLogBorderSwitch = borderSwitch;
+        public LogConfig setBorderSwitch(final boolean borderSwitch) {
+            logBorderSwitch = borderSwitch;
             return this;
         }
 
@@ -829,8 +837,8 @@ public final class MLogger {
          * @param singleTagSwitch true or false
          * @return
          */
-        public ConfigBuilder setSingleTagSwitch(final boolean singleTagSwitch) {
-            mSingleTagSwitch = singleTagSwitch;
+        public LogConfig setSingleTagSwitch(final boolean singleTagSwitch) {
+            this.singleTagSwitch = singleTagSwitch;
             return this;
         }
 
@@ -840,8 +848,8 @@ public final class MLogger {
          * @param consoleFilter
          * @return
          */
-        public ConfigBuilder setConsoleFilter(@TYPE final int consoleFilter) {
-            mConsoleFilter = consoleFilter;
+        public LogConfig setConsoleFilter(@TYPE final int consoleFilter) {
+            this.consoleFilter = consoleFilter;
             return this;
         }
 
@@ -851,8 +859,8 @@ public final class MLogger {
          * @param fileFilter
          * @return
          */
-        public ConfigBuilder setFileFilter(@TYPE final int fileFilter) {
-            mFileFilter = fileFilter;
+        public LogConfig setFileFilter(@TYPE final int fileFilter) {
+            this.fileFilter = fileFilter;
             return this;
         }
 
@@ -862,8 +870,8 @@ public final class MLogger {
          * @param stackDeep
          * @return
          */
-        public ConfigBuilder setStackDeep(@IntRange(from = 1) final int stackDeep) {
-            mStackDeep = stackDeep;
+        public LogConfig setStackDeep(@IntRange(from = 1) final int stackDeep) {
+            this.stackDeep = stackDeep;
             return this;
         }
 
@@ -873,26 +881,26 @@ public final class MLogger {
          * @param stackOffset
          * @return
          */
-        public ConfigBuilder setStackOffset(@IntRange(from = 0) final int stackOffset) {
-            mStackOffset = stackOffset;
+        public LogConfig setStackOffset(@IntRange(from = 0) final int stackOffset) {
+            this.stackOffset = stackOffset;
             return this;
         }
 
         @Override
         public String toString() {
-            return "log enable: " + mLogSwitch
-                    + LINE_SEP + "console: " + mLog2ConsoleSwitch
-                    + LINE_SEP + "tag: " + (mTagIsSpace ? "null" : mGlobalTag)
-                    + LINE_SEP + "head: " + mLogHeadSwitch
-                    + LINE_SEP + "file: " + mLog2FileSwitch
-                    + LINE_SEP + "dir: " + (mDir == null ? mDefaultDir : mDir)
-                    + LINE_SEP + "filePrefix: " + mFilePrefix
-                    + LINE_SEP + "border: " + mLogBorderSwitch
-                    + LINE_SEP + "singleTag: " + mSingleTagSwitch
-                    + LINE_SEP + "consoleFilter: " + T[mConsoleFilter - V]
-                    + LINE_SEP + "fileFilter: " + T[mFileFilter - V]
-                    + LINE_SEP + "stackDeep: " + mStackDeep
-                    + LINE_SEP + "mStackOffset: " + mStackOffset;
+            return "log enable: " + logSwitch
+                    + LINE_SEP + "console: " + log2ConsoleSwitch
+                    + LINE_SEP + "tag: " + (tagIsSpace ? "null" : globalTag)
+                    + LINE_SEP + "head: " + logHeadSwitch
+                    + LINE_SEP + "file: " + log2FileSwitch
+                    + LINE_SEP + "dir: " + (dir == null ? defaultDir : dir)
+                    + LINE_SEP + "filePrefix: " + filePrefix
+                    + LINE_SEP + "border: " + logBorderSwitch
+                    + LINE_SEP + "singleTag: " + singleTagSwitch
+                    + LINE_SEP + "consoleFilter: " + T[consoleFilter - V]
+                    + LINE_SEP + "fileFilter: " + T[fileFilter - V]
+                    + LINE_SEP + "stackDeep: " + stackDeep
+                    + LINE_SEP + "stackOffset: " + stackOffset;
         }
     }
 

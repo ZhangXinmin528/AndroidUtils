@@ -19,8 +19,8 @@ public class UtilApp extends Application {
      * init log config
      */
     private void initLogConfig() {
-        final MLogger.ConfigBuilder builder =
-                new MLogger.ConfigBuilder(getApplicationContext());
+        final MLogger.LogConfig builder =
+                new MLogger.LogConfig(getApplicationContext());
         MLogger.resetLogConfig(builder);
     }
 }

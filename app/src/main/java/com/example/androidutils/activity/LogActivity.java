@@ -1,6 +1,5 @@
 package com.example.androidutils.activity;
 
-import android.app.ActionBar;
 import android.os.Environment;
 import android.view.View;
 import android.widget.TextView;
@@ -51,7 +50,7 @@ public class LogActivity extends BaseActivity implements View.OnClickListener {
     private int consoleFilter = MLogger.V;
     private int fileFilter = MLogger.V;
     private TextView tvAboutLog;
-    private MLogger.ConfigBuilder builder;
+    private MLogger.LogConfig builder;
 
     private Runnable mRunnable = new Runnable() {
         @Override

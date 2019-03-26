@@ -11,6 +11,20 @@ import android.text.TextUtils;
  * Copyright (c) 2018 . All rights reserved.
  */
 public final class DialogUtil {
+
+    /**
+     * Show message dialog which con't cancelable {@link AlertDialog #setCancelable(cancelable)}.
+     *
+     * @param context
+     * @param message
+     * @param listener
+     */
+    public static void showForceDialog(@NonNull Context context, @NonNull String message,
+                                       @NonNull DialogInterface.OnClickListener listener) {
+
+        showDialog(context, message, false, listener);
+    }
+
     /**
      * show message dialog
      *
@@ -18,14 +32,14 @@ public final class DialogUtil {
      * @param message
      */
     public static void showDialog(@NonNull Context context, @NonNull String message,
-                                  @NonNull DialogInterface.OnClickListener listener) {
+                                  @NonNull boolean cancelable, @NonNull DialogInterface.OnClickListener listener) {
 
         if (context == null || TextUtils.isEmpty(message) || listener == null)
             return;
         new AlertDialog.Builder(context)
                 .setPositiveButton(android.R.string.ok, listener)
                 .setMessage(message)
-                .setCancelable(false)
+                .setCancelable(cancelable)
                 .create()
                 .show();
     }
