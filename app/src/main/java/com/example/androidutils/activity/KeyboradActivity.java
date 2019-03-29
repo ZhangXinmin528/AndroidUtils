@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.example.androidutils.R;
 import com.example.androidutils.base.BaseActivity;
 import com.zxm.libutils.KeyboradUtil;
-import com.zxm.libutils.SpanUtils;
+import com.zxm.libutils.text.SpanUtils;
 
 /**
  * Created by ZhangXinmin on 2018/9/1.

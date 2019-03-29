@@ -1,4 +1,4 @@
-package com.zxm.libutils;
+package com.zxm.libutils.net;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

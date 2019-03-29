@@ -1,4 +1,4 @@
-package com.zxm.libutils;
+package com.zxm.libutils.image;
 
 import android.content.Context;
 import android.content.res.Resources;

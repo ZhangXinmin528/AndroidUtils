@@ -9,6 +9,7 @@ import android.widget.ListView;
 
 import com.example.androidutils.activity.DeviceActivity;
 import com.example.androidutils.activity.DialogActivity;
+import com.example.androidutils.activity.EncryptActivity;
 import com.example.androidutils.activity.ImageActivity;
 import com.example.androidutils.activity.KeyboradActivity;
 import com.example.androidutils.activity.LogActivity;
@@ -61,6 +62,7 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
         mDataList.add("获取设备信息-->DeviceUtil的使用");
         mDataList.add("请求权限-->Android权限申请");
         mDataList.add("日志工具-->日志输出和存储");
+        mDataList.add("加解密工具-->加解密工具的使用");
         mAdapter.notifyDataSetChanged();
     }
 
@@ -97,6 +99,9 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
                 break;
             case 9:
                 intent.setClass(mContext, LogActivity.class);
+                break;
+            case 10:
+                intent.setClass(mContext, EncryptActivity.class);
                 break;
             default:
                 break;

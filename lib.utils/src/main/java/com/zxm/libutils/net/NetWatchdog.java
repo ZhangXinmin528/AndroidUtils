@@ -1,4 +1,4 @@
-package com.zxm.libutils;
+package com.zxm.libutils.net;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

@@ -12,9 +12,8 @@ import android.widget.Toast;
 
 import com.example.androidutils.R;
 import com.example.androidutils.base.BaseActivity;
-import com.zxm.libutils.ClickableMovementMethod;
-import com.zxm.libutils.ScreenUtil;
-import com.zxm.libutils.SpanUtils;
+import com.zxm.libutils.text.ClickableMovementMethod;
+import com.zxm.libutils.text.SpanUtils;
 
 /**
  * Created by Administrator on 2018/1/16.

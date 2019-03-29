@@ -72,6 +72,7 @@
         <activity
             android:name=".activity.LogActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".activity.EncryptActivity" />
     </application>
 
 </manifest>

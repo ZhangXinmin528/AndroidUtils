@@ -1,14 +1,11 @@
 package com.example.androidutils.activity;
 
 import android.content.Context;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.example.androidutils.R;
 import com.example.androidutils.base.BaseActivity;
-import com.zxm.libutils.NetWatchdog;
+import com.zxm.libutils.net.NetWatchdog;
 
 /**
  * Created by ZhangXinmin on 2018/11/14.

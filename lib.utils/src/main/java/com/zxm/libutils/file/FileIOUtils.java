@@ -1,4 +1,4 @@
-package com.zxm.libutils;
+package com.zxm.libutils.file;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;

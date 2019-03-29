@@ -7,11 +7,14 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.1'
+        classpath 'com.android.tools.build:gradle:3.3.2'
         
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
+        //发布library
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.0'
     }
 }
 
@@ -41,13 +44,9 @@ ext {
 
     smartrefreshVersion = '1.0.5.1'
     glideVersion = '4.0.0'
-    lottieVersion = '2.5.0-beta3'
-    loggerVersion = '2.2.0'
-    okgoVersion = '3.0.4'
-    fastjsonVersion = '1.2.46'
-    eventbusVersion = '3.1.1'
-    crashreportVersion = '2.6.6.1'
-    nativecrashreportVersion = '3.3.1'
-    leakcanaryVersion = '1.5.4'
+
+    //library
+    libraryVersionCode = 1
+    libiaryVersionName = '1.0.0'
 
 }

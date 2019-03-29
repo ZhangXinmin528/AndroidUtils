@@ -7,13 +7,12 @@ import android.graphics.Color;
 import android.os.Build;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 
 import com.example.androidutils.R;
 import com.example.androidutils.adapter.ImageAdapter;
 import com.example.androidutils.base.BaseActivity;
 import com.example.androidutils.bean.ImageEntity;
-import com.zxm.libutils.ImageUtil;
+import com.zxm.libutils.image.ImageUtil;
 
 import java.util.ArrayList;
 import java.util.List;

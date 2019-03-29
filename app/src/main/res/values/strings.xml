@@ -50,4 +50,5 @@
     <string name="log_to_file">Log To File</string>
     <string name="log_json">Log Json</string>
     <string name="log_xml">Log Xml</string>
+    <string name="all_input_port">input original value</string>
 </resources>
