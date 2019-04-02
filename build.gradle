@@ -45,8 +45,4 @@ ext {
     smartrefreshVersion = '1.0.5.1'
     glideVersion = '4.0.0'
 
-    //library
-    libraryVersionCode = 1
-    libiaryVersionName = '1.0.0'
-
 }

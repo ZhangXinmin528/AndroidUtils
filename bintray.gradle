@@ -1,0 +1,81 @@
+apply plugin: 'com.jfrog.bintray'
+
+//发布到组织名称名字，必须填写
+group = publishedGroupId
+// 版本号，下次更新是只需要更改版本号即可
+version = libraryVersionName
+
+// 打包源码jar
+if (project.hasProperty("android")) { // Android libraries
+    task sourcesJar(type: Jar) {
+        from android.sourceSets.main.java.srcDirs
+        baseName = libraryName//文件名
+        version = libraryVersionName//版本号
+    }
+} else { // Java libraries
+    task sourcesJar(type: Jar, dependsOn: classes) {
+        from sourceSets.main.allSource
+        baseName = libraryName//文件名
+        version = libraryVersionName//版本号
+    }
+}
+
+//生成Javadoc文档
+task javadoc(type: Javadoc) {
+    failOnError false
+    source = android.sourceSets.main.java.sourceFiles
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    classpath += configurations.compile
+}
+
+//文档打包成jar
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+//拷贝javadoc文件
+task copyDoc(type: Copy) {
+    from "${buildDir}/docs/"
+    into "docs"
+}
+
+//上传到JCenter所需要的源码文件
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+//上传到JCenter
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+bintray {
+    user = properties.getProperty("bintray.user")    //读取 local.properties 文件里面的 bintray.user
+    key = properties.getProperty("bintray.apikey")   //读取 local.properties 文件里面的 bintray.apikey
+    configurations = ['archives']
+    pkg {
+        //注意：这里的repo值必须要和你创建Maven仓库的时候的名字一样
+        repo = bintrayRepo
+        //发布到JCenter上的项目名字
+        name = bintrayName
+        //项目描述
+        desc = libraryDescription
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = allLicenses
+        publish = true
+        publicDownloadNumbers = true
+    }
+}
+
+javadoc {
+    options {
+        //中文注释，格式设置为UTF-8
+        encoding "UTF-8"
+        charSet 'UTF-8'
+        author true
+        version true
+        links "http://docs.oracle.com/javase/7/docs/api"
+    }
+}
