@@ -43,7 +43,8 @@ version = rootProject.ext.libiaryVersionName
 // 打包源码jar
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
-    classifier = 'sources'
+    baseName = libName//文件名
+    version = libiaryVersionName//版本号
 }
 
 //生成Javadoc文档
