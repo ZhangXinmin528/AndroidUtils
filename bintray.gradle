@@ -63,9 +63,8 @@ bintray {
         desc = libraryDescription
         websiteUrl = siteUrl
         vcsUrl = gitUrl
-        licenses = allLicenses
+        licenses = ["Apache-2.0"]
         publish = true
-        publicDownloadNumbers = true
     }
 }
 
