@@ -1,5 +1,6 @@
 package com.zxm.libutils;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -72,8 +73,10 @@ public final class DeviceUtil {
     /**
      * Return the android id of device.
      * 返回Android设备Id
+     * <p>注意：会发生改变</p>
      *
      * @return the android id of device
+     * @see android.provider.Settings.Secure#ANDROID_ID
      */
     @SuppressLint("HardwareIds")
     public static String getAndroidID(@NonNull Context context) {
@@ -82,6 +85,28 @@ public final class DeviceUtil {
                 Settings.Secure.ANDROID_ID
         );
         return id == null ? "" : id;
+    }
+
+    /**
+     * Gets the hardware serial number, if available.
+     * 获取硬件序列号
+     *
+     * @return string
+     * @see Build#getSerial()
+     */
+    @SuppressLint("HardwareIds")
+    @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
+    public static String getSerialNumber() {
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                return Build.getSerial();
+            } else {
+                return Build.SERIAL;
+            }
+        } catch (SecurityException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
     /**
