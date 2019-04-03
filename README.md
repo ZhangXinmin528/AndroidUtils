@@ -17,8 +17,6 @@ Usage
 Add dependencies in build.gradle.
 
 
-```groovy
-
 	dependencies {
     		implementation 'com.zxm:lib.utils:1.0.0'
     	}
