@@ -2,10 +2,9 @@
 ------
 [![License](https://img.shields.io/badge/License%20-Apache%202-337ab7.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 [![API](https://img.shields.io/badge/API-19%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=19)
-[ ![Download](https://api.bintray.com/packages/zhangxinmin528/wavelibrary/wavelibrary/images/download.svg?version=1.0.0) ](https://bintray.com/zhangxinmin528/wavelibrary/wavelibrary/1.0.0/link)
-
+[ ![Download](https://api.bintray.com/packages/zhangxinmin528/AndroidUtils/AndroidUtils/images/download.svg?version=1.0.0) ](https://bintray.com/zhangxinmin528/AndroidUtils/AndroidUtils/1.0.0/link)
 <p align="center">
-  <img alt="logo" src="https://github.com/ZhangXinmin528/WaveView-Simple/blob/master/example/src/main/assets/logo.png"/>
+  <img alt="logo" src="https://github.com/ZhangXinmin528/AndroidUtils/blob/master/app/src/main/assets/util_logo.png"/>
 </p>
 
 Introduction
