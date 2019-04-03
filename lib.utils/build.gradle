@@ -21,17 +21,6 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
-    /* compileSdkVersion Integer.parseInt(COMPILE_SDK_VERSION)
-     buildToolsVersion BUILDTOOLS_VERSION
-     defaultConfig {
-         minSdkVersion Integer.parseInt(MIN_SDK_VERSION)
-         targetSdkVersion Integer.parseInt(TARGET_SDK_VERSION)
-         versionCode Integer.parseInt(LIBRARY_VERSION_CODE)
-         versionName libraryVersionName
-
-         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
-     }*/
     buildTypes {
         release {
             minifyEnabled false
