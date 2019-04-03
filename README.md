@@ -13,7 +13,17 @@ AndroidUtils is a tool library commonly used by Android developers. It encapsula
 
 Usage
 ------
-请参考项目中Module相关Activity中的代码
+
+Add dependencies in build.gradle.
+
+
+```groovy
+
+	dependencies {
+    		implementation 'com.zxm:lib.utils:1.0.0'
+    	}
+
+Please refer to the code in the App Module related Activity in the project.
 
 Communication
 ------
