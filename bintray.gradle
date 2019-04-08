@@ -32,7 +32,7 @@ task copyDoc(type: Copy) {
     into "docs"
 }
 
-//上传到JCenter所需要的源码文件
+//上传到JCenter所需要的源码文件c
 artifacts {
     archives javadocJar
     archives sourcesJar

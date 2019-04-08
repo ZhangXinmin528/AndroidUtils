@@ -16,7 +16,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
-import com.zxm.utils.R;
+
+import com.zxm.utils.core.R;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
