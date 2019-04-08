@@ -8,8 +8,7 @@ version = libraryVersionName
 // 打包源码jar
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
-    baseName = libraryName//文件名
-    version = libraryVersionName//版本号
+    classifier = 'sources'
 }
 
 //生成Javadoc文档
