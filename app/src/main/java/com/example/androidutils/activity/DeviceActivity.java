@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 import com.example.androidutils.R;
 import com.example.androidutils.base.BaseActivity;
-import com.zxm.libutils.DeviceUtil;
+import com.zxm.utils.core.DeviceUtil;
 
 /**
  * Created by ZhangXinmin on 2018/11/23.

@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 import com.example.androidutils.R;
 import com.example.androidutils.base.BaseActivity;
-import com.zxm.libutils.log.MLogger;
+import com.zxm.utils.core.log.MLogger;
 
 /**
  * Created by ZhangXinmin on 2019/3/19.

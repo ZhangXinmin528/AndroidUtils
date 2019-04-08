@@ -5,7 +5,7 @@ import android.util.Log;
 
 import com.example.androidutils.R;
 import com.example.androidutils.base.BaseActivity;
-import com.zxm.libutils.net.NetWatchdog;
+import com.zxm.utils.core.net.NetWatchdog;
 
 /**
  * Created by ZhangXinmin on 2018/11/14.

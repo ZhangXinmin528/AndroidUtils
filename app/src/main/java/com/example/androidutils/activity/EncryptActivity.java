@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.example.androidutils.R;
 import com.example.androidutils.base.BaseActivity;
-import com.zxm.libutils.encrypt.EncryptUtils;
+import com.zxm.utils.core.encrypt.EncryptUtils;
 
 /**
  * Created by ZhangXinmin on 2019/3/29.

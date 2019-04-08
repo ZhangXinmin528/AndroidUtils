@@ -2,7 +2,7 @@ package com.example.androidutils.app;
 
 import android.app.Application;
 
-import com.zxm.libutils.log.MLogger;
+import com.zxm.utils.core.log.MLogger;
 
 /**
  * Created by ZhangXinmin on 2019/3/19.

@@ -2,16 +2,14 @@ package com.example.androidutils.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.view.View;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.androidutils.ConfirmWindow;
 import com.example.androidutils.R;
 import com.example.androidutils.base.BaseActivity;
-import com.zxm.libutils.dialog.CommonDialog;
+import com.zxm.utils.core.dialog.CommonDialog;
 
 /**
  * Created by ZhangXinmin on 2018/10/13.

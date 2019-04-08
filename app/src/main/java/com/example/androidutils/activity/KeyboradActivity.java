@@ -8,13 +8,13 @@ import android.widget.TextView;
 
 import com.example.androidutils.R;
 import com.example.androidutils.base.BaseActivity;
-import com.zxm.libutils.KeyboradUtil;
-import com.zxm.libutils.text.SpanUtils;
+import com.zxm.utils.core.KeyboradUtil;
+import com.zxm.utils.core.text.SpanUtils;
 
 /**
  * Created by ZhangXinmin on 2018/9/1.
  * Copyright (c) 2018 . All rights reserved.
- * User guide for {@link com.zxm.libutils.KeyboradUtil}
+ * User guide for {@link KeyboradUtil}
  */
 public class KeyboradActivity extends BaseActivity implements View.OnClickListener,
         KeyboradUtil.OnSoftInputChangedListener {

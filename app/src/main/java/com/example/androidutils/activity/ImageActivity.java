@@ -12,7 +12,7 @@ import com.example.androidutils.R;
 import com.example.androidutils.adapter.ImageAdapter;
 import com.example.androidutils.base.BaseActivity;
 import com.example.androidutils.bean.ImageEntity;
-import com.zxm.libutils.image.ImageUtil;
+import com.zxm.utils.core.image.ImageUtil;
 
 import java.util.ArrayList;
 import java.util.List;

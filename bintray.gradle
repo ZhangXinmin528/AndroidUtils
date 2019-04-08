@@ -6,18 +6,10 @@ group = publishedGroupId
 version = libraryVersionName
 
 // 打包源码jar
-if (project.hasProperty("android")) { // Android libraries
-    task sourcesJar(type: Jar) {
-        from android.sourceSets.main.java.srcDirs
-        baseName = libraryName//文件名
-        version = libraryVersionName//版本号
-    }
-} else { // Java libraries
-    task sourcesJar(type: Jar, dependsOn: classes) {
-        from sourceSets.main.allSource
-        baseName = libraryName//文件名
-        version = libraryVersionName//版本号
-    }
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    baseName = libraryName//文件名
+    version = libraryVersionName//版本号
 }
 
 //生成Javadoc文档

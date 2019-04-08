@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.example.androidutils.R;
 import com.example.androidutils.base.BaseActivity;
-import com.zxm.libutils.ScreenUtil;
+import com.zxm.utils.core.ScreenUtil;
 
 /**
  * Created by ZhangXinmin on 2018/8/30.
