@@ -2,7 +2,8 @@
 ------
 [![License](https://img.shields.io/badge/License%20-Apache%202-337ab7.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 [![API](https://img.shields.io/badge/API-19%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=19)
-[ ![Download](https://api.bintray.com/packages/zhangxinmin528/AndroidUtils/AndroidUtils/images/download.svg?version=1.0.0) ](https://bintray.com/zhangxinmin528/AndroidUtils/AndroidUtils/1.0.0/link)
+[ ![Download](https://api.bintray.com/packages/zhangxinmin528/AndroidCoreUtils/AndroidCoreUtils/images/download.svg?version=1.0.1) ](https://bintray.com/zhangxinmin528/AndroidCoreUtils/AndroidCoreUtils/1.0.1/link)
+
 <p align="center">
   <img alt="logo" src="https://github.com/ZhangXinmin528/AndroidUtils/blob/master/app/src/main/assets/util_logo.png"/>
 </p>
@@ -18,7 +19,7 @@ Add dependencies in build.gradle.
 
 
 	dependencies {
-    		implementation 'com.zxm:lib.utils:1.0.0'
+    		implementation 'com.zxm.utils:lib.coreutils:1.0.1'
     	}
 
 Please refer to the code in the App Module related Activity in the project.
@@ -47,6 +48,6 @@ License
 
 The End
 ---
-If you are interested in WaveView, don't forget to STAR [AndroidUtils](https://github.com/ZhangXinmin528/AndroidUtils).
+If you are interested in AndroidUtils, don't forget to STAR [AndroidUtils](https://github.com/ZhangXinmin528/AndroidUtils).
 
 Thank you for reading ~^o^~

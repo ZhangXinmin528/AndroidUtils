@@ -48,6 +48,6 @@ dependencies {
     annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
 
     //utils
-    implementation project(':lib.coreutils')
-
+//    implementation project(':lib.coreutils')
+    implementation 'com.zxm.utils:lib.coreutils:1.0.1'
 }
