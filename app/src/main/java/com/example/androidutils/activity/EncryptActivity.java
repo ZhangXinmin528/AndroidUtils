@@ -19,7 +19,7 @@ import com.zxm.utils.core.encrypt.EncryptUtils;
 public class EncryptActivity extends BaseActivity implements View.OnClickListener {
     private static final String TAG = EncryptActivity.class.getSimpleName();
 
-    private String key = "11111111120190329111111111111111";
+    private String key = "TKIGDICMIDMMGHWZ";
 
     private Context mContext;
     private String encryptResult;
@@ -73,14 +73,12 @@ public class EncryptActivity extends BaseActivity implements View.OnClickListene
             sb.append("\n").append("Original Data:").append("\n").append(value)
                     .append("\n").append("密钥：").append("\n").append(key);
 
-            final byte[] temp = EncryptUtils.decryptHexStringAES(
-                    value,
-                    hexString2Bytes(key),
-                    "AES/ECB/NoPadding",
-                    null
-            );
 
-            encryptResult = EncryptUtils.bytes2HexString(temp);
+            encryptResult = EncryptUtils.encryptAES2HexString(
+                    hexString2Bytes(value),
+                    key.getBytes(),
+                    "AES/ECB/NoPadding",
+                    null);
 
             sb.append("\n").append("加密结果：").append("\n").append(encryptResult);
 
@@ -96,6 +94,7 @@ public class EncryptActivity extends BaseActivity implements View.OnClickListene
      * 解密
      */
     private void doDecrypt() {
+        encryptResult = "8239A7F58CE579737FC39724998C4368";
         if (!TextUtils.isEmpty(encryptResult)) {
             final StringBuilder sb = new StringBuilder();
 
@@ -105,7 +104,7 @@ public class EncryptActivity extends BaseActivity implements View.OnClickListene
             final byte[] temp =
                     EncryptUtils.decryptHexStringAES(
                             encryptResult,
-                            hexString2Bytes(key),
+                            key.getBytes(),
                             "AES/ECB/NoPadding",
                             null
                     );
