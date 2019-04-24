@@ -1,7 +1,11 @@
 apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
+
+//def siteUrl = 'https://github.com/ZhangXinmin528/AndroidUtils'
+//def gitUrl = 'https://github.com/ZhangXinmin528/AndroidUtils.git'
 
 //发布到组织名称名字，必须填写
-group = publishedGroupId
+group = "com.zxm.utils"
 // 版本号，下次更新是只需要更改版本号即可
 version = libraryVersionName
 
@@ -37,6 +41,41 @@ artifacts {
     archives sourcesJar
 }
 
+// 配置maven库，生成POM.xml文件
+install {
+    repositories.mavenInstaller {
+        // This generates POM.xml with proper parameters
+        pom {
+            project {
+                packaging 'aar'
+                //项目描述，随意填
+                name libraryDescription
+                url siteUrl
+                licenses {
+                    license {
+                        //开源协议
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        //开发者的个人信息
+                        id developerId
+                        name developerName
+                        email developerEmail
+                    }
+                }
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+                }
+            }
+        }
+    }
+}
+
 //上传到JCenter
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
@@ -47,9 +86,9 @@ bintray {
     configurations = ['archives']
     pkg {
         //注意：这里的repo值必须要和你创建Maven仓库的时候的名字一样
-        repo = bintrayRepo
+        repo = libraryName
         //发布到JCenter上的项目名字
-        name = bintrayName
+        name = libraryName
         //项目描述
         desc = libraryDescription
         websiteUrl = siteUrl

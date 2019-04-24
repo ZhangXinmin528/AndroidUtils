@@ -2,10 +2,8 @@ apply plugin: 'com.android.library'
 
 ext {
     libraryName = 'AndroidCoreUtils'
-    bintrayName = libraryName
-    artifact = libraryName
     libraryDescription = 'Android core utils'
-    libraryVersionName = '1.0.0'
+    libraryVersionName = '1.0.1'
     libraryVersionCode = 1
 }
 
@@ -34,5 +32,4 @@ dependencies {
     implementation "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
 }
 
-apply from: '../install.gradle'
 apply from: '../bintray.gradle'
