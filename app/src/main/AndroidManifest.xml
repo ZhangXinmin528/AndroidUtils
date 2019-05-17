@@ -73,7 +73,15 @@
         <activity
             android:name=".activity.LogActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activity.EncryptActivity" />
+        <!--加密-->
+        <activity
+            android:name=".activity.EncryptActivity"
+            android:screenOrientation="portrait" />
+        <!--Ping-->
+        <activity
+            android:name=".activity.PingActivity"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

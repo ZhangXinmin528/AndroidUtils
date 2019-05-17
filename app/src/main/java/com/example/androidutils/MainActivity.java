@@ -16,6 +16,7 @@ import com.example.androidutils.activity.LogActivity;
 import com.example.androidutils.activity.NetWatcherActivity;
 import com.example.androidutils.activity.PaletteActivity;
 import com.example.androidutils.activity.PermissionActivity;
+import com.example.androidutils.activity.PingActivity;
 import com.example.androidutils.activity.ScreenActivity;
 import com.example.androidutils.activity.SpanActivity;
 import com.example.androidutils.base.BaseActivity;
@@ -63,6 +64,7 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
         mDataList.add("请求权限-->Android权限申请");
         mDataList.add("日志工具-->日志输出和存储");
         mDataList.add("加解密工具-->加解密工具的使用");
+        mDataList.add("网络连接状态-->PingUtil的使用");
         mAdapter.notifyDataSetChanged();
     }
 
@@ -102,6 +104,9 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
                 break;
             case 10:
                 intent.setClass(mContext, EncryptActivity.class);
+                break;
+            case 11:
+                intent.setClass(mContext, PingActivity.class);
                 break;
             default:
                 break;

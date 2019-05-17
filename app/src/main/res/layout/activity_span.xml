@@ -66,6 +66,7 @@
         android:layout_height="wrap_content"
         android:paddingBottom="@dimen/dp_12"
         android:paddingTop="@dimen/dp_12"
+        android:textColor="@android:color/black"
         android:textSize="16sp" />
 
     <!--富文本应用示例-->

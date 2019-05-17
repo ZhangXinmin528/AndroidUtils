@@ -2,6 +2,7 @@ package com.example.androidutils.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.androidutils.R;
@@ -32,6 +33,13 @@ public class DeviceActivity extends BaseActivity {
     protected void initViews() {
         mDetialTv = findViewById(R.id.tv_device_detial);
         mDetialTv.setText(getDeviceDetial());
+
+        findViewById(R.id.btn_reboot).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DeviceUtil.reboot(mContext);
+            }
+        });
     }
 
     @SuppressLint("MissingPermission")
