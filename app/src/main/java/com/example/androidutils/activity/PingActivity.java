@@ -1,12 +1,12 @@
 package com.example.androidutils.activity;
 
 import android.support.v7.app.ActionBar;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.androidutils.R;
 import com.example.androidutils.base.BaseActivity;
@@ -23,6 +23,7 @@ public class PingActivity extends BaseActivity {
     private static final String TAG = "PingActivity";
 
     private EditText mInputEt;
+    private TextView mResultTv;
 
     @Override
     protected Object setLayout() {
@@ -44,6 +45,7 @@ public class PingActivity extends BaseActivity {
         }
 
         mInputEt = findViewById(R.id.et_input_ping);
+        mResultTv = findViewById(R.id.tv_ping_result);
 
         findViewById(R.id.tv_ping).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,9 +58,15 @@ public class PingActivity extends BaseActivity {
     private void excuteCommand() {
         final String ip = mInputEt.getText().toString().trim();
         if (!TextUtils.isEmpty(ip)) {
-            final ShellUtils.CommandResult result = PingUtil.ping(3, 0.5f, ip, false);
-
-            MLogger.i(TAG, "result : " + result.toString());
+            final ShellUtils.CommandResult commandResult = PingUtil.ping(3, 0.5f, ip, false);
+            if (commandResult != null) {
+                if (commandResult.result == 0) {
+                    mResultTv.setText(commandResult.successMsg);
+                } else {
+                    mResultTv.setText(commandResult.successMsg);
+                }
+            }
+            MLogger.i(TAG, "result : " + commandResult.toString());
         }
     }
 

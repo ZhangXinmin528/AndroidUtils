@@ -39,5 +39,11 @@
             android:textSize="16sp" />
     </android.support.v7.widget.LinearLayoutCompat>
 
+    <TextView
+        android:id="@+id/tv_ping_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:textColor="@android:color/darker_gray" />
 
 </android.support.v7.widget.LinearLayoutCompat>
