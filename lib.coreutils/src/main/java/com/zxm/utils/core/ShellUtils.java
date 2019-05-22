@@ -127,13 +127,13 @@ public final class ShellUtils {
                         "UTF-8"));
                 String line;
                 if ((line = successResult.readLine()) != null) {
-                    successMsg.append(line);
+                    successMsg.append(LINE_SEP).append(line);
                     while ((line = successResult.readLine()) != null) {
                         successMsg.append(LINE_SEP).append(line);
                     }
                 }
                 if ((line = errorResult.readLine()) != null) {
-                    errorMsg.append(line);
+                    errorMsg.append(LINE_SEP).append(line);
                     while ((line = errorResult.readLine()) != null) {
                         errorMsg.append(LINE_SEP).append(line);
                     }
@@ -178,7 +178,7 @@ public final class ShellUtils {
      * The result of command.
      */
     public static class CommandResult {
-        public int    result;
+        public int result;
         public String successMsg;
         public String errorMsg;
 

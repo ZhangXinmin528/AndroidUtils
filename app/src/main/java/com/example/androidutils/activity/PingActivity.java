@@ -1,16 +1,15 @@
 package com.example.androidutils.activity;
 
 import android.support.v7.app.ActionBar;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.example.androidutils.R;
 import com.example.androidutils.base.BaseActivity;
-import com.zxm.utils.core.ShellUtils;
 import com.zxm.utils.core.log.MLogger;
 import com.zxm.utils.core.net.PingUtil;
 
@@ -23,7 +22,7 @@ public class PingActivity extends BaseActivity {
     private static final String TAG = "PingActivity";
 
     private EditText mInputEt;
-    private TextView mResultTv;
+    private RecyclerView mRecyclerView;
 
     @Override
     protected Object setLayout() {
@@ -45,7 +44,7 @@ public class PingActivity extends BaseActivity {
         }
 
         mInputEt = findViewById(R.id.et_input_ping);
-        mResultTv = findViewById(R.id.tv_ping_result);
+        mRecyclerView = findViewById(R.id.rv_ping);
 
         findViewById(R.id.tv_ping).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,15 +57,15 @@ public class PingActivity extends BaseActivity {
     private void excuteCommand() {
         final String ip = mInputEt.getText().toString().trim();
         if (!TextUtils.isEmpty(ip)) {
-            final ShellUtils.CommandResult commandResult = PingUtil.ping(3, 0.5f, ip, false);
-            if (commandResult != null) {
-                if (commandResult.result == 0) {
-                    mResultTv.setText(commandResult.successMsg);
+            final PingUtil.PingResult pingResult = PingUtil.ping(3, 0.5f, ip, false);
+            /*if (pingResult != null) {
+                if (pingResult.getCode() == 0) {
+                    mResultTv.setText(pingResult.successMsg);
                 } else {
-                    mResultTv.setText(commandResult.successMsg);
+                    mResultTv.setText(pingResult.successMsg);
                 }
-            }
-            MLogger.i(TAG, "result : " + commandResult.toString());
+            }*/
+            MLogger.i(TAG, "result : " + pingResult.toString());
         }
     }
 

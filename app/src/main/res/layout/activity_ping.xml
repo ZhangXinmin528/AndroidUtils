@@ -3,6 +3,7 @@
     android:id="@+id/coordinator_home"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/color_bg"
     android:orientation="vertical">
 
     <android.support.v7.widget.LinearLayoutCompat
@@ -39,11 +40,9 @@
             android:textSize="16sp" />
     </android.support.v7.widget.LinearLayoutCompat>
 
-    <TextView
-        android:id="@+id/tv_ping_result"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_ping"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="12dp"
-        android:textColor="@android:color/darker_gray" />
+        android:layout_height="wrap_content" />
 
 </android.support.v7.widget.LinearLayoutCompat>
