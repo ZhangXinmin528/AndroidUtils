@@ -99,6 +99,25 @@ public final class MLogger {
         throw new UnsupportedOperationException("u can't instantiate me...");
     }
 
+
+    /**
+     * Enable to output log informastion.
+     *
+     * @param context You'd beeter use application context.
+     * @param enable  {@link MLogger.LogConfig#setLogSwitch(boolean)}
+     */
+    public static void setLogEnable(@NonNull Context context, @NonNull boolean enable) {
+
+        if (context != null) {
+            //log
+            final MLogger.LogConfig logConfig =
+                    new MLogger.LogConfig(context)
+                            .setLogSwitch(enable);
+            MLogger.resetLogConfig(logConfig);
+        }
+
+    }
+
     /**
      * Get log config
      *
