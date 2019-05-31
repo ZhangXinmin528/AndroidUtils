@@ -30,6 +30,12 @@ android {
 
         }
     }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "AndroidUtils_${variant.versionName}_${variant.buildType.name}.apk"
+        }
+    }
 }
 
 dependencies {
