@@ -1,4 +1,4 @@
-package com.zxm.utils.core;
+package com.zxm.utils.core.dialog;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -6,11 +6,16 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by ZhangXinmin on 2018/12/20.
  * Copyright (c) 2018 . All rights reserved.
  */
 public final class DialogUtil {
+
+    private static List<AlertDialog> DIALOG_ARRAY = new ArrayList<>();
 
     /**
      * Show message dialog which con't cancelable {@link AlertDialog #setCancelable(cancelable)}.
@@ -36,11 +41,29 @@ public final class DialogUtil {
 
         if (context == null || TextUtils.isEmpty(message) || listener == null)
             return;
-        new AlertDialog.Builder(context)
+        final AlertDialog dialog = new AlertDialog.Builder(context)
                 .setPositiveButton(android.R.string.ok, listener)
                 .setMessage(message)
                 .setCancelable(cancelable)
-                .create()
-                .show();
+                .create();
+        dialog.show();
+
+        if (DIALOG_ARRAY.contains(dialog)) {
+            DIALOG_ARRAY.add(dialog);
+        }
+    }
+
+    /**
+     * dismiss dialog
+     */
+    public static void releaseAll() {
+        if (!DIALOG_ARRAY.isEmpty()) {
+            for (AlertDialog dialog : DIALOG_ARRAY) {
+                if (dialog != null && dialog.isShowing()) {
+                    dialog.dismiss();
+                    DIALOG_ARRAY.remove(dialog);
+                }
+            }
+        }
     }
 }

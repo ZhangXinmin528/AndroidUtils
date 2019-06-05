@@ -5,12 +5,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
 import android.view.View;
 
 import com.example.androidutils.R;
 import com.example.androidutils.base.BaseActivity;
-import com.zxm.utils.core.DialogUtil;
+import com.zxm.utils.core.PermissionChecker;
+import com.zxm.utils.core.dialog.DialogUtil;
 
 /**
  * Created by ZhangXinmin on 2019/1/4.
@@ -39,18 +39,18 @@ public class PermissionActivity extends BaseActivity implements View.OnClickList
 
     @Override
     protected void initViews() {
-        findViewById(R.id.btn_sys).setOnClickListener(this);
-        findViewById(R.id.btn_util).setOnClickListener(this);
+        findViewById(R.id.btn_single).setOnClickListener(this);
+        findViewById(R.id.btn_multiple).setOnClickListener(this);
     }
 
     /**
      * check permission
      */
-    private void checkStrogePermission() {
-        if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            ActivityCompat.requestPermissions(this, PERMISSION_EXTERNAL, REQUEST_EXTERNAL);
+    private void checkSinglePermission() {
+        if (!PermissionChecker.checkPersmission(mContext, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            PermissionChecker.requestPermissions(this,
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    REQUEST_EXTERNAL);
         }
     }
 
@@ -58,16 +58,17 @@ public class PermissionActivity extends BaseActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btn_sys:
-                checkStrogePermission();
+            case R.id.btn_single:
+                checkSinglePermission();
                 break;
-            case R.id.btn_util:
+            case R.id.btn_multiple:
                 checkPermissions();
                 break;
         }
     }
 
     private void checkPermissions() {
+
     }
 
 

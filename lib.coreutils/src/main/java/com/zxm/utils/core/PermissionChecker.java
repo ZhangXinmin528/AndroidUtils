@@ -18,27 +18,29 @@ public final class PermissionChecker {
     }
 
     /**
-     * request permissions
+     * Request permissions.
+     * 申请一组权限。
      *
-     * @param activity
+     * @param activity    The activity.
      * @param permissions
      * @param requestCode
      */
     public static void requestPermissions(Activity activity, String[] permissions, int requestCode) {
         // 先检查是否已经授权
-        if (!checkPermissionsGroup(activity, permissions)) {
+        if (!checkSeriesPermissions(activity, permissions)) {
             ActivityCompat.requestPermissions(activity, permissions, requestCode);
         }
     }
 
     /**
      * check permissions
+     * 检查一组权限。
      *
      * @param context
      * @param permissions
      * @return
      */
-    public static boolean checkPermissionsGroup(Context context, String[] permissions) {
+    public static boolean checkSeriesPermissions(Context context, String[] permissions) {
         boolean result = false;
         for (String permission : permissions) {
             result = checkPersmission(context, permission);
@@ -48,7 +50,8 @@ public final class PermissionChecker {
     }
 
     /**
-     * check single permission
+     * Check single permission.
+     * 检查单一权限.
      *
      * @param context
      * @param permission
