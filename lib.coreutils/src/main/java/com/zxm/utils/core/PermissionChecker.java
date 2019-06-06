@@ -1,5 +1,6 @@
 package com.zxm.utils.core;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -7,7 +8,11 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by ZhangXinmin on 2018/12/17.
@@ -51,6 +56,31 @@ public final class PermissionChecker {
     }
 
     /**
+     * Get denied permissions
+     * 获取拒绝的权限
+     *
+     * @param context
+     * @param permissions
+     * @return
+     */
+    public static String[] checkDeniedPermissions(@NonNull Context context, @NonNull String[] permissions) {
+        final List<String> deniedList = new ArrayList<>();
+        if (permissions != null) {
+            for (String permission : permissions) {
+                if (!checkPersmission(context, permission)) {
+                    deniedList.add(permission);
+                }
+            }
+        }
+
+        if (deniedList.isEmpty()) {
+            return null;
+        } else {
+            return deniedList.toArray(new String[0]);
+        }
+    }
+
+    /**
      * Check single permission.
      * 检查单一权限.
      *
@@ -68,4 +98,41 @@ public final class PermissionChecker {
         }
         return true;
     }
+
+    public static String matchRequestPermissionRationale(@NonNull Context context, @NonNull String permission) {
+        if (!TextUtils.isEmpty(permission)) {
+            switch (permission) {
+                case Manifest.permission.CAMERA:
+                    return context.getResources().getString(R.string.rationale_camera);
+                case Manifest.permission.WRITE_CONTACTS:
+                case Manifest.permission.READ_CONTACTS:
+                    return context.getResources().getString(R.string.rationale_contact);
+                case Manifest.permission.ACCESS_FINE_LOCATION:
+                case Manifest.permission.ACCESS_COARSE_LOCATION:
+                    return context.getResources().getString(R.string.rationale_location);
+                case Manifest.permission.RECORD_AUDIO:
+                    return context.getResources().getString(R.string.rationale_record_audio);
+                case Manifest.permission.READ_PHONE_STATE:
+                case Manifest.permission.READ_PHONE_NUMBERS:
+                case Manifest.permission.CALL_PHONE:
+                case Manifest.permission.ANSWER_PHONE_CALLS:
+                case Manifest.permission.ADD_VOICEMAIL:
+                case Manifest.permission.USE_SIP:
+                    return context.getResources().getString(R.string.rationale_phone);
+                case Manifest.permission.READ_SMS:
+                case Manifest.permission.RECEIVE_SMS:
+                case Manifest.permission.SEND_SMS:
+                case Manifest.permission.RECEIVE_WAP_PUSH:
+                case Manifest.permission.RECEIVE_MMS:
+                    return context.getResources().getString(R.string.rationale_sms);
+                case Manifest.permission.READ_EXTERNAL_STORAGE:
+                case Manifest.permission.WRITE_EXTERNAL_STORAGE:
+                    return context.getResources().getString(R.string.rationale_storage);
+                default:
+                    return permission;
+            }
+        }
+        return null;
+    }
+
 }

@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">Lib.Utils</string>
+    <!--permission-->
+    <string name="rationale_camera">Disable camera permissions, you will not be able to use camera related functions~</string>
+    <string name="rationale_contact">Disable contact permissions, you will not be able to use contact related features~</string>
+    <string name="rationale_location">Disabling location information permission will not get device location information~</string>
+    <string name="rationale_record_audio">Disable microphone permission, you will not be able to use the recording or call recording function~</string>
+    <string name="rationale_phone">Disabling phone permissions, you will not be able to use device phone related features~</string>
+    <string name="rationale_sms">Disable SMS permission, you will not be able to use device SMS related function~</string>
+    <string name="rationale_storage">Disable storage space permissions, you will not be able to use the file read and write or delete function ~</string>
 </resources>

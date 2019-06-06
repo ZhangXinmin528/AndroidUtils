@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--permission-->
+    <string name="rationale_camera">禁用相机权限，将不能使用拍照相关功能~</string>
+    <string name="rationale_contact">禁用通讯录权限，将不能使用联系人相关功能~</string>
+    <string name="rationale_location">禁用位置信息权限，将不能获取设备位置信息~</string>
+    <string name="rationale_record_audio">禁用麦克风权限，将不能使用录音或通话录音功能~</string>
+    <string name="rationale_phone">禁用电话权限，将不能使用设备电话相关功能~</string>
+    <string name="rationale_sms">禁用短信权限，将不能使用设备短信相关功能~</string>
+    <string name="rationale_storage">禁用存储空间权限，将不能使用文件的读写或删除功能~</string>
+
+</resources>

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.view.View;
 
 import com.example.androidutils.R;
@@ -20,8 +21,18 @@ import com.zxm.utils.core.dialog.DialogUtil;
 public class PermissionActivity extends BaseActivity implements View.OnClickListener {
 
     private static final int REQUEST_EXTERNAL = 1001;
+    private static final int REQUEST_PERMISSIONS = 1002;
 
-    private String[] PERMISSION_EXTERNAL = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
+    private String[] permissions = new String[]{
+            Manifest.permission.WRITE_CALENDAR,
+            Manifest.permission.CAMERA,
+            Manifest.permission.WRITE_CONTACTS,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.RECORD_AUDIO,
+            Manifest.permission.READ_PHONE_STATE,
+            Manifest.permission.READ_SMS,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+    };
 
     private Context mContext;
 
@@ -68,23 +79,39 @@ public class PermissionActivity extends BaseActivity implements View.OnClickList
     }
 
     private void checkPermissions() {
+        if (!PermissionChecker.checkSeriesPermissions(mContext, permissions)) {
+            String[] deniedPermissions = PermissionChecker.checkDeniedPermissions(mContext, permissions);
+            if (deniedPermissions != null) {
+                PermissionChecker.requestPermissions(this, deniedPermissions, REQUEST_PERMISSIONS);
+            }
+        }
 
     }
 
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case REQUEST_EXTERNAL:
-                if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
-                    DialogUtil.showForceDialog(mContext, getString(R.string.all_deny_write_stroge_permission), new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
+        if (grantResults != null) {
+            final int size = grantResults.length;
+            for (int i = 0; i < size; i++) {
+                final int grantResult = grantResults[i];
+                if (grantResult != PackageManager.PERMISSION_GRANTED) {
+                    final boolean showRequest =
+                            ActivityCompat.shouldShowRequestPermissionRationale(
+                                    PermissionActivity.this, permissions[i]);
+                    if (showRequest) {
+                        DialogUtil.showForceDialog(mContext,
+                                PermissionChecker.matchRequestPermissionRationale(mContext, permissions[i]),
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
 
-                        }
-                    });
+                                    }
+                                });
+                    }
+                } else {
+                    //do something
                 }
-                break;
+            }
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
