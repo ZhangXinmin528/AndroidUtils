@@ -31,10 +31,12 @@ public final class PermissionChecker {
      * @param permissions
      * @param requestCode
      */
-    public static void requestPermissions(Activity activity, String[] permissions, int requestCode) {
-        // 先检查是否已经授权
-        if (!checkSeriesPermissions(activity, permissions)) {
-            ActivityCompat.requestPermissions(activity, permissions, requestCode);
+    public static void requestPermissions(@NonNull Activity activity, @NonNull String[] permissions, int requestCode) {
+        if (permissions != null) {
+            // 先检查是否已经授权
+            if (!checkSeriesPermissions(activity, permissions)) {
+                ActivityCompat.requestPermissions(activity, permissions, requestCode);
+            }
         }
     }
 
@@ -88,7 +90,7 @@ public final class PermissionChecker {
      * @param permission
      * @return
      */
-    public static boolean checkPersmission(Context context, String permission) {
+    public static boolean checkPersmission(@NonNull Context context, @NonNull String permission) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             return true;
         }
