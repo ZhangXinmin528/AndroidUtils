@@ -1,4 +1,4 @@
-package com.zxm.utils.core;
+package com.zxm.utils.core.keyborad;
 
 import android.annotation.TargetApi;
 import android.app.Activity;

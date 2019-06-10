@@ -18,7 +18,7 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.zxm.utils.core.R;
-import com.zxm.utils.core.ScreenUtil;
+import com.zxm.utils.core.screen.ScreenUtil;
 
 
 /**

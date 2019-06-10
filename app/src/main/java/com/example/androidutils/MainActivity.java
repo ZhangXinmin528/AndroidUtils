@@ -22,6 +22,7 @@ import com.example.androidutils.activity.SpanActivity;
 import com.example.androidutils.base.BaseActivity;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends BaseActivity implements AdapterView.OnItemClickListener {
@@ -53,18 +54,8 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
     @Override
     protected void initData() {
         super.initData();
-        mDataList.add("文字样式-->SpanUtils的使用");
-        mDataList.add("屏幕属性-->ScreenUtil的使用");
-        mDataList.add("软键盘使用-->KeyboradUtil的使用");
-        mDataList.add("图片工具-->ImageUtil的使用");
-        mDataList.add("自定义弹窗-->Dialog的使用");
-        mDataList.add("网络检测-->NetWatchdog的使用");
-        mDataList.add("图片取色-->Palette的使用");
-        mDataList.add("获取设备信息-->DeviceUtil的使用");
-        mDataList.add("请求权限-->Android权限申请");
-        mDataList.add("日志工具-->日志输出和存储");
-        mDataList.add("加解密工具-->加解密工具的使用");
-        mDataList.add("网络连接状态-->PingUtil的使用");
+        final String[] temp = getResources().getStringArray(R.array.home_array);
+        mDataList.addAll(Arrays.asList(temp));
         mAdapter.notifyDataSetChanged();
     }
 
@@ -73,41 +64,53 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
         Intent intent = new Intent();
         switch (position) {
             case 0:
-                intent.setClass(mContext, SpanActivity.class);
+                intent.setClass(mContext, DeviceActivity.class);
                 break;
             case 1:
-                intent.setClass(mContext, ScreenActivity.class);
+                intent.setClass(mContext, DialogActivity.class);
                 break;
             case 2:
-                intent.setClass(mContext, KeyboradActivity.class);
+                intent.setClass(mContext, EncryptActivity.class);
                 break;
             case 3:
                 intent.setClass(mContext, ImageActivity.class);
                 break;
             case 4:
-                intent.setClass(mContext, DialogActivity.class);
+                intent.setClass(mContext, KeyboradActivity.class);
                 break;
             case 5:
-                intent.setClass(mContext, NetWatcherActivity.class);
+                intent.setClass(mContext, LogActivity.class);
                 break;
             case 6:
-                intent.setClass(mContext, PaletteActivity.class);
+                intent.setClass(mContext, NetWatcherActivity.class);
                 break;
             case 7:
-                intent.setClass(mContext, DeviceActivity.class);
+//                intent.setClass(mContext, NetWatcherActivity.class);
                 break;
             case 8:
                 intent.setClass(mContext, PermissionActivity.class);
                 break;
             case 9:
-                intent.setClass(mContext, LogActivity.class);
+//                intent.setClass(mContext, PermissionActivity.class);
                 break;
             case 10:
-                intent.setClass(mContext, EncryptActivity.class);
-                break;
-            case 11:
                 intent.setClass(mContext, PingActivity.class);
                 break;
+            case 11:
+                intent.setClass(mContext, SpanActivity.class);
+                break;
+            case 12:
+                intent.setClass(mContext, ScreenActivity.class);
+                break;
+            case 13:
+//                intent.setClass(mContext, PingActivity.class);
+                break;
+            case 14:
+                intent.setClass(mContext, PaletteActivity.class);
+                break;
+
+
+
             default:
                 break;
         }

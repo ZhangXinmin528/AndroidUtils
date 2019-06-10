@@ -1,4 +1,4 @@
-package com.zxm.utils.core;
+package com.zxm.utils.core.screen;
 
 import android.content.Context;
 import android.hardware.SensorManager;

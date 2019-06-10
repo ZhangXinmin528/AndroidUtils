@@ -1,5 +1,6 @@
 package com.example.androidutils.activity;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.View;
@@ -7,14 +8,15 @@ import android.widget.TextView;
 
 import com.example.androidutils.R;
 import com.example.androidutils.base.BaseActivity;
-import com.zxm.utils.core.DeviceUtil;
+import com.zxm.utils.core.device.DeviceUtil;
+import com.zxm.utils.core.permission.PermissionChecker;
 
 /**
  * Created by ZhangXinmin on 2018/11/23.
  * Copyright (c) 2018 . All rights reserved.
  * 查看设备信息
  */
-public class DeviceActivity extends BaseActivity {
+public class DeviceActivity extends BaseActivity implements View.OnClickListener {
     private Context mContext;
 
     private TextView mDetialTv;
@@ -27,19 +29,18 @@ public class DeviceActivity extends BaseActivity {
     @Override
     protected void initParamsAndValues() {
         mContext = this;
+
+        if (!PermissionChecker.checkPersmission(mContext, Manifest.permission.READ_PHONE_STATE)) {
+            PermissionChecker.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE}, 1001);
+        }
     }
 
     @Override
     protected void initViews() {
         mDetialTv = findViewById(R.id.tv_device_detial);
-        mDetialTv.setText(getDeviceDetial());
 
-        findViewById(R.id.btn_reboot).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DeviceUtil.reboot(mContext);
-            }
-        });
+        findViewById(R.id.btn_read_info).setOnClickListener(this);
+        findViewById(R.id.btn_reboot).setOnClickListener(this);
     }
 
     @SuppressLint("MissingPermission")
@@ -56,5 +57,23 @@ public class DeviceActivity extends BaseActivity {
         sb.append("设备ABIs：").append(DeviceUtil.getABIs()).append("\n");
 
         return sb.toString();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_read_info:
+                mDetialTv.setVisibility(View.VISIBLE);
+                mDetialTv.setText(getDeviceDetial());
+                break;
+            case R.id.btn_reboot:
+                if (DeviceUtil.isDeviceRooted()) {
+                    DeviceUtil.reboot(mContext);
+                } else {
+                    DeviceUtil.reboot(mContext, "");
+                }
+                break;
+
+        }
     }
 }

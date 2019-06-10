@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.example.androidutils.R;
 import com.example.androidutils.base.BaseActivity;
-import com.zxm.utils.core.KeyboradUtil;
+import com.zxm.utils.core.keyborad.KeyboradUtil;
 import com.zxm.utils.core.text.SpanUtils;
 
 /**

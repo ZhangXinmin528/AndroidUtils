@@ -10,7 +10,7 @@ import android.view.View;
 
 import com.example.androidutils.R;
 import com.example.androidutils.base.BaseActivity;
-import com.zxm.utils.core.PermissionChecker;
+import com.zxm.utils.core.permission.PermissionChecker;
 import com.zxm.utils.core.dialog.DialogUtil;
 
 /**
