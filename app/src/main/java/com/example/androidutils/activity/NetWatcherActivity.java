@@ -2,6 +2,7 @@ package com.example.androidutils.activity;
 
 import android.content.Context;
 import android.util.Log;
+import android.view.MenuItem;
 
 import com.example.androidutils.R;
 import com.example.androidutils.base.BaseActivity;
@@ -28,6 +29,8 @@ public class NetWatcherActivity extends BaseActivity implements NetWatchdog.NetC
         mNetWatchdog = new NetWatchdog(mContext);
         mNetWatchdog.setNetChangeListener(this);
         mNetWatchdog.setNetConnectedListener(this);
+
+        initActionBar();
     }
 
     @Override
@@ -65,6 +68,16 @@ public class NetWatcherActivity extends BaseActivity implements NetWatchdog.NetC
             mNetWatchdog.stopWatch();
             mNetWatchdog = null;
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     //wifi转4G

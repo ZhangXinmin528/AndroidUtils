@@ -3,6 +3,7 @@ package com.example.androidutils.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutCompat;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -31,6 +32,8 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
         mContext = this;
 
         mConfirmWindow = new ConfirmWindow(mContext, this);
+
+        initActionBar();
     }
 
     @Override
@@ -71,5 +74,15 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
                 startActivity(intent);
                 break;
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

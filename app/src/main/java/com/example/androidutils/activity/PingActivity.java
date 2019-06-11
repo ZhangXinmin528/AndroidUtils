@@ -31,17 +31,11 @@ public class PingActivity extends BaseActivity {
 
     @Override
     protected void initParamsAndValues() {
-
+        initActionBar();
     }
 
     @Override
     protected void initViews() {
-
-        final ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setTitle("PingUtil工具使用");
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
 
         mInputEt = findViewById(R.id.et_input_ping);
         mRecyclerView = findViewById(R.id.rv_ping);

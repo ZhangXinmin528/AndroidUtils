@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,6 +32,7 @@ public class PaletteActivity extends BaseActivity {
     @Override
     protected void initParamsAndValues() {
         mContext = this;
+        initActionBar();
     }
 
     @Override
@@ -59,5 +61,15 @@ public class PaletteActivity extends BaseActivity {
                 }
             });
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -1,6 +1,7 @@
 package com.example.androidutils.activity;
 
 import android.os.Environment;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -72,6 +73,8 @@ public class LogActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void initParamsAndValues() {
         builder = MLogger.getLogConfig();
+
+        initActionBar();
     }
 
     @Override
@@ -253,5 +256,15 @@ public class LogActivity extends BaseActivity implements View.OnClickListener {
 
     private String getDir() {
         return builder.toString().split(System.getProperty("line.separator"))[5].substring(5);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -2,6 +2,7 @@ package com.example.androidutils.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
@@ -11,7 +12,7 @@ import android.view.View;
  * Base activity.
  */
 
-public abstract class BaseActivity extends AppCompatActivity{
+public abstract class BaseActivity extends AppCompatActivity {
     /**
      * 设置布局属性
      *
@@ -60,6 +61,14 @@ public abstract class BaseActivity extends AppCompatActivity{
      */
     protected void initData() {
 
+    }
+
+    protected ActionBar initActionBar() {
+        final ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+        return actionBar;
     }
 
 }

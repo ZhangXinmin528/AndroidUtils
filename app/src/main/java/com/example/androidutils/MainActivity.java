@@ -18,6 +18,7 @@ import com.example.androidutils.activity.PaletteActivity;
 import com.example.androidutils.activity.PermissionActivity;
 import com.example.androidutils.activity.PingActivity;
 import com.example.androidutils.activity.ScreenActivity;
+import com.example.androidutils.activity.SettingActivity;
 import com.example.androidutils.activity.SpanActivity;
 import com.example.androidutils.base.BaseActivity;
 
@@ -108,9 +109,9 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
             case 14:
                 intent.setClass(mContext, PaletteActivity.class);
                 break;
-
-
-
+            case 15:
+                intent.setClass(mContext, SettingActivity.class);
+                break;
             default:
                 break;
         }

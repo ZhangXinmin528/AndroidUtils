@@ -2,6 +2,7 @@ package com.example.androidutils.activity;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,6 +29,7 @@ public class ScreenActivity extends BaseActivity implements View.OnClickListener
     @Override
     protected void initParamsAndValues() {
         mContext = this;
+        initActionBar();
     }
 
     @Override
@@ -77,5 +79,15 @@ public class ScreenActivity extends BaseActivity implements View.OnClickListener
                 });
                 break;
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

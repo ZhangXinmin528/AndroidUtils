@@ -6,6 +6,7 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.style.ClickableSpan;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +37,8 @@ public class SpanActivity extends BaseActivity {
     @Override
     protected void initParamsAndValues() {
         mContext = this;
+
+        initActionBar();
     }
 
     @Override
@@ -153,5 +156,15 @@ public class SpanActivity extends BaseActivity {
                 .showBeautfulText(mContext, "富文本应用示例：看过来，看过来，看过来，看过来，看过来！", "过来");
         exampleTv.setText(exampleBuilder);
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

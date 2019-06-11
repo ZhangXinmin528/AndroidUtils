@@ -16,5 +16,6 @@
         <item><![CDATA[屏幕相关—>ScreenUtil的使用]]></item>
         <item><![CDATA[时间工具—>TimeUtil的使用]]></item>
         <item><![CDATA[图片取色—>Palette的使用]]></item>
+        <item><![CDATA[设置页面—>SettingUtils的使用]]></item>
     </string-array>
 </resources>
