@@ -1,12 +1,18 @@
 package com.zxm.utils.core.setting;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
+import android.support.annotation.RequiresPermission;
 import android.text.TextUtils;
 
 import static com.zxm.utils.core.constant.PhoneBrand.BRAND_HUAWEI;
@@ -29,6 +35,11 @@ public final class SettingUtils {
         throw new UnsupportedOperationException("U con't do this!");
     }
 
+    /**
+     * 打开自启动管理页面
+     *
+     * @param context
+     */
     @SuppressLint("ObsoleteSdkInt")
     public static void openSelfStartPage(@NonNull Context context) {
         final String brand = Build.BRAND.toUpperCase();
@@ -70,6 +81,121 @@ public final class SettingUtils {
             }
             context.startActivity(intent);
         }
+    }
+
+    /**
+     * 打开蓝牙设置页面
+     *
+     * @param context
+     */
+    public static void openBluetoothSetting(@NonNull Context context) {
+
+        if (context == null)
+            return;
+
+        final Intent intent = new Intent();
+        intent.setAction(Settings.ACTION_BLUETOOTH_SETTINGS);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 打开wifi设置
+     *
+     * @param context
+     */
+    public static void openWifiSetting(@NonNull Context context) {
+        if (context == null)
+            return;
+
+        final Intent intent = new Intent();
+        intent.setAction(Settings.ACTION_WIFI_SETTINGS);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 打开NFC设置
+     *
+     * @param context
+     */
+    public static void openNfcSetting(@NonNull Context context) {
+        if (context == null)
+            return;
+
+        final Intent intent = new Intent();
+        intent.setAction(Settings.ACTION_NFC_SETTINGS);
+        context.startActivity(intent);
+    }
+
+
+    /**
+     * 打开辅助性功能设置
+     *
+     * @param context
+     */
+    public static void openAccessibilitySetting(@NonNull Context context) {
+        if (context == null)
+            return;
+
+        final Intent intent = new Intent();
+        intent.setAction(Settings.ACTION_ACCESSIBILITY_SETTINGS);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 打开应用程序管理
+     *
+     * @param context
+     */
+    public static void openApplicationSetting(@NonNull Context context) {
+        if (context == null)
+            return;
+
+        final Intent intent = new Intent();
+        intent.setAction(Settings.ACTION_APPLICATION_SETTINGS);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 打开未知来源页面
+     * <p>一加（9.0）测试通过；
+     * <p>OPPO(8.1.0)测试通过；
+     *
+     * @param context
+     * @param requestCode
+     */
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    @RequiresPermission(Manifest.permission.REQUEST_INSTALL_PACKAGES)
+    public static void openUnknownAppSourcesSetting(@NonNull Activity context, int requestCode) {
+        if (context == null)
+            return;
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            final PackageManager packageManager = context.getPackageManager();
+            if (packageManager != null) {
+                final boolean hasPermission = packageManager.canRequestPackageInstalls();
+                if (!hasPermission) {
+
+                    final Uri uri = Uri.parse("package:" + context.getPackageName());
+                    final Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, uri);
+                    context.startActivityForResult(intent, requestCode);
+                }
+            }
+
+        }
+    }
+
+    /**
+     * 打开开发者模式
+     *
+     * @param context
+     */
+    public static void openApplicationDevelopmentSetting(@NonNull Context context) {
+        if (context == null)
+            return;
+
+        final Intent intent = new Intent();
+        intent.setAction(Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS);
+        context.startActivity(intent);
     }
 
     /**
@@ -131,9 +257,9 @@ public final class SettingUtils {
     }
 
     /**
-     * 获取Oppo自启动管理界面
+     * 获取OPPO自启动管理界面
      *
-     * <p>Oppo(8.1)不能进入自启动管理页面；
+     * <p>OPPO(8.1.0)不能进入自启动管理页面；
      *
      * @return
      */
@@ -149,8 +275,8 @@ public final class SettingUtils {
     }
 
     /**
-     * 获取Vivo自启动管理页面
-     * <p>
+     * 获取VIVOvo自启动管理页面
+     * <p>VIVO(8.1)测试通过；
      *
      * @return
      */

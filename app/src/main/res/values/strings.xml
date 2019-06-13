@@ -55,4 +55,6 @@
     <string name="all_setting">Setting</string>
     <string name="all_read_info">read info</string>
     <string name="all_reboot_tips">重启设备</string>
+
+    <string name="all_install_unknown_source_app">Your app needs to open the "Install unknown source app" switch. Is it allowed?</string>
 </resources>
