@@ -42,7 +42,7 @@ public final class SettingUtils {
      */
     @SuppressLint("ObsoleteSdkInt")
     public static void openSelfStartPage(@NonNull Context context) {
-        final String brand = Build.BRAND.toUpperCase();
+        final String brand = Build.MANUFACTURER.toUpperCase();
         if (!TextUtils.isEmpty(brand)) {
             final Intent intent = new Intent();
             ComponentName componentName = null;
@@ -159,6 +159,7 @@ public final class SettingUtils {
      * 打开未知来源页面
      * <p>一加（9.0）测试通过；
      * <p>OPPO(8.1.0)测试通过；
+     * <p>EMUI(8.0.0)基于Android 8.0.0 测试通过；
      *
      * @param context
      * @param requestCode
@@ -180,7 +181,6 @@ public final class SettingUtils {
                     context.startActivityForResult(intent, requestCode);
                 }
             }
-
         }
     }
 
@@ -201,6 +201,7 @@ public final class SettingUtils {
     /**
      * 获取华为设备自启动管理页面
      * <p>华为Pad(7.0,6.0)测试通过；
+     * <p>Honor 9i(EMUI 8.0.0/Android 8.0.0)测试通过
      *
      * @return
      */
