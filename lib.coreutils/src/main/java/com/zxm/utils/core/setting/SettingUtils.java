@@ -160,6 +160,7 @@ public final class SettingUtils {
      * <p>一加（9.0）测试通过；
      * <p>OPPO(8.1.0)测试通过；
      * <p>EMUI(8.0.0)基于Android 8.0.0 测试通过；
+     * <p>VIVO(8.1.0)测试通过；
      *
      * @param context
      * @param requestCode
@@ -277,7 +278,7 @@ public final class SettingUtils {
 
     /**
      * 获取VIVOvo自启动管理页面
-     * <p>VIVO(8.1)测试通过；
+     * <p>VIVO(8.1.0)测试通过，使用权限管理页；
      *
      * @return
      */
