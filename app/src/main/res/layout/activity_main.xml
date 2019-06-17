@@ -2,13 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/color_bg"
     android:orientation="vertical">
 
-    <ListView
-        android:id="@+id/listview"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_home"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="#ededed"
-        android:dividerHeight="0.5dp" />
+        android:layout_height="match_parent" />
 
 </LinearLayout>

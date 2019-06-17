@@ -30,7 +30,6 @@ import static com.zxm.utils.core.constant.PhoneBrand.BRAND_XIAOMI;
 public final class SettingUtils {
     private static final String TAG = SettingUtils.class.getSimpleName();
 
-
     private SettingUtils() {
         throw new UnsupportedOperationException("U con't do this!");
     }

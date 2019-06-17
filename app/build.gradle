@@ -31,6 +31,12 @@ android {
         }
     }
 
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+
     applicationVariants.all { variant ->
         variant.outputs.all {
             outputFileName = "AndroidUtils_${variant.versionName}_${variant.buildType.name}.apk"
@@ -55,5 +61,6 @@ dependencies {
 
     //utils
     implementation project(':lib.coreutils')
+//    implementation(name: 'AndroidCoreUtils_1.0.1_release', ext: 'aar')
 //    implementation 'com.zxm.utils:lib.coreutils:1.0.1'
 }
