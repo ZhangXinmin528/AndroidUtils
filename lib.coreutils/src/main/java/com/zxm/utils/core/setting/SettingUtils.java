@@ -200,7 +200,9 @@ public final class SettingUtils {
 
     /**
      * 获取华为设备自启动管理页面
-     * <p>华为Pad(7.0,6.0)测试通过；
+     * <p>华为Pad(EMUI 8.0.0/Android 8.0.0)测试通过；
+     * <p>华为Pad(EMUI 7.0.0/Android 7.0.0)测试通过；
+     * <p>华为Pad(EMUI 6.0.0/Android 6.0.0)测试通过；
      * <p>Honor 9i(EMUI 8.0.0/Android 8.0.0)测试通过
      *
      * @return
