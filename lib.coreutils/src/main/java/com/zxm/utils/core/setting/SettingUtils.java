@@ -173,6 +173,7 @@ public final class SettingUtils {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             final PackageManager packageManager = context.getPackageManager();
             if (packageManager != null) {
+                //targetSdkVersion 为26 否则一直返回false;
                 final boolean hasPermission = packageManager.canRequestPackageInstalls();
                 if (!hasPermission) {
 
