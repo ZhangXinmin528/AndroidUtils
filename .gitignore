@@ -12,3 +12,5 @@
 .idea/dictionaries
 .idea/libraries
 .idea/caches
+.idea/caches/*
+.idea/*
