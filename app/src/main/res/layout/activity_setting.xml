@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_bg"
+    android:orientation="vertical">
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/tv_self_start"
+            android:layout_width="wrap_content"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:gravity="center"
+            android:text="自启动"
+            android:textColor="@android:color/holo_blue_light"
+            android:textSize="@dimen/sp_16"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/tv_setting_install_not_market"
+            android:layout_width="wrap_content"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="安装未知应用"
+            android:textColor="@android:color/holo_blue_light"
+            android:textSize="@dimen/sp_16"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:gravity="center"
+            android:text="--"
+            android:textColor="@android:color/holo_blue_light"
+            android:textSize="@dimen/sp_16"
+            tools:ignore="HardcodedText" />
+    </TableRow>
+
+    <TableRow android:layout_marginTop="1dp">
+
+        <TextView
+            android:id="@+id/tv_setting_nfc"
+            android:layout_width="wrap_content"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:gravity="center"
+            android:text="设置NFC"
+            android:textColor="@android:color/holo_blue_light"
+            android:textSize="@dimen/sp_16"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/tv_setting_wifi"
+            android:layout_width="wrap_content"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:gravity="center"
+            android:text="设置WIFI"
+            android:textColor="@android:color/holo_blue_light"
+            android:textSize="@dimen/sp_16"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/tv_setting_bluetooth"
+            android:layout_width="wrap_content"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:gravity="center"
+            android:text="设置蓝牙"
+            android:textColor="@android:color/holo_blue_light"
+            android:textSize="@dimen/sp_16"
+            tools:ignore="HardcodedText" />
+    </TableRow>
+
+    <TableRow android:layout_marginTop="1dp">
+
+        <TextView
+            android:id="@+id/tv_setting_accessibility"
+            android:layout_width="wrap_content"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="辅助性功能设置"
+            android:textColor="@android:color/holo_blue_light"
+            android:textSize="@dimen/sp_16"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/tv_setting_application"
+            android:layout_width="wrap_content"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="应用程序管理"
+            android:textColor="@android:color/holo_blue_light"
+            android:textSize="@dimen/sp_16"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/tv_setting_app_dev"
+            android:layout_width="wrap_content"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="开发者选项"
+            android:textColor="@android:color/holo_blue_light"
+            android:textSize="@dimen/sp_16"
+            tools:ignore="HardcodedText" />
+    </TableRow>
+
+
+
+</TableLayout>

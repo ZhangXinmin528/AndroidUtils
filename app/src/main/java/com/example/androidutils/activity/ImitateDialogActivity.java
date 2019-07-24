@@ -1,6 +1,7 @@
 package com.example.androidutils.activity;
 
 import android.content.Context;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -24,6 +25,7 @@ public class ImitateDialogActivity extends BaseActivity implements View.OnClickL
     @Override
     protected void initParamsAndValues() {
         mContext = this;
+        initActionBar();
     }
 
     @Override
@@ -44,5 +46,15 @@ public class ImitateDialogActivity extends BaseActivity implements View.OnClickL
                 finish();
                 break;
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

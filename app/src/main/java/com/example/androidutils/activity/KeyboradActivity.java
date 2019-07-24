@@ -2,13 +2,14 @@ package com.example.androidutils.activity;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.androidutils.R;
 import com.example.androidutils.base.BaseActivity;
-import com.zxm.utils.core.KeyboradUtil;
+import com.zxm.utils.core.keyborad.KeyboradUtil;
 import com.zxm.utils.core.text.SpanUtils;
 
 /**
@@ -31,6 +32,7 @@ public class KeyboradActivity extends BaseActivity implements View.OnClickListen
     @Override
     protected void initParamsAndValues() {
         mContext = this;
+        initActionBar();
     }
 
     @Override
@@ -66,6 +68,16 @@ public class KeyboradActivity extends BaseActivity implements View.OnClickListen
                 .append("\n软键盘是否可见：" + KeyboradUtil.isSoftInputVisible(this), true)
                 .append("\n软键盘高度：" + height, true)
                 .create());
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

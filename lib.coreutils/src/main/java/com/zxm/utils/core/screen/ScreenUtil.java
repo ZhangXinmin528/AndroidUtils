@@ -1,4 +1,4 @@
-package com.zxm.utils.core;
+package com.zxm.utils.core.screen;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;

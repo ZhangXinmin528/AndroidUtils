@@ -8,7 +8,7 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -28,6 +28,12 @@ android {
             //是否输出日志
             buildConfigField("boolean", "LOG_ENABLE", "true")
 
+        }
+    }
+
+    repositories {
+        flatDir {
+            dirs 'libs'
         }
     }
 
@@ -54,6 +60,7 @@ dependencies {
     annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
 
     //utils
-    implementation project(':lib.coreutils')
-//    implementation 'com.zxm.utils:lib.coreutils:1.0.1'
+//    implementation project(':lib.coreutils')
+//    implementation(name: 'AndroidCoreUtils_1.0.1_release', ext: 'aar')
+    implementation 'com.zxm.utils:lib.coreutils:1.0.2'
 }

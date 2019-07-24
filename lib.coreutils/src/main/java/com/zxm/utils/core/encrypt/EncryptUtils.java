@@ -140,7 +140,7 @@ public final class EncryptUtils {
 
     /**
      * Return the hex string of file's MD5 encryption.
-     * <p>MD5加密文件
+     * <p>MD5文件加密
      *
      * @param filePath The path of file.
      * @return the hex string of file's MD5 encryption
@@ -152,7 +152,7 @@ public final class EncryptUtils {
 
     /**
      * Return the bytes of file's MD5 encryption.
-     * <p>MD5加密文件
+     * <p>MD5文件加密
      *
      * @param filePath The path of file.
      * @return the bytes of file's MD5 encryption
@@ -164,7 +164,7 @@ public final class EncryptUtils {
 
     /**
      * Return the hex string of file's MD5 encryption.
-     * <p>MD5加密字符串
+     * <p>MD5文件加密字符串
      *
      * @param file The file.
      * @return the hex string of file's MD5 encryption
@@ -175,7 +175,7 @@ public final class EncryptUtils {
 
     /**
      * Return the bytes of file's MD5 encryption.
-     * <p>MD5加密文件
+     * <p>MD5文件加密
      *
      * @param file The file.
      * @return the bytes of file's MD5 encryption
@@ -335,7 +335,7 @@ public final class EncryptUtils {
 
     /**
      * Return the bytes of SHA384 encryption.
-     * <p>SHA384加密字符串
+     * <p>SHA384加密
      *
      * @param data The data.
      * @return the bytes of SHA384 encryption
@@ -369,7 +369,7 @@ public final class EncryptUtils {
 
     /**
      * Return the bytes of SHA512 encryption.
-     * <p>SHA512加密字符串
+     * <p>SHA512加密
      *
      * @param data The data.
      * @return the bytes of SHA512 encryption
@@ -428,7 +428,7 @@ public final class EncryptUtils {
 
     /**
      * Return the bytes of HmacMD5 encryption.
-     * <p>HmacMd5加密字符串
+     * <p>HmacMd5加密
      *
      * @param data The data.
      * @param key  The key.
@@ -465,7 +465,7 @@ public final class EncryptUtils {
 
     /**
      * Return the bytes of HmacSHA1 encryption.
-     * <p>HmacSHA1加密字符串
+     * <p>HmacSHA1加密
      *
      * @param data The data.
      * @param key  The key.
@@ -502,7 +502,7 @@ public final class EncryptUtils {
 
     /**
      * Return the bytes of HmacSHA224 encryption.
-     * <p>HmacSHA224加密字符串
+     * <p>HmacSHA224加密
      *
      * @param data The data.
      * @param key  The key.
@@ -539,7 +539,7 @@ public final class EncryptUtils {
 
     /**
      * Return the bytes of HmacSHA256 encryption.
-     * <p>HmacSHA256加密字符串
+     * <p>HmacSHA256加密
      *
      * @param data The data.
      * @param key  The key.
@@ -576,7 +576,7 @@ public final class EncryptUtils {
 
     /**
      * Return the bytes of HmacSHA384 encryption.
-     * <p>HmacSHA384加密字符串
+     * <p>HmacSHA384加密
      *
      * @param data The data.
      * @param key  The key.
@@ -613,7 +613,7 @@ public final class EncryptUtils {
 
     /**
      * Return the bytes of HmacSHA512 encryption.
-     * <p>HmacSHA512加密字符串
+     * <p>HmacSHA512加密
      *
      * @param data The data.
      * @param key  The key.

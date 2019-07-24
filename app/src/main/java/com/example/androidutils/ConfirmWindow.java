@@ -12,7 +12,7 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
-import com.zxm.utils.core.ScreenUtil;
+import com.zxm.utils.core.screen.ScreenUtil;
 
 /**
  * Created by ZhangXinmin on 2018/10/16.

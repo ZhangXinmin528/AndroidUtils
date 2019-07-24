@@ -7,4 +7,6 @@
     <string name="rationale_phone">Disabling phone permissions, you will not be able to use device phone related features~</string>
     <string name="rationale_sms">Disable SMS permission, you will not be able to use device SMS related function~</string>
     <string name="rationale_storage">Disable storage space permissions, you will not be able to use the file read and write or delete function ~</string>
+
+    <string name="all_loading">loading...</string>
 </resources>

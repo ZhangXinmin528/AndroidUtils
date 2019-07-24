@@ -1,4 +1,4 @@
-package com.zxm.utils.core;
+package com.zxm.utils.core.device;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -12,6 +12,8 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresPermission;
 import android.text.TextUtils;
+
+import com.zxm.utils.core.ShellUtils;
 
 import java.io.File;
 import java.net.InetAddress;
@@ -48,6 +50,117 @@ public final class DeviceUtil {
             }
         }
         return false;
+    }
+
+    /**
+     * Return a build id string for displaying to user.
+     * 向用户展示系统版本号
+     *
+     * @return a build id string for displaying to user
+     */
+    public static String getDisplayID() {
+        return Build.DISPLAY;
+    }
+
+    /**
+     * Return the name of the overall product.
+     * 产品型号
+     *
+     * @return the name of the overall product
+     */
+    public static String getProductName() {
+        return Build.PRODUCT;
+    }
+
+    /**
+     * Return the name of the industrial design.
+     * 产品工业型号
+     *
+     * @return the name of the industrial design
+     */
+    public static String getDeviceInfo() {
+        return Build.DEVICE;
+    }
+
+    /**
+     * Retuen the name of the underlying board.
+     * 主板信息
+     *
+     * @return the name of the underlying board
+     */
+    public static String getBoardInfo() {
+        return Build.BOARD;
+    }
+
+
+    /**
+     * Return an ordered list of ABIs supported by this device. The most preferred ABI is the first
+     * element in the list.
+     * 获取设备ABIs
+     *
+     * @return an ordered list of ABIs supported by this device
+     */
+    public static String[] getABIs() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            return Build.SUPPORTED_ABIS;
+        } else {
+            if (!TextUtils.isEmpty(Build.CPU_ABI2)) {
+                return new String[]{Build.CPU_ABI, Build.CPU_ABI2};
+            }
+            return new String[]{Build.CPU_ABI};
+        }
+    }
+
+    /**
+     * Return the manufacturer of the product/hardware.
+     * 获取产品/硬件制造商
+     * <p>e.g. Xiaomi</p>
+     *
+     * @return the manufacturer of the product/hardware
+     */
+    public static String getManufacturer() {
+        return Build.MANUFACTURER;
+    }
+
+    /**
+     * Return the consumer-visible brand with which the product/hardware.
+     * 获取产品/硬件品牌名
+     *
+     * @return the consumer-visible brand with which the product/hardware
+     */
+    public static String getBrandInfo() {
+        return Build.BRAND;
+    }
+
+    /**
+     * Return the end-user-visible name for the end product.
+     * 获取产品最终型号
+     * <p>e.g. MI2SC</p>
+     *
+     * @return the model of device
+     */
+    public static String getModel() {
+        return Build.MODEL;
+    }
+
+    /**
+     * Return the system bootloader version number.
+     * 获取系统启动程序版本号
+     *
+     * @return the system bootloader version number
+     */
+    public static String getBootLoaderInfo() {
+        return Build.BOOTLOADER;
+    }
+
+    /**
+     * Returns the version string for the radio firmware.
+     * 获取基带（无线电固件）版本号
+     *
+     * @return the version string for the radio firmware
+     */
+    public static String getRadioVersion() {
+        return Build.getRadioVersion();
     }
 
     /**
@@ -260,52 +373,6 @@ public final class DeviceUtil {
             }
         }
         return "02:00:00:00:00:00";
-    }
-
-    /**
-     * Return the manufacturer of the product/hardware.
-     * 获取设备硬件制造商
-     * <p>e.g. Xiaomi</p>
-     *
-     * @return the manufacturer of the product/hardware
-     */
-    public static String getManufacturer() {
-        return Build.MANUFACTURER;
-    }
-
-    /**
-     * Return the model of device.
-     * 获取设备型号
-     * <p>e.g. MI2SC</p>
-     *
-     * @return the model of device
-     */
-    public static String getModel() {
-        String model = Build.MODEL;
-        if (model != null) {
-            model = model.trim().replaceAll("\\s*", "");
-        } else {
-            model = "";
-        }
-        return model;
-    }
-
-    /**
-     * Return an ordered list of ABIs supported by this device. The most preferred ABI is the first
-     * element in the list.
-     * 获取设备ABIs
-     *
-     * @return an ordered list of ABIs supported by this device
-     */
-    public static String[] getABIs() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            return Build.SUPPORTED_ABIS;
-        } else {
-            if (!TextUtils.isEmpty(Build.CPU_ABI2)) {
-                return new String[]{Build.CPU_ABI, Build.CPU_ABI2};
-            }
-            return new String[]{Build.CPU_ABI};
-        }
     }
 
     /**

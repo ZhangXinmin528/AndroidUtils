@@ -49,8 +49,10 @@
     <string name="log_json">Log Json</string>
     <string name="log_xml">Log Xml</string>
     <string name="all_input_port">input original value</string>
-    <string name="all_reboot">Reboot</string>
+    <string name="all_reboot">重启</string>
     <string name="all_tips_ip">网址或IP</string>
     <string name="all_ping">PING</string>
     <string name="all_setting">Setting</string>
+
+    <string name="all_install_unknown_source_app">您的应用需要打开“安装未知来源应用”开关，是否允许？</string>
 </resources>

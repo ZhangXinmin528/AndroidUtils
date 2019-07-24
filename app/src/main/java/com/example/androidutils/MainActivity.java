@@ -2,10 +2,12 @@ package com.example.androidutils;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.TypedArray;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import com.example.androidutils.activity.DeviceActivity;
 import com.example.androidutils.activity.DialogActivity;
@@ -18,18 +20,23 @@ import com.example.androidutils.activity.PaletteActivity;
 import com.example.androidutils.activity.PermissionActivity;
 import com.example.androidutils.activity.PingActivity;
 import com.example.androidutils.activity.ScreenActivity;
+import com.example.androidutils.activity.SettingActivity;
 import com.example.androidutils.activity.SpanActivity;
+import com.example.androidutils.adapter.NavigationAdapter;
+import com.example.androidutils.adapter.decoration.StaggeredItemDecoration;
 import com.example.androidutils.base.BaseActivity;
+import com.example.androidutils.bean.NaviEntity;
+import com.example.androidutils.listener.OnItemClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends BaseActivity implements AdapterView.OnItemClickListener {
+public class MainActivity extends BaseActivity implements OnItemClickListener {
 
     private Context mContext;
-    private ListView mListView;
-    private List<String> mDataList;
-    private ArrayAdapter<String> mAdapter;
+    private List<NaviEntity> mDataList;
+    private RecyclerView mRecyclerView;
+    private NavigationAdapter mAdapter;
 
     @Override
     protected Object setLayout() {
@@ -40,78 +47,96 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
     protected void initParamsAndValues() {
         mContext = this;
         mDataList = new ArrayList<>();
-        mAdapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_list_item_1, mDataList);
+        mAdapter = new NavigationAdapter(mContext, mDataList);
     }
 
     @Override
     protected void initViews() {
-        mListView = findViewById(R.id.listview);
-        mListView.setAdapter(mAdapter);
-        mListView.setOnItemClickListener(this);
+        mRecyclerView = findViewById(R.id.rv_home);
+        mRecyclerView.setAdapter(mAdapter);
+        final StaggeredGridLayoutManager layoutManager =
+                new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
+        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.addItemDecoration(
+                new StaggeredItemDecoration(mContext));
+        mAdapter.setOnItemClickListener(this);
     }
 
     @Override
     protected void initData() {
         super.initData();
-        mDataList.add("文字样式-->SpanUtils的使用");
-        mDataList.add("屏幕属性-->ScreenUtil的使用");
-        mDataList.add("软键盘使用-->KeyboradUtil的使用");
-        mDataList.add("图片工具-->ImageUtil的使用");
-        mDataList.add("自定义弹窗-->Dialog的使用");
-        mDataList.add("网络检测-->NetWatchdog的使用");
-        mDataList.add("图片取色-->Palette的使用");
-        mDataList.add("获取设备信息-->DeviceUtil的使用");
-        mDataList.add("请求权限-->Android权限申请");
-        mDataList.add("日志工具-->日志输出和存储");
-        mDataList.add("加解密工具-->加解密工具的使用");
-        mDataList.add("网络连接状态-->PingUtil的使用");
+        final String[] temp = getResources().getStringArray(R.array.sort_name_array);
+
+        TypedArray iconArray = getResources().obtainTypedArray(R.array.sort_icon_array);
+
+        final int length = temp.length;
+        for (int i = 0; i < length; i++) {
+            final NaviEntity entity = new NaviEntity();
+            entity.setName(temp[i]);
+            final int iconId = iconArray.getResourceId(i, -1);
+            entity.setIconId(iconId);
+            mDataList.add(entity);
+        }
+
         mAdapter.notifyDataSetChanged();
+        iconArray.recycle();
     }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+    public void onItemClick(@NonNull RecyclerView.Adapter adapter, @NonNull View view, int position) {
         Intent intent = new Intent();
         switch (position) {
             case 0:
-                intent.setClass(mContext, SpanActivity.class);
+                intent.setClass(mContext, DeviceActivity.class);
                 break;
             case 1:
-                intent.setClass(mContext, ScreenActivity.class);
+                intent.setClass(mContext, DialogActivity.class);
                 break;
             case 2:
-                intent.setClass(mContext, KeyboradActivity.class);
+                intent.setClass(mContext, EncryptActivity.class);
                 break;
             case 3:
                 intent.setClass(mContext, ImageActivity.class);
                 break;
             case 4:
-                intent.setClass(mContext, DialogActivity.class);
+                intent.setClass(mContext, KeyboradActivity.class);
                 break;
             case 5:
-                intent.setClass(mContext, NetWatcherActivity.class);
+                intent.setClass(mContext, LogActivity.class);
                 break;
             case 6:
-                intent.setClass(mContext, PaletteActivity.class);
+                intent.setClass(mContext, NetWatcherActivity.class);
                 break;
             case 7:
-                intent.setClass(mContext, DeviceActivity.class);
+//                intent.setClass(mContext, NetWatcherActivity.class);
                 break;
             case 8:
                 intent.setClass(mContext, PermissionActivity.class);
                 break;
             case 9:
-                intent.setClass(mContext, LogActivity.class);
+//                intent.setClass(mContext, PermissionActivity.class);
                 break;
             case 10:
-                intent.setClass(mContext, EncryptActivity.class);
+                intent.setClass(mContext, PingActivity.class);
                 break;
             case 11:
-                intent.setClass(mContext, PingActivity.class);
+                intent.setClass(mContext, SpanActivity.class);
+                break;
+            case 12:
+                intent.setClass(mContext, ScreenActivity.class);
+                break;
+            case 13:
+//                intent.setClass(mContext, PingActivity.class);
+                break;
+            case 14:
+                intent.setClass(mContext, PaletteActivity.class);
+                break;
+            case 15:
+                intent.setClass(mContext, SettingActivity.class);
                 break;
             default:
                 break;
         }
         startActivity(intent);
     }
-
 }

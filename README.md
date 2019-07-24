@@ -2,7 +2,7 @@
 ------
 [![License](https://img.shields.io/badge/License%20-Apache%202-337ab7.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 [![API](https://img.shields.io/badge/API-19%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=19)
-[ ![Download](https://api.bintray.com/packages/zhangxinmin528/AndroidCoreUtils/AndroidCoreUtils/images/download.svg?version=1.0.1) ](https://bintray.com/zhangxinmin528/AndroidCoreUtils/AndroidCoreUtils/1.0.1/link)
+[ ![Download](https://api.bintray.com/packages/zhangxinmin528/AndroidCoreUtils/AndroidCoreUtils/images/download.svg) ](https://bintray.com/zhangxinmin528/AndroidCoreUtils/AndroidCoreUtils/_latestVersion)
 
 <p align="center">
   <img alt="logo" src="https://github.com/ZhangXinmin528/AndroidUtils/blob/master/app/src/main/assets/util_logo.png"/>
@@ -19,7 +19,7 @@ Add dependencies in build.gradle.
 
 
 	dependencies {
-    		implementation 'com.zxm.utils:lib.coreutils:1.0.1'
+    		implementation 'com.zxm.utils:lib.coreutils:1.0.2'
     	}
 
 Please refer to the code in the App Module related Activity in the project.

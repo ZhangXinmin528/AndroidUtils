@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 
 import com.example.androidutils.R;
 import com.example.androidutils.adapter.ImageAdapter;
@@ -37,6 +38,8 @@ public class ImageActivity extends BaseActivity {
     protected void initParamsAndValues() {
         mContext = this;
         mResources = mContext.getResources();
+
+        initActionBar();
     }
 
     @Override
@@ -78,5 +81,15 @@ public class ImageActivity extends BaseActivity {
 
         rvImages.setAdapter(new ImageAdapter(mContext, mList));
         rvImages.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

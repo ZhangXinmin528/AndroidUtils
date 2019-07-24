@@ -6,11 +6,12 @@ import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.example.androidutils.R;
 import com.example.androidutils.base.BaseActivity;
-import com.zxm.utils.core.PermissionChecker;
+import com.zxm.utils.core.permission.PermissionChecker;
 import com.zxm.utils.core.dialog.DialogUtil;
 
 /**
@@ -45,7 +46,7 @@ public class PermissionActivity extends BaseActivity implements View.OnClickList
     protected void initParamsAndValues() {
 
         mContext = this;
-
+        initActionBar();
     }
 
     @Override
@@ -114,5 +115,15 @@ public class PermissionActivity extends BaseActivity implements View.OnClickList
             }
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

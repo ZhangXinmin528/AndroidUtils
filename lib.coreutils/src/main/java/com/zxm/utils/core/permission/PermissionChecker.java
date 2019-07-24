@@ -1,4 +1,4 @@
-package com.zxm.utils.core;
+package com.zxm.utils.core.permission;
 
 import android.Manifest;
 import android.app.Activity;
@@ -10,6 +10,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.Log;
+
+import com.zxm.utils.core.R;
 
 import java.util.ArrayList;
 import java.util.List;
