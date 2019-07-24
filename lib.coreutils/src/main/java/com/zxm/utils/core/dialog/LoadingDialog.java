@@ -20,15 +20,13 @@ import android.widget.TextView;
 import com.zxm.utils.core.R;
 import com.zxm.utils.core.screen.ScreenUtil;
 
-
 /**
- * Created by ZhangXinmin on 2018/8/7.
- * Copyright (c) 2018 . All rights reserved.
- * EasyDialog is a convenient form of Dialog.
+ * Created by ZhangXinmin on 2019/7/22.
+ * Copyright (c) 2019 . All rights reserved.
  */
-public class EasyDialog extends Dialog {
+public class LoadingDialog extends Dialog {
 
-    private static final String TAG = EasyDialog.class.getSimpleName();
+    private static final String TAG = LoadingDialog.class.getSimpleName();
 
     /**
      * Creates an common alert dialog that uses an explicit theme resource.
@@ -37,7 +35,7 @@ public class EasyDialog extends Dialog {
      * @param themeResId the resource ID of the theme against which to inflate
      *                   this dialog
      */
-    private EasyDialog(@NonNull Context context, @StyleRes int themeResId) {
+    private LoadingDialog(@NonNull Context context, @StyleRes int themeResId) {
         super(context, themeResId);
     }
 
@@ -51,7 +49,7 @@ public class EasyDialog extends Dialog {
          *
          * @param dialog the dialog that received the click
          */
-        void onClick(EasyDialog dialog);
+        void onClick(LoadingDialog dialog);
     }
 
     /**
@@ -59,7 +57,7 @@ public class EasyDialog extends Dialog {
      */
     public static final class Builder {
 
-        private final DialogContrller P;
+        private final LoadingDialog.DialogContrller P;
 
         public Builder(@NonNull Context context) {
             this(context, -1);
@@ -74,11 +72,11 @@ public class EasyDialog extends Dialog {
         }
 
         public Builder(@NonNull Context context, @StyleRes int themeResId, @LayoutRes int layoutResID) {
-            P = new DialogContrller(context, themeResId, layoutResID);
+            P = new LoadingDialog.DialogContrller(context, themeResId, layoutResID);
         }
 
         public Builder(@NonNull Context context, @StyleRes int themeResId, @NonNull View rootView) {
-            P = new DialogContrller(context, themeResId, rootView);
+            P = new LoadingDialog.DialogContrller(context, themeResId, rootView);
         }
 
         /**
@@ -87,7 +85,7 @@ public class EasyDialog extends Dialog {
          *
          * @param layoutResID Resource ID to be inflated.
          */
-        public Builder setContentView(@LayoutRes int layoutResID) {
+        public LoadingDialog.Builder setContentView(@LayoutRes int layoutResID) {
             P.layoutResID = layoutResID;
             return this;
         }
@@ -99,7 +97,7 @@ public class EasyDialog extends Dialog {
          *
          * @param view The desired content to display.
          */
-        public Builder setContentView(@NonNull View view) {
+        public LoadingDialog.Builder setContentView(@NonNull View view) {
             P.mRootView = view;
             return this;
         }
@@ -146,34 +144,8 @@ public class EasyDialog extends Dialog {
          *
          * @return This Builder object to allow for chaining of calls to set methods
          */
-        public Builder setCancelable(boolean cancelable) {
+        public LoadingDialog.Builder setCancelable(boolean cancelable) {
             P.mCancelable = cancelable;
-            return this;
-        }
-
-        /**
-         * Set the message to display.
-         *
-         * @param title
-         * @param viewId
-         * @return This Builder object to allow for chaining of calls to set methods
-         */
-        public Builder setTitle(@Nullable CharSequence title, @IdRes int viewId) {
-            P.mTilte = title;
-            P.mTitleId = viewId;
-            return this;
-        }
-
-        /**
-         * Set the message to display using the given resource id.
-         *
-         * @param titleId
-         * @param viewId
-         * @return This Builder object to allow for chaining of calls to set methods
-         */
-        public Builder setTitle(@StringRes int titleId, @IdRes int viewId) {
-            P.mTilte = P.mContext.getText(titleId);
-            P.mTitleId = viewId;
             return this;
         }
 
@@ -184,7 +156,7 @@ public class EasyDialog extends Dialog {
          * @param viewId
          * @return This Builder object to allow for chaining of calls to set methods
          */
-        public Builder setMessage(@Nullable CharSequence message, @IdRes int viewId) {
+        public LoadingDialog.Builder setMessage(@Nullable CharSequence message, @IdRes int viewId) {
             P.mMessage = message;
             P.mMessageId = viewId;
             return this;
@@ -197,72 +169,11 @@ public class EasyDialog extends Dialog {
          * @param viewId
          * @return This Builder object to allow for chaining of calls to set methods
          */
-        public Builder setMessage(@StringRes int messageId, @IdRes int viewId) {
+        public LoadingDialog.Builder setMessage(@StringRes int messageId, @IdRes int viewId) {
             P.mMessage = P.mContext.getText(messageId);
             P.mMessageId = viewId;
             return this;
         }
-
-        /**
-         * Set a listener to be invoked when the positive button of the dialog is pressed.
-         *
-         * @param textId   The resource id of the text to display in the positive button
-         * @param listener The {@link OnClickListener} to use.
-         * @param viewId
-         * @return This Builder object to allow for chaining of calls to set methods
-         */
-        public Builder setPositiveButton(@StringRes int textId, @IdRes int viewId, final OnClickListener listener) {
-            P.mPositiveButtonText = P.mContext.getText(textId);
-            P.mPositiveButtonListener = listener;
-            P.mPositiveBtnId = viewId;
-            return this;
-        }
-
-        /**
-         * Set a listener to be invoked when the positive button of the dialog is pressed.
-         *
-         * @param text     The text to display in the positive button
-         * @param listener The {@link OnClickListener} to use.
-         * @param viewId
-         * @return This Builder object to allow for chaining of calls to set methods
-         */
-        public Builder setPositiveButton(CharSequence text, @IdRes int viewId, final OnClickListener listener) {
-            P.mPositiveButtonText = text;
-            P.mPositiveButtonListener = listener;
-            P.mPositiveBtnId = viewId;
-            return this;
-        }
-
-        /**
-         * Set a listener to be invoked when the negative button of the dialog is pressed.
-         *
-         * @param textId   The resource id of the text to display in the negative button
-         * @param listener The {@link OnClickListener} to use.
-         * @param viewId
-         * @return This Builder object to allow for chaining of calls to set methods
-         */
-        public Builder setNegativeButton(@StringRes int textId, @IdRes int viewId, final OnClickListener listener) {
-            P.mNegativeButtonText = P.mContext.getText(textId);
-            P.mNegativeButtonListener = listener;
-            P.mNegativeBtnId = viewId;
-            return this;
-        }
-
-        /**
-         * Set a listener to be invoked when the negative button of the dialog is pressed.
-         *
-         * @param text     The text to display in the negative button
-         * @param listener The {@link OnClickListener} to use.
-         * @param viewId
-         * @return This Builder object to allow for chaining of calls to set methods
-         */
-        public Builder setNegativeButton(CharSequence text, @IdRes int viewId, final OnClickListener listener) {
-            P.mNegativeButtonText = text;
-            P.mNegativeButtonListener = listener;
-            P.mNegativeBtnId = viewId;
-            return this;
-        }
-
 
         /**
          * Sets the callback that will be called if the dialog is canceled.
@@ -279,7 +190,7 @@ public class EasyDialog extends Dialog {
          * @see #setOnDismissListener(OnDismissListener)
          */
         @Deprecated
-        public Builder setOnCancelListener(OnCancelListener onCancelListener) {
+        public LoadingDialog.Builder setOnCancelListener(OnCancelListener onCancelListener) {
             P.mOnCancelListener = onCancelListener;
             return this;
         }
@@ -289,7 +200,7 @@ public class EasyDialog extends Dialog {
          *
          * @return This Builder object to allow for chaining of calls to set methods
          */
-        public Builder setOnDismissListener(OnDismissListener onDismissListener) {
+        public LoadingDialog.Builder setOnDismissListener(OnDismissListener onDismissListener) {
             P.mOnDismissListener = onDismissListener;
             return this;
         }
@@ -300,21 +211,21 @@ public class EasyDialog extends Dialog {
          * @return This Builder object to allow for chaining of calls to set methods
          */
         @Deprecated
-        public Builder setOnKeyListener(OnKeyListener onKeyListener) {
+        public LoadingDialog.Builder setOnKeyListener(OnKeyListener onKeyListener) {
             P.mOnKeyListener = onKeyListener;
             return this;
         }
 
         /**
-         * Creates an {@link EasyDialog} with the arguments supplied to this
+         * Creates an {@link LoadingDialog} with the arguments supplied to this
          * builder.
          * <p>
          * Calling this method does not display the dialog. If no additional
          * processing is needed, {@link #show()} may be called instead to both
          * create and display the dialog.
          */
-        public EasyDialog create() {
-            final EasyDialog dialog = new EasyDialog(P.mContext, P.mTheme);
+        public LoadingDialog create() {
+            final LoadingDialog dialog = new LoadingDialog(P.mContext, P.mTheme);
             setUpView(dialog);
             dialog.setCancelable(P.mCancelable);
             if (P.mCancelable) {
@@ -333,7 +244,7 @@ public class EasyDialog extends Dialog {
          * application layer and opaque.
          */
         public void showDialog() {
-            final EasyDialog dialog = create();
+            final LoadingDialog dialog = create();
             dialog.show();
             Window window = dialog.getWindow();
             WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
@@ -350,7 +261,7 @@ public class EasyDialog extends Dialog {
             }
         }
 
-        private void setUpView(@NonNull final EasyDialog dialog) {
+        private void setUpView(@NonNull final LoadingDialog dialog) {
             if (P.mRootView == null) {
                 if (P.layoutResID != 0) {
                     P.mRootView = LayoutInflater.from(P.mContext)
@@ -361,48 +272,12 @@ public class EasyDialog extends Dialog {
                 dialog.cancel();
                 return;
             }
-
-            //title
-            if (!TextUtils.isEmpty(P.mTilte) && P.mTitleId != 0) {
-                final TextView titleView = P.mRootView.findViewById(P.mTitleId);
-                titleView.setText(P.mTilte);
-            }
             //Message
             if (!TextUtils.isEmpty(P.mMessage) && P.mMessageId != 0) {
                 final TextView msgView = P.mRootView.findViewById(P.mMessageId);
                 msgView.setText(P.mMessage);
             }
-            //PositiveButton
-            if (!TextUtils.isEmpty(P.mPositiveButtonText)) {
-                final TextView positiveBtn = P.mRootView.findViewById(P.mPositiveBtnId);
-                positiveBtn.setText(P.mPositiveButtonText);
 
-                if (P.mPositiveButtonListener != null) {
-                    positiveBtn.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            P.mPositiveButtonListener.onClick(dialog);
-                            dialog.dismiss();
-                        }
-                    });
-                }
-            }
-
-            //NegativeButton
-            if (!TextUtils.isEmpty(P.mNegativeButtonText)) {
-                final TextView negativeBtn = P.mRootView.findViewById(P.mNegativeBtnId);
-                negativeBtn.setText(P.mNegativeButtonText);
-
-                if (P.mNegativeButtonListener != null) {
-                    negativeBtn.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            P.mNegativeButtonListener.onClick(dialog);
-                            dialog.dismiss();
-                        }
-                    });
-                }
-            }
             dialog.setContentView(P.mRootView);
         }
     }
@@ -415,20 +290,9 @@ public class EasyDialog extends Dialog {
         public int mWidth;
         public int mHeight;
         public int mGravity;
-        //title
-        public CharSequence mTilte;
-        public int mTitleId;
         //message
         public CharSequence mMessage;
         public int mMessageId;
-        //positive button
-        public CharSequence mPositiveButtonText;
-        public int mPositiveBtnId;
-        public OnClickListener mPositiveButtonListener;
-        //negative button
-        public CharSequence mNegativeButtonText;
-        public int mNegativeBtnId;
-        public OnClickListener mNegativeButtonListener;
         public boolean mCancelable;
         public OnCancelListener mOnCancelListener;
         public OnDismissListener mOnDismissListener;

@@ -10,4 +10,5 @@
     <string name="rationale_sms">禁用短信权限，将不能使用设备短信相关功能~</string>
     <string name="rationale_storage">禁用存储空间权限，将不能使用文件的读写或删除功能~</string>
 
+    <string name="all_loading">正在加载中...</string>
 </resources>
