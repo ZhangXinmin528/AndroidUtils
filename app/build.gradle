@@ -7,8 +7,8 @@ android {
         applicationId "com.example.androidutils"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0.1"
+        versionCode 3
+        versionName "1.0.3"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -52,15 +52,12 @@ dependencies {
     //palette
     implementation "com.android.support:palette-v7:$rootProject.supportLibraryVersion"
 
-    //adapter
-    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40'
-
     //图片加载框架
     implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
     annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
 
     //utils
-//    implementation project(':lib.coreutils')
+    implementation project(':lib.coreutils')
 //    implementation(name: 'AndroidCoreUtils_1.0.1_release', ext: 'aar')
-    implementation 'com.zxm.utils:lib.coreutils:1.0.2'
+//    implementation 'com.zxm.utils:lib.coreutils:1.0.2'
 }
