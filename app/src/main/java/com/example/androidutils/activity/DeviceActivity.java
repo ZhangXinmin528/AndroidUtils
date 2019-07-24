@@ -12,6 +12,8 @@ import com.example.androidutils.base.BaseActivity;
 import com.zxm.utils.core.device.DeviceUtil;
 import com.zxm.utils.core.permission.PermissionChecker;
 
+import java.util.Arrays;
+
 /**
  * Created by ZhangXinmin on 2018/11/23.
  * Copyright (c) 2018 . All rights reserved.
@@ -58,7 +60,7 @@ public class DeviceActivity extends BaseActivity implements View.OnClickListener
         sb.append("\n");
 
         sb.append("主板信息：").append(DeviceUtil.getBoardInfo()).append("\n");
-        sb.append("设备ABIs：").append(DeviceUtil.getABIs()).append("\n");
+        sb.append("设备ABIs：").append(Arrays.asList(DeviceUtil.getABIs())).append("\n");
         sb.append("产品/硬件制造商：").append(DeviceUtil.getManufacturer()).append("\n");
         sb.append("产品/硬件品牌：").append(DeviceUtil.getBrandInfo()).append("\n");
         sb.append("产品最终型号：").append(DeviceUtil.getModel()).append("\n");

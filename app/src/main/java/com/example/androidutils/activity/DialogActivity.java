@@ -10,7 +10,7 @@ import android.widget.Toast;
 import com.example.androidutils.ConfirmWindow;
 import com.example.androidutils.R;
 import com.example.androidutils.base.BaseActivity;
-import com.zxm.utils.core.dialog.CommonDialog;
+import com.zxm.utils.core.dialog.EasyDialog;
 
 /**
  * Created by ZhangXinmin on 2018/10/13.
@@ -49,22 +49,24 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_show_dialog:
-                new CommonDialog.Builder(mContext)
-                        .setCancelable(true)
+                new EasyDialog.Builder(mContext)
                         .setContentView(R.layout.layout_confirm_dialog)
                         .setMessage("这是Dialog演示", R.id.tv_message)
-                        .setPositiveButton("确定", R.id.tv_confirm, new CommonDialog.OnClickListener() {
+                        .setWidth(250)
+                        .setHeight(250)
+                        .setCancelable(true)
+                        .setPositiveButton("确定", R.id.tv_confirm, new EasyDialog.OnClickListener() {
                             @Override
-                            public void onClick(CommonDialog dialog) {
+                            public void onClick(EasyDialog dialog) {
                                 Toast.makeText(mContext, "点击了确定", Toast.LENGTH_SHORT).show();
                             }
                         })
-                        .setNegativeButton("再想想", R.id.tv_cancel, new CommonDialog.OnClickListener() {
+                        .setNegativeButton("再想想", R.id.tv_cancel, new EasyDialog.OnClickListener() {
                             @Override
-                            public void onClick(CommonDialog dialog) {
+                            public void onClick(EasyDialog dialog) {
                                 Toast.makeText(mContext, "点击了再想想", Toast.LENGTH_SHORT).show();
                             }
-                        }).display(300, 300);
+                        }).showDialog();
                 break;
             case R.id.btn_show_window:
                 mConfirmWindow.showWindow(mRootLayout);

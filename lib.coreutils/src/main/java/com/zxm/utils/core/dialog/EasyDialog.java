@@ -24,11 +24,11 @@ import com.zxm.utils.core.screen.ScreenUtil;
 /**
  * Created by ZhangXinmin on 2018/8/7.
  * Copyright (c) 2018 . All rights reserved.
- * A alert dialog for common useage.
+ * EasyDialog is a convenient form of Dialog.
  */
-public class CommonDialog extends Dialog {
+public class EasyDialog extends Dialog {
 
-    private static final String TAG = CommonDialog.class.getSimpleName();
+    private static final String TAG = EasyDialog.class.getSimpleName();
 
     /**
      * Creates an common alert dialog that uses an explicit theme resource.
@@ -37,7 +37,7 @@ public class CommonDialog extends Dialog {
      * @param themeResId the resource ID of the theme against which to inflate
      *                   this dialog
      */
-    private CommonDialog(@NonNull Context context, @StyleRes int themeResId) {
+    private EasyDialog(@NonNull Context context, @StyleRes int themeResId) {
         super(context, themeResId);
     }
 
@@ -51,7 +51,7 @@ public class CommonDialog extends Dialog {
          *
          * @param dialog the dialog that received the click
          */
-        void onClick(CommonDialog dialog);
+        void onClick(EasyDialog dialog);
     }
 
     /**
@@ -101,6 +101,43 @@ public class CommonDialog extends Dialog {
          */
         public Builder setContentView(@NonNull View view) {
             P.mRootView = view;
+            return this;
+        }
+
+        /**
+         * Set the width for this dialog.After use this method,the dialog will update the layoutParams
+         * {@link WindowManager.LayoutParams}.
+         *
+         * @param width The desired width in dp to display.
+         * @return
+         */
+        public Builder setWidth(@IntRange(from = 0) int width) {
+            P.mWidth = ScreenUtil.dp2px(P.mContext, width);
+            return this;
+        }
+
+
+        /**
+         * Set the height for this dialog.After use this method,the dialog will update the layoutParams
+         * {@link WindowManager.LayoutParams}.
+         *
+         * @param height The desired height in dp to display.
+         * @return
+         */
+        public Builder setHeight(@IntRange(from = 0) int height) {
+            P.mHeight = ScreenUtil.dp2px(P.mContext, height);
+            return this;
+        }
+
+        /**
+         * Set the gravity for this dialog.After use this method,the dialog will update the layoutParams
+         * {@link WindowManager.LayoutParams}.
+         *
+         * @param gravity Placement of window within the screen as per {@link Gravity}.
+         * @return
+         */
+        public Builder setGravity(int gravity) {
+            P.mGravity = gravity;
             return this;
         }
 
@@ -269,16 +306,16 @@ public class CommonDialog extends Dialog {
         }
 
         /**
-         * Creates an {@link CommonDialog} with the arguments supplied to this
+         * Creates an {@link EasyDialog} with the arguments supplied to this
          * builder.
          * <p>
          * Calling this method does not display the dialog. If no additional
          * processing is needed, {@link #show()} may be called instead to both
          * create and display the dialog.
          */
-        public CommonDialog create(@IntRange(from = 0) int width, @IntRange(from = 0) int height) {
-            final CommonDialog dialog = new CommonDialog(P.mContext, P.mTheme);
-            setUpView(dialog, width, height);
+        public EasyDialog create() {
+            final EasyDialog dialog = new EasyDialog(P.mContext, P.mTheme);
+            setUpView(dialog);
             dialog.setCancelable(P.mCancelable);
             if (P.mCancelable) {
                 dialog.setCanceledOnTouchOutside(true);
@@ -292,25 +329,11 @@ public class CommonDialog extends Dialog {
         }
 
         /**
-         * Start the dialog and display it on screen.{@link CommonDialog#show()}
-         *
-         * @param width
-         * @param height
-         */
-        public void display(@IntRange(from = 0) int width, @IntRange(from = 0) int height) {
-            display(width, height, -1);
-        }
-
-        /**
          * Start the dialog and display it on screen.The window is placed in the
          * application layer and opaque.
-         *
-         * @param width
-         * @param height
-         * @param gravity Placement of window within the screen as per {@link Gravity}.
          */
-        public void display(@IntRange(from = 0) int width, @IntRange(from = 0) int height, int gravity) {
-            final CommonDialog dialog = create(width, height);
+        public void showDialog() {
+            final EasyDialog dialog = create();
             dialog.show();
             Window window = dialog.getWindow();
             WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
@@ -318,16 +341,16 @@ public class CommonDialog extends Dialog {
                 lp.copyFrom(window.getAttributes());
                 lp.width = P.mWidth;
                 lp.height = P.mHeight;
-                if (gravity == -1) {
+                if (P.mGravity == 0) {
                     lp.gravity = Gravity.CENTER;
                 } else {
-                    lp.gravity = gravity;
+                    lp.gravity = P.mGravity;
                 }
                 window.setAttributes(lp);
             }
         }
 
-        private void setUpView(@NonNull final CommonDialog dialog, int width, int height) {
+        private void setUpView(@NonNull final EasyDialog dialog) {
             if (P.mRootView == null) {
                 if (P.layoutResID != 0) {
                     P.mRootView = LayoutInflater.from(P.mContext)
@@ -338,9 +361,8 @@ public class CommonDialog extends Dialog {
                 dialog.cancel();
                 return;
             }
-            P.mWidth = ScreenUtil.dp2px(dialog.getContext(), width);
-            P.mHeight = ScreenUtil.dp2px(dialog.getContext(), width);
-            //itle
+
+            //title
             if (!TextUtils.isEmpty(P.mTilte) && P.mTitleId != 0) {
                 final TextView titleView = P.mRootView.findViewById(P.mTitleId);
                 titleView.setText(P.mTilte);
@@ -392,6 +414,7 @@ public class CommonDialog extends Dialog {
         public View mRootView;
         public int mWidth;
         public int mHeight;
+        public int mGravity;
         //title
         public CharSequence mTilte;
         public int mTitleId;
