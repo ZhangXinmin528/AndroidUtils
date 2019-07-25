@@ -3,8 +3,8 @@ apply plugin: 'com.android.library'
 ext {
     libraryName = 'AndroidCoreUtils'
     libraryDescription = 'Android core utils'
-    libraryVersionName = '1.0.3'
-    libraryVersionCode = 3
+    libraryVersionName = '1.0.4'
+    libraryVersionCode = 4
 }
 
 android {

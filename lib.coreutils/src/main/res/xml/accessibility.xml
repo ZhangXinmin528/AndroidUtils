@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?><!--最好设置包名比较有针对性-->
-<accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
-    android:accessibilityEventTypes="typeAllMask"
-    android:accessibilityFeedbackType="feedbackSpoken"
-    android:canRetrieveWindowContent="true"
-    android:notificationTimeout="1000"
-    android:packageNames="com.android.packageinstaller"/>

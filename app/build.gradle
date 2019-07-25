@@ -7,8 +7,8 @@ android {
         applicationId "com.example.androidutils"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 3
-        versionName "1.0.3"
+        versionCode 4
+        versionName "1.0.4"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -61,6 +61,6 @@ dependencies {
 
     //utils
 //    implementation project(':lib.coreutils')
-    implementation(name: 'AndroidCoreUtils_1.0.3_release', ext: 'aar')
+    implementation(name: 'AndroidCoreUtils_1.0.4_release', ext: 'aar')
 //    implementation 'com.zxm.utils:lib.coreutils:1.0.3'
 }
