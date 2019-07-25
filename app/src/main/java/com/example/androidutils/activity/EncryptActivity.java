@@ -96,7 +96,6 @@ public class EncryptActivity extends BaseActivity implements View.OnClickListene
      * 解密
      */
     private void doDecrypt() {
-        encryptResult = "8239A7F58CE579737FC39724998C4368";
         if (!TextUtils.isEmpty(encryptResult)) {
             final StringBuilder sb = new StringBuilder();
 

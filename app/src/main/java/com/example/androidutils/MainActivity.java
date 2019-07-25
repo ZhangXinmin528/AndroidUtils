@@ -4,10 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.androidutils.activity.DeviceActivity;
 import com.example.androidutils.activity.DialogActivity;
@@ -109,13 +109,17 @@ public class MainActivity extends BaseActivity implements OnItemClickListener {
                 break;
             case 7:
 //                intent.setClass(mContext, NetWatcherActivity.class);
-                break;
+//                break;
+                Toast.makeText(mContext, "暂未开放~", Toast.LENGTH_SHORT).show();
+                return;
             case 8:
                 intent.setClass(mContext, PermissionActivity.class);
                 break;
             case 9:
 //                intent.setClass(mContext, PermissionActivity.class);
-                break;
+//                break;
+                Toast.makeText(mContext, "暂未开放~", Toast.LENGTH_SHORT).show();
+                return;
             case 10:
                 intent.setClass(mContext, PingActivity.class);
                 break;
@@ -127,7 +131,9 @@ public class MainActivity extends BaseActivity implements OnItemClickListener {
                 break;
             case 13:
 //                intent.setClass(mContext, PingActivity.class);
-                break;
+//                break;
+                Toast.makeText(mContext, "暂未开放~", Toast.LENGTH_SHORT).show();
+                return;
             case 14:
                 intent.setClass(mContext, PaletteActivity.class);
                 break;
