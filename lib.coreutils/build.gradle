@@ -1,10 +1,10 @@
 apply plugin: 'com.android.library'
 
 ext {
-    libraryName = 'AndroidCoreUtils'
-    libraryDescription = 'Android core utils'
-    libraryVersionName = '1.0.5'
-    libraryVersionCode = 5
+    libraryName = 'AndroidUtils'
+    libraryDescription = 'Android utils'
+    libraryVersionName = '1.0.1'
+    libraryVersionCode = 1
 }
 
 android {

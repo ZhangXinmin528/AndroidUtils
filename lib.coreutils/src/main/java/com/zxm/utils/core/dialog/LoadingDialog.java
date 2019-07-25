@@ -243,7 +243,7 @@ public class LoadingDialog extends Dialog {
          * Start the dialog and display it on screen.The window is placed in the
          * application layer and opaque.
          */
-        public void showDialog() {
+        public LoadingDialog showDialog() {
             final LoadingDialog dialog = create();
             dialog.show();
             Window window = dialog.getWindow();
@@ -259,6 +259,7 @@ public class LoadingDialog extends Dialog {
                 }
                 window.setAttributes(lp);
             }
+            return dialog;
         }
 
         private void setUpView(@NonNull final LoadingDialog dialog) {

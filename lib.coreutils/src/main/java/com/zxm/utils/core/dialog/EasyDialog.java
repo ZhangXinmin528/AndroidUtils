@@ -332,7 +332,7 @@ public class EasyDialog extends Dialog {
          * Start the dialog and display it on screen.The window is placed in the
          * application layer and opaque.
          */
-        public void showDialog() {
+        public EasyDialog showDialog() {
             final EasyDialog dialog = create();
             dialog.show();
             Window window = dialog.getWindow();
@@ -348,6 +348,7 @@ public class EasyDialog extends Dialog {
                 }
                 window.setAttributes(lp);
             }
+            return dialog;
         }
 
         private void setUpView(@NonNull final EasyDialog dialog) {
