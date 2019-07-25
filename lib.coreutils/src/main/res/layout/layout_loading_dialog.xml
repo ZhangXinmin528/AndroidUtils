@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/shape_loading_bg">
 
-    <com.coding.zxm.lib_loading.loadingdrawable.LoadingView
+    <com.zxm.utils.core.loading.LoadingView
         android:id="@+id/loadingView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -21,8 +22,8 @@
         android:layout_marginBottom="16dp"
         android:gravity="center"
         android:singleLine="true"
-        android:text="@string/all_loading"
         android:textColor="#383838"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        tools:text="@string/all_loading" />
 
 </RelativeLayout>

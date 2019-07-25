@@ -11,6 +11,7 @@ import com.example.androidutils.ConfirmWindow;
 import com.example.androidutils.R;
 import com.example.androidutils.base.BaseActivity;
 import com.zxm.utils.core.dialog.EasyDialog;
+import com.zxm.utils.core.dialog.LoadingDialog;
 
 /**
  * Created by ZhangXinmin on 2018/10/13.
@@ -43,6 +44,7 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
         findViewById(R.id.btn_show_dialog).setOnClickListener(this);
         findViewById(R.id.btn_show_window).setOnClickListener(this);
         findViewById(R.id.btn_show_activity).setOnClickListener(this);
+        findViewById(R.id.btn_loading).setOnClickListener(this);
     }
 
     @Override
@@ -74,6 +76,15 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
             case R.id.btn_show_activity:
                 Intent intent = new Intent(mContext, ImitateDialogActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.btn_loading:
+                new LoadingDialog.Builder(mContext)
+                        .setContentView(R.layout.layout_loading_dialog)
+                        .setHeight(180)
+                        .setWidth(180)
+                        .setCancelable(true)
+                        .setMessage(getString(R.string.all_loading), R.id.tv_loading_msg)
+                        .showDialog();
                 break;
         }
     }
