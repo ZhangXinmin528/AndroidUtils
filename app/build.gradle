@@ -60,7 +60,7 @@ dependencies {
     annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
 
     //utils
-    implementation project(':lib.coreutils')
-//    implementation(name: 'lib.coreutils-1.0.5', ext: 'aar')
-//    implementation 'com.zhangxm.utils:lib.coreutils:1.0.1'
+//    implementation project(':lib.coreutils')
+//    implementation(name: 'AndroidUtils_1.0.1_release', ext: 'aar')
+    implementation 'com.zhangxm.utils:lib.coreutils:1.0.1'
 }
