@@ -30,6 +30,10 @@ public class EasyDialog extends Dialog {
 
     private static final String TAG = EasyDialog.class.getSimpleName();
 
+    public EasyDialog(Context context) {
+        super(context);
+    }
+
     /**
      * Creates an common alert dialog that uses an explicit theme resource.
      *
@@ -37,7 +41,7 @@ public class EasyDialog extends Dialog {
      * @param themeResId the resource ID of the theme against which to inflate
      *                   this dialog
      */
-    private EasyDialog(@NonNull Context context, @StyleRes int themeResId) {
+    public EasyDialog(@NonNull Context context, @StyleRes int themeResId) {
         super(context, themeResId);
     }
 

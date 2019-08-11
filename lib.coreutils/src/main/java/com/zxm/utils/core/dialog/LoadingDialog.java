@@ -35,7 +35,7 @@ public class LoadingDialog extends Dialog {
      * @param themeResId the resource ID of the theme against which to inflate
      *                   this dialog
      */
-    private LoadingDialog(@NonNull Context context, @StyleRes int themeResId) {
+    public LoadingDialog(@NonNull Context context, @StyleRes int themeResId) {
         super(context, themeResId);
     }
 
