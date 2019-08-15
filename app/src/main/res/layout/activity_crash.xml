@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#c4c4c4"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:id="@+id/layout_cache_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/dp_12">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/all_crash_cache_switch"
+            android:textColor="@android:color/black" />
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/switch_crash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_10"
+            android:checked="true"
+            android:textOff="@string/all_off"
+            android:textOn="@string/all_on"
+            app:showText="true" />
+
+    </android.support.v7.widget.LinearLayoutCompat>
+
+    <Button
+        android:id="@+id/btn_imitate_crash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_12"
+        android:text="模拟崩溃" />
+
+    <TextView
+        android:id="@+id/tv_crash_result"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:padding="@dimen/dp_12"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/sp_14" />
+
+</android.support.v7.widget.LinearLayoutCompat>

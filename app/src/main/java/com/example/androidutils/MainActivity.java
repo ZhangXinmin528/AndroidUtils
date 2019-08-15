@@ -9,6 +9,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.androidutils.activity.CrashActivity;
 import com.example.androidutils.activity.DeviceActivity;
 import com.example.androidutils.activity.DialogActivity;
 import com.example.androidutils.activity.EncryptActivity;
@@ -139,6 +140,9 @@ public class MainActivity extends BaseActivity implements OnItemClickListener {
                 break;
             case 15:
                 intent.setClass(mContext, SettingActivity.class);
+                break;
+            case 16:
+                intent.setClass(mContext, CrashActivity.class);
                 break;
             default:
                 break;

@@ -101,6 +101,11 @@
             android:name=".activity.SettingActivity"
             android:screenOrientation="portrait" />
 
+        <!--Crash查看-->
+        <activity
+            android:name=".activity.CrashActivity"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

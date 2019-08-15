@@ -13,4 +13,19 @@
         <!--是否半透明-->
         <item name="android:windowIsTranslucent">true</item>
     </style>
+
+    <!--For loading-->
+    <style name="Theme.Style.LoadingDialog" parent="android:style/Theme.Dialog">
+        <item name="android:background">#00000000</item>
+        <!--背景是否模糊显示-->
+        <item name="android:backgroundDimEnabled">false</item>
+        <!--窗口背景色透明-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--是否有标题-->
+        <item name="android:windowNoTitle">true</item>
+        <!--是否浮在界面上-->
+        <item name="android:windowIsFloating">true</item>
+        <!--是否半透明-->
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
 </resources>

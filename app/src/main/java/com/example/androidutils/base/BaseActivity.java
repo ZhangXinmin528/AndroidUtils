@@ -1,5 +1,6 @@
 package com.example.androidutils.base;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
@@ -13,6 +14,12 @@ import android.view.View;
  */
 
 public abstract class BaseActivity extends AppCompatActivity {
+
+
+    protected final String TAG = this.getClass().getSimpleName();
+
+    protected Context mContext;
+
     /**
      * 设置布局属性
      *
@@ -32,6 +39,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         } else {
             throw new RuntimeException("You must use the method:setLayout()");
         }
+
+        mContext = this;
 
         initParamsAndValues();
 

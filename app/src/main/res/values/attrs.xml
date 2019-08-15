@@ -17,6 +17,7 @@
         <item>时间工具</item>
         <item>图片取色</item>
         <item>系统设置</item>
+        <item>Crash查看</item>
     </string-array>
 
     <integer-array name="sort_icon_array">
@@ -36,5 +37,6 @@
         <item>@drawable/icon_time</item>
         <item>@drawable/icon_palette</item>
         <item>@drawable/icon_setting</item>
+        <item>@drawable/icon_crash_catch</item>
     </integer-array>
 </resources>

@@ -28,6 +28,10 @@ public class LoadingDialog extends Dialog {
 
     private static final String TAG = LoadingDialog.class.getSimpleName();
 
+    public LoadingDialog(Context context) {
+        super(context);
+    }
+
     /**
      * Creates an common alert dialog that uses an explicit theme resource.
      *

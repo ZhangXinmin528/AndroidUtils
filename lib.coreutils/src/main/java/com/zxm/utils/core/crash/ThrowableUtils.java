@@ -7,12 +7,9 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 /**
- * <pre>
- *     author: blankj
- *     blog  : http://blankj.com
- *     time  : 2019/02/12
- *     desc  : utils about exception
- * </pre>
+ * Created by ZhangXinmin on 2019/8/12.
+ * Copyright (c) 2019 . All rights reserved.
+ * 用于提取崩溃信息；
  */
 public class ThrowableUtils {
 

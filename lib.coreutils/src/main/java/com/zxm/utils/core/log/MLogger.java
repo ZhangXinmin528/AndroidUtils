@@ -114,6 +114,30 @@ public final class MLogger {
                     new MLogger.LogConfig(context)
                             .setLogSwitch(enable);
             MLogger.resetLogConfig(logConfig);
+
+            MLogger.d(logConfig.toString());
+        }
+
+    }
+
+    /**
+     * Enable to output log informastion.
+     *
+     * @param context You'd beeter use application context.
+     * @param enable  {@link MLogger.LogConfig#setLogSwitch(boolean)}
+     */
+    public static void setFileEnable(@NonNull Context context, @NonNull boolean enable) {
+
+        if (context != null) {
+            //log
+            final MLogger.LogConfig logConfig =
+                    new MLogger.LogConfig(context)
+                            .setLogSwitch(enable)
+                            .setLog2FileSwitch(enable);
+
+            MLogger.resetLogConfig(logConfig);
+
+            MLogger.d(logConfig.toString());
         }
 
     }
