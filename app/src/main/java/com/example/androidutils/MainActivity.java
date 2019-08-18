@@ -56,7 +56,7 @@ public class MainActivity extends BaseActivity implements OnItemClickListener {
         mRecyclerView = findViewById(R.id.rv_home);
         mRecyclerView.setAdapter(mAdapter);
         final StaggeredGridLayoutManager layoutManager =
-                new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
+                new StaggeredGridLayoutManager(4, StaggeredGridLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.addItemDecoration(
                 new StaggeredItemDecoration(mContext));

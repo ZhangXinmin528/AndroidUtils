@@ -5,12 +5,12 @@
     android:layout_height="wrap_content"
     android:background="@android:color/white"
     android:orientation="vertical"
-    android:padding="@dimen/dp_12">
+    android:padding="@dimen/dp_10">
 
     <ImageView
         android:id="@+id/iv_item_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_gravity="center_horizontal"
         android:scaleType="fitXY"
         tools:src="@drawable/icon_device_info" />
@@ -21,10 +21,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/dp_10"
-        android:ellipsize="end"
+        android:ellipsize="marquee"
         android:singleLine="true"
+        android:textSize="@dimen/sp_12"
         android:textColor="@android:color/black"
-        android:textSize="@dimen/sp_16"
         tools:text="设备信息" />
 
 </LinearLayout>
