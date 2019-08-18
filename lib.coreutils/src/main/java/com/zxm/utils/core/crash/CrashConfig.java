@@ -1,11 +1,16 @@
 package com.zxm.utils.core.crash;
 
+import android.Manifest;
 import android.app.Application;
 import android.content.Context;
+import android.os.Environment;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 
 import com.zxm.utils.core.constant.TimeConstants;
 import com.zxm.utils.core.file.MemoryConstants;
+
+import static com.zxm.utils.core.permission.PermissionChecker.checkPersmission;
 
 /**
  * Created by ZhangXinmin on 2019/8/15.
@@ -24,7 +29,7 @@ public class CrashConfig {
         //Application context
         public Context context;
         //缓存父目录
-        public String cacheDir;
+        public String parentDir;
         //缓存父目录名称
         public String cacheDirName;
         //是否开启缓存
@@ -48,11 +53,14 @@ public class CrashConfig {
         /**
          * Set the parent cache dir for crash files.
          *
-         * @param cacheDir The cache dir
+         * <p>
+         * You'd better use external storage,like {@link Environment#DIRECTORY_DOCUMENTS}.
+         *
+         * @param parentDir The cache dir
          * @return Builder
          */
-        public Builder setCacheDir(String cacheDir) {
-            this.cacheDir = cacheDir;
+        public Builder setParentDir(String parentDir) {
+            this.parentDir = parentDir;
             return this;
         }
 
@@ -112,6 +120,25 @@ public class CrashConfig {
         }
 
         public CrashConfig crate() {
+            if (TextUtils.isEmpty(parentDir)) {
+                if (context != null) {
+                    if (checkPersmission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                        parentDir = Environment
+                                .getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).getParent();
+                    } else {
+                        parentDir = context.getCacheDir().getPath();
+                    }
+                }
+            }
+
+            if (maxCacheSize == 0) {
+                maxCacheSize = 100 * MemoryConstants.MB;
+            }
+
+            if (!TextUtils.isEmpty(cacheDirName)) {
+                cacheDirName = "crash_info";
+            }
+
             return new CrashConfig(this);
         }
 

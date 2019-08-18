@@ -1,10 +1,12 @@
 package com.example.androidutils.app;
 
 import android.app.Application;
+import android.os.Environment;
 
 import com.example.androidutils.BuildConfig;
 import com.zxm.utils.core.constant.TimeConstants;
 import com.zxm.utils.core.crash.CrashConfig;
+import com.zxm.utils.core.crash.CrashManager;
 import com.zxm.utils.core.file.MemoryConstants;
 import com.zxm.utils.core.log.MLogger;
 
@@ -25,13 +27,9 @@ public class UtilApp extends Application {
     private void initCrashCapture() {
         final CrashConfig config =
                 new CrashConfig.Builder(getApplicationContext())
-                        .setCacheDir("")
-                        .setCacheDirName("crash_info")
-                        .setMaxCacheSize(100 * MemoryConstants.GB)
-                        .setMaxSaveDuration(10 * TimeConstants.MIN)
-                        .setAutoClear(true)
-                        .setOpenCache(true)
                         .crate();
+
+        CrashManager.newInstance().init(config);
 
     }
 

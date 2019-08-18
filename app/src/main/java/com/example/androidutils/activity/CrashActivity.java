@@ -1,6 +1,5 @@
 package com.example.androidutils.activity;
 
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.SwitchCompat;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,9 +9,7 @@ import android.widget.Toast;
 
 import com.example.androidutils.R;
 import com.example.androidutils.base.BaseActivity;
-import com.zxm.utils.core.constant.TimeConstants;
-import com.zxm.utils.core.crash.CrashConfig;
-import com.zxm.utils.core.crash.ThrowableUtils;
+import com.zxm.utils.core.crash.CrashManager;
 
 /**
  * Created by ZhangXinmin on 2019/8/12.
@@ -43,9 +40,9 @@ public class CrashActivity extends BaseActivity implements View.OnClickListener 
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 Toast.makeText(mContext, "状态 ： " + isChecked, Toast.LENGTH_SHORT).show();
                 if (isChecked) {
-
+                    CrashManager.newInstance().startCapture();
                 } else {
-
+                    CrashManager.newInstance().stopCapture();
                 }
             }
         });
@@ -66,14 +63,7 @@ public class CrashActivity extends BaseActivity implements View.OnClickListener 
 
     private void imitateCrash() {
         TextView nullTv = null;
-
-        try {
-            nullTv.setText("");
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-            final String crashInfo = ThrowableUtils.getFullStackTrace(e);
-            mResultTv.setText(crashInfo);
-        }
+        nullTv.setText("");
     }
 
     @Override
