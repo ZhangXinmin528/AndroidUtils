@@ -57,7 +57,12 @@
     <string name="all_reboot_tips">重启设备</string>
 
     <string name="all_install_unknown_source_app">Your app needs to open the "Install unknown source app" switch. Is it allowed?</string>
-    <string name="all_crash_cache_switch">开启日志：</string>
+
+    <!--Crash-->
+    <string name="all_crash_cache_switch">Crash日志收集：</string>
     <string name="all_off">off</string>
     <string name="all_on">on</string>
+    <string name="all_crash_clear">清理Crash文件</string>
+    <string name="all_imitate_crash">模拟崩溃</string>
+    <string name="all_crash_empty_record">暂无崩溃记录</string>
 </resources>

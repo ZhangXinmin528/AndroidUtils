@@ -1,5 +1,8 @@
 package com.example.androidutils.activity;
 
+import android.content.DialogInterface;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SwitchCompat;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,6 +13,7 @@ import android.widget.Toast;
 import com.example.androidutils.R;
 import com.example.androidutils.base.BaseActivity;
 import com.zxm.utils.core.crash.CrashManager;
+import com.zxm.utils.core.dialog.DialogUtil;
 
 /**
  * Created by ZhangXinmin on 2019/8/12.
@@ -18,7 +22,10 @@ import com.zxm.utils.core.crash.CrashManager;
 public class CrashActivity extends BaseActivity implements View.OnClickListener {
 
     private SwitchCompat mSwitch;
-    private TextView mResultTv;
+    private TextView mEmptyTv;
+
+    private RecyclerView mRecyclerView;
+    private TextView mCrashSizeTv;
 
     @Override
     protected Object setLayout() {
@@ -40,22 +47,42 @@ public class CrashActivity extends BaseActivity implements View.OnClickListener 
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 Toast.makeText(mContext, "状态 ： " + isChecked, Toast.LENGTH_SHORT).show();
                 if (isChecked) {
-                    CrashManager.newInstance().startCapture();
+                    CrashManager.getInstance().startCapture();
                 } else {
-                    CrashManager.newInstance().stopCapture();
+                    CrashManager.getInstance().stopCapture();
                 }
             }
         });
 
-        mResultTv = findViewById(R.id.tv_crash_result);
+        mEmptyTv = findViewById(R.id.tv_crash_empty);
 
-        findViewById(R.id.btn_imitate_crash).setOnClickListener(this);
+        mRecyclerView = findViewById(R.id.rv_crash_result);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+
+        mCrashSizeTv = findViewById(R.id.tv_crash_file_size);
+        mCrashSizeTv.setText(CrashManager.getInstance().getCrashFilesMemorySize());
+
+        findViewById(R.id.layout_clear_crash).setOnClickListener(this);
+
+        findViewById(R.id.tv_imitate_crash).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btn_imitate_crash:
+            case R.id.layout_clear_crash:
+                DialogUtil.showDialog(mContext, "是否清除崩溃日志信息？", true, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        final boolean state = CrashManager.getInstance().clearCrashFiles();
+
+                        if (state) {
+                            mCrashSizeTv.setText(CrashManager.getInstance().getCrashFilesMemorySize());
+                        }
+                    }
+                });
+                break;
+            case R.id.tv_imitate_crash:
                 imitateCrash();
                 break;
         }

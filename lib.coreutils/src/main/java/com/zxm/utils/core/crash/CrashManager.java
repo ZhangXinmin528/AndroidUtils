@@ -3,32 +3,27 @@ package com.zxm.utils.core.crash;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.pm.PackageManager;
-import android.os.Build;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.HandlerThread;
-import android.os.ParcelFileDescriptor;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresPermission;
-import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.Log;
 
 import com.zxm.utils.core.file.FileUtils;
-import com.zxm.utils.core.log.MLogger;
-import com.zxm.utils.core.permission.PermissionChecker;
 import com.zxm.utils.core.time.TimeUtil;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -61,7 +56,7 @@ public final class CrashManager implements Thread.UncaughtExceptionHandler {
         mHandler = new Handler(handlerThread.getLooper());
     }
 
-    public static CrashManager newInstance() {
+    public static CrashManager getInstance() {
         return Holder.INSTANCE;
     }
 
@@ -98,7 +93,7 @@ public final class CrashManager implements Thread.UncaughtExceptionHandler {
 
         if (dir != null) {
             final File file = new File(dir, TimeUtil.getNowString(DEFAULT_FORMAT) + ".txt");
-            saveCrashInfo(Log.getStackTraceString(e), file);
+            saveCrashCache(Log.getStackTraceString(e), file);
             //自己处理完毕，切换为系统的处理程序
             mHandler.postDelayed(new Runnable() {
                 @Override
@@ -112,17 +107,13 @@ public final class CrashManager implements Thread.UncaughtExceptionHandler {
 
     }
 
-    private static class Holder {
-        private static final CrashManager INSTANCE = new CrashManager();
-    }
-
     /**
      * Save crash information to local file.
      *
      * @param s    Crash information.
      * @param file The file.
      */
-    private boolean saveCrashInfo(@NonNull Serializable s, @NonNull File file) {
+    private boolean saveCrashCache(@NonNull Serializable s, @NonNull File file) {
         if (s != null && file != null) {
             Log.d(TAG, "crash file path : " + file.getAbsolutePath());
             FileOutputStream fos = null;
@@ -225,6 +216,75 @@ public final class CrashManager implements Thread.UncaughtExceptionHandler {
             }
         }
         return "unKnown";
+    }
+
+    public List<CrashInfo> getCrashCaches() {
+        @SuppressLint("MissingPermission") final File cacheDir = getCrashCacheDir();
+        final List<CrashInfo> caches = new ArrayList<>();
+        if (cacheDir.exists() &&
+                cacheDir.isDirectory()) {
+            final File[] files = cacheDir.listFiles();
+            if (files != null) {
+                for (File file : files) {
+                    final Serializable ser = readCrashCache(file);
+                    if (ser != null && ser instanceof Throwable) {
+                        final CrashInfo crashInfo = new CrashInfo((Throwable) ser, file.lastModified());
+                        caches.add(crashInfo);
+                    }
+                }
+            }
+        }
+        return caches;
+    }
+
+    /**
+     * Read the cache file and convert it to java object.
+     *
+     * @param data file
+     * @return Serializable
+     */
+    private Serializable readCrashCache(@NonNull File data) {
+        if (data == null || !data.exists() || data.isDirectory()) {
+            return null;
+        }
+
+        FileInputStream fis = null;
+        ObjectInputStream ois = null;
+
+        try {
+            fis = new FileInputStream(data);
+            ois = new ObjectInputStream(fis);
+
+            return (Serializable) ois.readObject();
+        } catch (FileNotFoundException e) {
+            Log.e(TAG, e.toString());
+            return null;
+        } catch (IOException e) {
+            Log.e(TAG, e.toString());
+            return null;
+        } catch (ClassNotFoundException e) {
+            Log.e(TAG, e.toString());
+            return null;
+        } finally {
+
+            try {
+                if (ois != null) {
+                    ois.close();
+                }
+
+                if (fis != null) {
+                    fis.close();
+                }
+            } catch (IOException e) {
+                Log.e(TAG, e.toString());
+            }
+
+        }
+
+    }
+
+    private static class Holder {
+        private static final CrashManager INSTANCE = new CrashManager();
     }
 
 }

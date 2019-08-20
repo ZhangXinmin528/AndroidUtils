@@ -1,13 +1,10 @@
 package com.example.androidutils.app;
 
 import android.app.Application;
-import android.os.Environment;
 
 import com.example.androidutils.BuildConfig;
-import com.zxm.utils.core.constant.TimeConstants;
 import com.zxm.utils.core.crash.CrashConfig;
 import com.zxm.utils.core.crash.CrashManager;
-import com.zxm.utils.core.file.MemoryConstants;
 import com.zxm.utils.core.log.MLogger;
 
 /**
@@ -29,7 +26,7 @@ public class UtilApp extends Application {
                 new CrashConfig.Builder(getApplicationContext())
                         .crate();
 
-        CrashManager.newInstance().init(config);
+        CrashManager.getInstance().init(config);
 
     }
 
