@@ -79,8 +79,10 @@ public class ImageActivity extends BaseActivity {
         mList.add(new ImageEntity(mResources, R.string.image_compress_by_quality_max_size, ImageUtil.compressByQuality(src, 10L * 1024)));// 10Kb
         mList.add(new ImageEntity(mResources, R.string.image_compress_by_sample_size, ImageUtil.compressBySampleSize(src, 2)));
 
-        rvImages.setAdapter(new ImageAdapter(mContext, mList));
+        final ImageAdapter adapter = new ImageAdapter(mContext, mList);
+        rvImages.setAdapter(adapter);
         rvImages.setLayoutManager(new LinearLayoutManager(this));
+
     }
 
     @Override
