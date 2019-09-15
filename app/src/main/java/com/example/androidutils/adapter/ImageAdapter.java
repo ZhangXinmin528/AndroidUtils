@@ -37,5 +37,7 @@ public class ImageAdapter extends BaseQuickAdapter<ImageEntity, BaseViewHolder> 
         Glide.with(mContext)
                 .load(bytes)
                 .into(imageView);
+
+        holder.addOnClickListener(R.id.tv_image_name);
     }
 }
