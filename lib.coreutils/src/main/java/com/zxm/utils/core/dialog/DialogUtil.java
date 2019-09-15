@@ -54,6 +54,32 @@ public final class DialogUtil {
     }
 
     /**
+     * show message dialog
+     *
+     * @param context
+     * @param message
+     */
+    public static void showDialog(@NonNull Context context, @NonNull String message,
+                                  @NonNull boolean cancelable,
+                                  @NonNull DialogInterface.OnClickListener positiveListener,
+                                  @NonNull DialogInterface.OnClickListener negativeListener) {
+
+        if (context == null || TextUtils.isEmpty(message) || positiveListener == null)
+            return;
+        final AlertDialog dialog = new AlertDialog.Builder(context)
+                .setPositiveButton(android.R.string.ok, positiveListener)
+                .setNegativeButton(android.R.string.cancel,negativeListener)
+                .setMessage(message)
+                .setCancelable(cancelable)
+                .create();
+        dialog.show();
+
+        if (DIALOG_ARRAY.contains(dialog)) {
+            DIALOG_ARRAY.add(dialog);
+        }
+    }
+
+    /**
      * dismiss dialog
      */
     public static void releaseAll() {
@@ -61,7 +87,6 @@ public final class DialogUtil {
             for (AlertDialog dialog : DIALOG_ARRAY) {
                 if (dialog != null && dialog.isShowing()) {
                     dialog.dismiss();
-                    DIALOG_ARRAY.remove(dialog);
                 }
             }
         }

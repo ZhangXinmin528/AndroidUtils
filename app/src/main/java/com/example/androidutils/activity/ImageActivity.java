@@ -81,6 +81,8 @@ public class ImageActivity extends BaseActivity {
 
         rvImages.setAdapter(new ImageAdapter(mContext, mList));
         rvImages.setLayoutManager(new LinearLayoutManager(this));
+
+
     }
 
     @Override
