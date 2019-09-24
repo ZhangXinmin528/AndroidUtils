@@ -19,7 +19,7 @@ Add dependencies in build.gradle.
 
 
 	dependencies {
-    		implementation 'com.zhangxm.utils:lib.coreutils:1.0.1'
+    		implementation 'com.zhangxm.utils:lib.coreutils:1.0.2'
     	}
 
 Please refer to the code in the App Module related Activity in the project.
