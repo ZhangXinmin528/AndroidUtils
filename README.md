@@ -17,7 +17,12 @@ Usage
 
 Add dependencies in build.gradle.
 
-
+    Adaptation AndroidX
+    dependencies {
+    		implementation 'com.zhangxm.utils:lib.coreutils:3.0.1'
+    	}
+    	
+    Not using AndroidX
 	dependencies {
     		implementation 'com.zhangxm.utils:lib.coreutils:1.0.2'
     	}

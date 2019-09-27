@@ -66,5 +66,5 @@ dependencies {
     //utils
 //    implementation project(':lib.coreutils')
 //    implementation(name: 'AndroidUtils_1.0.1_release', ext: 'aar')
-    implementation 'com.zhangxm.androidxutils:lib.coreutils:1.0.3'
+    implementation 'com.zhangxm.utils:lib.coreutils:3.0.1'
 }
