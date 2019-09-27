@@ -2,9 +2,10 @@ package com.zxm.utils.core.loading;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.view.View;
+
+import androidx.appcompat.widget.AppCompatImageView;
 
 import com.zxm.utils.core.R;
 import com.zxm.utils.core.loading.render.LoadingDrawable;

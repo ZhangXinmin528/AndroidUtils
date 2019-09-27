@@ -1,12 +1,12 @@
 package com.example.androidutils.activity;
 
-import android.support.v7.app.ActionBar;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.androidutils.R;
 import com.example.androidutils.base.BaseActivity;

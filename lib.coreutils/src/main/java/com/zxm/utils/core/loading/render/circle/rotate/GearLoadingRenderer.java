@@ -8,10 +8,11 @@ import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.support.annotation.IntRange;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
+
+import androidx.annotation.IntRange;
 
 import com.zxm.utils.core.loading.render.LoadingRenderer;
 import com.zxm.utils.core.screen.ScreenUtil;

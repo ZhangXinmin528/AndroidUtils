@@ -1,7 +1,6 @@
 package com.example.androidutils.activity;
 
 import android.content.Context;
-import android.support.design.widget.TextInputEditText;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
@@ -10,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.androidutils.R;
 import com.example.androidutils.base.BaseActivity;
+import com.google.android.material.textfield.TextInputEditText;
 import com.zxm.utils.core.encrypt.EncryptUtils;
 
 /**

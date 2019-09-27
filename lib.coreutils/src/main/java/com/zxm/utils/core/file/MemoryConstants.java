@@ -1,6 +1,7 @@
 package com.zxm.utils.core.file;
 
-import android.support.annotation.LongDef;
+
+import androidx.annotation.LongDef;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

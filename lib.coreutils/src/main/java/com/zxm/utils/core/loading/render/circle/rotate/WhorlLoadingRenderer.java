@@ -8,8 +8,9 @@ import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.view.animation.Interpolator;
+
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
 import com.zxm.utils.core.loading.render.LoadingRenderer;
 import com.zxm.utils.core.screen.ScreenUtil;

@@ -2,10 +2,11 @@ package com.example.androidutils.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.widget.LinearLayoutCompat;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.appcompat.widget.LinearLayoutCompat;
 
 import com.example.androidutils.ConfirmWindow;
 import com.example.androidutils.R;

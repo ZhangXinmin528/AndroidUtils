@@ -1,8 +1,9 @@
 package com.zxm.utils.core.time;
 
 import android.annotation.SuppressLint;
-import android.support.annotation.NonNull;
 
+
+import androidx.annotation.NonNull;
 
 import com.zxm.utils.core.constant.TimeConstants;
 

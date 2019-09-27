@@ -2,9 +2,9 @@ apply plugin: 'com.android.library'
 
 ext {
     libraryName = 'AndroidUtils'
-    libraryDescription = 'Android utils'
-    libraryVersionName = '1.0.2'
-    libraryVersionCode = 2
+    libraryDescription = 'Development utils for androidX'
+    libraryVersionName = '1.0.3'
+    libraryVersionCode = 3
 }
 
 android {
@@ -16,7 +16,7 @@ android {
         versionCode libraryVersionCode
         versionName libraryVersionName
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
     }
     buildTypes {
@@ -39,7 +39,8 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
+    implementation "androidx.appcompat:appcompat:$rootProject.appcompatXVersion"
+    implementation "androidx.coordinatorlayout:coordinatorlayout:$rootProject.coordinatorlayoutVersion"
 }
 
 apply from: '../bintray.gradle'

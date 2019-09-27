@@ -1,9 +1,10 @@
 package com.zxm.utils.core.net;
 
-import android.support.annotation.FloatRange;
-import android.support.annotation.IntRange;
-import android.support.annotation.NonNull;
 import android.text.TextUtils;
+
+import androidx.annotation.FloatRange;
+import androidx.annotation.IntRange;
+import androidx.annotation.NonNull;
 
 import com.zxm.utils.core.ShellUtils;
 import com.zxm.utils.core.log.MLogger;

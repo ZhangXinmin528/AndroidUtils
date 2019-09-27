@@ -5,10 +5,11 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Handler;
 import android.os.HandlerThread;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresPermission;
 import android.text.TextUtils;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresPermission;
 
 import com.zxm.utils.core.file.FileUtils;
 import com.zxm.utils.core.time.TimeUtil;

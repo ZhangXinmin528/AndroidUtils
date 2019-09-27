@@ -8,10 +8,11 @@ import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.Shader;
-import android.support.annotation.Size;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
+
+import androidx.annotation.Size;
 
 import com.zxm.utils.core.loading.render.LoadingRenderer;
 import com.zxm.utils.core.screen.ScreenUtil;
