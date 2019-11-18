@@ -5,7 +5,7 @@
 [ ![Download](https://api.bintray.com/packages/zhangxinmin528/AndroidUtils/AndroidUtils/images/download.svg) ](https://bintray.com/zhangxinmin528/AndroidUtils/AndroidUtils/_latestVersion)
 
 <p align="center">
-  <img alt="logo" src="https://github.com/ZhangXinmin528/AndroidUtils/blob/master/app/src/main/assets/util_logo.png"/>
+  <img alt="logo" src="https://github.com/ZhangXinmin528/AndroidUtils/blob/master/app/src/main/assets/utils_logo.png"/>
 </p>
 
 Introduction
