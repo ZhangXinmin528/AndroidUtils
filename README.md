@@ -5,7 +5,7 @@
 [ ![Download](https://api.bintray.com/packages/zhangxinmin528/AndroidUtils/AndroidUtils/images/download.svg) ](https://bintray.com/zhangxinmin528/AndroidUtils/AndroidUtils/_latestVersion)
 
 <p align="center">
-  <img alt="logo" src="https://github.com/ZhangXinmin528/AndroidUtils/blob/master/app/src/main/assets/util_logo.png"/>
+  <img alt="logo" src="https://github.com/ZhangXinmin528/AndroidUtils/blob/master/app/src/main/assets/ic_launcher.png"/>
 </p>
 
 Introduction
@@ -18,8 +18,14 @@ Usage
 Add dependencies in build.gradle.
 
 
-	dependencies {
-    		implementation 'com.zhangxm.utils:lib.coreutils:1.0.1'
+	Adaptation AndroidX
+    dependencies {
+    		implementation 'com.zhangxm.utils:lib.coreutils:3.0.1'
+    	}
+    	
+    Not using AndroidX
+    dependencies {
+    		implementation 'com.zhangxm.utils:lib.coreutils:1.0.2'
     	}
 
 Please refer to the code in the App Module related Activity in the project.
