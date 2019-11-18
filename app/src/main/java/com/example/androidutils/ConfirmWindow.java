@@ -3,7 +3,6 @@ package com.example.androidutils;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
-import android.support.annotation.NonNull;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +10,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+
+import androidx.annotation.NonNull;
 
 import com.zxm.utils.core.screen.ScreenUtil;
 

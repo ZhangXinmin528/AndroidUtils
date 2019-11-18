@@ -1,8 +1,9 @@
 package com.example.androidutils.listener;
 
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by ZhangXinmin on 2019/1/8.

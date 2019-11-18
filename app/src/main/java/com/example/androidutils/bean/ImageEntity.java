@@ -2,7 +2,8 @@ package com.example.androidutils.bean;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.support.annotation.StringRes;
+
+import androidx.annotation.StringRes;
 
 import java.io.Serializable;
 
