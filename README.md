@@ -24,7 +24,7 @@ Add dependencies in build.gradle.
     	
     Not using AndroidX
 	dependencies {
-    		implementation 'com.zhangxm.utils:lib.coreutils:1.0.2'
+    		implementation 'com.zhangxm.utils:lib.coreutils:1.0.3'
     	}
 
 Please refer to the code in the App Module related Activity in the project.
