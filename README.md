@@ -1,9 +1,10 @@
 # AndroidUtils
 
 ---
-##Compatibility
+Compatibility
+---
 
-####[AppCompat][appCompat] | AndroidX
+[AppCompat][appCompat] | AndroidX
 
 ---
 [![License](https://img.shields.io/badge/License%20-Apache%202-337ab7.svg)](https://www.apache.org/licenses/LICENSE-2.0)
