@@ -1,11 +1,11 @@
 # AndroidUtils
 
-------
+---
 ##Compatibility
 
 ####[AppCompat][appCompat] | AndroidX
 
-------
+---
 [![License](https://img.shields.io/badge/License%20-Apache%202-337ab7.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 [![API](https://img.shields.io/badge/API-19%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=19)
 [ ![Download](https://api.bintray.com/packages/zhangxinmin528/AndroidUtils/AndroidUtils/images/download.svg) ](https://bintray.com/zhangxinmin528/AndroidUtils/AndroidUtils/_latestVersion)
@@ -15,11 +15,11 @@
 </p>
 
 Introduction
-------
+---
 AndroidUtils is a tool library commonly used by Android developers. It encapsulates logs, time, rich text, file operations, etc. commonly used in Android development, and is convenient for everyone to use.
 
 Usage
-------
+---
 
 Add dependencies in build.gradle.
 
@@ -36,11 +36,11 @@ Add dependencies in build.gradle.
 Please refer to the code in the App Module related Activity in the project.
 
 Communication
-------
+---
 Email : zhangxinmin528@sina.com
 
 License
-------
+---
 
     Copyright 2019 ZhangXinmin528
 
