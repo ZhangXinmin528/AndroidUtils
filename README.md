@@ -2,7 +2,7 @@
 ------
 [![License](https://img.shields.io/badge/License%20-Apache%202-337ab7.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 [![API](https://img.shields.io/badge/API-19%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=19)
-[ ![Download](https://api.bintray.com/packages/zhangxinmin528/AndroidUtils/AndroidUtils/images/download.svg) ](https://bintray.com/zhangxinmin528/AndroidUtils/AndroidUtils/_latestVersion)
+[ ![Download](https://api.bintray.com/packages/zhangxinmin528/AndroidUtils/AndroidUtils/images/download.svg) ](https://bintray.com/zhangxinmin528/AndroidUtils/AndroidUtils/3.0.1)
 
 <p align="center">
   <img alt="logo" src="https://github.com/ZhangXinmin528/AndroidUtils/blob/master/app/src/main/assets/ic_launcher.png"/>
