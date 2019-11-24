@@ -7,8 +7,8 @@ android {
         applicationId "com.example.androidutils"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 2
-        versionName "1.0.2"
+        versionCode 3
+        versionName "1.0.3"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -64,7 +64,8 @@ dependencies {
     annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
 
     //utils
-    implementation project(':lib.coreutils')
+//    implementation project(':lib.coreutils')
 //    implementation(name: 'AndroidUtils_1.0.1_release', ext: 'aar')
-//    implementation 'com.zhangxm.utils:lib.coreutils:1.0.2'
+    //noinspection GradleDependency
+    implementation 'com.zhangxm.utils:lib.coreutils:1.0.3'
 }

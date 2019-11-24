@@ -53,7 +53,7 @@ public final class PermissionChecker {
     public static boolean checkSeriesPermissions(@NonNull Context context, @NonNull String[] permissions) {
         boolean result = false;
         for (String permission : permissions) {
-            result = checkPersmission(context, permission) & result;
+            result = checkPersmission(context, permission);
             Log.e("PermissionUtils", "permission : " + permission + "..result : " + result);
         }
         return result;
