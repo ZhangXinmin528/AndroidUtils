@@ -9,12 +9,14 @@ import android.text.TextUtils;
 
 import com.zxm.utils.core.constant.TimeConstants;
 import com.zxm.utils.core.file.MemoryConstants;
+import com.zxm.utils.core.phone.PhoneUtil;
 
 import static com.zxm.utils.core.permission.PermissionChecker.checkPersmission;
 
 /**
  * Created by ZhangXinmin on 2019/8/15.
  * Copyright (c) 2019 . All rights reserved.
+ *
  */
 public class CrashConfig {
 
@@ -122,9 +124,9 @@ public class CrashConfig {
         public CrashConfig crate() {
             if (TextUtils.isEmpty(parentDir)) {
                 if (context != null) {
-                    if (checkPersmission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                        parentDir = Environment
-                                .getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).getParent();
+                    if (checkPersmission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                            && PhoneUtil.isExternalStorageWritable()) {
+                        parentDir = context.getExternalFilesDir(null).getAbsolutePath();
                     } else {
                         parentDir = context.getCacheDir().getPath();
                     }
@@ -132,10 +134,10 @@ public class CrashConfig {
             }
 
             if (maxCacheSize == 0) {
-                maxCacheSize = 100 * MemoryConstants.MB;
+                maxCacheSize = 10 * MemoryConstants.MB;
             }
 
-            if (!TextUtils.isEmpty(cacheDirName)) {
+            if (TextUtils.isEmpty(cacheDirName)) {
                 cacheDirName = "crash_info";
             }
 
