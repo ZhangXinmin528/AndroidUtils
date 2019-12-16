@@ -5,6 +5,13 @@
 
 1.PhoneUtil增加对外部存储可读性和可写性的判断方法；
 
+计划：
+1.CrashManager添加项目目录：crash_info/*****
+
+2.增加自动删除，清理垃圾
+
+3.最大存储空间逻辑，超出删，并提示~
+
 ####v1.0.4
 
 1.修复PermissionChecker中的bug;
