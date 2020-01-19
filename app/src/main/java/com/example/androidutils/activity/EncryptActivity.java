@@ -20,7 +20,9 @@ import com.zxm.utils.core.encrypt.EncryptUtils;
 public class EncryptActivity extends BaseActivity implements View.OnClickListener {
     private static final String TAG = EncryptActivity.class.getSimpleName();
 
-    private String key = "TKIGDICMIDMMGHWZ";
+    private final static byte[] IV = new byte[]{1, 2, 3, 4, 5, 6, 7, 8};
+
+    private String key = "42581693";
 
     private Context mContext;
     private String encryptResult;
@@ -76,11 +78,13 @@ public class EncryptActivity extends BaseActivity implements View.OnClickListene
                     .append("\n").append("密钥：").append("\n").append(key);
 
 
-            encryptResult = EncryptUtils.encryptAES2HexString(
-                    hexString2Bytes(value),
+            final byte[] temp = EncryptUtils.encryptDES2Base64(
+                    value.getBytes(),
                     key.getBytes(),
-                    "AES/ECB/NoPadding",
-                    null);
+                    "DES/CBC/PKCS5Padding",
+                    IV);
+
+            encryptResult = new String(temp);
 
             sb.append("\n").append("加密结果：").append("\n").append(encryptResult);
 
@@ -103,14 +107,14 @@ public class EncryptActivity extends BaseActivity implements View.OnClickListene
                     .append("\n").append("密钥：").append("\n").append(key);
 
             final byte[] temp =
-                    EncryptUtils.decryptHexStringAES(
-                            encryptResult,
+                    EncryptUtils.decryptBase64DES(
+                            encryptResult.getBytes(),
                             key.getBytes(),
-                            "AES/ECB/NoPadding",
-                            null
+                            "DES/CBC/PKCS5Padding",
+                            IV
                     );
 
-            final String originalData = EncryptUtils.bytes2HexString(temp);
+            final String originalData = new String(temp);
 
             sb.append("\n").append("Original Data：").append("\n").append(originalData);
 
@@ -119,41 +123,6 @@ public class EncryptActivity extends BaseActivity implements View.OnClickListene
             if (!TextUtils.isEmpty(sb.toString())) {
                 mDecryptResultTv.setText(sb.toString());
             }
-        }
-    }
-
-    private byte[] hexString2Bytes(String hexString) {
-        if (isSpace(hexString)) return null;
-        int len = hexString.length();
-        if (len % 2 != 0) {
-            hexString = "0" + hexString;
-            len = len + 1;
-        }
-        char[] hexBytes = hexString.toUpperCase().toCharArray();
-        byte[] ret = new byte[len >> 1];
-        for (int i = 0; i < len; i += 2) {
-            ret[i >> 1] = (byte) (hex2Int(hexBytes[i]) << 4 | hex2Int(hexBytes[i + 1]));
-        }
-        return ret;
-    }
-
-    private boolean isSpace(final String s) {
-        if (s == null) return true;
-        for (int i = 0, len = s.length(); i < len; ++i) {
-            if (!Character.isWhitespace(s.charAt(i))) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private int hex2Int(final char hexChar) {
-        if (hexChar >= '0' && hexChar <= '9') {
-            return hexChar - '0';
-        } else if (hexChar >= 'A' && hexChar <= 'F') {
-            return hexChar - 'A' + 10;
-        } else {
-            throw new IllegalArgumentException();
         }
     }
 
