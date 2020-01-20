@@ -100,6 +100,8 @@ public class EncryptActivity extends BaseActivity implements View.OnClickListene
      * 解密
      */
     private void doDecrypt() {
+        encryptResult = "KyO4wXSQ64bTAw1ASO93EAqhKQ/qxDCrCA7fQz6pkckECacR6u3Bv3fn+06y 4ZCWW7zxSWztmSpxEGs6yJUdqOAN8/sZSpcrZmZPunuDuGlfNVnHTBcLOEKB tnZkQU+7AF7q8xiOc+LDt01cBQIKXw+LdMQrYNDEj+FLEZB3Lv9ZQsOo3EqZ FMKorYGCaHobzT9zH7t8ZPY2r/aRJM7PbkCPvZovYJH7X83GLutHqy3FrVRl 2QQqwu6w8IKyXKKRJbtUnk6D3+1I56lN+SCEYw==";
+
         if (!TextUtils.isEmpty(encryptResult)) {
             final StringBuilder sb = new StringBuilder();
 
