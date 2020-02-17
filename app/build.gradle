@@ -64,8 +64,8 @@ dependencies {
     annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
 
     //utils
-//    implementation project(':lib.coreutils')
+    implementation project(':lib.coreutils')
 //    implementation(name: 'AndroidUtils_1.0.1_release', ext: 'aar')
     //noinspection GradleDependency
-    implementation 'com.zhangxm.utils:lib.coreutils:1.0.3'
+//    implementation 'com.zhangxm.utils:lib.coreutils:1.0.3'
 }
