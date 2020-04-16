@@ -9,7 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
-import android.util.Log;
+
 
 import com.zxm.utils.core.R;
 
@@ -35,28 +35,29 @@ public final class PermissionChecker {
      */
     public static void requestPermissions(@NonNull Activity activity, @NonNull String[] permissions, int requestCode) {
         if (permissions != null) {
-            // 先检查是否已经授权
-            if (!checkSeriesPermissions(activity, permissions)) {
-                ActivityCompat.requestPermissions(activity, permissions, requestCode);
+            //先获取未被允许的权限
+            String[] deniedPermissions = PermissionChecker.checkDeniedPermissions(activity, permissions);
+            if (deniedPermissions != null && deniedPermissions.length > 0) {
+                ActivityCompat.requestPermissions(activity, deniedPermissions, requestCode);
             }
         }
     }
 
     /**
      * check permissions
-     * 检查一组权限。
+     * 检查一组权限是否存在未被允许的权限
      *
      * @param context
      * @param permissions
-     * @return
+     * @return if the permission has not been granted to the given package , return false.
      */
     public static boolean checkSeriesPermissions(@NonNull Context context, @NonNull String[] permissions) {
-        boolean result = false;
         for (String permission : permissions) {
-            result = checkPersmission(context, permission);
-            Log.e("PermissionUtils", "permission : " + permission + "..result : " + result);
+            if (!checkPersmission(context, permission)) {
+                return false;
+            }
         }
-        return result;
+        return true;
     }
 
     /**
@@ -67,7 +68,8 @@ public final class PermissionChecker {
      * @param permissions
      * @return
      */
-    public static String[] checkDeniedPermissions(@NonNull Context context, @NonNull String[] permissions) {
+    public static String[] checkDeniedPermissions(@NonNull Context context,
+                                                  @NonNull String[] permissions) {
         final List<String> deniedList = new ArrayList<>();
         if (permissions != null) {
             for (String permission : permissions) {
