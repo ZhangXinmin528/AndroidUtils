@@ -4,7 +4,7 @@ ext {
     libraryName = 'AndroidUtils'
     libraryDescription = 'Development utils for androidX'
     libraryVersionName = '3.0.1'
-    libraryVersionCode = 1
+    libraryVersionCode = 2
 }
 
 android {
