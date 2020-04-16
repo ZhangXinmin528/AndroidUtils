@@ -64,15 +64,75 @@ public final class SpanUtils {
         return new Builder(context, initialText, isApplyInitial);
     }
 
+    /**
+     * 截取字符串
+     *
+     * @param origin
+     * @param regex
+     */
+    private static List<String> matchString(String origin, String regex) {
+        final List<String> list = new ArrayList<>();
+        if (!TextUtils.isEmpty(origin) && !TextUtils.isEmpty(regex)) {
+            if (origin.contains(regex)) {
+                if (origin.equals(regex)) {
+                    list.add(origin);
+                } else {
+                    final String[] arr = origin.replaceAll(regex, "-" + regex + "-").split("-");
+                    for (String item : arr) {
+                        if (!TextUtils.isEmpty(item)) {
+                            list.add(item);
+                        }
+                    }
+                }
+            } else {
+                list.add(origin);
+            }
+        }
+        return list;
+    }
+
+    /**
+     * 展示富文本:只是个例子
+     *
+     * @param origin 原始文本
+     * @param regex  匹配文字
+     */
+    public static SpannableStringBuilder showBeautfulText(Context context, String origin, String regex) {
+        if (TextUtils.isEmpty(origin) || TextUtils.isEmpty(regex)) {
+            return null;
+        }
+
+        final List<String> list = matchString(origin, regex);
+
+        if (!list.isEmpty()) {
+            final int size = list.size();
+            SpanUtils.Builder builder =
+                    SpanUtils.getBuilder(context, list.get(0), list.get(0).equals(regex))
+                            .setTextColor(Color.parseColor("#32b0ed"));
+            for (int i = 1; i < size; i++) {
+                final String item = list.get(i);
+                builder.append(item, item.equals(regex));
+            }
+
+            return builder.create();
+        } else {
+            SpanUtils.Builder builder =
+                    SpanUtils.getBuilder(context, origin, false);
+            return builder.create();
+        }
+    }
+
     public static class Builder {
 
+        private final int mTypeCharSequence = 0;
+        private final int mTypeImage = 1;
+        private final int mTypeSpace = 2;
         private Context mContext;
         private int defaultValue = 0x12000000;
         // initial text content
         private CharSequence initialText;
         //append text content
         private CharSequence appendText;
-
         private int flag;
         @ColorInt
         private int foregroundColor;
@@ -80,7 +140,6 @@ public final class SpanUtils {
         private int backgroundColor;
         @ColorInt
         private int quoteColor;
-
         private boolean isLeadingMargin;
         /**
          * the indent for the first line of the paragraph
@@ -92,14 +151,12 @@ public final class SpanUtils {
          * 其余行偏移量
          */
         private int rest;
-
         private boolean isBullet;
         /**
          * 指示圆点与文字间距
          */
         private int gapWidth;
         private int bulletColor;
-
         //文字缩放比例
         private float proportion;
         private float xProportion;
@@ -114,7 +171,6 @@ public final class SpanUtils {
         private boolean isBoldItalic;
         private String fontFamily;
         private Alignment align;
-
         private boolean imageIsBitmap;
         private Bitmap bitmap;
         private boolean imageIsDrawable;
@@ -124,22 +180,15 @@ public final class SpanUtils {
         private boolean imageIsResourceId;
         @DrawableRes
         private int resourceId;
-
         private ClickableSpan clickSpan;
         private String url;
-
         private boolean isBlur;
         private float radius;
         private Blur style;
         private boolean isInitial;
         //初始使用样式
         private boolean isApplyInitial;
-
         private int mType;
-        private final int mTypeCharSequence = 0;
-        private final int mTypeImage = 1;
-        private final int mTypeSpace = 2;
-
         private SpannableStringBuilder mSpanBuilder;
 
         private Builder(@NonNull Context context, @NonNull CharSequence initialText,
@@ -418,7 +467,7 @@ public final class SpanUtils {
         /**
          * 设置点击事件
          * <p>需添加view.setMovementMethod(LinkMovementMethod.getInstance())</p>
-         * <p>使用之前需要先使用{@link }</p>
+         * <p>使用之前需要先使用{@link #append(CharSequence, boolean)}</p>
          *
          * @param clickSpan 点击事件
          * @return {@link SpanUtils.Builder}中的 append方法添加想要点击的文字。
@@ -592,63 +641,5 @@ public final class SpanUtils {
 
         }
 
-    }
-
-    /**
-     * 截取字符串
-     *
-     * @param origin
-     * @param regex
-     */
-    private static List<String> matchString(String origin, String regex) {
-        final List<String> list = new ArrayList<>();
-        if (!TextUtils.isEmpty(origin) && !TextUtils.isEmpty(regex)) {
-            if (origin.contains(regex)) {
-                if (origin.equals(regex)) {
-                    list.add(origin);
-                } else {
-                    final String[] arr = origin.replaceAll(regex, "-" + regex + "-").split("-");
-                    for (String item : arr) {
-                        if (!TextUtils.isEmpty(item)) {
-                            list.add(item);
-                        }
-                    }
-                }
-            } else {
-                list.add(origin);
-            }
-        }
-        return list;
-    }
-
-    /**
-     * 展示富文本:只是个例子
-     *
-     * @param origin 原始文本
-     * @param regex  匹配文字
-     */
-    public static SpannableStringBuilder showBeautfulText(Context context, String origin, String regex) {
-        if (TextUtils.isEmpty(origin) || TextUtils.isEmpty(regex)) {
-            return null;
-        }
-
-        final List<String> list = matchString(origin, regex);
-
-        if (!list.isEmpty()) {
-            final int size = list.size();
-            SpanUtils.Builder builder =
-                    SpanUtils.getBuilder(context, list.get(0), list.get(0).equals(regex))
-                            .setTextColor(Color.parseColor("#32b0ed"));
-            for (int i = 1; i < size; i++) {
-                final String item = list.get(i);
-                builder.append(item, item.equals(regex));
-            }
-
-            return builder.create();
-        } else {
-            SpanUtils.Builder builder =
-                    SpanUtils.getBuilder(context, origin, false);
-            return builder.create();
-        }
     }
 }
