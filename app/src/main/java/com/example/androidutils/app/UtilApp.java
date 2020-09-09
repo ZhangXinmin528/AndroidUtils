@@ -27,7 +27,7 @@ public class UtilApp extends Application {
                         .crate();
 
         CrashManager.getInstance().init(config);
-
+        CrashManager.getInstance().startCapture();
     }
 
     /**

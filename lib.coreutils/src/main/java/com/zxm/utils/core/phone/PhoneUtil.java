@@ -5,6 +5,8 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Environment;
+import android.support.annotation.RequiresPermission;
 import android.telephony.SmsManager;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
@@ -250,7 +252,7 @@ public final class PhoneUtil {
      * @param content     The content.
      */
     @RequiresPermission(SEND_SMS)
-    public static void sendSmsSilent(Context context,final String phoneNumber, final String content) {
+    public static void sendSmsSilent(Context context, final String phoneNumber, final String content) {
         if (TextUtils.isEmpty(content)) return;
         PendingIntent sentIntent = PendingIntent.getBroadcast(context, 0, new Intent("send"), 0);
         SmsManager smsManager = SmsManager.getDefault();
@@ -263,4 +265,32 @@ public final class PhoneUtil {
             smsManager.sendTextMessage(phoneNumber, null, content, sentIntent, null);
         }
     }
+
+    /**
+     * Checks if external storage is available for read and write.
+     *
+     * @return
+     */
+    public static boolean isExternalStorageWritable() {
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Checks if external storage is available to at least read.
+     *
+     * @return
+     */
+    public static boolean isExternalStorageReadable() {
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state) ||
+                Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
+            return true;
+        }
+        return false;
+    }
+
 }
