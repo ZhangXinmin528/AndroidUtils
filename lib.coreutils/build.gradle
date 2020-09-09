@@ -31,9 +31,10 @@ android {
     }
 
     android.libraryVariants.all {
-        variant->variant.outputs.all {
-            outputFileName = libraryName+"_${defaultConfig.versionName}_${buildType.name}.aar"
-        }
+        variant ->
+            variant.outputs.all {
+                outputFileName = libraryName + "_${defaultConfig.versionName}_${buildType.name}.aar"
+            }
     }
 }
 
