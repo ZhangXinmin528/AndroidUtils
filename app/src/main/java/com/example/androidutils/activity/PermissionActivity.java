@@ -9,10 +9,11 @@ import android.support.v4.app.ActivityCompat;
 import android.view.MenuItem;
 import android.view.View;
 
+
 import com.example.androidutils.R;
 import com.example.androidutils.base.BaseActivity;
-import com.zxm.utils.core.permission.PermissionChecker;
 import com.zxm.utils.core.dialog.DialogUtil;
+import com.zxm.utils.core.permission.PermissionChecker;
 
 /**
  * Created by ZhangXinmin on 2019/1/4.
@@ -25,7 +26,6 @@ public class PermissionActivity extends BaseActivity implements View.OnClickList
     private static final int REQUEST_PERMISSIONS = 1002;
 
     private String[] permissions = new String[]{
-            Manifest.permission.WRITE_CALENDAR,
             Manifest.permission.CAMERA,
             Manifest.permission.WRITE_CONTACTS,
             Manifest.permission.ACCESS_FINE_LOCATION,
@@ -80,11 +80,8 @@ public class PermissionActivity extends BaseActivity implements View.OnClickList
     }
 
     private void checkPermissions() {
-        if (!PermissionChecker.checkSeriesPermissions(mContext, permissions)) {
-            String[] deniedPermissions = PermissionChecker.checkDeniedPermissions(mContext, permissions);
-            if (deniedPermissions != null) {
-                PermissionChecker.requestPermissions(this, deniedPermissions, REQUEST_PERMISSIONS);
-            }
+        if (!PermissionChecker.checkSeriesPermissions(mContext, permissions)) {//存在未被允许的权限
+            PermissionChecker.requestPermissions(this, permissions, REQUEST_PERMISSIONS);
         }
 
     }
