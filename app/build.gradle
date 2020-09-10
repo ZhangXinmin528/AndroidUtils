@@ -57,14 +57,14 @@ dependencies {
     implementation 'androidx.palette:palette:1.0.0'
 
     //adapter
-    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40'
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
 
     //图片加载框架
     implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
     annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
 
     //utils
-    implementation project(':lib.coreutils')
+//    implementation project(':lib.coreutils')
 //    implementation(name: 'AndroidUtils_1.0.1_release', ext: 'aar')
-//    implementation 'com.zhangxm.utils:lib.coreutils:3.0.1'
+    implementation 'com.zhangxm.utils:lib.coreutils:3.0.4'
 }

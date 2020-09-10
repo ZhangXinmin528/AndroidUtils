@@ -23,7 +23,7 @@ Add dependencies in build.gradle.
 
     Adaptation AndroidX
     dependencies {
-    		implementation 'com.zhangxm.utils:lib.coreutils:3.0.1'
+    		implementation 'com.zhangxm.utils:lib.coreutils:3.0.4'
     	}
     	
     Using AppCompa
