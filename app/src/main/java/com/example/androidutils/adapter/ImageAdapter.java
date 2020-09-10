@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
+import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.example.androidutils.R;
 import com.example.androidutils.bean.ImageEntity;
 
@@ -22,6 +22,7 @@ import java.util.List;
 public class ImageAdapter extends BaseQuickAdapter<ImageEntity, BaseViewHolder> {
 
     private Context mContext;
+
 
     public ImageAdapter(Context context, @Nullable List<ImageEntity> data) {
         super(R.layout.layout_list_item_image, data);
@@ -39,6 +40,5 @@ public class ImageAdapter extends BaseQuickAdapter<ImageEntity, BaseViewHolder> 
                 .load(bytes)
                 .into(imageView);
 
-        holder.addOnClickListener(R.id.tv_image_name);
     }
 }
