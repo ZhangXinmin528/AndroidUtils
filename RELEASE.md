@@ -1,5 +1,9 @@
 
 ###更新日志：
+#### v3.0.5（未发布）
+
+1.修复SharedPreferencesUtily工具bug；
+
 
 #### v3.0.4
 

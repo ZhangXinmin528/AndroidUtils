@@ -69,7 +69,7 @@ public final class SharedPreferencesUtil {
         } else if (defaultObject instanceof Long) {
             return sp.getLong(key, (Long) defaultObject);
         }
-        return null;
+        return defaultObject;
     }
 
 
