@@ -20,6 +20,7 @@ import com.example.androidutils.activity.LogActivity;
 import com.example.androidutils.activity.NetWatcherActivity;
 import com.example.androidutils.activity.PaletteActivity;
 import com.example.androidutils.activity.PermissionActivity;
+import com.example.androidutils.activity.PhoneActivity;
 import com.example.androidutils.activity.PingActivity;
 import com.example.androidutils.activity.ScreenActivity;
 import com.example.androidutils.activity.SettingActivity;
@@ -118,10 +119,8 @@ public class MainActivity extends BaseActivity implements OnItemClickListener {
                 intent.setClass(mContext, PermissionActivity.class);
                 break;
             case 9:
-//                intent.setClass(mContext, PermissionActivity.class);
-//                break;
-                Toast.makeText(mContext, "暂未开放~", Toast.LENGTH_SHORT).show();
-                return;
+                intent.setClass(mContext, PhoneActivity.class);
+                break;
             case 10:
                 intent.setClass(mContext, PingActivity.class);
                 break;

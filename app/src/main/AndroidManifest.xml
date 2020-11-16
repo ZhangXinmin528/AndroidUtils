@@ -81,6 +81,11 @@
             android:name=".activity.PermissionActivity"
             android:configChanges="orientation|keyboardHidden" />
 
+        <!--手机相关-->
+        <activity
+            android:name=".activity.PhoneActivity"
+            android:configChanges="orientation|keyboardHidden" />
+
         <!--log-->
         <activity
             android:name=".activity.LogActivity"

@@ -4,6 +4,8 @@
 
 1.修复SharedPreferencesUtily工具bug；
 
+2.增加通知工具类；
+
 
 #### v3.0.4
 
