@@ -6,6 +6,10 @@
 
 2.增加通知工具类；
 
+3.增加颜色工具ColorUtils
+
+4.AppUtil 变更为 PackageUtil
+
 
 #### v3.0.4
 

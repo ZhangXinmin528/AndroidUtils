@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/AndroidUtils.iml" filepath="$PROJECT_DIR$/.idea/AndroidUtils.iml" group="AndroidUtils" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="AndroidUtils/app" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib.coreutils/lib.coreutils.iml" filepath="$PROJECT_DIR$/.idea/modules/lib.coreutils/lib.coreutils.iml" group="AndroidUtils/lib.coreutils" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/AndroidUtils.iml" filepath="$PROJECT_DIR$/.idea/AndroidUtils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/AndroidUtils.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/AndroidUtils.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib.coreutils/AndroidUtils.lib.coreutils.iml" filepath="$PROJECT_DIR$/.idea/modules/lib.coreutils/AndroidUtils.lib.coreutils.iml" />
     </modules>
   </component>
 </project>
