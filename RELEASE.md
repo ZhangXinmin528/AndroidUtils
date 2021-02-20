@@ -2,14 +2,19 @@
 ###更新日志：
 #### v3.0.5（未发布）
 
+部分新增工具类使用Kotlin编写
+
 1.修复SharedPreferencesUtily工具bug；
 
 2.增加通知工具类；
 
-3.增加颜色工具ColorUtils
+3.新增ColorUtils颜色工具
 
-4.AppUtil 变更为 PackageUtil
+4.AppUtil 变更为 PackageUtil用于获取应用信息
 
+5.新增CacheUtil引用缓存工具；
+
+6.新增DisplayHelper用于辅助开发；
 
 #### v3.0.4
 

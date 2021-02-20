@@ -1,4 +1,6 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 ext {
     libraryName = 'AndroidUtils'
@@ -8,11 +10,11 @@ ext {
 }
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdkVersion build_versions.compile_sdk
+    buildToolsVersion build_versions.build_tools
     defaultConfig {
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
         versionCode libraryVersionCode
         versionName libraryVersionName
 
@@ -39,8 +41,13 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation "androidx.appcompat:appcompat:$rootProject.appcompatXVersion"
-    implementation "androidx.coordinatorlayout:coordinatorlayout:$rootProject.coordinatorlayoutVersion"
+    //Kotlin
+    implementation deps.kotlin.stdlib
+    implementation deps.core_ktx
+    //androidx
+    implementation deps.app_compat
+
+    implementation deps.constraint_layout
 }
 
 apply from: '../bintray.gradle'

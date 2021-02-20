@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">AndroidUtils</string>
+
+    <!--bottom navigation-->
+    <string name="nav_compontents">compontent</string>
+    <string name="nav_tools">tools</string>
+    <string name="nav_lab">lab</string>
+
     <string name="all_screen_info">设备屏幕信息：%1$s</string>
 
     <!--Image 相关-->

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_component"
+        android:checked="true"
+        android:icon="@drawable/icon_tabbar_component"
+        android:title="@string/nav_compontents" />
+
+    <item
+        android:id="@+id/nav_tools"
+        android:icon="@drawable/icon_tabbar_util"
+        android:title="@string/nav_tools" />
+
+    <item
+        android:id="@+id/nav_lab"
+        android:icon="@drawable/icon_tabbar_lab"
+        android:title="@string/nav_lab" />
+</menu>

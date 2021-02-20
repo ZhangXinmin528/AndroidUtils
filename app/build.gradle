@@ -1,16 +1,43 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdkVersion build_versions.compile_sdk
+    buildToolsVersion build_versions.build_tools
+
     defaultConfig {
         applicationId "com.example.androidutils"
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
         versionCode 3
         versionName "1.0.3"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+    signingConfigs {
+
+        def filePath = '../sign/keystore.jks'
+        def pwd = properties.getProperty("sign.pwd")
+        def alias = properties.getProperty("sign.alias")
+
+        release {
+            storeFile file(filePath)
+            storePassword pwd
+            keyAlias alias
+            keyPassword pwd
+        }
+        debug {
+            keyAlias alias
+            keyPassword pwd
+            storeFile file(filePath)
+            storePassword pwd
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -50,24 +77,35 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    //Kotlin
+    implementation deps.kotlin.stdlib
+    implementation deps.core_ktx
 
-    implementation "androidx.appcompat:appcompat:$rootProject.appcompatXVersion"
-    implementation "com.google.android.material:material:$rootProject.materialVersion"
+    //androidx
+    implementation deps.app_compat
+    implementation deps.material
+    implementation deps.constraint_layout
+    implementation deps.recyclerview
+    implementation deps.rvadapterhelper
+
+
     //palette
     implementation 'androidx.palette:palette:1.0.0'
 
     //底部导航栏
     implementation(name: 'BottomNavigationViewEx_2.0.4_debug', ext: 'aar')
 
-    //adapter
-    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
 
     //图片加载框架
-    implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
-    annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
+    //Glide
+    api deps.glide.runtime
+    kapt deps.glide.compiler
 
     //utils
     implementation project(':lib.coreutils')
 //    implementation(name: 'AndroidUtils_1.0.1_release', ext: 'aar')
 //    implementation 'com.zhangxm.utils:lib.coreutils:3.0.4'
+
+    implementation project(path: ':annotation')
+    kapt project(path: ':compiler')
 }

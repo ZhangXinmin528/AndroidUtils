@@ -1,1 +1,4 @@
-include ':app', ':lib.coreutils'
+include ':app'
+include ':lib.coreutils'
+include ':annotation'
+include ':compiler'

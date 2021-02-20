@@ -6,4 +6,6 @@
 
     <color name="clickspan_color">#00ddb6</color>
     <color name="color_bg">#c6c6c6</color>
+
+    <color name="color_state_bar">#E8E8E8</color>
 </resources>
