@@ -6,6 +6,7 @@
     android:orientation="vertical">
 
     <RelativeLayout
+        android:id="@+id/layout_reboot"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
         android:background="@android:color/white"
@@ -23,11 +24,11 @@
             android:id="@+id/btn_reboot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
             android:padding="@dimen/dp_10"
-            android:textColor="@android:color/holo_blue_light"
-            android:text="@string/all_reboot" />
+            android:text="@string/all_reboot"
+            android:textColor="@android:color/holo_blue_light" />
     </RelativeLayout>
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -47,7 +48,7 @@
         <TextView
             android:id="@+id/tv_device_detial"
             android:layout_width="match_parent"
-            android:layout_height="400dp"/>
+            android:layout_height="400dp" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 

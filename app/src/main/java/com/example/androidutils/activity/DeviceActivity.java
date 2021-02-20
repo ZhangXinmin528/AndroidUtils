@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.androidutils.R;
@@ -43,6 +44,13 @@ public class DeviceActivity extends BaseActivity implements View.OnClickListener
     @Override
     protected void initViews() {
         mDetialTv = findViewById(R.id.tv_device_detial);
+
+        final RelativeLayout rebootLayout = findViewById(R.id.layout_reboot);
+        if (DeviceUtil.isDeviceRooted()) {
+            rebootLayout.setVisibility(View.VISIBLE);
+        } else {
+            rebootLayout.setVisibility(View.GONE);
+        }
 
         findViewById(R.id.btn_read_info).setOnClickListener(this);
         findViewById(R.id.btn_reboot).setOnClickListener(this);

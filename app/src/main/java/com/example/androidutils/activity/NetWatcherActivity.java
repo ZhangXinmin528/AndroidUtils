@@ -57,7 +57,6 @@ public class NetWatcherActivity extends BaseActivity implements NetWatchdog.NetC
         super.onStop();
         if (mNetWatchdog != null) {
             mNetWatchdog.stopWatch();
-
         }
     }
 

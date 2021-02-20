@@ -56,6 +56,9 @@ dependencies {
     //palette
     implementation 'androidx.palette:palette:1.0.0'
 
+    //底部导航栏
+    implementation(name: 'BottomNavigationViewEx_2.0.4_debug', ext: 'aar')
+
     //adapter
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
 

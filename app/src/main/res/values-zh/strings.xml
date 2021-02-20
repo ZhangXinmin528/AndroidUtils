@@ -55,4 +55,7 @@
     <string name="all_setting">Setting</string>
 
     <string name="all_install_unknown_source_app">您的应用需要打开“安装未知来源应用”开关，是否允许？</string>
+
+    <string name="all_read_info">设备信息</string>
+    <string name="all_reboot_tips">重启设备</string>
 </resources>

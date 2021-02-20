@@ -32,6 +32,7 @@ public class PhoneActivity extends BaseActivity {
         //1.获取管理器
         mNotificationManager = NotificationManagerCompat.from(mContext);
 
+        initActionBar();
     }
 
     @Override
