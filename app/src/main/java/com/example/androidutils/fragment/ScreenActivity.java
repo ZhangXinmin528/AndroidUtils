@@ -1,4 +1,4 @@
-package com.example.androidutils.activity;
+package com.example.androidutils.fragment;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -8,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.androidutils.R;
-import com.example.androidutils.base.BaseActivity;
 import com.zxm.utils.core.screen.ScreenUtil;
 
 /**

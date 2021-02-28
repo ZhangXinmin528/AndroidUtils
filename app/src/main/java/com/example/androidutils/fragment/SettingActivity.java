@@ -1,4 +1,4 @@
-package com.example.androidutils.activity;
+package com.example.androidutils.fragment;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,7 +14,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
 import com.example.androidutils.R;
-import com.example.androidutils.base.BaseActivity;
 import com.zxm.utils.core.setting.SettingUtils;
 
 /**

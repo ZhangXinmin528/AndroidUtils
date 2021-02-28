@@ -17,7 +17,7 @@ abstract class BaseFragment() : Fragment() {
 
     protected val TAG = this.javaClass.simpleName
 
-    protected var mContext: Context? = null
+    var mContext: Context? = null
 
     protected lateinit var rootView: View
 
@@ -29,9 +29,9 @@ abstract class BaseFragment() : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         rootView = inflater.inflate(setLayoutId(), container, false)
         return rootView
@@ -48,14 +48,14 @@ abstract class BaseFragment() : Fragment() {
     protected fun setStatusBarColorNoTranslucent(@ColorRes colorRes: Int) {
         activity?.let {
             StatusBarCompat.setColorNoTranslucent(
-                activity,
-                resources.getColor(colorRes)
+                    activity,
+                    resources.getColor(colorRes)
             )
 //            StatusBarCompat.setDarkMode(it)
         }
     }
 
-    abstract fun initParamsAndValues();
+    abstract fun initParamsAndValues()
 
-    abstract fun initViews(rootView: View);
+    abstract fun initViews(rootView: View)
 }

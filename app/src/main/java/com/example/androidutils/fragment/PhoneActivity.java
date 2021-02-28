@@ -1,4 +1,4 @@
-package com.example.androidutils.activity;
+package com.example.androidutils.fragment;
 
 import android.annotation.SuppressLint;
 import android.app.Notification;
@@ -12,7 +12,6 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import com.example.androidutils.R;
-import com.example.androidutils.base.BaseActivity;
 
 /**
  * Created by ZhangXinmin on 2020/7/26.

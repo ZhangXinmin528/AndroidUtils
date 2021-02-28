@@ -3,21 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.androidutils">
 
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission
-        android:name="android.permission.REBOOT"
-        tools:ignore="ProtectedPermissions" />
-
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
-    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.READ_SMS" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <application
         android:name=".app.UtilApp"
         android:allowBackup="false"
@@ -41,76 +26,91 @@
 
         <!--文字样式-->
         <activity
-            android:name=".activity.SpanActivity"
+            android:name=".fragment.SpanActivity"
             android:screenOrientation="portrait" />
 
         <!--屏幕相关-->
-        <activity android:name=".activity.ScreenActivity" />
+        <activity android:name=".fragment.ScreenActivity" />
 
         <!--软键盘使用-->
         <activity
-            android:name=".activity.KeyboradActivity"
+            android:name=".fragment.KeyboradFragment"
             android:screenOrientation="portrait" />
 
         <!--图片工具使用-->
         <activity
-            android:name=".activity.ImageActivity"
+            android:name=".fragment.ImageFragment"
             android:screenOrientation="portrait" />
 
         <!--Dialog的使用-->
         <activity
-            android:name=".activity.DialogActivity"
+            android:name=".fragment.DialogFragment"
             android:screenOrientation="portrait" />
 
         <!--模拟Dialog-->
         <activity
-            android:name=".activity.ImitateDialogActivity"
+            android:name=".fragment.ImitateDialogActivity"
             android:theme="@style/DialogTheme" />
 
         <!--网络检测-->
         <activity
-            android:name=".activity.NetWatcherActivity"
+            android:name=".fragment.NetWatcherFragment"
             android:screenOrientation="portrait" />
 
         <!--取色演示-->
         <activity
-            android:name=".activity.PaletteActivity"
+            android:name=".fragment.PaletteFrameng"
             android:screenOrientation="portrait" />
 
-        <activity android:name=".activity.DeviceActivity" />
+        <activity android:name=".fragment.DeviceFragment" />
         <!--权限获取-->
         <activity
-            android:name=".activity.PermissionActivity"
+            android:name=".fragment.PermissionFragment"
             android:configChanges="orientation|keyboardHidden" />
 
         <!--手机相关-->
         <activity
-            android:name=".activity.PhoneActivity"
+            android:name=".fragment.PhoneActivity"
             android:configChanges="orientation|keyboardHidden" />
 
         <!--log-->
         <activity
-            android:name=".activity.LogActivity"
+            android:name=".fragment.LogFragment"
             android:screenOrientation="portrait" />
         <!--加密-->
         <activity
-            android:name=".activity.EncryptActivity"
+            android:name=".fragment.EncryptFragment"
             android:screenOrientation="portrait" />
         <!--Ping-->
         <activity
-            android:name=".activity.PingActivity"
+            android:name=".fragment.PingActivity"
             android:screenOrientation="portrait" />
 
         <!--Setting-->
         <activity
-            android:name=".activity.SettingActivity"
+            android:name=".fragment.SettingActivity"
             android:screenOrientation="portrait" />
 
         <!--Crash查看-->
         <activity
-            android:name=".activity.CrashActivity"
+            android:name=".fragment.CrashFragment"
             android:screenOrientation="portrait" />
 
     </application>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission
+        android:name="android.permission.REBOOT"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 </manifest>

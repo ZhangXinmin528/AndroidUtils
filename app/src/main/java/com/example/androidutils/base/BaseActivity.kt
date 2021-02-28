@@ -48,11 +48,11 @@ abstract class BaseActivity : AppCompatActivity() {
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.N) {
             val config: Configuration = res.configuration
             config.fontScale =
-                SharedPreferencesUtil.get(
-                    this,
-                    SPConfig.CONFIG_FONT_SCALE,
-                    1.0f
-                ) as Float
+                    SharedPreferencesUtil.get(
+                            this,
+                            SPConfig.CONFIG_FONT_SCALE,
+                            1.0f
+                    ) as Float
             res.updateConfiguration(config, res.displayMetrics)
         }
         return res
@@ -69,9 +69,9 @@ abstract class BaseActivity : AppCompatActivity() {
             configuration.let {
 
                 it.fontScale = SharedPreferencesUtil.get(
-                    newBase,
-                    SPConfig.CONFIG_FONT_SCALE,
-                    1.0f
+                        newBase,
+                        SPConfig.CONFIG_FONT_SCALE,
+                        1.0f
                 ) as Float
 
                 val newContext = newBase.createConfigurationContext(it)

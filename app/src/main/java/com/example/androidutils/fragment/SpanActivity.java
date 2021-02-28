@@ -1,4 +1,4 @@
-package com.example.androidutils.activity;
+package com.example.androidutils.fragment;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -12,7 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.androidutils.R;
-import com.example.androidutils.base.BaseActivity;
 import com.zxm.utils.core.text.ClickableMovementMethod;
 import com.zxm.utils.core.text.SpanUtils;
 

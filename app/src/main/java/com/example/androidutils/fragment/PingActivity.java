@@ -1,4 +1,4 @@
-package com.example.androidutils.activity;
+package com.example.androidutils.fragment;
 
 import android.text.TextUtils;
 import android.view.Menu;
@@ -9,7 +9,6 @@ import android.widget.EditText;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.androidutils.R;
-import com.example.androidutils.base.BaseActivity;
 import com.zxm.utils.core.log.MLogger;
 import com.zxm.utils.core.net.PingUtil;
 
