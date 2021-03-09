@@ -67,10 +67,10 @@ class MainActivity : BaseActivity(), OnItemClickListener {
                 return
             }
             8 -> intent.setClass(mContext!!, PermissionFragment::class.java)
-            9 -> intent.setClass(mContext!!, PhoneActivity::class.java)
-            10 -> intent.setClass(mContext!!, PingActivity::class.java)
-            11 -> intent.setClass(mContext!!, SpanActivity::class.java)
-            12 -> intent.setClass(mContext!!, ScreenActivity::class.java)
+            9 -> intent.setClass(mContext!!, PhoneFragment::class.java)
+            10 -> intent.setClass(mContext!!, PingFragment::class.java)
+            11 -> intent.setClass(mContext!!, SpanFragment::class.java)
+            12 -> intent.setClass(mContext!!, ScreenFragment::class.java)
             13 -> {
                 //                intent.setClass(mContext, PingActivity.class);
 //                break;
@@ -78,7 +78,7 @@ class MainActivity : BaseActivity(), OnItemClickListener {
                 return
             }
             14 -> intent.setClass(mContext!!, PaletteFrameng::class.java)
-            15 -> intent.setClass(mContext!!, SettingActivity::class.java)
+            15 -> intent.setClass(mContext!!, SettingFragment::class.java)
             16 -> intent.setClass(mContext!!, CrashFragment::class.java)
             else -> {
             }

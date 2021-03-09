@@ -26,11 +26,11 @@
 
         <!--文字样式-->
         <activity
-            android:name=".fragment.SpanActivity"
+            android:name=".fragment.SpanFragment"
             android:screenOrientation="portrait" />
 
         <!--屏幕相关-->
-        <activity android:name=".fragment.ScreenActivity" />
+        <activity android:name=".fragment.ScreenFragment" />
 
         <!--软键盘使用-->
         <activity
@@ -70,7 +70,7 @@
 
         <!--手机相关-->
         <activity
-            android:name=".fragment.PhoneActivity"
+            android:name=".fragment.PhoneFragment"
             android:configChanges="orientation|keyboardHidden" />
 
         <!--log-->
@@ -83,12 +83,12 @@
             android:screenOrientation="portrait" />
         <!--Ping-->
         <activity
-            android:name=".fragment.PingActivity"
+            android:name=".fragment.PingFragment"
             android:screenOrientation="portrait" />
 
         <!--Setting-->
         <activity
-            android:name=".fragment.SettingActivity"
+            android:name=".fragment.SettingFragment"
             android:screenOrientation="portrait" />
 
         <!--Crash查看-->

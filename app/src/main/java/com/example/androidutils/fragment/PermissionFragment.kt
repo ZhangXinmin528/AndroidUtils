@@ -8,7 +8,7 @@ import com.example.androidutils.R
 import com.example.androidutils.base.BaseFragment
 import com.zxm.utils.core.dialog.DialogUtil
 import com.zxm.utils.core.permission.PermissionChecker
-import kotlinx.android.synthetic.main.activity_permission.*
+import kotlinx.android.synthetic.main.fragment_permission.*
 
 /**
  * Created by ZhangXinmin on 2019/1/4.
@@ -26,7 +26,7 @@ class PermissionFragment : BaseFragment(), View.OnClickListener {
             Manifest.permission.WRITE_EXTERNAL_STORAGE)
 
     override fun setLayoutId(): Int {
-        return R.layout.activity_permission
+        return R.layout.fragment_permission
     }
 
     override fun initViews(rootView: View) {
