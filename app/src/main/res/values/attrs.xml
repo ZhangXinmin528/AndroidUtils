@@ -1,42 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="sort_name_array">
-        <item>设备信息</item>
-        <item>应用弹窗</item>
-        <item>加解密工具</item>
-        <item>图片工具</item>
-        <item>软键盘工具</item>
-        <item>日志工具</item>
-        <item>网络监听</item>
-        <item>网络工具</item>
-        <item>权限申请</item>
-        <item>手机相关</item>
-        <item>网络连接</item>
-        <item>富文本工具</item>
-        <item>屏幕相关</item>
-        <item>时间工具</item>
-        <item>图片取色</item>
-        <item>系统设置</item>
-        <item>Crash查看</item>
-    </string-array>
 
-    <integer-array name="sort_icon_array">
-        <item>@drawable/icon_device_info</item>
-        <item>@drawable/icon_dialog</item>
-        <item>@drawable/icon_encrypt</item>
-        <item>@drawable/icon_picture</item>
-        <item>@drawable/icon_keybroad</item>
-        <item>@drawable/icon_log</item>
-        <item>@drawable/icon_network_listener</item>
-        <item>@drawable/icon_network</item>
-        <item>@drawable/icon_permission</item>
-        <item>@drawable/icon_phone</item>
-        <item>@drawable/icon_network_connection</item>
-        <item>@drawable/icon_span</item>
-        <item>@drawable/icon_screen</item>
-        <item>@drawable/icon_time</item>
-        <item>@drawable/icon_palette</item>
-        <item>@drawable/icon_setting</item>
-        <item>@drawable/icon_crash_catch</item>
-    </integer-array>
 </resources>

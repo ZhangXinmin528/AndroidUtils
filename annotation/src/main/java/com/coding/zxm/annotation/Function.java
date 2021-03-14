@@ -12,6 +12,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.CLASS)
 @Target(ElementType.TYPE)
 public @interface Function {
+    Group group() default Group.Component;
 
     Class functionClass() default void.class;
 

@@ -2,6 +2,8 @@ package com.example.androidutils.fragment
 
 import android.text.TextUtils
 import android.view.View
+import com.coding.zxm.annotation.Function
+import com.coding.zxm.annotation.Group
 import com.example.androidutils.R
 import com.example.androidutils.base.BaseFragment
 import com.zxm.utils.core.log.MLogger
@@ -12,6 +14,7 @@ import kotlinx.android.synthetic.main.fragment_ping.*
  * Created by ZhangXinmin on 2019/5/17.
  * Copyright (c) 2018 . All rights reserved.
  */
+@Function(group = Group.Lab, funcName = "网络连接", funcIconRes = R.drawable.icon_network_connection)
 class PingFragment : BaseFragment() {
     override fun setLayoutId(): Int {
         return R.layout.fragment_ping

@@ -1,6 +1,8 @@
 package com.example.androidutils.fragment
 
 import android.view.View
+import com.coding.zxm.annotation.Function
+import com.coding.zxm.annotation.Group
 import com.example.androidutils.R
 import com.example.androidutils.base.BaseFragment
 import com.zxm.utils.core.screen.ScreenUtil
@@ -10,6 +12,7 @@ import kotlinx.android.synthetic.main.fragment_screen.*
  * Created by ZhangXinmin on 2018/8/30.
  * Copyright (c) 2018 . All rights reserved.
  */
+@Function(group = Group.UTILS, funcName = "屏幕相关", funcIconRes = R.drawable.icon_screen)
 class ScreenFragment : BaseFragment(), View.OnClickListener {
 
     override fun setLayoutId(): Int {

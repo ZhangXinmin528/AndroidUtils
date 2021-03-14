@@ -5,6 +5,8 @@ import android.graphics.Color
 import android.os.Build
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.coding.zxm.annotation.Function
+import com.coding.zxm.annotation.Group
 import com.example.androidutils.R
 import com.example.androidutils.adapter.ImageAdapter
 import com.example.androidutils.base.BaseFragment
@@ -18,6 +20,7 @@ import java.util.*
  * Copyright (c) 2018 . All rights reserved.
  * User guide for[ImageUtil]
  */
+@Function(group = Group.Component, funcName = "图片工具", funcIconRes = R.drawable.icon_picture)
 class ImageFragment : BaseFragment() {
     private val mResources: Resources? = null
     private val mList: MutableList<ImageEntity> = ArrayList()

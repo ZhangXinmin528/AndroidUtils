@@ -2,6 +2,8 @@ package com.example.androidutils.fragment
 
 import android.os.Environment
 import android.view.View
+import com.coding.zxm.annotation.Function
+import com.coding.zxm.annotation.Group
 import com.example.androidutils.R
 import com.example.androidutils.base.BaseFragment
 import com.zxm.utils.core.log.MLogger
@@ -12,6 +14,7 @@ import kotlinx.android.synthetic.main.fragment_log.*
  * Created by ZhangXinmin on 2019/3/19.
  * Copyright (c) 2018 . All rights reserved.
  */
+@Function(group = Group.UTILS, funcName = "日志工具", funcIconRes = R.drawable.icon_log)
 class LogFragment : BaseFragment(), View.OnClickListener {
 
     companion object {

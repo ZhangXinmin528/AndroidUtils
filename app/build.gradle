@@ -30,12 +30,7 @@ android {
             keyAlias alias
             keyPassword pwd
         }
-        debug {
-            keyAlias alias
-            keyPassword pwd
-            storeFile file(filePath)
-            storePassword pwd
-        }
+
     }
 
     buildTypes {
@@ -48,6 +43,7 @@ android {
             //是否输出日志
             buildConfigField("boolean", "LOG_ENABLE", "false")
 
+            signingConfig signingConfigs.release
         }
         debug {
             //当前模式
@@ -55,6 +51,7 @@ android {
             //是否输出日志
             buildConfigField("boolean", "LOG_ENABLE", "true")
 
+            signingConfig signingConfigs.release
         }
     }
     compileOptions {
@@ -90,7 +87,7 @@ dependencies {
 
 
     //palette
-    implementation 'androidx.palette:palette:1.0.0'
+    implementation 'androidx.palette:palette-ktx:1.0.0'
 
     //底部导航栏
     implementation(name: 'BottomNavigationViewEx_2.0.4_debug', ext: 'aar')

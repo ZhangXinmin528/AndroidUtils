@@ -3,100 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.androidutils">
 
-    <application
-        android:name=".app.UtilApp"
-        android:allowBackup="false"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:sharedUserId="android.uid.system"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning"
-        tools:replace="android:label">
-
-        <activity
-            android:name=".MainActivity"
-            android:theme="@style/AppTheme.Launcher">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <!--文字样式-->
-        <activity
-            android:name=".fragment.SpanFragment"
-            android:screenOrientation="portrait" />
-
-        <!--屏幕相关-->
-        <activity android:name=".fragment.ScreenFragment" />
-
-        <!--软键盘使用-->
-        <activity
-            android:name=".fragment.KeyboradFragment"
-            android:screenOrientation="portrait" />
-
-        <!--图片工具使用-->
-        <activity
-            android:name=".fragment.ImageFragment"
-            android:screenOrientation="portrait" />
-
-        <!--Dialog的使用-->
-        <activity
-            android:name=".fragment.DialogFragment"
-            android:screenOrientation="portrait" />
-
-        <!--模拟Dialog-->
-        <activity
-            android:name=".fragment.ImitateDialogActivity"
-            android:theme="@style/DialogTheme" />
-
-        <!--网络检测-->
-        <activity
-            android:name=".fragment.NetWatcherFragment"
-            android:screenOrientation="portrait" />
-
-        <!--取色演示-->
-        <activity
-            android:name=".fragment.PaletteFrameng"
-            android:screenOrientation="portrait" />
-
-        <activity android:name=".fragment.DeviceFragment" />
-        <!--权限获取-->
-        <activity
-            android:name=".fragment.PermissionFragment"
-            android:configChanges="orientation|keyboardHidden" />
-
-        <!--手机相关-->
-        <activity
-            android:name=".fragment.PhoneFragment"
-            android:configChanges="orientation|keyboardHidden" />
-
-        <!--log-->
-        <activity
-            android:name=".fragment.LogFragment"
-            android:screenOrientation="portrait" />
-        <!--加密-->
-        <activity
-            android:name=".fragment.EncryptFragment"
-            android:screenOrientation="portrait" />
-        <!--Ping-->
-        <activity
-            android:name=".fragment.PingFragment"
-            android:screenOrientation="portrait" />
-
-        <!--Setting-->
-        <activity
-            android:name=".fragment.SettingFragment"
-            android:screenOrientation="portrait" />
-
-        <!--Crash查看-->
-        <activity
-            android:name=".fragment.CrashFragment"
-            android:screenOrientation="portrait" />
-
-    </application>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -112,5 +18,30 @@
     <uses-permission android:name="android.permission.READ_SMS" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:name=".app.UtilApp"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:sharedUserId="android.uid.system"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning"
+        tools:replace="android:label">
+
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+    </application>
+
 
 </manifest>

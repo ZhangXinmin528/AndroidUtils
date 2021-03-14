@@ -1,9 +1,12 @@
 package com.example.androidutils.fragment
 
+import android.annotation.SuppressLint
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.coding.zxm.annotation.Function
+import com.coding.zxm.annotation.Group
 import com.example.androidutils.R
 import com.example.androidutils.base.BaseFragment
 import com.zxm.utils.core.crash.CrashManager
@@ -14,6 +17,8 @@ import kotlinx.android.synthetic.main.fragment_crash.*
  * Created by ZhangXinmin on 2019/8/12.
  * Copyright (c) 2019 . All rights reserved.
  */
+@SuppressLint("NonConstantResourceId")
+@Function(group = Group.Lab, funcName = "崩溃信息", funcIconRes = R.drawable.icon_crash_catch)
 class CrashFragment : BaseFragment(), View.OnClickListener {
     override fun setLayoutId(): Int {
         return R.layout.fragment_crash

@@ -6,6 +6,8 @@ import android.text.TextPaint
 import android.text.style.ClickableSpan
 import android.view.View
 import android.widget.Toast
+import com.coding.zxm.annotation.Function
+import com.coding.zxm.annotation.Group
 import com.example.androidutils.R
 import com.example.androidutils.base.BaseFragment
 import com.zxm.utils.core.text.ClickableMovementMethod
@@ -21,6 +23,7 @@ import kotlinx.android.synthetic.main.fragment_span.*
  * create series of styles [android.widget.TextView].
  *
  */
+@Function(group = Group.Component, funcName = "富文本工具", funcIconRes = R.drawable.icon_span)
 class SpanFragment : BaseFragment() {
     override fun setLayoutId(): Int {
         return R.layout.fragment_span

@@ -4,6 +4,8 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.view.View
 import androidx.core.app.ActivityCompat
+import com.coding.zxm.annotation.Function
+import com.coding.zxm.annotation.Group
 import com.example.androidutils.R
 import com.example.androidutils.base.BaseFragment
 import com.zxm.utils.core.dialog.DialogUtil
@@ -15,6 +17,7 @@ import kotlinx.android.synthetic.main.fragment_permission.*
  * Copyright (c) 2018 . All rights reserved.
  * 权限测试
  */
+@Function(group = Group.UTILS, funcName = "权限申请", funcIconRes = R.drawable.icon_permission)
 class PermissionFragment : BaseFragment(), View.OnClickListener {
     private val permissions = arrayOf(
             Manifest.permission.CAMERA,

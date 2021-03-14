@@ -2,6 +2,8 @@ package com.example.androidutils.fragment
 
 import android.graphics.Color
 import android.view.View
+import com.coding.zxm.annotation.Function
+import com.coding.zxm.annotation.Group
 import com.example.androidutils.R
 import com.example.androidutils.base.BaseFragment
 import com.zxm.utils.core.keyborad.KeyboradUtil
@@ -14,6 +16,7 @@ import kotlinx.android.synthetic.main.fragment_keyborad.*
  * Copyright (c) 2018 . All rights reserved.
  * User guide for [KeyboradUtil]
  */
+@Function(group = Group.Component, funcName = "软键盘工具", funcIconRes = R.drawable.icon_keybroad)
 class KeyboradFragment : BaseFragment(), View.OnClickListener, OnSoftInputChangedListener {
     override fun setLayoutId(): Int {
         return R.layout.fragment_keyborad

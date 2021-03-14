@@ -3,16 +3,16 @@
     <item
         android:id="@+id/nav_component"
         android:checked="true"
-        android:icon="@drawable/icon_tabbar_component"
+        android:icon="@drawable/selector_nav_compontent"
         android:title="@string/nav_compontents" />
 
     <item
-        android:id="@+id/nav_tools"
-        android:icon="@drawable/icon_tabbar_util"
+        android:id="@+id/nav_util"
+        android:icon="@drawable/selector_nav_util"
         android:title="@string/nav_tools" />
 
     <item
         android:id="@+id/nav_lab"
-        android:icon="@drawable/icon_tabbar_lab"
+        android:icon="@drawable/selector_nav_lab"
         android:title="@string/nav_lab" />
 </menu>

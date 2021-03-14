@@ -3,6 +3,8 @@ package com.example.androidutils.fragment
 import android.content.Intent
 import android.view.View
 import android.widget.Toast
+import com.coding.zxm.annotation.Function
+import com.coding.zxm.annotation.Group
 import com.example.androidutils.ConfirmWindow
 import com.example.androidutils.R
 import com.example.androidutils.base.BaseFragment
@@ -15,6 +17,7 @@ import kotlinx.android.synthetic.main.fragment_dialog.*
  * Copyright (c) 2018 . All rights reserved.
  * 展示Dialog的使用
  */
+@Function(group = Group.Component, funcName = "应用弹窗", funcIconRes = R.drawable.icon_grid_dialog)
 class DialogFragment : BaseFragment(), View.OnClickListener {
 
     private var mConfirmWindow: ConfirmWindow? = null

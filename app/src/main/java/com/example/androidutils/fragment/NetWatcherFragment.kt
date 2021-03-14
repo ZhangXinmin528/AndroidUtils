@@ -2,6 +2,8 @@ package com.example.androidutils.fragment
 
 import android.util.Log
 import android.view.View
+import com.coding.zxm.annotation.Function
+import com.coding.zxm.annotation.Group
 import com.example.androidutils.R
 import com.example.androidutils.base.BaseFragment
 import com.zxm.utils.core.net.NetWatchdog
@@ -12,6 +14,7 @@ import com.zxm.utils.core.net.NetWatchdog.NetConnectedListener
  * Created by ZhangXinmin on 2018/11/14.
  * Copyright (c) 2018 . All rights reserved.
  */
+@Function(group = Group.UTILS, funcName = "网络监听", funcIconRes = R.drawable.icon_network_listener)
 class NetWatcherFragment : BaseFragment(), NetChangeListener, NetConnectedListener {
     private var mNetWatchdog: NetWatchdog? = null
 

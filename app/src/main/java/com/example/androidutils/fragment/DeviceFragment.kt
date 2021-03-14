@@ -3,6 +3,8 @@ package com.example.androidutils.fragment
 import android.Manifest
 import android.annotation.SuppressLint
 import android.view.View
+import com.coding.zxm.annotation.Function
+import com.coding.zxm.annotation.Group
 import com.example.androidutils.R
 import com.example.androidutils.base.BaseFragment
 import com.zxm.utils.core.device.DeviceUtil
@@ -15,6 +17,8 @@ import java.util.*
  * Copyright (c) 2018 . All rights reserved.
  * 查看设备信息
  */
+@SuppressLint("NonConstantResourceId")
+@Function(group = Group.UTILS, funcName = "设备信息", funcIconRes = R.drawable.icon_device_info)
 class DeviceFragment : BaseFragment(), View.OnClickListener {
 
     override fun setLayoutId(): Int {

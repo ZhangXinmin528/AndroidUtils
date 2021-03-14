@@ -8,6 +8,8 @@ import android.provider.Settings
 import android.view.View
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import com.coding.zxm.annotation.Function
+import com.coding.zxm.annotation.Group
 import com.example.androidutils.R
 import com.example.androidutils.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_phone.*
@@ -16,6 +18,7 @@ import kotlinx.android.synthetic.main.fragment_phone.*
  * Created by ZhangXinmin on 2020/7/26.
  * Copyright (c) 2020/11/16 . All rights reserved.
  */
+@Function(group = Group.UTILS, funcName = "手机相关", funcIconRes = R.drawable.icon_phone)
 class PhoneFragment : BaseFragment() {
 
     private var mNotificationManager: NotificationManagerCompat? = null
