@@ -12,6 +12,6 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation project(path: ':annotation')
     implementation 'com.squareup:javapoet:1.12.1'
-    implementation 'com.google.auto.service:auto-service:1.0-rc2'
-    annotationProcessor 'com.google.auto.service:auto-service:1.0-rc2'
+    api 'com.google.auto.service:auto-service:1.0-rc4'
+    annotationProcessor 'com.google.auto.service:auto-service:1.0-rc4'
 }
