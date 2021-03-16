@@ -1,17 +1,13 @@
-plugins {
-    id 'java-library'
-    id 'kotlin'
-}
+apply plugin: 'java-library'
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_7
-    targetCompatibility = JavaVersion.VERSION_1_7
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation project(path: ':annotation')
     implementation 'com.squareup:javapoet:1.12.1'
-    api 'com.google.auto.service:auto-service:1.0-rc4'
-    annotationProcessor 'com.google.auto.service:auto-service:1.0-rc4'
+    api 'com.google.auto.service:auto-service:1.0-rc7'
+    annotationProcessor 'com.google.auto.service:auto-service:1.0-rc7'
 }

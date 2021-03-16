@@ -65,6 +65,7 @@ public class FunctionProcessor extends AbstractProcessor {
         mElementUtils = processingEnv.getElementUtils();
         mMessager = processingEnv.getMessager();
         mIsFileCreated = false;
+        System.out.println("init()");
     }
 
     /**
@@ -72,6 +73,7 @@ public class FunctionProcessor extends AbstractProcessor {
      */
     @Override
     public Set<String> getSupportedAnnotationTypes() {
+        System.out.println("getSupportedAnnotationTypes()");
         Set<String> types = new LinkedHashSet<>();
         types.add(Function.class.getCanonicalName());
         return types;
@@ -84,6 +86,7 @@ public class FunctionProcessor extends AbstractProcessor {
 
     @Override
     public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
+        System.out.println("process()");
         if (mIsFileCreated) {
             return true;
         }
@@ -168,6 +171,7 @@ public class FunctionProcessor extends AbstractProcessor {
     }
 
     private void error(String msg, Object... args) {
+        System.out.println("error()");
         mMessager.printMessage(Diagnostic.Kind.ERROR, String.format(msg, args));
     }
 
