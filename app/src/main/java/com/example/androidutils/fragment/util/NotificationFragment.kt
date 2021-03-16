@@ -1,4 +1,4 @@
-package com.example.androidutils.fragment
+package com.example.androidutils.fragment.util
 
 import android.app.Notification
 import android.content.Intent
@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_phone.*
  * Copyright (c) 2020/11/16 . All rights reserved.
  */
 @Function(group = Group.UTILS, funcName = "手机相关", funcIconRes = R.drawable.icon_phone)
-class PhoneFragment : BaseFragment() {
+class NotificationFragment : BaseFragment() {
 
     private var mNotificationManager: NotificationManagerCompat? = null
 

@@ -19,6 +19,7 @@ import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.Filer;
 import javax.annotation.processing.Messager;
 import javax.annotation.processing.ProcessingEnvironment;
+import javax.annotation.processing.Processor;
 import javax.annotation.processing.RoundEnvironment;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
@@ -35,7 +36,7 @@ import javax.tools.Diagnostic;
  * Created by ZhangXinmin on 2021/02/20.
  * Copyright (c) 2/20/21 . All rights reserved.
  */
-@AutoService(Function.class)
+@AutoService(Processor.class)
 public class FunctionProcessor extends AbstractProcessor {
 
     private Filer mFiler; //文件相关的辅助类
@@ -99,13 +100,13 @@ public class FunctionProcessor extends AbstractProcessor {
                 .initializer("new $T()", mFuncContainerName)
                 .build();
 
-        FieldSpec mapField = FieldSpec.builder(mMapFieldTypeName, "mWidgets")
+        FieldSpec mapField = FieldSpec.builder(mMapFieldTypeName, "mFuncs")
                 .addModifiers(Modifier.PRIVATE)
                 .build();
 
         MethodSpec.Builder constructorBuilder = MethodSpec.constructorBuilder()
                 .addModifiers(Modifier.PRIVATE)
-                .addStatement("mWidgets = new $T<>()", mHashMapName);
+                .addStatement("mFuncs = new $T<>()", mHashMapName);
 
         for (Element element : roundEnvironment.getElementsAnnotatedWith(Function.class)) {
             if (element instanceof TypeElement) {
@@ -130,7 +131,7 @@ public class FunctionProcessor extends AbstractProcessor {
                 if (name == null || name.length() == 0) {
                     error("please provide widgetClass or name");
                 }
-                constructorBuilder.addStatement("mWidgets.put($T.class, new $T($T.class, $S, $L, $S))",
+                constructorBuilder.addStatement("mFuncs.put($T.class, new $T($T.class, $S, $L, $S))",
                         elementName,
                         mItemDescName,
                         elementName,
@@ -149,11 +150,11 @@ public class FunctionProcessor extends AbstractProcessor {
                 .addStatement("return sInstance")
                 .build();
 
-        MethodSpec getMethod = MethodSpec.methodBuilder("get")
+        MethodSpec getMethod = MethodSpec.methodBuilder("getFragment")
                 .addModifiers(Modifier.PUBLIC)
                 .returns(mItemDescName)
                 .addParameter(mBaseFragmentClassName, "fragment")
-                .addStatement("return mWidgets.get($L)", "fragment")
+                .addStatement("return mFuncs.get($L)", "fragment")
                 .build();
 
         try {

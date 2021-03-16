@@ -18,7 +18,6 @@ public final class NetWatchdog {
 
     private static final String TAG = NetWatchdog.class.getSimpleName();
 
-
     private Context mContext;
     //网络变化监听
     private NetChangeListener mNetChangeListener;

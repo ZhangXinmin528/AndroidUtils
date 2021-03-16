@@ -1,4 +1,4 @@
-package com.example.androidutils.fragment
+package com.example.androidutils.fragment.component
 
 import android.content.Intent
 import android.view.View
@@ -6,6 +6,7 @@ import android.widget.Toast
 import com.coding.zxm.annotation.Function
 import com.coding.zxm.annotation.Group
 import com.example.androidutils.ConfirmWindow
+import com.example.androidutils.ImitateDialogActivity
 import com.example.androidutils.R
 import com.example.androidutils.base.BaseFragment
 import com.zxm.utils.core.dialog.EasyDialog

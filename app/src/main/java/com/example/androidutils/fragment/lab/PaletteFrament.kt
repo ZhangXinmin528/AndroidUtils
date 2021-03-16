@@ -1,4 +1,4 @@
-package com.example.androidutils.fragment
+package com.example.androidutils.fragment.lab
 
 import android.graphics.BitmapFactory
 import android.view.View
@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.fragment_palette.*
  * 取色功能
  */
 @Function(group = Group.Lab, funcName = "图片取色", funcIconRes = R.drawable.icon_palette)
-class PaletteFrameng : BaseFragment() {
+class PaletteFrament : BaseFragment() {
 
     override fun setLayoutId(): Int {
         return R.layout.fragment_palette

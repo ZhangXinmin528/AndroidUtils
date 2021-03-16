@@ -1,4 +1,4 @@
-package com.example.androidutils.fragment
+package com.example.androidutils.fragment.component
 
 import android.graphics.Color
 import android.text.Spanned

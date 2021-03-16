@@ -1,4 +1,4 @@
-package com.example.androidutils.fragment
+package com.example.androidutils.fragment.util
 
 import android.content.res.Resources
 import android.graphics.Color
@@ -20,7 +20,7 @@ import java.util.*
  * Copyright (c) 2018 . All rights reserved.
  * User guide for[ImageUtil]
  */
-@Function(group = Group.Component, funcName = "图片工具", funcIconRes = R.drawable.icon_picture)
+@Function(group = Group.UTILS, funcName = "图片工具", funcIconRes = R.drawable.icon_picture)
 class ImageFragment : BaseFragment() {
     private val mResources: Resources? = null
     private val mList: MutableList<ImageEntity> = ArrayList()

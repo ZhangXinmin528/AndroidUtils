@@ -1,4 +1,4 @@
-package com.example.androidutils.fragment
+package com.example.androidutils.fragment.component
 
 import android.util.Log
 import android.view.View
@@ -14,10 +14,9 @@ import com.zxm.utils.core.net.NetWatchdog.NetConnectedListener
  * Created by ZhangXinmin on 2018/11/14.
  * Copyright (c) 2018 . All rights reserved.
  */
-@Function(group = Group.UTILS, funcName = "网络监听", funcIconRes = R.drawable.icon_network_listener)
+@Function(group = Group.Component, funcName = "网络监听", funcIconRes = R.drawable.icon_network_listener)
 class NetWatcherFragment : BaseFragment(), NetChangeListener, NetConnectedListener {
     private var mNetWatchdog: NetWatchdog? = null
-
 
     override fun setLayoutId(): Int {
         return R.layout.fragment_netwatcher

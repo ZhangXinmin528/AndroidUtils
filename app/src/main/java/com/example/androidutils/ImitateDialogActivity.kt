@@ -1,4 +1,4 @@
-package com.example.androidutils.fragment
+package com.example.androidutils
 
 import android.view.MenuItem
 import android.view.View

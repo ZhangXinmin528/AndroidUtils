@@ -1,4 +1,4 @@
-package com.example.androidutils.fragment
+package com.example.androidutils.fragment.lab
 
 import android.text.TextUtils
 import android.view.View
