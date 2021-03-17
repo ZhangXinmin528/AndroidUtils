@@ -11,6 +11,9 @@
         <!--设置窗体切换动画-->
         <item name="android:windowAnimationStyle">@style/activityAnimation</item>
 
+
+        <item name="support_s_list_item_bg_1">@drawable/s_list_item_bg_1</item>
+
     </style>
 
     <style name="AppTheme.Launcher">

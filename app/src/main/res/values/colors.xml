@@ -36,13 +36,6 @@
     <color name="radiusImageView_selected_border_color">@color/app_color_theme_1</color>
     <color name="radiusImageView_selected_mask_color">#7FEF5362</color>
 
-    <!-- Helper 系列界面 -->
-
-    <!-- ColorHelper 颜色工具 -->
-    <color name="colorHelper_square_alpha_background">@color/app_color_theme_4</color>
-    <color name="colorHelper_square_from_ratio_background">@color/app_color_blue</color>
-    <color name="colorHelper_square_to_ratio_background">@color/app_color_theme_3</color>
-
 
     <color name="colorWhite">@color/config_color_white</color>
 

@@ -9,7 +9,7 @@ import com.example.androidutils.model.FuncItemDescription
  * Created by ZhangXinmin on 2021/3/16.
  * Copyright (c) 2021 . All rights reserved.
  */
-class HomeTabAdapter(dataList: MutableList<FuncItemDescription>) :
+class HomeItemAdapter(dataList: MutableList<FuncItemDescription>) :
         BaseQuickAdapter<FuncItemDescription, BaseViewHolder>(data = dataList,
                 layoutResId = R.layout.layout_navigation_list_item) {
 
