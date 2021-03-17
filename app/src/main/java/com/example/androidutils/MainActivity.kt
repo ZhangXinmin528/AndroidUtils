@@ -1,7 +1,6 @@
 package com.example.androidutils
 
 import androidx.fragment.app.Fragment
-import androidx.viewpager.widget.ViewPager
 import com.example.androidutils.adapter.HomeTabAdapter
 import com.example.androidutils.base.BaseActivity
 import com.example.androidutils.fragment.HomeItemFragment
@@ -24,18 +23,28 @@ class MainActivity : BaseActivity() {
 
     override fun initViews() {
         vp_home.adapter = HomeTabAdapter(fragmentManager = supportFragmentManager, dataList = mFragments)
-        vp_home.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-            override fun onPageScrollStateChanged(state: Int) {
+        vp_home.offscreenPageLimit = 2
 
+        nav_main.setupWithViewPager(vp_home)
+        nav_main.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.nav_component -> {
+                    vp_home.currentItem = 0
+                    true
+                }
+                R.id.nav_util -> {
+                    vp_home.currentItem = 1
+                    true
+                }
+                R.id.nav_lab -> {
+                    vp_home.currentItem = 2
+                    true
+                }
+                else -> {
+                    false
+                }
             }
-
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-            }
-
-            override fun onPageSelected(position: Int) {
-            }
-
-        })
+        }
     }
 
 }
