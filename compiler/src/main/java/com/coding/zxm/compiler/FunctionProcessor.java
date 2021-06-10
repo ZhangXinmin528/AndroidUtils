@@ -51,7 +51,7 @@ public class FunctionProcessor extends AbstractProcessor {
     ClassName mMapName = ClassName.get("java.util", "Map");
     ClassName mHashMapName = ClassName.get("java.util", "HashMap");
     ClassName mItemDescName = ClassName.get("com.example.androidutils.model", "FuncItemDescription");
-    ClassName mBaseFragmentName = ClassName.get("com.example.androidutils.base", "BaseFragment");
+    ClassName mBaseFragmentName = ClassName.get("com.coding.zxm.lib_core.base", "BaseFragment");
     TypeName mBaseFragmentClassName = ParameterizedTypeName.get(ClassName.get(Class.class),
             WildcardTypeName.subtypeOf(mBaseFragmentName));
     TypeName mMapFieldTypeName = ParameterizedTypeName.get(mMapName,

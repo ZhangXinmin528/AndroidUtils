@@ -10,11 +10,13 @@ import com.example.androidutils.model.FuncItemDescription
  * Copyright (c) 2021 . All rights reserved.
  */
 class HomeItemAdapter(dataList: MutableList<FuncItemDescription>) :
-        BaseQuickAdapter<FuncItemDescription, BaseViewHolder>(data = dataList,
-                layoutResId = R.layout.layout_navigation_list_item) {
+    BaseQuickAdapter<FuncItemDescription, BaseViewHolder>(
+        data = dataList,
+        layoutResId = R.layout.layout_navigation_list_item
+    ) {
 
     override fun convert(holder: BaseViewHolder, item: FuncItemDescription) {
         holder.setImageResource(R.id.iv_item_icon, item.iconRes)
-                .setText(R.id.tv_item_name, item.name)
+            .setText(R.id.tv_item_name, item.name)
     }
 }

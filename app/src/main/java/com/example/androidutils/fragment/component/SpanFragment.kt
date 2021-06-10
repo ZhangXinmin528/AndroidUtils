@@ -9,7 +9,7 @@ import android.widget.Toast
 import com.coding.zxm.annotation.Function
 import com.coding.zxm.annotation.Group
 import com.example.androidutils.R
-import com.example.androidutils.base.BaseFragment
+import com.coding.zxm.lib_core.base.BaseFragment
 import com.zxm.utils.core.text.ClickableMovementMethod
 import com.zxm.utils.core.text.SpanUtils
 import kotlinx.android.synthetic.main.fragment_span.*

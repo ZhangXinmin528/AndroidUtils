@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/annotation/AndroidUtils.annotation.iml" filepath="$PROJECT_DIR$/.idea/modules/annotation/AndroidUtils.annotation.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/AndroidUtils.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/AndroidUtils.app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/compiler/AndroidUtils.compiler.iml" filepath="$PROJECT_DIR$/.idea/modules/compiler/AndroidUtils.compiler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib.core/AndroidUtils.lib.core.iml" filepath="$PROJECT_DIR$/.idea/modules/lib.core/AndroidUtils.lib.core.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib.coreutils/AndroidUtils.lib.coreutils.iml" filepath="$PROJECT_DIR$/.idea/modules/lib.coreutils/AndroidUtils.lib.coreutils.iml" />
     </modules>
   </component>

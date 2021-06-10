@@ -11,7 +11,7 @@ import androidx.core.app.NotificationManagerCompat
 import com.coding.zxm.annotation.Function
 import com.coding.zxm.annotation.Group
 import com.example.androidutils.R
-import com.example.androidutils.base.BaseFragment
+import com.coding.zxm.lib_core.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_phone.*
 
 /**

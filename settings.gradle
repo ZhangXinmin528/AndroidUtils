@@ -1,6 +1,8 @@
 include ':app'
+include ':lib.core'
 include ':lib.coreutils'
 include ':annotation'
 include ':compiler'
 
 rootProject.name = "AndroidUtils"
+

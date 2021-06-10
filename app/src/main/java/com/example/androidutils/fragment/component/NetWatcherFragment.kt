@@ -5,7 +5,7 @@ import android.view.View
 import com.coding.zxm.annotation.Function
 import com.coding.zxm.annotation.Group
 import com.example.androidutils.R
-import com.example.androidutils.base.BaseFragment
+import com.coding.zxm.lib_core.base.BaseFragment
 import com.zxm.utils.core.net.NetWatchdog
 import com.zxm.utils.core.net.NetWatchdog.NetChangeListener
 import com.zxm.utils.core.net.NetWatchdog.NetConnectedListener

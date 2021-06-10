@@ -1,6 +1,6 @@
 package com.example.androidutils.manager
 
-import com.example.androidutils.base.BaseFragment
+import com.coding.zxm.lib_core.base.BaseFragment
 import com.example.androidutils.fragment.component.DialogFragment
 import com.example.androidutils.fragment.component.NetWatcherFragment
 import com.example.androidutils.fragment.component.SpanFragment

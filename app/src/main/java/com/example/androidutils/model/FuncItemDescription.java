@@ -17,7 +17,7 @@
 package com.example.androidutils.model;
 
 
-import com.example.androidutils.base.BaseFragment;
+import com.coding.zxm.lib_core.base.BaseFragment;
 
 /**
  * @author cginechen

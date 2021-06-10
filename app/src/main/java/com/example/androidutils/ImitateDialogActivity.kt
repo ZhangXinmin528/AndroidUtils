@@ -3,8 +3,7 @@ package com.example.androidutils
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
-import com.example.androidutils.R
-import com.example.androidutils.base.BaseActivity
+import com.coding.zxm.lib_core.base.BaseActivity
 
 /**
  * Created by ZhangXinmin on 2018/10/16.

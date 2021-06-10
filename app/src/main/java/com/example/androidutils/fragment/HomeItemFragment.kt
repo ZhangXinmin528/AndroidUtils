@@ -3,8 +3,8 @@ package com.example.androidutils.fragment
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
+import com.coding.zxm.lib_core.base.BaseFragment
 import com.example.androidutils.R
-import com.example.androidutils.base.BaseFragment
 import com.example.androidutils.fragment.decorator.GridDividerItemDecoration
 import com.example.androidutils.manager.FuncDataManager
 import com.example.androidutils.model.FuncItemDescription
@@ -42,6 +42,10 @@ class HomeItemFragment : BaseFragment() {
 
     override fun initParamsAndValues() {
         mTabType = arguments?.getInt(PARAMS_TAB)!!
+        if (mDataList.isNotEmpty()) {
+            mDataList.clear()
+            mAdapter.notifyDataSetChanged()
+        }
         when (mTabType) {
             TAB_COMPONENT -> {
                 val list = FuncDataManager.getInstance()?.getComponentsDescriptions()

@@ -2,15 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
-    android:background="?attr/support_s_list_item_bg_1"
+    android:layout_height="110dp"
+    android:background="@color/colorWhite"
     android:orientation="vertical"
     android:padding="@dimen/dp_10">
 
     <ImageView
         android:id="@+id/iv_item_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:scaleType="fitXY"
         android:layout_gravity="center_horizontal"
         tools:src="@drawable/icon_device_info" />
 
@@ -18,8 +19,8 @@
         android:id="@+id/tv_item_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|top"
         android:layout_marginTop="@dimen/dp_10"
+        android:gravity="center"
         android:lines="2"
         android:textColor="@android:color/black"
         android:textSize="@dimen/sp_12"
