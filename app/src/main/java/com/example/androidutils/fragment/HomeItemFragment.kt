@@ -2,6 +2,7 @@ package com.example.androidutils.fragment
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import com.coding.zxm.lib_core.base.BaseFragment
 import com.example.androidutils.R
@@ -66,7 +67,6 @@ class HomeItemFragment : BaseFragment() {
                 }
             }
         }
-
         mAdapter = HomeItemAdapter(dataList = mDataList)
     }
 
@@ -74,5 +74,10 @@ class HomeItemFragment : BaseFragment() {
         rv_home_tab.adapter = mAdapter
         rv_home_tab.layoutManager = GridLayoutManager(mContext, 3)
         rv_home_tab.addItemDecoration(GridDividerItemDecoration(mContext, 3))
+
+        mAdapter.setOnItemClickListener { adapter, view, position ->
+            val entity = (adapter as HomeItemAdapter).getItem(position)
+            Toast.makeText(mContext, "点击了${entity.name}", Toast.LENGTH_SHORT).show()
+        }
     }
 }

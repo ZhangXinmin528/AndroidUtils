@@ -24,11 +24,31 @@ class MainActivity : BaseActivity() {
     }
 
     override fun initViews() {
+        vp_home.adapter = HomeTabAdapter(fragmentManager = supportFragmentManager, dataList = mFragments)
+        vp_home.offscreenPageLimit = 2
         vp_home.adapter =
             HomeTabAdapter(fragmentManager = supportFragmentManager, dataList = mFragments)
         vp_home.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
 
+        nav_main.setupWithViewPager(vp_home)
+        nav_main.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.nav_component -> {
+                    vp_home.currentItem = 0
+                    true
+                }
+                R.id.nav_util -> {
+                    vp_home.currentItem = 1
+                    true
+                }
+                R.id.nav_lab -> {
+                    vp_home.currentItem = 2
+                    true
+                }
+                else -> {
+                    false
+                }
             }
 
             override fun onPageScrolled(
@@ -40,8 +60,7 @@ class MainActivity : BaseActivity() {
 
             override fun onPageSelected(position: Int) {
             }
-
-        })
+        }
     }
 
 }
