@@ -1,6 +1,8 @@
 package com.coding.zxm.lib_core.base
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +11,8 @@ import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.view.animation.Animation.AnimationListener
 import android.view.animation.AnimationUtils
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.OnBackPressedDispatcher
 import androidx.annotation.ColorRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
@@ -40,6 +44,16 @@ abstract class BaseFragment() : Fragment(), FragmentLazyLifecycleOwner.Callback 
     private val isInEnterAnimationLiveData = MutableLiveData<Boolean>()
 
     //back press
+
+    private var mOnBackPressedDispatcher: OnBackPressedDispatcher? = null
+    private val mOnBackPressedCallback: OnBackPressedCallback =
+        object : OnBackPressedCallback(true) {
+
+            override fun handleOnBackPressed() {
+
+            }
+
+        }
 
     companion object {
 
@@ -205,6 +219,81 @@ abstract class BaseFragment() : Fragment(), FragmentLazyLifecycleOwner.Callback 
         }
     }
 
+    //=====================================Backpress==========================================//
+    protected fun onNormalBackPressed() {
+        if (parentFragment != null) {
+            bubbleBackPressedEvent()
+            return
+        }
+        val activity: Activity = requireActivity()
+        if (activity is QMUIFragmentContainerProvider) {
+            val provider: QMUIFragmentContainerProvider = activity as QMUIFragmentContainerProvider
+            if (provider.getContainerFragmentManager()
+                    .getBackStackEntryCount() > 1 || provider.getContainerFragmentManager()
+                    .getPrimaryNavigationFragment() === this
+            ) {
+                bubbleBackPressedEvent()
+            } else {
+                val transitionConfig: TransitionConfig = onFetchTransitionConfig()
+                if (QMUISwipeBackActivityManager.getInstance().canSwipeBack()) {
+                    requireActivity().finish()
+                    requireActivity().overridePendingTransition(
+                        transitionConfig.popenter,
+                        transitionConfig.popout
+                    )
+                    return
+                }
+                val toExec: Any = onLastFragmentFinish()
+                if (toExec != null) {
+                    if (toExec is com.qmuiteam.qmui.arch.QMUIFragment) {
+                        val fragment: com.qmuiteam.qmui.arch.QMUIFragment =
+                            toExec as com.qmuiteam.qmui.arch.QMUIFragment
+                        startFragmentAndDestroyCurrent(fragment, false)
+                    } else if (toExec is Intent) {
+                        startActivity(toExec)
+                        requireActivity().overridePendingTransition(
+                            transitionConfig.popenter,
+                            transitionConfig.popout
+                        )
+                        requireActivity().finish()
+                    } else {
+                        onHandleSpecLastFragmentFinish(requireActivity(), transitionConfig, toExec)
+                    }
+                } else {
+                    requireActivity().finish()
+                    requireActivity().overridePendingTransition(
+                        transitionConfig.popenter,
+                        transitionConfig.popout
+                    )
+                }
+            }
+        } else {
+            bubbleBackPressedEvent()
+        }
+    }
+
+    private fun bubbleBackPressedEvent() {
+        // disable this and go with FragmentManager's backPressesCallback
+        // because it will call execPendingActions before popBackStackImmediate
+        mOnBackPressedCallback.isEnabled = false
+        mOnBackPressedDispatcher?.onBackPressed()
+        mOnBackPressedCallback.isEnabled = true
+    }
+
+    protected open fun findFragmentContainerProvider(): QMUIFragmentContainerProvider? {
+        var parent = parentFragment
+        while (parent != null) {
+            parent = if (parent is QMUIFragmentContainerProvider) {
+                return parent as QMUIFragmentContainerProvider?
+            } else {
+                parent.parentFragment
+            }
+        }
+        val activity: Activity? = activity
+        return if (activity is QMUIFragmentContainerProvider) {
+            activity as QMUIFragmentContainerProvider?
+        } else null
+    }
     //======================================Animation===========================================//
 
     private fun checkAndCallOnEnterAnimationStart(animation: Animation?) {

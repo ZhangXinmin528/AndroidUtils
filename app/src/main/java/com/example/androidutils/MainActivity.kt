@@ -20,26 +20,24 @@ class MainActivity : BaseActivity() {
         mFragments.add(HomeItemFragment.newInstance(HomeItemFragment.TAB_COMPONENT))
         mFragments.add(HomeItemFragment.newInstance(HomeItemFragment.TAB_UTIL))
         mFragments.add(HomeItemFragment.newInstance(HomeItemFragment.TAB_LAB))
-
     }
 
     override fun initViews() {
         vp_home.adapter =
             HomeTabAdapter(fragmentManager = supportFragmentManager, dataList = mFragments)
         vp_home.offscreenPageLimit = 2
-        vp_home.adapter =
-            HomeTabAdapter(fragmentManager = supportFragmentManager, dataList = mFragments)
+
         vp_home.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(
                 position: Int,
                 positionOffset: Float,
                 positionOffsetPixels: Int
             ) {
-                TODO("Not yet implemented")
+
             }
 
             override fun onPageSelected(position: Int) {
-                TODO("Not yet implemented")
+
             }
 
             override fun onPageScrollStateChanged(state: Int) {

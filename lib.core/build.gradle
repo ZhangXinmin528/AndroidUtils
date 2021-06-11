@@ -37,6 +37,7 @@ dependencies {
     implementation deps.core_ktx
 
     implementation deps.app_compat
+    implementation deps.fragment.runtime
     implementation deps.material
     implementation deps.constraint_layout
 
