@@ -37,7 +37,6 @@ abstract class BaseFragmentActivity : AppCompatActivity(), FragmentContainerProv
         }
     }
 
-
     private fun getCurrentFragment(): Fragment? {
         return getContainerFragmentManager().findFragmentById(getContainerViewId())
     }

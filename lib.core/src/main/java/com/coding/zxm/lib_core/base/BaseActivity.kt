@@ -19,10 +19,10 @@ import com.zxm.utils.core.sp.SharedPreferencesUtil
 /**
  * Created by ZhangXinmin on 2020/7/19.
  * Copyright (c) 2020 . All rights reserved.
- * Base activity~
+ * Base activity for common usage.
  */
 abstract class BaseActivity : AppCompatActivity() {
-    protected val TAG = this.javaClass.simpleName
+    protected val sTAG = this.javaClass.simpleName
 
     protected var mContext: Context? = null
 

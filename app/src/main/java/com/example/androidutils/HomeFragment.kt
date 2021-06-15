@@ -27,6 +27,8 @@ class HomeFragment : BaseFragment() {
     }
 
     override fun initParamsAndValues() {
+        //TODO:什么原因导致生命周期重新执行？？
+        mFragments.clear()
         mFragments.add(HomeItemFragment.newInstance(HomeItemFragment.TAB_COMPONENT))
         mFragments.add(HomeItemFragment.newInstance(HomeItemFragment.TAB_UTIL))
         mFragments.add(HomeItemFragment.newInstance(HomeItemFragment.TAB_LAB))

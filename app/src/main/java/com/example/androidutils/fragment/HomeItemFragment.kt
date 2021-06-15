@@ -71,8 +71,8 @@ class HomeItemFragment : BaseFragment() {
 
     override fun initViews(rootView: View) {
         rv_home_tab.adapter = mAdapter
-        rv_home_tab.layoutManager = GridLayoutManager(mContext, 3)
-        rv_home_tab.addItemDecoration(GridDividerItemDecoration(mContext, 3))
+        rv_home_tab.layoutManager = GridLayoutManager(mContext, 4)
+        rv_home_tab.addItemDecoration(GridDividerItemDecoration(mContext, 4))
 
         mAdapter.setOnItemClickListener { adapter, view, position ->
             val entity = (adapter as HomeItemAdapter).getItem(position)
