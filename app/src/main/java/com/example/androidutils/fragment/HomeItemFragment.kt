@@ -2,7 +2,6 @@ package com.example.androidutils.fragment
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import com.coding.zxm.lib_core.base.BaseFragment
 import com.example.androidutils.R
@@ -77,7 +76,10 @@ class HomeItemFragment : BaseFragment() {
 
         mAdapter.setOnItemClickListener { adapter, view, position ->
             val entity = (adapter as HomeItemAdapter).getItem(position)
-            Toast.makeText(mContext, "点击了${entity.name}", Toast.LENGTH_SHORT).show()
+            val fragment = entity.demoClass.newInstance()
+            if (fragment != null) {
+                startFragment(fragment)
+            }
         }
     }
 }

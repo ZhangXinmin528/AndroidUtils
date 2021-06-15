@@ -2,8 +2,9 @@ package com.coding.zxm.lib_core.base
 
 import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,10 +16,12 @@ import androidx.activity.OnBackPressedCallback
 import androidx.activity.OnBackPressedDispatcher
 import androidx.annotation.ColorRes
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import com.coding.zxm.lib_core.BuildConfig
 import com.coding.zxm.lib_core.R
 import com.zxm.utils.core.bar.StatusBarCompat
 
@@ -50,7 +53,7 @@ abstract class BaseFragment() : Fragment(), FragmentLazyLifecycleOwner.Callback 
         object : OnBackPressedCallback(true) {
 
             override fun handleOnBackPressed() {
-
+                onNormalBackPressed()
             }
 
         }
@@ -79,6 +82,9 @@ abstract class BaseFragment() : Fragment(), FragmentLazyLifecycleOwner.Callback 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mContext = context
+
+        mOnBackPressedDispatcher = requireActivity().onBackPressedDispatcher
+        mOnBackPressedDispatcher?.addCallback(this, mOnBackPressedCallback)
     }
 
     override fun onCreateView(
@@ -180,6 +186,64 @@ abstract class BaseFragment() : Fragment(), FragmentLazyLifecycleOwner.Callback 
 
     }
 
+    //===============================start fragment=======================================//
+
+    /**
+     * start a new fragment and add to BackStack
+     *
+     * @param fragment the fragment to start
+     * @return Returns the identifier of this transaction's back stack entry,
+     * if [FragmentTransaction.addToBackStack] had been called.  Otherwise, returns
+     * a negative number.
+     */
+    fun startFragment(fragment: BaseFragment): Int {
+        if (!checkStateLoss("startFragment")) {
+            return -1
+        }
+        val provider = findFragmentContainerProvider()
+            ?: return if (BuildConfig.DEBUG) {
+                throw java.lang.RuntimeException("Can not find the fragment container provider.")
+            } else {
+                Log.d(TAG, "Can not find the fragment container provider.")
+                -1
+            }
+        return startFragment(fragment, provider)
+    }
+
+    private fun startFragment(
+        fragment: BaseFragment,
+        provider: FragmentContainerProvider
+    ): Int {
+        val transitionConfig: TransitionConfig = fragment.onFetchTransitionConfig()
+        val tagName: String = fragment.javaClass.getSimpleName()
+        return provider.getContainerFragmentManager()
+            .beginTransaction()
+            .setPrimaryNavigationFragment(null)
+            .setCustomAnimations(
+                transitionConfig.enter,
+                transitionConfig.exit,
+                transitionConfig.popEnter,
+                transitionConfig.popExit
+            )
+            .replace(provider.getContainerViewId(), fragment, tagName)
+            .addToBackStack(tagName)
+            .commit()
+    }
+
+    private fun checkStateLoss(logName: String): Boolean {
+        if (!isAdded) {
+            return false
+        }
+
+        if (parentFragmentManager.isStateSaved) {
+            Log.e(TAG, "$logName can not be invoked after onSaveInstanceState")
+            return false
+        }
+        return true
+
+    }
+
+    //===============================lazy==================================================//
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)
         notifyFragmentVisibleToUserChanged(isVisibleToUser && isParentVisibleToUser())
@@ -219,57 +283,40 @@ abstract class BaseFragment() : Fragment(), FragmentLazyLifecycleOwner.Callback 
         }
     }
 
-    //=====================================Backpress==========================================//
+    //=====================================back press==========================================//
     protected fun onNormalBackPressed() {
         if (parentFragment != null) {
             bubbleBackPressedEvent()
             return
         }
         val activity: Activity = requireActivity()
-        if (activity is QMUIFragmentContainerProvider) {
-            val provider: QMUIFragmentContainerProvider = activity as QMUIFragmentContainerProvider
+        if (activity is FragmentContainerProvider) {
+            val provider: FragmentContainerProvider = activity
             if (provider.getContainerFragmentManager()
-                    .getBackStackEntryCount() > 1 || provider.getContainerFragmentManager()
-                    .getPrimaryNavigationFragment() === this
+                    .backStackEntryCount > 1 || provider.getContainerFragmentManager()
+                    .primaryNavigationFragment === this
             ) {
                 bubbleBackPressedEvent()
             } else {
                 val transitionConfig: TransitionConfig = onFetchTransitionConfig()
-                if (QMUISwipeBackActivityManager.getInstance().canSwipeBack()) {
-                    requireActivity().finish()
-                    requireActivity().overridePendingTransition(
-                        transitionConfig.popenter,
-                        transitionConfig.popout
-                    )
-                    return
-                }
-                val toExec: Any = onLastFragmentFinish()
-                if (toExec != null) {
-                    if (toExec is com.qmuiteam.qmui.arch.QMUIFragment) {
-                        val fragment: com.qmuiteam.qmui.arch.QMUIFragment =
-                            toExec as com.qmuiteam.qmui.arch.QMUIFragment
-                        startFragmentAndDestroyCurrent(fragment, false)
-                    } else if (toExec is Intent) {
-                        startActivity(toExec)
-                        requireActivity().overridePendingTransition(
-                            transitionConfig.popenter,
-                            transitionConfig.popout
-                        )
-                        requireActivity().finish()
-                    } else {
-                        onHandleSpecLastFragmentFinish(requireActivity(), transitionConfig, toExec)
-                    }
-                } else {
-                    requireActivity().finish()
-                    requireActivity().overridePendingTransition(
-                        transitionConfig.popenter,
-                        transitionConfig.popout
-                    )
-                }
+
+                requireActivity().finish()
+                requireActivity().overridePendingTransition(
+                    transitionConfig.popEnter,
+                    transitionConfig.popExit
+                )
             }
         } else {
             bubbleBackPressedEvent()
         }
+    }
+
+    fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        return false
+    }
+
+    fun onKeyUp(keyCode: Int, event: KeyEvent?): Boolean {
+        return false
     }
 
     private fun bubbleBackPressedEvent() {
@@ -280,19 +327,48 @@ abstract class BaseFragment() : Fragment(), FragmentLazyLifecycleOwner.Callback 
         mOnBackPressedCallback.isEnabled = true
     }
 
-    protected open fun findFragmentContainerProvider(): QMUIFragmentContainerProvider? {
+    protected open fun findFragmentContainerProvider(): FragmentContainerProvider? {
         var parent = parentFragment
         while (parent != null) {
-            parent = if (parent is QMUIFragmentContainerProvider) {
-                return parent as QMUIFragmentContainerProvider?
+            parent = if (parent is FragmentContainerProvider) {
+                return parent
             } else {
                 parent.parentFragment
             }
         }
         val activity: Activity? = activity
-        return if (activity is QMUIFragmentContainerProvider) {
-            activity as QMUIFragmentContainerProvider?
+        return if (activity is FragmentContainerProvider) {
+            activity
         } else null
+    }
+
+    protected fun popBackStack() {
+        mOnBackPressedDispatcher?.onBackPressed()
+    }
+
+    /**
+     * pop back to a clazz type fragment
+     *
+     *
+     * Assuming there is a back stack: Home -> List -> Detail. Perform popBackStack(Home.class),
+     * Home is the current fragment
+     *
+     *
+     * if the clazz type fragment doest not exist in back stack, this method is Equivalent
+     * to popBackStack()
+     *
+     * @param cls the type of target fragment
+     */
+    protected open fun popBackStack(cls: Class<out BaseFragment?>) {
+        if (checkPopBack()) {
+            parentFragmentManager.popBackStack(cls.simpleName, 0)
+        }
+    }
+
+    private fun checkPopBack(): Boolean {
+        return if (!isResumed || mEnterAnimationStatus != ANIMATION_ENTER_STATUS_END) {
+            false
+        } else checkStateLoss("popBackStack")
     }
     //======================================Animation===========================================//
 
@@ -356,6 +432,10 @@ abstract class BaseFragment() : Fragment(), FragmentLazyLifecycleOwner.Callback 
             }
         })
         return result
+    }
+
+    fun onFetchTransitionConfig(): TransitionConfig {
+        return SLIDE_TRANSITION_CONFIG
     }
 }
 
