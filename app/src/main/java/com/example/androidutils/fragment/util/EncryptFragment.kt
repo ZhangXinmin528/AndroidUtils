@@ -9,6 +9,7 @@ import com.example.androidutils.R
 import com.coding.zxm.lib_core.base.BaseFragment
 import com.zxm.utils.core.encrypt.EncryptUtils
 import kotlinx.android.synthetic.main.fragment_encrypt.*
+import kotlinx.android.synthetic.main.layout_toolbar_back.*
 
 /**
  * Created by ZhangXinmin on 2019/3/29.
@@ -29,6 +30,8 @@ class EncryptFragment : BaseFragment(), View.OnClickListener {
     }
 
     override fun initViews(rootView: View) {
+        tv_toolbar_title.text = "信息加密"
+        iv_toolbar_back.setOnClickListener(this)
 
         btn_decrypt.setOnClickListener(this)
         btn_encrypt.setOnClickListener(this)
@@ -36,6 +39,9 @@ class EncryptFragment : BaseFragment(), View.OnClickListener {
 
     override fun onClick(v: View) {
         when (v.id) {
+            R.id.iv_toolbar_back -> {
+                popBackStack()
+            }
             R.id.btn_encrypt -> doEncrypt()
             R.id.btn_decrypt -> doDecrypt()
         }

@@ -9,13 +9,14 @@ import com.coding.zxm.lib_core.base.BaseFragment
 import com.zxm.utils.core.net.NetWatchdog
 import com.zxm.utils.core.net.NetWatchdog.NetChangeListener
 import com.zxm.utils.core.net.NetWatchdog.NetConnectedListener
+import kotlinx.android.synthetic.main.layout_toolbar_back.*
 
 /**
  * Created by ZhangXinmin on 2018/11/14.
  * Copyright (c) 2018 . All rights reserved.
  */
 @Function(group = Group.Component, funcName = "网络监听", funcIconRes = R.drawable.icon_network_listener)
-class NetWatcherFragment : BaseFragment(), NetChangeListener, NetConnectedListener {
+class NetWatcherFragment : BaseFragment(), NetChangeListener, NetConnectedListener ,View.OnClickListener{
     private var mNetWatchdog: NetWatchdog? = null
 
     override fun setLayoutId(): Int {
@@ -23,6 +24,9 @@ class NetWatcherFragment : BaseFragment(), NetChangeListener, NetConnectedListen
     }
 
     override fun initViews(rootView: View) {
+        tv_toolbar_title.text = "网络监听"
+        iv_toolbar_back.setOnClickListener(this)
+
         initNetWatchdog()
     }
 
@@ -80,5 +84,13 @@ class NetWatcherFragment : BaseFragment(), NetChangeListener, NetConnectedListen
 
     companion object {
         private val TAG = NetWatcherFragment::class.java.simpleName
+    }
+
+    override fun onClick(v: View?) {
+        when(v?.id){
+            R.id.iv_toolbar_back -> {
+                popBackStack()
+            }
+        }
     }
 }

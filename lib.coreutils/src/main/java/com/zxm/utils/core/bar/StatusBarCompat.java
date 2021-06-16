@@ -11,7 +11,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
-
 import androidx.annotation.ColorInt;
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
@@ -34,6 +33,73 @@ public final class StatusBarCompat {
     private static final int FAKE_STATUS_BAR_VIEW_ID = R.id.statusbar_fake_status_bar_view;
     private static final int FAKE_TRANSLUCENT_VIEW_ID = R.id.statusbar_translucent_view;
     private static final int TAG_KEY_HAVE_SET_OFFSET = -123;
+
+    /**
+     * Return whether the status bar is visible.
+     *
+     * @param activity The activity.
+     * @return {@code true}: yes<br>{@code false}: no
+     */
+    public static boolean isStatusBarVisible(@NonNull final Activity activity) {
+        int flags = activity.getWindow().getAttributes().flags;
+        return (flags & WindowManager.LayoutParams.FLAG_FULLSCREEN) == 0;
+    }
+
+    /**
+     * Set the status bar's light mode.
+     *
+     * @param activity    The activity.
+     * @param isLightMode True to set status bar light mode, false otherwise.
+     */
+    public static void setStatusBarLightMode(@NonNull final Activity activity,
+                                             final boolean isLightMode) {
+        setStatusBarLightMode(activity.getWindow(), isLightMode);
+    }
+
+    /**
+     * Set the status bar's light mode.
+     *
+     * @param window      The window.
+     * @param isLightMode True to set status bar light mode, false otherwise.
+     */
+    public static void setStatusBarLightMode(@NonNull final Window window,
+                                             final boolean isLightMode) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            View decorView = window.getDecorView();
+            int vis = decorView.getSystemUiVisibility();
+            if (isLightMode) {
+                vis |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+            } else {
+                vis &= ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+            }
+            decorView.setSystemUiVisibility(vis);
+        }
+    }
+
+    /**
+     * Is the status bar light mode.
+     *
+     * @param activity The activity.
+     * @return {@code true}: yes<br>{@code false}: no
+     */
+    public static boolean isStatusBarLightMode(@NonNull final Activity activity) {
+        return isStatusBarLightMode(activity.getWindow());
+    }
+
+    /**
+     * Is the status bar light mode.
+     *
+     * @param window The window.
+     * @return {@code true}: yes<br>{@code false}: no
+     */
+    public static boolean isStatusBarLightMode(@NonNull final Window window) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            View decorView = window.getDecorView();
+            int vis = decorView.getSystemUiVisibility();
+            return (vis & View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR) != 0;
+        }
+        return false;
+    }
 
     /**
      * 设置状态栏颜色
@@ -518,6 +584,7 @@ public final class StatusBarCompat {
     }
 
     @TargetApi(Build.VERSION_CODES.M)
+    @Deprecated
     public static void setLightMode(Activity activity) {
         setMIUIStatusBarDarkIcon(activity, true);
         setMeizuStatusBarDarkIcon(activity, true);
@@ -527,6 +594,7 @@ public final class StatusBarCompat {
     }
 
     @TargetApi(Build.VERSION_CODES.M)
+    @Deprecated
     public static void setDarkMode(Activity activity) {
         setMIUIStatusBarDarkIcon(activity, false);
         setMeizuStatusBarDarkIcon(activity, false);
@@ -538,6 +606,7 @@ public final class StatusBarCompat {
     /**
      * 修改 MIUI V6  以上状态栏颜色
      */
+    @Deprecated
     private static void setMIUIStatusBarDarkIcon(@NonNull Activity activity, boolean darkIcon) {
         Class<? extends Window> clazz = activity.getWindow().getClass();
         try {
@@ -554,6 +623,7 @@ public final class StatusBarCompat {
     /**
      * 修改魅族状态栏字体颜色 Flyme 4.0
      */
+    @Deprecated
     private static void setMeizuStatusBarDarkIcon(@NonNull Activity activity, boolean darkIcon) {
         try {
             WindowManager.LayoutParams lp = activity.getWindow().getAttributes();
@@ -704,7 +774,7 @@ public final class StatusBarCompat {
      * @param context context
      * @return 状态栏高度
      */
-    private static int getStatusBarHeight(Context context) {
+    public static int getStatusBarHeight(Context context) {
         // 获得状态栏高度
         int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
         return context.getResources().getDimensionPixelSize(resourceId);

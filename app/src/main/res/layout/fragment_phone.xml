@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
+    <include layout="@layout/layout_toolbar_back" />
 
     <Button
         android:id="@+id/btn_phone_notification"
@@ -14,4 +16,4 @@
         android:text="通知"
         tools:ignore="HardcodedText" />
 
-</LinearLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

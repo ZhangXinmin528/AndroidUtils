@@ -9,13 +9,13 @@
 
 部分新增工具类使用Kotlin编写
 
-1.修复SharedPreferencesUtily工具bug；
+1.修复SharedPreferencesUtil工具bug；
 
 2.增加通知工具类；
 
 3.新增ColorUtils颜色工具
 
-4.AppUtil 变更为 PackageUtil用于获取应用信息
+4.AppUtil用于获取应用信息
 
 5.新增CacheUtil引用缓存工具；
 

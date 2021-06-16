@@ -9,6 +9,7 @@ import com.example.androidutils.fragment.decorator.GridDividerItemDecoration
 import com.example.androidutils.manager.FuncDataManager
 import com.example.androidutils.model.FuncItemDescription
 import kotlinx.android.synthetic.main.fragment_home_tab.*
+import kotlinx.android.synthetic.main.layout_toolbar.*
 
 /**
  * Created by ZhangXinmin on 2021/3/16.
@@ -52,18 +53,21 @@ class HomeItemFragment : BaseFragment() {
                 if (list != null && list.isNotEmpty()) {
                     mDataList.addAll(list)
                 }
+                tv_toolbar_title.setText(R.string.nav_compontents)
             }
             TAB_UTIL -> {
                 val list = FuncDataManager.getInstance()?.getUtilsDescriptions()
                 if (list != null && list.isNotEmpty()) {
                     mDataList.addAll(list)
                 }
+                tv_toolbar_title.setText(R.string.nav_tools)
             }
             TAB_LAB -> {
                 val list = FuncDataManager.getInstance()?.getLabsDescriptions()
                 if (list != null && list.isNotEmpty()) {
                     mDataList.addAll(list)
                 }
+                tv_toolbar_title.setText(R.string.nav_lab)
             }
         }
         mAdapter = HomeItemAdapter(dataList = mDataList)

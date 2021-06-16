@@ -5,11 +5,12 @@ import android.annotation.SuppressLint
 import android.view.View
 import com.coding.zxm.annotation.Function
 import com.coding.zxm.annotation.Group
-import com.example.androidutils.R
 import com.coding.zxm.lib_core.base.BaseFragment
+import com.example.androidutils.R
 import com.zxm.utils.core.device.DeviceUtil
 import com.zxm.utils.core.permission.PermissionChecker
 import kotlinx.android.synthetic.main.fragment_device.*
+import kotlinx.android.synthetic.main.layout_toolbar_back.*
 import java.util.*
 
 /**
@@ -26,6 +27,9 @@ class DeviceFragment : BaseFragment(), View.OnClickListener {
     }
 
     override fun initViews(rootView: View) {
+        tv_toolbar_title.text = "设备信息"
+        iv_toolbar_back.setOnClickListener(this)
+
         if (DeviceUtil.isDeviceRooted()) {
             layout_reboot.visibility = View.VISIBLE
         } else {
@@ -39,7 +43,11 @@ class DeviceFragment : BaseFragment(), View.OnClickListener {
 
     override fun initParamsAndValues() {
         if (!PermissionChecker.checkPersmission(mContext!!, Manifest.permission.READ_PHONE_STATE)) {
-            PermissionChecker.requestPermissions(activity!!, arrayOf(Manifest.permission.READ_PHONE_STATE), 1001)
+            PermissionChecker.requestPermissions(
+                activity!!,
+                arrayOf(Manifest.permission.READ_PHONE_STATE),
+                1001
+            )
         }
     }
 
@@ -73,6 +81,9 @@ class DeviceFragment : BaseFragment(), View.OnClickListener {
 
     override fun onClick(v: View) {
         when (v.id) {
+            R.id.iv_toolbar_back -> {
+                popBackStack()
+            }
             R.id.btn_read_info -> tv_device_detial.text = deviceDetial
 
             R.id.btn_reboot -> if (DeviceUtil.isDeviceRooted()) {

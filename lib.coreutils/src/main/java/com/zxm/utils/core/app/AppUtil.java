@@ -3,7 +3,9 @@ package com.zxm.utils.core.app;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -11,9 +13,9 @@ import androidx.annotation.RequiresApi;
 /**
  * Created by ZhangXinmin on 2019/8/9.
  * Copyright (c) 2019 . All rights reserved.
- * 软件包工具类
+ * 应用信息类
  */
-public final class PackageUtil {
+public final class AppUtil {
 
     private static String appVersionName;
     private static String appPackageName;
@@ -26,11 +28,11 @@ public final class PackageUtil {
     private static int minorVersion = -1;
     private static int fixVersion = -1;
 
-    private PackageUtil() {
+    private AppUtil() {
         throw new UnsupportedOperationException("U con't do this!");
     }
 
-    //版本号相关
+    //TODO：1.版本号相关
 
     /**
      * Get App version name
@@ -110,7 +112,7 @@ public final class PackageUtil {
         return fixVersion;
     }
 
-    //VersionCode
+    //TODO:2.VersionCode
 
     /**
      * Get app version code.
@@ -137,7 +139,7 @@ public final class PackageUtil {
         }
     }
 
-    //包名
+    //ToDO:3.包名
 
     /**
      * Get app package name
@@ -162,6 +164,62 @@ public final class PackageUtil {
         } else {
             return appPackageName;
         }
+    }
+
+    /**
+     * Return the application's icon.
+     *
+     * @param context You'd better application context!.
+     * @return the application's icon
+     */
+    public static Drawable getAppIcon(@NonNull Context context) {
+        if (TextUtils.isEmpty(appPackageName)) {
+            final PackageManager packageManager = context.getApplicationContext().getPackageManager();
+            if (packageManager != null) {
+                try {
+                    final PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
+                    appPackageName = packageInfo == null ? "" : packageInfo.packageName;
+
+                    if (TextUtils.isEmpty(appPackageName)) {
+                        return null;
+                    }
+                    return packageInfo == null ? null : packageInfo.applicationInfo.loadIcon(packageManager);
+                } catch (PackageManager.NameNotFoundException e) {
+                    e.printStackTrace();
+                    return null;
+                }
+            }
+        }
+        return null;
+
+    }
+
+    /**
+     * Return the application's name.
+     *
+     * @param context You'd better application context!.
+     * @return the application's name
+     */
+    public static String getAppName(@NonNull Context context) {
+        if (TextUtils.isEmpty(appPackageName)) {
+            final PackageManager packageManager = context.getApplicationContext().getPackageManager();
+            if (packageManager != null) {
+                try {
+                    final PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
+                    appPackageName = packageInfo == null ? "" : packageInfo.packageName;
+
+                    if (TextUtils.isEmpty(appPackageName)) {
+                        return "";
+                    }
+                    return packageInfo == null ? "" : packageInfo.applicationInfo.loadLabel(packageManager).toString();
+                } catch (PackageManager.NameNotFoundException e) {
+                    e.printStackTrace();
+                    return "";
+                }
+            }
+        }
+        return "";
+
     }
 
     /**

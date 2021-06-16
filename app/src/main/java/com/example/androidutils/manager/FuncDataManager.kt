@@ -1,9 +1,7 @@
 package com.example.androidutils.manager
 
 import com.coding.zxm.lib_core.base.BaseFragment
-import com.example.androidutils.fragment.component.DialogFragment
-import com.example.androidutils.fragment.component.NetWatcherFragment
-import com.example.androidutils.fragment.component.SpanFragment
+import com.example.androidutils.fragment.component.*
 import com.example.androidutils.fragment.lab.CrashFragment
 import com.example.androidutils.fragment.lab.PaletteFrament
 import com.example.androidutils.fragment.lab.PingFragment
@@ -41,9 +39,11 @@ class FuncDataManager private constructor() {
     }
 
     private fun initComponentsDesc() {
+        mComponentsNames.add(AppInfoFragment::class.java)
+        mComponentsNames.add(StatusBarFragment::class.java)
+        mComponentsNames.add(SpanFragment::class.java)
         mComponentsNames.add(DialogFragment::class.java)
         mComponentsNames.add(NetWatcherFragment::class.java)
-        mComponentsNames.add(SpanFragment::class.java)
     }
 
     private fun initLabsDesc() {

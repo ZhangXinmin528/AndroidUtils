@@ -10,16 +10,17 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.coding.zxm.annotation.Function
 import com.coding.zxm.annotation.Group
-import com.example.androidutils.R
 import com.coding.zxm.lib_core.base.BaseFragment
+import com.example.androidutils.R
 import kotlinx.android.synthetic.main.fragment_phone.*
+import kotlinx.android.synthetic.main.layout_toolbar_back.*
 
 /**
  * Created by ZhangXinmin on 2020/7/26.
  * Copyright (c) 2020/11/16 . All rights reserved.
  */
 @Function(group = Group.UTILS, funcName = "手机相关", funcIconRes = R.drawable.icon_phone)
-class NotificationFragment : BaseFragment() {
+class NotificationFragment : BaseFragment(), View.OnClickListener {
 
     private var mNotificationManager: NotificationManagerCompat? = null
 
@@ -33,18 +34,20 @@ class NotificationFragment : BaseFragment() {
     }
 
     override fun initViews(rootView: View) {
+        tv_toolbar_title.text = "手机相关"
+        iv_toolbar_back.setOnClickListener(this)
 
         //2.创建对象
         val notification = NotificationCompat.Builder(mContext)
-                .setContentTitle("测试通知")
-                .setContentText("我要测试一下通知~")
-                .setTicker("通知来了") //通知栏首次出现通知，有动画
-                .setWhen(System.currentTimeMillis())
-                .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setAutoCancel(true)
-                .setDefaults(Notification.DEFAULT_ALL) //通知来了的提示，默认组合
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .build()
+            .setContentTitle("测试通知")
+            .setContentText("我要测试一下通知~")
+            .setTicker("通知来了") //通知栏首次出现通知，有动画
+            .setWhen(System.currentTimeMillis())
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setAutoCancel(true)
+            .setDefaults(Notification.DEFAULT_ALL) //通知来了的提示，默认组合
+            .setSmallIcon(R.mipmap.ic_launcher)
+            .build()
 
         btn_phone_notification.setOnClickListener(View.OnClickListener {
             if (!mNotificationManager!!.areNotificationsEnabled()) {
@@ -72,5 +75,13 @@ class NotificationFragment : BaseFragment() {
                 mNotificationManager!!.notify(100, notification)
             }
         })
+    }
+
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.iv_toolbar_back -> {
+                popBackStack()
+            }
+        }
     }
 }

@@ -4,11 +4,12 @@ import android.os.Environment
 import android.view.View
 import com.coding.zxm.annotation.Function
 import com.coding.zxm.annotation.Group
-import com.example.androidutils.R
 import com.coding.zxm.lib_core.base.BaseFragment
+import com.example.androidutils.R
 import com.zxm.utils.core.log.MLogger
 import com.zxm.utils.core.log.MLogger.LogConfig
 import kotlinx.android.synthetic.main.fragment_log.*
+import kotlinx.android.synthetic.main.layout_toolbar_back.*
 
 /**
  * Created by ZhangXinmin on 2019/3/19.
@@ -52,7 +53,7 @@ class LogFragment : BaseFragment(), View.OnClickListener {
     private var single = true
     private var consoleFilter = MLogger.V
     private var fileFilter = MLogger.V
-    private val builder: LogConfig? = null
+    private val builder: LogConfig = MLogger.getLogConfig()
     private val mRunnable = Runnable {
         MLogger.v("verbose")
         MLogger.d("debug")
@@ -69,6 +70,8 @@ class LogFragment : BaseFragment(), View.OnClickListener {
     override fun initParamsAndValues() {}
 
     override fun initViews(rootView: View) {
+        tv_toolbar_title.text = "日志工具"
+        iv_toolbar_back.setOnClickListener(this)
 
         //默认设置
         tv_about_log.setText(builder.toString())
@@ -95,6 +98,9 @@ class LogFragment : BaseFragment(), View.OnClickListener {
 
     override fun onClick(view: View) {
         when (view.id) {
+            R.id.iv_toolbar_back -> {
+                popBackStack()
+            }
             R.id.btn_toggle_log -> updateConfig(UPDATE_LOG)
             R.id.btn_toggle_console -> updateConfig(UPDATE_CONSOLE)
             R.id.btn_toggle_tag -> updateConfig(UPDATE_TAG)
@@ -156,11 +162,13 @@ class LogFragment : BaseFragment(), View.OnClickListener {
                 }
             }
             R.id.btn_log_json -> {
-                val json = "{\"tools\": [{ \"name\":\"css format\" , \"site\":\"http://tools.w3cschool.cn/code/css\" },{ \"name\":\"json format\" , \"site\":\"http://tools.w3cschool.cn/code/json\" },{ \"name\":\"pwd check\" , \"site\":\"http://tools.w3cschool.cn/password/my_password_safe\" }]}"
+                val json =
+                    "{\"tools\": [{ \"name\":\"css format\" , \"site\":\"http://tools.w3cschool.cn/code/css\" },{ \"name\":\"json format\" , \"site\":\"http://tools.w3cschool.cn/code/json\" },{ \"name\":\"pwd check\" , \"site\":\"http://tools.w3cschool.cn/password/my_password_safe\" }]}"
                 MLogger.json(json)
             }
             R.id.btn_log_xml -> {
-                val xml = "<books><book><author>Jack Herrington</author><title>PHP Hacks</title><publisher>O'Reilly</publisher></book><book><author>Jack Herrington</author><title>Podcasting Hacks</title><publisher>O'Reilly</publisher></book></books>"
+                val xml =
+                    "<books><book><author>Jack Herrington</author><title>PHP Hacks</title><publisher>O'Reilly</publisher></book><book><author>Jack Herrington</author><title>Podcasting Hacks</title><publisher>O'Reilly</publisher></book></books>"
                 MLogger.xml(xml)
             }
         }
@@ -177,28 +185,31 @@ class LogFragment : BaseFragment(), View.OnClickListener {
                 dir = null
             } else {
                 if (Environment.MEDIA_MOUNTED == Environment.getExternalStorageState()) {
-                    dir = Environment.getExternalStorageDirectory().path + System.getProperty("file.separator") + "test"
+                    dir =
+                        Environment.getExternalStorageDirectory().path + System.getProperty("file.separator") + "test"
                 }
             }
             UPDATE_BORDER -> border = !border
             UPDATE_SINGLE -> single = !single
-            UPDATE_CONSOLE_FILTER -> consoleFilter = if (consoleFilter == MLogger.V) MLogger.W else MLogger.V
+            UPDATE_CONSOLE_FILTER -> consoleFilter =
+                if (consoleFilter == MLogger.V) MLogger.W else MLogger.V
             UPDATE_FILE_FILTER -> fileFilter = if (fileFilter == MLogger.V) MLogger.I else MLogger.V
         }
         builder!!.setLogSwitch(log)
-                .setConsoleSwitch(console)
-                .setGlobalTag(globalTag)
-                .setLogHeadSwitch(head)
-                .setLog2FileSwitch(file)
-                .setDir(dir)
-                .setBorderSwitch(border)
-                .setSingleTagSwitch(single)
-                .setConsoleFilter(consoleFilter)
-                .setFileFilter(fileFilter)
+            .setConsoleSwitch(console)
+            .setGlobalTag(globalTag)
+            .setLogHeadSwitch(head)
+            .setLog2FileSwitch(file)
+            .setDir(dir)
+            .setBorderSwitch(border)
+            .setSingleTagSwitch(single)
+            .setConsoleFilter(consoleFilter)
+            .setFileFilter(fileFilter)
         tv_about_log.setText(builder.toString())
     }
 
     private fun getDir(): String {
-        return builder.toString().split(System.getProperty("line.separator")!!.toRegex()).toTypedArray()[5].substring(5)
+        return builder.toString().split(System.getProperty("line.separator")!!.toRegex())
+            .toTypedArray()[5].substring(5)
     }
 }

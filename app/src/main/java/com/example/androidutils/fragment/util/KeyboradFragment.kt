@@ -10,6 +10,7 @@ import com.zxm.utils.core.keyborad.KeyboradUtil
 import com.zxm.utils.core.keyborad.KeyboradUtil.OnSoftInputChangedListener
 import com.zxm.utils.core.text.SpanUtils
 import kotlinx.android.synthetic.main.fragment_keyborad.*
+import kotlinx.android.synthetic.main.layout_toolbar_back.*
 
 /**
  * Created by ZhangXinmin on 2018/9/1.
@@ -24,6 +25,9 @@ class KeyboradFragment : BaseFragment(), View.OnClickListener, OnSoftInputChange
 
     override fun initParamsAndValues() {}
     override fun initViews(rootView: View) {
+        tv_toolbar_title.text = "软键盘工具"
+        iv_toolbar_back.setOnClickListener(this)
+
         btn_show_keyborad.setOnClickListener(this)
         btn_hide_keyborad.setOnClickListener(this)
 
@@ -32,6 +36,9 @@ class KeyboradFragment : BaseFragment(), View.OnClickListener, OnSoftInputChange
 
     override fun onClick(v: View) {
         when (v.id) {
+            R.id.iv_toolbar_back -> {
+                popBackStack()
+            }
             R.id.btn_show_keyborad -> KeyboradUtil.showSoftInput(activity)
             R.id.btn_hide_keyborad -> activity?.let { KeyboradUtil.hideSoftInput(it) }
         }

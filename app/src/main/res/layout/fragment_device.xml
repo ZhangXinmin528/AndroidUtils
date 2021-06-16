@@ -5,6 +5,8 @@
     android:background="@color/color_bg"
     android:orientation="vertical">
 
+    <include layout="@layout/layout_toolbar_back" />
+
     <RelativeLayout
         android:id="@+id/layout_reboot"
         android:layout_width="match_parent"
