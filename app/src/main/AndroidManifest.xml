@@ -29,8 +29,7 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:label">
 
-        <activity
-            android:name=".MainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -38,7 +37,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ImitateDialogActivity" />
+        <activity
+            android:name=".ImitateDialogActivity"
+            android:theme="@style/DialogTheme" />
 
     </application>
 

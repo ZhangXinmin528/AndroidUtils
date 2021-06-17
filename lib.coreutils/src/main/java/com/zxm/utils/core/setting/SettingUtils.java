@@ -16,6 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RequiresPermission;
 
+import com.zxm.utils.core.app.AppUtil;
+
 import static com.zxm.utils.core.constant.PhoneBrand.BRAND_HUAWEI;
 import static com.zxm.utils.core.constant.PhoneBrand.BRAND_MEIZU;
 import static com.zxm.utils.core.constant.PhoneBrand.BRAND_ONEPLUS;
@@ -33,6 +35,25 @@ public final class SettingUtils {
 
     private SettingUtils() {
         throw new UnsupportedOperationException("U con't do this!");
+    }
+
+    /**
+     * 打开应用信息页
+     *
+     * @param context
+     */
+    public static void openAppDetial(@NonNull Context context) {
+        if (context == null)
+            return;
+
+        final Intent intent = new Intent();
+        intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        final String packageName = AppUtil.getAppPackageName(context);
+        if (!TextUtils.isEmpty(packageName)) {
+            intent.setData(Uri.parse("package:" + packageName));
+            context.startActivity(intent);
+        }
+
     }
 
     /**

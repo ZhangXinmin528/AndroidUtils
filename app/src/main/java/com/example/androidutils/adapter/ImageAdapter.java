@@ -33,11 +33,9 @@ public class ImageAdapter extends BaseQuickAdapter<ImageEntity, BaseViewHolder> 
     protected void convert(BaseViewHolder holder, ImageEntity item) {
         holder.setText(R.id.tv_image_name, item.getName());
         final ImageView imageView = holder.getView(R.id.iv_image);
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        item.getImage().compress(Bitmap.CompressFormat.PNG, 100, baos);
-        byte[] bytes = baos.toByteArray();
+
         Glide.with(mContext)
-                .load(bytes)
+                .load(item.getImage())
                 .into(imageView);
 
     }

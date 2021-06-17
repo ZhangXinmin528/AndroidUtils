@@ -11,8 +11,8 @@ android {
         applicationId "com.example.androidutils"
         minSdkVersion build_versions.min_sdk
         targetSdkVersion build_versions.target_sdk
-        versionCode 3
-        versionName "1.0.3"
+        versionCode 5
+        versionName "1.0.5"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -84,6 +84,8 @@ dependencies {
     implementation deps.constraint_layout
     implementation deps.recyclerview
     implementation deps.rvadapterhelper
+
+    implementation deps.fastjson
 
     //palette
     implementation 'androidx.palette:palette-ktx:1.0.0'

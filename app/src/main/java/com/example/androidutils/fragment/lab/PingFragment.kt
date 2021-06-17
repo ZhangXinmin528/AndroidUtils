@@ -2,6 +2,7 @@ package com.example.androidutils.fragment.lab
 
 import android.text.TextUtils
 import android.view.View
+import com.alibaba.fastjson.JSONObject
 import com.coding.zxm.annotation.Function
 import com.coding.zxm.annotation.Group
 import com.coding.zxm.lib_core.base.BaseFragment
@@ -34,13 +35,12 @@ class PingFragment : BaseFragment(), View.OnClickListener {
         val ip: String = et_input_ping.text.toString().trim()
         if (!TextUtils.isEmpty(ip)) {
             val pingResult = PingUtil.ping(3, 0.5f, ip, false)
-            /*if (pingResult != null) {
+            if (pingResult != null) {
                 if (pingResult.getCode() == 0) {
-                    mResultTv.setText(pingResult.successMsg);
-                } else {
-                    mResultTv.setText(pingResult.successMsg);
+                    tv_ping_result.text = JSONObject.toJSONString(pingResult)
                 }
-            }*/MLogger.i(TAG, "result : $pingResult")
+            }
+            MLogger.i(sTAG, "result : $pingResult")
         }
     }
 

@@ -39,6 +39,13 @@
                     android:text="截屏"
                     tools:ignore="HardcodedText" />
 
+                <TextView
+                    android:id="@+id/tv_device_info"
+                    style="@style/ListItemStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/all_screen_info" />
+
                 <ImageView
                     android:id="@+id/iv_test"
                     android:layout_width="200dp"
@@ -46,11 +53,6 @@
                     android:layout_marginTop="@dimen/dp_12"
                     android:scaleType="fitXY" />
 
-                <TextView
-                    android:id="@+id/tv_device_info"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/all_screen_info" />
             </LinearLayout>
 
         </ScrollView>

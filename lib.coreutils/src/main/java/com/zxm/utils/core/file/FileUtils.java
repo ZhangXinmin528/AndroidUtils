@@ -1194,7 +1194,7 @@ public final class FileUtils {
     private static final char HEX_DIGITS[] =
             {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 
-    private static String bytes2HexString(final byte[] bytes) {
+    public static String bytes2HexString(final byte[] bytes) {
         if (bytes == null) return "";
         int len = bytes.length;
         if (len <= 0) return "";
@@ -1206,7 +1206,7 @@ public final class FileUtils {
         return new String(ret);
     }
 
-    private static String byte2FitMemorySize(final long byteNum) {
+    public static String byte2FitMemorySize(final long byteNum) {
         if (byteNum < 0) {
             return "shouldn't be less than zero!";
         } else if (byteNum < 1024) {

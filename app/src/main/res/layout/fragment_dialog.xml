@@ -4,36 +4,58 @@
     android:id="@+id/rl_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/color_bg"
     android:orientation="vertical">
 
     <include layout="@layout/layout_toolbar_back" />
 
-    <Button
-        android:id="@+id/btn_show_dialog"
-        android:layout_width="wrap_content"
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Dialog弹窗"
-        tools:ignore="HardcodedText" />
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btn_show_window"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Window弹窗"
-        tools:ignore="HardcodedText" />
+        <TextView
+            android:id="@+id/btn_show_dialog"
+            style="@style/ListItemStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:text="Dialog弹窗"
+            android:textColor="@color/colorBlack"
+            tools:ignore="HardcodedText" />
 
-    <Button
-        android:id="@+id/btn_show_activity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Activity弹窗"
-        tools:ignore="HardcodedText" />
+        <TextView
+            android:id="@+id/btn_show_window"
+            style="@style/ListItemStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:background="@color/colorWhite"
+            android:text="Window弹窗"
+            android:textColor="@color/colorBlack"
+            tools:ignore="HardcodedText" />
 
-    <Button
-        android:id="@+id/btn_loading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="loading"
-        tools:ignore="HardcodedText" />
+        <TextView
+            android:id="@+id/btn_show_activity"
+            style="@style/ListItemStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:background="@color/colorWhite"
+            android:text="Activity弹窗"
+            android:textColor="@color/colorBlack"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/btn_loading"
+            style="@style/ListItemStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:background="@color/colorWhite"
+            android:text="loading"
+            android:textColor="@color/colorBlack"
+            tools:ignore="HardcodedText" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

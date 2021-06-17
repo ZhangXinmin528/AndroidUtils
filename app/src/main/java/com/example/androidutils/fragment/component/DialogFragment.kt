@@ -74,8 +74,8 @@ class DialogFragment : BaseFragment(), View.OnClickListener {
             }
             R.id.btn_loading -> LoadingDialog.Builder(mContext!!)
                 .setContentView(R.layout.layout_loading_dialog)
-                .setHeight(180)
-                .setWidth(180)
+                .setHeight(140)
+                .setWidth(140)
                 .setCancelable(true)
                 .setMessage(getString(R.string.all_loading), R.id.tv_loading_msg)
                 .showDialog()

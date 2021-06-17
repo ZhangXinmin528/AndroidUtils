@@ -5,10 +5,11 @@ import android.view.View
 import androidx.appcompat.app.AlertDialog
 import com.coding.zxm.annotation.Function
 import com.coding.zxm.annotation.Group
-import com.example.androidutils.R
 import com.coding.zxm.lib_core.base.BaseFragment
+import com.example.androidutils.R
 import com.zxm.utils.core.setting.SettingUtils
 import kotlinx.android.synthetic.main.fragment_setting.*
+import kotlinx.android.synthetic.main.layout_toolbar_back.*
 
 /**
  * Created by ZhangXinmin on 2019/6/11.
@@ -28,6 +29,10 @@ class SettingFragment : BaseFragment(), View.OnClickListener {
     override fun initParamsAndValues() {}
 
     override fun initViews(rootView: View) {
+        tv_toolbar_title.text = "系统设置"
+        iv_toolbar_back.setOnClickListener(this)
+
+        tv_app_detial.setOnClickListener(this)
         tv_self_start.setOnClickListener(this)
         tv_setting_install_not_market.setOnClickListener(this)
         tv_setting_nfc.setOnClickListener(this)
@@ -40,6 +45,10 @@ class SettingFragment : BaseFragment(), View.OnClickListener {
 
     override fun onClick(v: View) {
         when (v.id) {
+            R.id.iv_toolbar_back -> {
+                popBackStack()
+            }
+            R.id.tv_app_detial -> SettingUtils.openAppDetial(mContext!!)
             R.id.tv_self_start -> SettingUtils.openSelfStartPage(mContext!!)
             R.id.tv_setting_install_not_market -> installUnknownSourceApp()
             R.id.tv_setting_wifi -> SettingUtils.openWifiSetting(mContext!!)
@@ -58,13 +67,16 @@ class SettingFragment : BaseFragment(), View.OnClickListener {
                 val hasPermission = packageManager.canRequestPackageInstalls()
                 if (!hasPermission) {
                     AlertDialog.Builder(mContext!!)
-                            .setTitle("允许安装未知来源应用？")
-                            .setMessage(R.string.all_install_unknown_source_app)
-                            .setNegativeButton(android.R.string.cancel) { dialog, which ->
+                        .setTitle("允许安装未知来源应用？")
+                        .setMessage(R.string.all_install_unknown_source_app)
+                        .setNegativeButton(android.R.string.cancel) { dialog, which ->
 
-                            }.setPositiveButton(android.R.string.ok) { dialog, which ->
-                                SettingUtils.openUnknownAppSourcesSetting(activity!!, REQUEST_UNKNOWN_SOURCE)
-                            }.show()
+                        }.setPositiveButton(android.R.string.ok) { dialog, which ->
+                            SettingUtils.openUnknownAppSourcesSetting(
+                                activity!!,
+                                REQUEST_UNKNOWN_SOURCE
+                            )
+                        }.show()
                 }
             }
         }

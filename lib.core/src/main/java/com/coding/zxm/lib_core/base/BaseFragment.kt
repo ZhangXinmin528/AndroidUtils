@@ -31,7 +31,7 @@ import com.zxm.utils.core.bar.StatusBarCompat
  */
 abstract class BaseFragment() : Fragment(), FragmentLazyLifecycleOwner.Callback {
 
-    protected val TAG = this.javaClass.simpleName
+    protected val sTAG = this.javaClass.simpleName
 
     var mContext: Context? = null
 
@@ -204,7 +204,7 @@ abstract class BaseFragment() : Fragment(), FragmentLazyLifecycleOwner.Callback 
             ?: return if (BuildConfig.DEBUG) {
                 throw java.lang.RuntimeException("Can not find the fragment container provider.")
             } else {
-                Log.d(TAG, "Can not find the fragment container provider.")
+                Log.d(sTAG, "Can not find the fragment container provider.")
                 -1
             }
         return startFragment(fragment, provider)
@@ -236,7 +236,7 @@ abstract class BaseFragment() : Fragment(), FragmentLazyLifecycleOwner.Callback 
         }
 
         if (parentFragmentManager.isStateSaved) {
-            Log.e(TAG, "$logName can not be invoked after onSaveInstanceState")
+            Log.e(sTAG, "$logName can not be invoked after onSaveInstanceState")
             return false
         }
         return true

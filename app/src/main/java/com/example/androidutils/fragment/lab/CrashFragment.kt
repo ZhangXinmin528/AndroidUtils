@@ -7,8 +7,8 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.coding.zxm.annotation.Function
 import com.coding.zxm.annotation.Group
-import com.example.androidutils.R
 import com.coding.zxm.lib_core.base.BaseFragment
+import com.example.androidutils.R
 import com.zxm.utils.core.crash.CrashManager
 import com.zxm.utils.core.dialog.DialogUtil
 import kotlinx.android.synthetic.main.fragment_crash.*
@@ -52,7 +52,11 @@ class CrashFragment : BaseFragment(), View.OnClickListener {
             R.id.iv_toolbar_back -> {
                 popBackStack()
             }
-            R.id.layout_clear_crash -> DialogUtil.showDialog(mContext!!, "是否清除崩溃日志信息？", true) { dialog, which ->
+            R.id.layout_clear_crash -> DialogUtil.showDialog(
+                mContext!!,
+                "是否清除崩溃日志信息？",
+                true
+            ) { dialog, which ->
                 val state = CrashManager.getInstance().clearCrashFiles()
                 if (state) {
                     tv_crash_file_size.text = CrashManager.getInstance().crashFilesMemorySize

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#c4c4c4"
+    android:background="@color/color_bg"
     android:orientation="vertical">
 
     <include layout="@layout/layout_toolbar_back" />
@@ -13,10 +13,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="1dp"
-        android:background="@android:color/white"
-        android:padding="12dp">
+        android:background="@android:color/white">
 
         <TextView
+            style="@style/ListItemStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/all_crash_clear"
@@ -30,38 +30,14 @@
             android:textColor="@android:color/black" />
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/tv_imitate_crash"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
-        android:background="@drawable/selector_click"
-        android:padding="12dp"
-        android:text="@string/all_imitate_crash"
-        android:textColor="@android:color/black" />
-
-    <TextView
-        android:id="@+id/tv_crash_empty"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.5"
-        android:layout_marginTop="1dp"
-        android:background="@android:color/white"
-        android:gravity="center"
-        android:text="@string/all_crash_empty_record" />
-
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <RelativeLayout
         android:id="@+id/layout_cache_switch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:orientation="horizontal"
-        android:paddingStart="@dimen/dp_12"
-        android:paddingTop="@dimen/dp_8"
-        android:paddingEnd="@dimen/dp_12"
-        android:paddingBottom="@dimen/dp_8">
+        android:background="@android:color/white">
 
         <TextView
+            style="@style/ListItemStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -72,13 +48,38 @@
             android:id="@+id/switch_crash"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp_10"
-            android:checked="false"
-            android:textOff="@string/all_off"
-            android:textOn="@string/all_on"
-            app:showText="true" />
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="12dp"
+            android:checked="true"/>
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_imitate_crash"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/selector_click"
+        android:padding="12dp"
+        android:text="@string/all_imitate_crash"
+        android:textColor="@android:color/black" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="1dp"
+        android:background="@android:color/white">
+
+        <TextView
+            android:id="@+id/tv_crash_empty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="12dp"
+            android:text="@string/all_crash_empty_record" />
+    </ScrollView>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_crash_result"
@@ -86,6 +87,6 @@
         android:layout_height="match_parent"
         android:layout_marginTop="1dp"
         android:background="@android:color/white"
-        android:visibility="gone" />
+        android:visibility="visible" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

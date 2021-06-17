@@ -31,11 +31,11 @@ public final class NetWatchdog {
         @Override
         public void onReceive(Context context, Intent intent) {
             //获取手机的连接服务管理器，这里是连接管理器类
-            ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            final ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
-            NetworkInfo wifiNetworkInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-            NetworkInfo mobileNetworkInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-            NetworkInfo activeNetworkInfo = cm.getActiveNetworkInfo();
+            final NetworkInfo wifiNetworkInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+            final NetworkInfo mobileNetworkInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+            final NetworkInfo activeNetworkInfo = cm.getActiveNetworkInfo();
 
             NetworkInfo.State wifiState = NetworkInfo.State.UNKNOWN;
             NetworkInfo.State mobileState = NetworkInfo.State.UNKNOWN;
@@ -49,7 +49,7 @@ public final class NetWatchdog {
 
             if (activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting()) {
                 if (mNetConnectedListener != null) {
-                    mNetConnectedListener.onReNetConnected(isReconnect);
+                    mNetConnectedListener.onNetReConnected(isReconnect);
                     isReconnect = false;
                 }
             } else if (activeNetworkInfo == null) {
@@ -73,7 +73,6 @@ public final class NetWatchdog {
                     mNetChangeListener.onNetDisconnected();
                 }
             }
-
         }
     };
 
@@ -90,11 +89,11 @@ public final class NetWatchdog {
      */
     public static boolean hasNet(Context context) {
         //获取手机的连接服务管理器，这里是连接管理器类
-        ConnectivityManager cm = (ConnectivityManager) context.getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        final ConnectivityManager cm = (ConnectivityManager) context.getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
 
-        NetworkInfo wifiNetworkInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        NetworkInfo mobileNetworkInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-        NetworkInfo activeNetworkInfo = cm.getActiveNetworkInfo();
+        final NetworkInfo wifiNetworkInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        final NetworkInfo mobileNetworkInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+        final NetworkInfo activeNetworkInfo = cm.getActiveNetworkInfo();
 
         NetworkInfo.State wifiState = NetworkInfo.State.UNKNOWN;
         NetworkInfo.State mobileState = NetworkInfo.State.UNKNOWN;
@@ -124,9 +123,9 @@ public final class NetWatchdog {
      */
     public static boolean is4GConnected(Context context) {
         //获取手机的连接服务管理器，这里是连接管理器类
-        ConnectivityManager cm = (ConnectivityManager) context.getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        final ConnectivityManager cm = (ConnectivityManager) context.getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
 
-        NetworkInfo mobileNetworkInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+        final NetworkInfo mobileNetworkInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
 
         NetworkInfo.State mobileState = NetworkInfo.State.UNKNOWN;
 
@@ -198,7 +197,7 @@ public final class NetWatchdog {
         /**
          * 网络已连接
          */
-        void onReNetConnected(boolean isReconnect);
+        void onNetReConnected(boolean isReconnect);
 
         /**
          * 网络未连接

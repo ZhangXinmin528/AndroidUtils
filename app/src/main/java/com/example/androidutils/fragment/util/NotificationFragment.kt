@@ -1,10 +1,9 @@
 package com.example.androidutils.fragment.util
 
 import android.app.Notification
-import android.content.Intent
-import android.net.Uri
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.os.Build
-import android.provider.Settings
 import android.view.View
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -12,6 +11,7 @@ import com.coding.zxm.annotation.Function
 import com.coding.zxm.annotation.Group
 import com.coding.zxm.lib_core.base.BaseFragment
 import com.example.androidutils.R
+import com.zxm.utils.core.notifacation.NotificationUtil
 import kotlinx.android.synthetic.main.fragment_phone.*
 import kotlinx.android.synthetic.main.layout_toolbar_back.*
 
@@ -19,10 +19,15 @@ import kotlinx.android.synthetic.main.layout_toolbar_back.*
  * Created by ZhangXinmin on 2020/7/26.
  * Copyright (c) 2020/11/16 . All rights reserved.
  */
-@Function(group = Group.UTILS, funcName = "手机相关", funcIconRes = R.drawable.icon_phone)
+@Function(group = Group.UTILS, funcName = "通知栏", funcIconRes = R.drawable.icon_phone)
 class NotificationFragment : BaseFragment(), View.OnClickListener {
 
     private var mNotificationManager: NotificationManagerCompat? = null
+
+    companion object {
+        private const val NOTIFICATION_ID = 1000
+        private const val CHANNEL_ID = "1001"
+    }
 
     override fun setLayoutId(): Int {
         return R.layout.fragment_phone
@@ -34,11 +39,17 @@ class NotificationFragment : BaseFragment(), View.OnClickListener {
     }
 
     override fun initViews(rootView: View) {
-        tv_toolbar_title.text = "手机相关"
+        tv_toolbar_title.text = "通知栏"
         iv_toolbar_back.setOnClickListener(this)
 
+        val state = NotificationUtil.isNotificationEnable(mContext!!)
+        if (!state) {
+            NotificationUtil.goToSettingNotification(mContext!!)
+            return
+        }
+
         //2.创建对象
-        val notification = NotificationCompat.Builder(mContext)
+        val notification = NotificationCompat.Builder(mContext!!, CHANNEL_ID)
             .setContentTitle("测试通知")
             .setContentText("我要测试一下通知~")
             .setTicker("通知来了") //通知栏首次出现通知，有动画
@@ -49,31 +60,15 @@ class NotificationFragment : BaseFragment(), View.OnClickListener {
             .setSmallIcon(R.mipmap.ic_launcher)
             .build()
 
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel =
+                NotificationChannel(CHANNEL_ID, "test_channel", NotificationManager.IMPORTANCE_HIGH)
+            mNotificationManager!!.createNotificationChannel(channel)
+        }
+
         btn_phone_notification.setOnClickListener(View.OnClickListener {
-            if (!mNotificationManager!!.areNotificationsEnabled()) {
-                //进入设置页面
-                val intent = Intent()
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    intent.action = Settings.ACTION_APP_NOTIFICATION_SETTINGS
-                    intent.putExtra("android.provider.extra.APP_PACKAGE", mContext!!.packageName)
-                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {  //5.0
-                    intent.action = Settings.ACTION_APP_NOTIFICATION_SETTINGS
-                    intent.putExtra("app_package", mContext!!.packageName)
-                    intent.putExtra("app_uid", mContext!!.applicationInfo.uid)
-                } else if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {  //4.4
-                    intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
-                    intent.addCategory(Intent.CATEGORY_DEFAULT)
-                    intent.data = Uri.parse("package:" + mContext!!.packageName)
-                } else if (Build.VERSION.SDK_INT >= 15) {
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    intent.action = "android.settings.APPLICATION_DETAILS_SETTINGS"
-                    //                                intent.setAction(Settings.ACTION_SETTINGS);
-                    intent.data = Uri.fromParts("package", mContext!!.packageName, null)
-                }
-                startActivity(intent)
-            } else {
-                mNotificationManager!!.notify(100, notification)
-            }
+            mNotificationManager!!.notify(NOTIFICATION_ID, notification)
         })
     }
 
@@ -83,5 +78,10 @@ class NotificationFragment : BaseFragment(), View.OnClickListener {
                 popBackStack()
             }
         }
+    }
+
+    override fun onDestroyView() {
+        mNotificationManager?.cancel(NOTIFICATION_ID)
+        super.onDestroyView()
     }
 }

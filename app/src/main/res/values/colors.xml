@@ -4,6 +4,11 @@
     <color name="colorPrimaryDark">@color/app_color_blue</color>
     <color name="colorAccent">#FF4081</color>
 
+    <color name="colorWhite">@color/config_color_white</color>
+    <color name="colorBlack">@color/config_color_pure_black</color>
+    <color name="colorBlue">#0000ff</color>
+    <color name="colorRed">#ff0000</color>
+
     <!-- Components 组件 -->
     <color name="radiusImageView_border_color">@color/app_color_theme_2</color>
     <color name="radiusImageView_selected_border_color">@color/app_color_theme_1</color>

@@ -10,12 +10,11 @@
     <RelativeLayout
         android:id="@+id/layout_reboot"
         android:layout_width="match_parent"
-        android:layout_height="?android:attr/actionBarSize"
-        android:background="@android:color/white"
-        android:paddingStart="@dimen/dp_12"
-        android:paddingEnd="@dimen/dp_12">
+        android:layout_height="wrap_content"
+        android:background="@android:color/white">
 
         <TextView
+            style="@style/ListItemStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -35,22 +34,16 @@
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginTop="1dp"
         android:background="@drawable/shape_white_bg"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btn_read_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/all_read_info" />
-
         <TextView
             android:id="@+id/tv_device_detial"
+            style="@style/ListItemStyle"
             android:layout_width="match_parent"
-            android:layout_height="400dp" />
+            android:layout_height="wrap_content" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 

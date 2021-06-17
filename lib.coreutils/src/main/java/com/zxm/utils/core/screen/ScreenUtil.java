@@ -119,7 +119,7 @@ public final class ScreenUtil {
      * Return the width of physical screen
      *
      * @param context
-     * @return
+     * @return 英寸尺寸
      */
     public static double getPhysicsScreenWidth(Context context) {
         WindowManager manager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -137,7 +137,7 @@ public final class ScreenUtil {
      * Return the height of physical screen
      *
      * @param context
-     * @return
+     * @return 英寸尺寸
      */
     public static double getPhysicsScreenHeight(Context context) {
         WindowManager manager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);

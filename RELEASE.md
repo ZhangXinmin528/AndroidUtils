@@ -5,9 +5,9 @@
 2.演示Demo目前分为三个模块；
 
 ###Util更新日志：
-#### v3.0.5（未发布）
+#### v1.0.5（未发布）
 
-部分新增工具类使用Kotlin编写
+部分新增工具类使用Kotlin编写,由于Jcenter逐渐废弃，故版本号做了变更，后期版本会发布到MavenCenter上；
 
 1.修复SharedPreferencesUtil工具bug；
 
@@ -20,6 +20,9 @@
 5.新增CacheUtil引用缓存工具；
 
 6.新增DisplayHelper用于辅助开发；
+
+7.完善首页工具分类导航；
+
 
 #### v3.0.4
 

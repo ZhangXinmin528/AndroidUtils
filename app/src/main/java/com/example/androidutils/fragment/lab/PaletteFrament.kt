@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.layout_toolbar_back.*
  * Copyright (c) 2018.
  * 取色功能
  */
-@Function(group = Group.Lab, funcName = "图片取色", funcIconRes = R.drawable.icon_palette)
+@Function(group = Group.Lab, funcName = "图片取色", funcIconRes = R.drawable.icon_color_picker)
 class PaletteFrament : BaseFragment(), View.OnClickListener {
 
     override fun setLayoutId(): Int {

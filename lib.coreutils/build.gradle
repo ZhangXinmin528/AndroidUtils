@@ -5,8 +5,8 @@ apply plugin: 'kotlin-android-extensions'
 ext {
     libraryName = 'AndroidUtils'
     libraryDescription = 'Development utils for androidX'
-    libraryVersionName = '3.0.4'
-    libraryVersionCode = 4
+    libraryVersionName = '1.0.5'
+    libraryVersionCode = 5
 }
 
 android {
@@ -33,9 +33,10 @@ android {
     }
 
     android.libraryVariants.all {
-        variant->variant.outputs.all {
-            outputFileName = libraryName+"_${defaultConfig.versionName}_${buildType.name}.aar"
-        }
+        variant ->
+            variant.outputs.all {
+                outputFileName = libraryName + "_${defaultConfig.versionName}_${buildType.name}.aar"
+            }
     }
 }
 

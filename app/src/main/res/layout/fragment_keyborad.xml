@@ -10,7 +10,8 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="12dp">
 
         <EditText
             android:id="@+id/et_input"
@@ -18,14 +19,6 @@
             android:layout_height="wrap_content"
             android:hint="请输入内容"
             tools:ignore="HardcodedText" />
-
-        <TextView
-            android:id="@+id/tv_result"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:textColor="@android:color/black"
-            android:textSize="16sp" />
 
         <Button
             android:id="@+id/btn_hide_keyborad"
@@ -42,6 +35,14 @@
             android:layout_marginTop="12dp"
             android:text="显示软件盘"
             tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/tv_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/color_bg">
 
     <include layout="@layout/layout_toolbar_back" />
 
@@ -15,56 +16,33 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
         <TextView
-            android:id="@+id/tv_network_state"
             style="@style/ListItemStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="网络状态："
+            android:background="@color/colorWhite"
+            android:text="目标色值：Color 1(#FF0000)--Color 2(#0000FF)"
             android:textColor="@color/colorBlack"
             tools:ignore="HardcodedText" />
 
         <TextView
-            android:id="@+id/tv_network_type"
+            android:id="@+id/tv_color_alpha"
             style="@style/ListItemStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="网络类型："
+            android:layout_marginTop="1dp"
+            android:background="@color/colorWhite"
+            android:text="Color2设置透明度(50%)："
             android:textColor="@color/colorBlack"
             tools:ignore="HardcodedText" />
 
         <TextView
-            android:id="@+id/tv_network_ip"
+            android:id="@+id/tv_compute_color"
             style="@style/ListItemStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="IP地址："
-            android:textColor="@color/colorBlack"
-            tools:ignore="HardcodedText" />
-
-        <TextView
-            android:id="@+id/tv_network_mobile"
-            style="@style/ListItemStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="是否移动网络："
-            android:textColor="@color/colorBlack"
-            tools:ignore="HardcodedText" />
-
-        <TextView
-            android:id="@+id/tv_network_4g"
-            style="@style/ListItemStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="是否移动4G："
-            android:textColor="@color/colorBlack"
-            tools:ignore="HardcodedText" />
-
-        <TextView
-            android:id="@+id/tv_network_wifi"
-            style="@style/ListItemStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="WiFi是否连接："
+            android:layout_marginTop="1dp"
+            android:background="@color/colorWhite"
+            android:text="颜色合成："
             android:textColor="@color/colorBlack"
             tools:ignore="HardcodedText" />
 
