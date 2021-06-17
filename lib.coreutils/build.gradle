@@ -44,4 +44,4 @@ dependencies {
     implementation deps.constraint_layout
 }
 
-//apply from: '../maven_publish.gradle'
+apply from: '../maven_publish.gradle'

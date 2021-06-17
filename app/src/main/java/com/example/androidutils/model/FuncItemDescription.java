@@ -30,7 +30,7 @@ public class FuncItemDescription {
     private int mIconRes;
     private String mDocUrl;
 
-    public FuncItemDescription(Class<? extends BaseFragment> kitDemoClass, String kitName) {
+    public FuncItemDescription(Class<? extends BaseFragment> kit DemoClass, String kitName) {
         this(kitDemoClass, kitName, 0, "");
     }
 
