@@ -93,7 +93,6 @@ dependencies {
     //底部导航栏
     implementation(name: 'BottomNavigationViewEx_2.0.4_debug', ext: 'aar')
 
-
     //图片加载框架
     //Glide
     api deps.glide.runtime
