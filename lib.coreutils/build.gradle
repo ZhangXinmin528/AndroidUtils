@@ -2,21 +2,14 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
-ext {
-    libraryName = 'AndroidUtils'
-    libraryDescription = 'Development utils for androidX'
-    libraryVersionName = '1.0.5'
-    libraryVersionCode = 5
-}
-
 android {
     compileSdkVersion build_versions.compile_sdk
     buildToolsVersion build_versions.build_tools
     defaultConfig {
         minSdkVersion build_versions.min_sdk
         targetSdkVersion build_versions.target_sdk
-        versionCode libraryVersionCode
-        versionName libraryVersionName
+        versionCode 1
+        versionName VERSION_NAME
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -32,12 +25,12 @@ android {
         targetCompatibility = 1.8
     }
 
-    android.libraryVariants.all {
-        variant ->
-            variant.outputs.all {
-                outputFileName = libraryName + "_${defaultConfig.versionName}_${buildType.name}.aar"
-            }
-    }
+//    android.libraryVariants.all {
+//        variant ->
+//            variant.outputs.all {
+//                outputFileName = libraryName + "_${defaultConfig.versionName}_${buildType.name}.aar"
+//            }
+//    }
 }
 
 dependencies {
@@ -51,4 +44,4 @@ dependencies {
     implementation deps.constraint_layout
 }
 
-apply from: '../bintray.gradle'
+//apply from: '../maven_publish.gradle'

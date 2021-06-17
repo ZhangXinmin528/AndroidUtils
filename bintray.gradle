@@ -1,3 +1,4 @@
+/*废弃
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'com.github.dcendents.android-maven'
 
@@ -105,4 +106,4 @@ javadoc {
         version true
         links "http://docs.oracle.com/javase/7/docs/api"
     }
-}
+}*/
