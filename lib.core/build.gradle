@@ -40,9 +40,10 @@ dependencies {
     implementation deps.fragment.runtime
     implementation deps.material
     implementation deps.constraint_layout
+    implementation deps.coreUtils
 
     //utils
-    api project(':lib.coreutils')
+//    api project(':lib.coreutils')
 //    implementation(name: 'AndroidUtils_1.0.1_release', ext: 'aar')
-//    implementation 'com.zhangxm.utils:lib.coreutils:3.0.4'
+    implementation deps.coreUtils
 }

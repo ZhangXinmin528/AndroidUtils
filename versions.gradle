@@ -1,7 +1,7 @@
 ext.deps = [:]
 def versions = [:]
 //classpath
-versions.android_gradle_plugin = '4.1.2'
+versions.android_gradle_plugin = '4.2.1'
 versions.kotlin = "1.3.72"
 versions.arouter_register = "1.0.2"
 versions.bugly_tinker_support = "1.1.5"
@@ -56,7 +56,7 @@ versions.amap_search = "7.7.0"
 versions.amap_location = "5.2.0"
 
 //util
-versions.coreUtil = "3.0.4"
+versions.coreutils = "1.0.6"
 versions.tbssdk = "43903"
 //umeng
 versions.umsdk_common = "9.1.0"
@@ -217,7 +217,7 @@ navigation.ui_ktx = "androidx.navigation:navigation-ui-ktx:$versions.navigation"
 navigation.safe_args_plugin = "androidx.navigation:navigation-safe-args-gradle-plugin:$versions.navigation"
 deps.navigation = navigation
 //TODO:CoreUtil
-deps.coreUtil = "com.zhangxm.utils:lib.coreutils:$versions.coreUtil"
+deps.coreUtils = "io.github.zhangxinmin528.androidutils:coreutils:$versions.coreutils"
 //TODO:TBSSDK
 deps.tbssdk = "com.tencent.tbs.tbssdk:sdk:$versions.tbssdk"
 

@@ -20,6 +20,10 @@
         <module name="AndroidUtils.compiler" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="1.8" />
+    <bytecodeTargetLevel target="1.8">
+      <module name="AndroidUtils.app" target="11" />
+      <module name="AndroidUtils.lib.core" target="11" />
+      <module name="AndroidUtils.lib.coreutils" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>

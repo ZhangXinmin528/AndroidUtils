@@ -21,12 +21,34 @@ Usage
 
 Add dependencies in build.gradle.
 
+	1. Maven Center
+
+	Gradle has a built-in configuration to access the Central Repository via HTTP.
+	
+	repositories {  
+		mavenCentral()
+	 } 
+	 
+	To access the Central Repository with Gradle via HTTPS you can define a Maven repository specifying the URL.
+	
+	repositories {   
+		maven {     url "https://repo1.maven.org/maven2"   } 
+		}
+	
+	dependencies {
+		implementation 'io.github.zhangxinmin528.androidutils:coreutils:1.0.6'
+	}
+	
+	2.Jcenter (No longer maintained)
+	
     Adaptation AndroidX
+	
     dependencies {
     		implementation 'com.zhangxm.utils:lib.coreutils:3.0.4'
     	}
     	
-    Using AppCompa
+    Using AppCompat
+	
 	dependencies {
     		implementation 'com.zhangxm.utils:lib.coreutils:1.0.4'
     	}
