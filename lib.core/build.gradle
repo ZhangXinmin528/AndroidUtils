@@ -8,8 +8,6 @@ android {
     defaultConfig {
         minSdkVersion build_versions.min_sdk
         targetSdkVersion build_versions.target_sdk
-        versionCode 1
-        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -45,5 +43,5 @@ dependencies {
     //utils
 //    api project(':lib.coreutils')
 //    implementation(name: 'AndroidUtils_1.0.1_release', ext: 'aar')
-    implementation deps.coreUtils
+//    implementation deps.coreUtils
 }

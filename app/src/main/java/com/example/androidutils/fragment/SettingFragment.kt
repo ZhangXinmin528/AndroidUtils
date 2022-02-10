@@ -50,7 +50,7 @@ class SettingFragment : BaseFragment(), View.OnClickListener {
             }
             R.id.tv_app_detial -> SettingUtils.openAppDetial(mContext!!)
             R.id.tv_self_start -> SettingUtils.openSelfStartPage(mContext!!)
-            R.id.tv_setting_install_not_market -> installUnknownSourceApp()
+//            R.id.tv_setting_install_not_market -> installUnknownSourceApp()
             R.id.tv_setting_wifi -> SettingUtils.openWifiSetting(mContext!!)
             R.id.tv_setting_nfc -> SettingUtils.openNfcSetting(mContext!!)
             R.id.tv_setting_bluetooth -> SettingUtils.openBluetoothSetting(mContext!!)

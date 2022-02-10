@@ -1,7 +1,7 @@
 <resources>
 
     <style name="ListItemStyle">
-        <item name="textSize">14sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:paddingTop">12dp</item>
         <item name="android:paddingBottom">12dp</item>
         <item name="android:paddingStart">12dp</item>

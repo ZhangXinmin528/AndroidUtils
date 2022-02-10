@@ -13,6 +13,7 @@ android {
         targetSdkVersion build_versions.target_sdk
         versionCode 5
         versionName "1.0.5"
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -77,6 +78,7 @@ dependencies {
     //Kotlin
     implementation deps.kotlin.stdlib
     implementation deps.core_ktx
+    implementation deps.multidex
 
     //androidx
     implementation deps.app_compat
@@ -98,6 +100,7 @@ dependencies {
     api deps.glide.runtime
     kapt deps.glide.compiler
 
+    implementation project(path: ':lib.coreutils')
     implementation project(path: ':lib.core')
 
     implementation project(path: ':annotation')

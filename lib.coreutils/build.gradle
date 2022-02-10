@@ -8,8 +8,6 @@ android {
     defaultConfig {
         minSdkVersion build_versions.min_sdk
         targetSdkVersion build_versions.target_sdk
-        versionCode 1
-        versionName VERSION_NAME
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -42,6 +40,7 @@ dependencies {
     implementation deps.app_compat
 
     implementation deps.constraint_layout
+    implementation deps.coordinatorlayout
 }
 
 apply from: '../mavenPublishing.gradle'
