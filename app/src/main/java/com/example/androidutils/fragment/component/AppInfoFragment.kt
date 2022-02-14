@@ -32,8 +32,7 @@ class AppInfoFragment : BaseFragment(), View.OnClickListener {
 
     private fun getAppInfo(): String {
         val sb = StringBuilder()
-        sb.append("应用信息:")
-            .append("\n应用名称：${AppUtil.getAppName(mContext!!)}")
+        sb.append("应用名称：${AppUtil.getAppName(mContext!!)}")
             .append("\n应用包名：${AppUtil.getAppPackageName(mContext!!)}")
             .append("\n编译版本：${AppUtil.getAppVersionCode(mContext!!)}")
             .append("\n版本号：${AppUtil.getAppVersionName(mContext!!)}")
