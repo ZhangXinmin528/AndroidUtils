@@ -24,6 +24,9 @@ class AppInfoFragment : BaseFragment(), View.OnClickListener {
     override fun initParamsAndValues() {
         tv_toolbar_title.text = "应用信息"
         iv_toolbar_back.setOnClickListener(this)
+
+        iv_app_logo.setImageDrawable(AppUtil.getAppIcon(mContext!!))
+
     }
 
     override fun initViews(rootView: View) {
@@ -36,10 +39,18 @@ class AppInfoFragment : BaseFragment(), View.OnClickListener {
             .append("\n应用包名：${AppUtil.getAppPackageName(mContext!!)}")
             .append("\n编译版本：${AppUtil.getAppVersionCode(mContext!!)}")
             .append("\n版本号：${AppUtil.getAppVersionName(mContext!!)}")
+            .append("\n应用是否Debug版本：${AppUtil.isAppDebug(mContext!!)}")
+            .append("\n是否系统应用：${AppUtil.isAppSystem(mContext!!)}")
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             sb.append("\n目标系统版本：${AppUtil.getTargetSdkVersion(mContext!!)}")
                 .append("\n最小系统版本：${AppUtil.getMinSdkVersion(mContext!!)}")
         }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            sb.append("\n是否前台应用：${AppUtil.isAppForeground(mContext!!)}")
+        }
+
         return sb.toString()
     }
 

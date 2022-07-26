@@ -1,6 +1,7 @@
 package com.zxm.utils.core.app;
 
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
@@ -9,6 +10,9 @@ import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.annotation.RequiresPermission;
+
+import com.zxm.utils.core.process.ProcessUtils;
 
 /**
  * Created by ZhangXinmin on 2019/8/9.
@@ -17,11 +21,6 @@ import androidx.annotation.RequiresApi;
  */
 public final class AppUtil {
 
-    private static String appVersionName;
-    private static String appPackageName;
-    private static int appVersionCode;
-    private static int minSdkVersion;
-    private static int targetSdkVersion;
     private static String majorMinorVersion;
 
     private static int majorVersion = -1;
@@ -32,6 +31,7 @@ public final class AppUtil {
         throw new UnsupportedOperationException("U con't do this!");
     }
 
+    //应用信息P
     //TODO：1.版本号相关
 
     /**
@@ -42,22 +42,16 @@ public final class AppUtil {
      * @return maybe ""
      */
     public static String getAppVersionName(@NonNull Context context) {
-        if (appVersionName == null) {
-            final PackageManager packageManager = context.getApplicationContext().getPackageManager();
-            if (packageManager != null) {
-                try {
-                    final PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
-                    appVersionName = packageInfo == null ? "" : packageInfo.versionName;
-                } catch (PackageManager.NameNotFoundException e) {
-                    e.printStackTrace();
-                }
+        final PackageManager packageManager = context.getApplicationContext().getPackageManager();
+        if (packageManager != null) {
+            try {
+                final PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
+                return packageInfo == null ? "" : packageInfo.versionName;
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
             }
         }
-        if (appVersionName == null) {
-            return "";
-        } else {
-            return appVersionName;
-        }
+        return "";
     }
 
     /**
@@ -121,22 +115,17 @@ public final class AppUtil {
      * @return maybe 0
      */
     public static int getAppVersionCode(@NonNull Context context) {
-        if (appVersionCode == 0) {
-            final PackageManager packageManager = context.getApplicationContext().getPackageManager();
-            if (packageManager != null) {
-                try {
-                    final PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
-                    appVersionCode = packageInfo == null ? 0 : packageInfo.versionCode;
-                } catch (PackageManager.NameNotFoundException e) {
-                    e.printStackTrace();
-                }
+        final PackageManager packageManager = context.getApplicationContext().getPackageManager();
+        if (packageManager != null) {
+            try {
+                final PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
+                return packageInfo == null ? 0 : packageInfo.versionCode;
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
             }
         }
-        if (appVersionCode == 0) {
-            return 0;
-        } else {
-            return appVersionCode;
-        }
+        return 0;
+
     }
 
     //ToDO:3.包名
@@ -148,23 +137,19 @@ public final class AppUtil {
      * @return maybe ""
      */
     public static String getAppPackageName(@NonNull Context context) {
-        if (appPackageName == null) {
-            final PackageManager packageManager = context.getApplicationContext().getPackageManager();
-            if (packageManager != null) {
-                try {
-                    final PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
-                    appPackageName = packageInfo == null ? "" : packageInfo.packageName;
-                } catch (PackageManager.NameNotFoundException e) {
-                    e.printStackTrace();
-                }
+        final PackageManager packageManager = context.getApplicationContext().getPackageManager();
+        if (packageManager != null) {
+            try {
+                final PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
+                return packageInfo == null ? "" : packageInfo.packageName;
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
             }
         }
-        if (appPackageName == null) {
-            return "";
-        } else {
-            return appPackageName;
-        }
+        return "";
     }
+
+    //TODO:4.应用图标
 
     /**
      * Return the application's icon.
@@ -173,26 +158,22 @@ public final class AppUtil {
      * @return the application's icon
      */
     public static Drawable getAppIcon(@NonNull Context context) {
-        if (TextUtils.isEmpty(appPackageName)) {
-            final PackageManager packageManager = context.getApplicationContext().getPackageManager();
-            if (packageManager != null) {
-                try {
-                    final PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
-                    appPackageName = packageInfo == null ? "" : packageInfo.packageName;
 
-                    if (TextUtils.isEmpty(appPackageName)) {
-                        return null;
-                    }
-                    return packageInfo == null ? null : packageInfo.applicationInfo.loadIcon(packageManager);
-                } catch (PackageManager.NameNotFoundException e) {
-                    e.printStackTrace();
-                    return null;
-                }
+        final PackageManager packageManager = context.getApplicationContext().getPackageManager();
+        if (packageManager != null) {
+            try {
+                final PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
+                return packageInfo.applicationInfo.loadIcon(packageManager);
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+                return null;
             }
         }
         return null;
 
     }
+
+    //TODO:5.应用名称
 
     /**
      * Return the application's name.
@@ -201,26 +182,23 @@ public final class AppUtil {
      * @return the application's name
      */
     public static String getAppName(@NonNull Context context) {
-        if (TextUtils.isEmpty(appPackageName)) {
-            final PackageManager packageManager = context.getApplicationContext().getPackageManager();
-            if (packageManager != null) {
-                try {
-                    final PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
-                    appPackageName = packageInfo == null ? "" : packageInfo.packageName;
 
-                    if (TextUtils.isEmpty(appPackageName)) {
-                        return "";
-                    }
-                    return packageInfo == null ? "" : packageInfo.applicationInfo.loadLabel(packageManager).toString();
-                } catch (PackageManager.NameNotFoundException e) {
-                    e.printStackTrace();
-                    return "";
-                }
+        final PackageManager packageManager = context.getApplicationContext().getPackageManager();
+        if (packageManager != null) {
+            try {
+                final PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
+                return packageInfo.applicationInfo.loadLabel(packageManager).toString();
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+                return "";
             }
+        } else {
+            return "";
         }
-        return "";
 
     }
+
+    //TODO:6.应用最小兼容版本
 
     /**
      * Get app minmum sdk version.
@@ -230,47 +208,78 @@ public final class AppUtil {
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
     public static int getMinSdkVersion(@NonNull Context context) {
-        if (minSdkVersion == 0) {
-            final PackageManager packageManager = context.getApplicationContext().getPackageManager();
-            if (packageManager != null) {
-                try {
-                    final PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
-                    minSdkVersion = packageInfo == null ? 0 : packageInfo.applicationInfo.minSdkVersion;
-                } catch (PackageManager.NameNotFoundException e) {
-                    e.printStackTrace();
-                }
+        final PackageManager packageManager = context.getApplicationContext().getPackageManager();
+        if (packageManager != null) {
+            try {
+                final PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
+                return packageInfo == null ? 0 : packageInfo.applicationInfo.minSdkVersion;
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
             }
         }
-        if (minSdkVersion == 0) {
-            return 0;
-        } else {
-            return minSdkVersion;
-        }
+        return 0;
     }
 
+    //TODO:7.应用目标版本
+
     /**
-     * Get app minmum sdk version.
+     * Get app target sdk version.
      *
      * @param context You'd better application context!
      * @return maybe 0
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
     public static int getTargetSdkVersion(@NonNull Context context) {
-        if (targetSdkVersion == 0) {
-            final PackageManager packageManager = context.getApplicationContext().getPackageManager();
-            if (packageManager != null) {
-                try {
-                    final PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
-                    targetSdkVersion = packageInfo == null ? 0 : packageInfo.applicationInfo.targetSdkVersion;
-                } catch (PackageManager.NameNotFoundException e) {
-                    e.printStackTrace();
-                }
+        final PackageManager packageManager = context.getApplicationContext().getPackageManager();
+        if (packageManager != null) {
+            try {
+                final PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
+                return packageInfo == null ? 0 : packageInfo.applicationInfo.targetSdkVersion;
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
             }
         }
-        if (targetSdkVersion == 0) {
-            return 0;
-        } else {
-            return targetSdkVersion;
-        }
+
+        return 0;
+
     }
+
+    //TODO: 8.App的属性信息
+
+    /**
+     * Return whether it is a debug application.
+     *
+     * @param context Context
+     * @return {@code true}: yes<br>{@code false}: no
+     */
+    public static boolean isAppDebug(@NonNull Context context) {
+        final ApplicationInfo info = context.getApplicationInfo();
+        return info != null && (info.flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
+    }
+
+    /**
+     * Return whether it is a system application.
+     *
+     * @param context Context
+     * @return {@code true}: yes<br>{@code false}: no
+     */
+    public static boolean isAppSystem(@NonNull Context context) {
+        final ApplicationInfo info = context.getApplicationInfo();
+        return info != null && (info.flags & ApplicationInfo.FLAG_SYSTEM) != 0;
+    }
+
+    /**
+     * Return whether application is foreground.
+     *
+     * @param context Context
+     * @return {@code true}: yes<br>{@code false}: no
+     */
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    @RequiresPermission(android.Manifest.permission.PACKAGE_USAGE_STATS)
+    public static boolean isAppForeground(@NonNull Context context) {
+        final String packageName = getAppPackageName(context);
+        return !TextUtils.isEmpty(packageName) && packageName.equals(ProcessUtils.getForegroundProcessName(context));
+    }
+
+
 }

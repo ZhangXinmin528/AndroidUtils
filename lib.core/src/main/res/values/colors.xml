@@ -35,7 +35,7 @@
     <color name="colorWhite">@color/config_color_white</color>
 
     <color name="clickspan_color">#00ddb6</color>
-    <color name="color_bg">@color/bar_divider</color>
+    <color name="color_bg">#E7E7E7</color>
 
     <color name="color_state_bar">#E8E8E8</color>
 </resources>

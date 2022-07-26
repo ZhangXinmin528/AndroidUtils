@@ -215,7 +215,7 @@ abstract class BaseFragment() : Fragment(), FragmentLazyLifecycleOwner.Callback 
         provider: FragmentContainerProvider
     ): Int {
         val transitionConfig: TransitionConfig = fragment.onFetchTransitionConfig()
-        val tagName: String = fragment.javaClass.getSimpleName()
+        val tagName: String = fragment.javaClass.simpleName
         return provider.getContainerFragmentManager()
             .beginTransaction()
             .setPrimaryNavigationFragment(null)
