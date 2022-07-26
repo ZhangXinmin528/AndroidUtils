@@ -9,6 +9,7 @@ import com.coding.zxm.annotation.Function
 import com.coding.zxm.annotation.Group
 import com.coding.zxm.lib_core.base.BaseFragment
 import com.example.androidutils.R
+import com.zxm.utils.core.crash.CrashInfo
 import com.zxm.utils.core.crash.CrashManager
 import com.zxm.utils.core.dialog.DialogUtil
 import kotlinx.android.synthetic.main.fragment_crash.*
@@ -39,9 +40,15 @@ class CrashFragment : BaseFragment(), View.OnClickListener {
                 CrashManager.getInstance().stopCapture()
             }
         }
-        rv_crash_result.layoutManager = LinearLayoutManager(activity)
 
         tv_crash_file_size.text = CrashManager.getInstance().crashFilesMemorySize
+        val list: MutableList<CrashInfo> = CrashManager.getInstance().crashCaches
+
+        tv_crash_recent.text = if (list.isEmpty()) {
+            getString(R.string.all_crash_empty_record)
+        } else {
+            list[0].tr
+        }
 
         layout_clear_crash.setOnClickListener(this)
         tv_imitate_crash.setOnClickListener(this)

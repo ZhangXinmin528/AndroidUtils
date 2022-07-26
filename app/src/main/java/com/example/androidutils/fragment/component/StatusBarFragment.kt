@@ -1,5 +1,6 @@
 package com.example.androidutils.fragment.component
 
+import android.annotation.SuppressLint
 import android.view.View
 import android.widget.SeekBar
 import com.coding.zxm.annotation.Function
@@ -14,6 +15,7 @@ import kotlinx.android.synthetic.main.layout_toolbar_back.*
  * Created by ZhangXinmin on 2021/06/16.
  * Copyright (c) 2021/6/16 . All rights reserved.
  */
+@SuppressLint("NonConstantResourceId")
 @Function(group = Group.Component, funcName = "状态栏", funcIconRes = R.drawable.icon_status_bar)
 class StatusBarFragment : BaseFragment(), View.OnClickListener {
 

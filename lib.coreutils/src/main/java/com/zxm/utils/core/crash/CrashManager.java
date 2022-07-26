@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresPermission;
 
 import com.zxm.utils.core.file.FileUtils;
+import com.zxm.utils.core.log.MLogger;
 import com.zxm.utils.core.time.TimeUtil;
 
 import java.io.File;
@@ -173,6 +174,7 @@ public final class CrashManager implements Thread.UncaughtExceptionHandler {
             if (!file.exists()) {
                 file.mkdirs();
             }
+            MLogger.d(TAG, "crash cache dir:" + parentDir);
             return file;
         }
         return null;
@@ -225,11 +227,12 @@ public final class CrashManager implements Thread.UncaughtExceptionHandler {
         if (cacheDir.exists() &&
                 cacheDir.isDirectory()) {
             final File[] files = cacheDir.listFiles();
+            MLogger.d(TAG, "getCrashCaches..count:" + files.length);
             if (files != null) {
                 for (File file : files) {
                     final Serializable ser = readCrashCache(file);
-                    if (ser != null && ser instanceof Throwable) {
-                        final CrashInfo crashInfo = new CrashInfo((Throwable) ser, file.lastModified());
+                    if (ser != null&&ser instanceof String) {
+                        final CrashInfo crashInfo = new CrashInfo((String) ser, file.lastModified());
                         caches.add(crashInfo);
                     }
                 }
@@ -281,7 +284,6 @@ public final class CrashManager implements Thread.UncaughtExceptionHandler {
             }
 
         }
-
     }
 
     private static class Holder {

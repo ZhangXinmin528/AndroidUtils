@@ -7,15 +7,15 @@ import java.io.Serializable;
  * Copyright (c) 2019 . All rights reserved.
  */
 public class CrashInfo implements Serializable {
-    private final Throwable tr;
+    private final String tr;
     private final long time;
 
-    public CrashInfo(Throwable tr, long time) {
+    public CrashInfo(String tr, long time) {
         this.tr = tr;
         this.time = time;
     }
 
-    public Throwable getTr() {
+    public String getTr() {
         return tr;
     }
 

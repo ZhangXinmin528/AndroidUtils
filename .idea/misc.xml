@@ -14,6 +14,7 @@
         <entry key="../../../Library/Android/sdk/platforms/android-29/android.jar!/res/layout/search_view.xml" value="0.2125" />
         <entry key="app/src/main/res/layout/fragment_app_info.xml" value="0.2125" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.20572916666666666" />
+        <entry key="app/src/main/res/layout/fragment_status_bar.xml" value="0.20572916666666666" />
         <entry key="app/src/main/res/layout/layout_navigation_list_item.xml" value="0.20572916666666666" />
       </map>
     </option>

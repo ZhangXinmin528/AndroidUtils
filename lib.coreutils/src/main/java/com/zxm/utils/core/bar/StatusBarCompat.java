@@ -19,15 +19,16 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.zxm.utils.core.R;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-
 
 /**
  * Created by ZhangXinmin on 2017/7/13.
  * Copyright (c) 2017 . All rights reserved.
  */
 public final class StatusBarCompat {
+
+    private static final String TAG_STATUS_BAR = "TAG_STATUS_BAR";
+    private static final String TAG_OFFSET = "TAG_OFFSET";
+    private static final int KEY_OFFSET = -123;
 
     public static final int DEFAULT_STATUS_BAR_ALPHA = 112;
     private static final int FAKE_STATUS_BAR_VIEW_ID = R.id.statusbar_fake_status_bar_view;
@@ -44,6 +45,50 @@ public final class StatusBarCompat {
         int flags = activity.getWindow().getAttributes().flags;
         return (flags & WindowManager.LayoutParams.FLAG_FULLSCREEN) == 0;
     }
+
+    /**
+     * Set the status bar's visibility.
+     *
+     * @param activity  The activity.
+     * @param isVisible True to set status bar visible, false otherwise.
+     */
+    public static void setStatusBarVisibility(@NonNull final Activity activity,
+                                              final boolean isVisible) {
+        setStatusBarVisibility(activity.getWindow(), isVisible);
+    }
+
+    /**
+     * Set the status bar's visibility.
+     *
+     * @param window    The window.
+     * @param isVisible True to set status bar visible, false otherwise.
+     */
+    public static void setStatusBarVisibility(@NonNull final Window window,
+                                              final boolean isVisible) {
+        if (isVisible) {
+            window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            showStatusBarView(window);
+            addMarginTopEqualStatusBarHeight(window);
+        } else {
+            window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            hideStatusBarView(window);
+            subtractMarginTopEqualStatusBarHeight(window);
+        }
+    }
+
+
+    /**
+     * 获取状态栏高度
+     *
+     * @param context context
+     * @return 状态栏高度
+     */
+    public static int getStatusBarHeight(Context context) {
+        // 获得状态栏高度
+        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
+        return context.getResources().getDimensionPixelSize(resourceId);
+    }
+
 
     /**
      * Set the status bar's light mode.
@@ -198,6 +243,41 @@ public final class StatusBarCompat {
      */
     public static void setColorNoTranslucent(Activity activity, @ColorInt int color) {
         setColor(activity, color, 0);
+    }
+
+    /**
+     * Add the top margin size equals status bar's height for view.
+     *
+     * @param view The view.
+     */
+    public static void addMarginTopEqualStatusBarHeight(@NonNull View view) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
+        view.setTag(TAG_OFFSET);
+        Object haveSetOffset = view.getTag(KEY_OFFSET);
+        if (haveSetOffset != null && (Boolean) haveSetOffset) return;
+        ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
+        layoutParams.setMargins(layoutParams.leftMargin,
+                layoutParams.topMargin + getStatusBarHeight(view.getContext()),
+                layoutParams.rightMargin,
+                layoutParams.bottomMargin);
+        view.setTag(KEY_OFFSET, true);
+    }
+
+    /**
+     * Subtract the top margin size equals status bar's height for view.
+     *
+     * @param view The view.
+     */
+    public static void subtractMarginTopEqualStatusBarHeight(@NonNull View view) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
+        Object haveSetOffset = view.getTag(KEY_OFFSET);
+        if (haveSetOffset == null || !(Boolean) haveSetOffset) return;
+        ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
+        layoutParams.setMargins(layoutParams.leftMargin,
+                layoutParams.topMargin - getStatusBarHeight(view.getContext()),
+                layoutParams.rightMargin,
+                layoutParams.bottomMargin);
+        view.setTag(KEY_OFFSET, false);
     }
 
     /**
@@ -583,67 +663,6 @@ public final class StatusBarCompat {
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.M)
-    @Deprecated
-    public static void setLightMode(Activity activity) {
-        setMIUIStatusBarDarkIcon(activity, true);
-        setMeizuStatusBarDarkIcon(activity, true);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-        }
-    }
-
-    @TargetApi(Build.VERSION_CODES.M)
-    @Deprecated
-    public static void setDarkMode(Activity activity) {
-        setMIUIStatusBarDarkIcon(activity, false);
-        setMeizuStatusBarDarkIcon(activity, false);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-        }
-    }
-
-    /**
-     * 修改 MIUI V6  以上状态栏颜色
-     */
-    @Deprecated
-    private static void setMIUIStatusBarDarkIcon(@NonNull Activity activity, boolean darkIcon) {
-        Class<? extends Window> clazz = activity.getWindow().getClass();
-        try {
-            Class<?> layoutParams = Class.forName("android.view.MiuiWindowManager$LayoutParams");
-            Field field = layoutParams.getField("EXTRA_FLAG_STATUS_BAR_DARK_MODE");
-            int darkModeFlag = field.getInt(layoutParams);
-            Method extraFlagField = clazz.getMethod("setExtraFlags", int.class, int.class);
-            extraFlagField.invoke(activity.getWindow(), darkIcon ? darkModeFlag : 0, darkModeFlag);
-        } catch (Exception e) {
-            //e.printStackTrace();
-        }
-    }
-
-    /**
-     * 修改魅族状态栏字体颜色 Flyme 4.0
-     */
-    @Deprecated
-    private static void setMeizuStatusBarDarkIcon(@NonNull Activity activity, boolean darkIcon) {
-        try {
-            WindowManager.LayoutParams lp = activity.getWindow().getAttributes();
-            Field darkFlag = WindowManager.LayoutParams.class.getDeclaredField("MEIZU_FLAG_DARK_STATUS_BAR_ICON");
-            Field meizuFlags = WindowManager.LayoutParams.class.getDeclaredField("meizuFlags");
-            darkFlag.setAccessible(true);
-            meizuFlags.setAccessible(true);
-            int bit = darkFlag.getInt(null);
-            int value = meizuFlags.getInt(lp);
-            if (darkIcon) {
-                value |= bit;
-            } else {
-                value &= ~bit;
-            }
-            meizuFlags.setInt(lp, value);
-            activity.getWindow().setAttributes(lp);
-        } catch (Exception e) {
-            //e.printStackTrace();
-        }
-    }
 
     ///////////////////////////////////////////////////////////////////////////////////
 
@@ -768,16 +787,36 @@ public final class StatusBarCompat {
         return statusBarView;
     }
 
-    /**
-     * 获取状态栏高度
-     *
-     * @param context context
-     * @return 状态栏高度
-     */
-    public static int getStatusBarHeight(Context context) {
-        // 获得状态栏高度
-        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
-        return context.getResources().getDimensionPixelSize(resourceId);
+    private static void showStatusBarView(final Window window) {
+        ViewGroup decorView = (ViewGroup) window.getDecorView();
+        View fakeStatusBarView = decorView.findViewWithTag(TAG_STATUS_BAR);
+        if (fakeStatusBarView == null) return;
+        fakeStatusBarView.setVisibility(View.VISIBLE);
+    }
+
+    private static void addMarginTopEqualStatusBarHeight(final Window window) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
+        View withTag = window.getDecorView().findViewWithTag(TAG_OFFSET);
+        if (withTag == null) return;
+        addMarginTopEqualStatusBarHeight(withTag);
+    }
+
+    private static void hideStatusBarView(final Activity activity) {
+        hideStatusBarView(activity.getWindow());
+    }
+
+    private static void hideStatusBarView(final Window window) {
+        ViewGroup decorView = (ViewGroup) window.getDecorView();
+        View fakeStatusBarView = decorView.findViewWithTag(TAG_STATUS_BAR);
+        if (fakeStatusBarView == null) return;
+        fakeStatusBarView.setVisibility(View.GONE);
+    }
+
+    private static void subtractMarginTopEqualStatusBarHeight(final Window window) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
+        View withTag = window.getDecorView().findViewWithTag(TAG_OFFSET);
+        if (withTag == null) return;
+        subtractMarginTopEqualStatusBarHeight(withTag);
     }
 
     /**
