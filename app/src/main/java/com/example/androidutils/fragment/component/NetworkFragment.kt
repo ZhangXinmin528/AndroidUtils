@@ -21,9 +21,9 @@ import kotlinx.android.synthetic.main.layout_toolbar_back.*
  * Copyright (c) 2018 . All rights reserved.
  */
 @Function(
-    group = Group.Component,
+    group = Group.UTILS,
     funcName = "网络状态",
-    funcIconRes = R.drawable.icon_network_connection
+    funcIconRes = R.mipmap.icon_network
 )
 class NetworkFragment : BaseFragment(), NetChangeListener, NetConnectedListener,
     View.OnClickListener {

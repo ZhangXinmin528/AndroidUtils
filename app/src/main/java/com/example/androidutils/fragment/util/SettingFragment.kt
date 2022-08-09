@@ -1,4 +1,4 @@
-package com.example.androidutils.fragment
+package com.example.androidutils.fragment.util
 
 import android.os.Build
 import android.view.View
@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.layout_toolbar_back.*
  * Created by ZhangXinmin on 2019/6/11.
  * Copyright (c) 2018 . All rights reserved.
  */
-@Function(group = Group.UTILS, funcName = "系统设置", funcIconRes = R.drawable.icon_setting)
+@Function(group = Group.UTILS, funcName = "系统设置", funcIconRes = R.mipmap.icon_setting)
 class SettingFragment : BaseFragment(), View.OnClickListener {
 
     companion object {

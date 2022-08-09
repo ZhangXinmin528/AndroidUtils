@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.layout_toolbar_back.*
  * Created by ZhangXinmin on 2019/3/19.
  * Copyright (c) 2018 . All rights reserved.
  */
-@Function(group = Group.UTILS, funcName = "日志工具", funcIconRes = R.drawable.icon_log)
+@Function(group = Group.UTILS, funcName = "日志工具", funcIconRes = R.mipmap.icon_log_info)
 class LogFragment : BaseFragment(), View.OnClickListener {
 
     companion object {

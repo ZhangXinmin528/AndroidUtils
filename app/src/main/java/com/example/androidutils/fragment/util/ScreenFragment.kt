@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.layout_toolbar_back.*
  * Created by ZhangXinmin on 2018/8/30.
  * Copyright (c) 2018 . All rights reserved.
  */
-@Function(group = Group.UTILS, funcName = "屏幕相关", funcIconRes = R.drawable.icon_screen)
+@Function(group = Group.UTILS, funcName = "屏幕相关", funcIconRes = R.mipmap.icon_screen_info)
 class ScreenFragment : BaseFragment(), View.OnClickListener {
 
     override fun setLayoutId(): Int {

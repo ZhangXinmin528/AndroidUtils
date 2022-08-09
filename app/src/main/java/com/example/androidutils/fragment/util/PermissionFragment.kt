@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.layout_toolbar_back.*
  * Copyright (c) 2018 . All rights reserved.
  * 权限测试
  */
-@Function(group = Group.UTILS, funcName = "权限申请", funcIconRes = R.drawable.icon_permission)
+@Function(group = Group.UTILS, funcName = "权限申请", funcIconRes = R.mipmap.icon_permissions)
 class PermissionFragment : BaseFragment(), View.OnClickListener {
     private val permissions = arrayOf(
             Manifest.permission.CAMERA,

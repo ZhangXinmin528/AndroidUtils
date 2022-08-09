@@ -24,7 +24,7 @@ import kotlinx.android.synthetic.main.layout_toolbar_back.*
  * create series of styles [android.widget.TextView].
  *
  */
-@Function(group = Group.Component, funcName = "富文本工具", funcIconRes = R.drawable.icon_span)
+@Function(group = Group.Component, funcName = "富文本工具", funcIconRes = R.mipmap.icon_richtext)
 class SpanFragment : BaseFragment(), View.OnClickListener {
     override fun setLayoutId(): Int {
         return R.layout.fragment_span

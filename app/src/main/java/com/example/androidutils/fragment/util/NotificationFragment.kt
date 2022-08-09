@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.layout_toolbar_back.*
  * Created by ZhangXinmin on 2020/7/26.
  * Copyright (c) 2020/11/16 . All rights reserved.
  */
-@Function(group = Group.UTILS, funcName = "通知栏", funcIconRes = R.drawable.icon_phone)
+@Function(group = Group.Component, funcName = "通知栏", funcIconRes = R.drawable.icon_phone)
 class NotificationFragment : BaseFragment(), View.OnClickListener {
 
     private var mNotificationManager: NotificationManagerCompat? = null

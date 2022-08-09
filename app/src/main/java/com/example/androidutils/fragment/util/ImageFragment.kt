@@ -20,7 +20,7 @@ import java.util.*
  * Copyright (c) 2018 . All rights reserved.
  * User guide for[ImageUtil]
  */
-@Function(group = Group.UTILS, funcName = "图片工具", funcIconRes = R.drawable.icon_picture)
+@Function(group = Group.UTILS, funcName = "图片工具", funcIconRes = R.mipmap.icon_picture)
 class ImageFragment : BaseFragment(), View.OnClickListener {
 
     private val mList: MutableList<ImageEntity> = ArrayList()

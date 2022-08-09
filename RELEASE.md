@@ -4,15 +4,20 @@
 
 2.演示Demo目前分为三个模块；
 
-3.AppUtil更新应用属性相关方法；
+3.添加工具类ProcessUtils；
 
-4.添加工具类ProcessUtils；
+4.功能导航调整；
+
 
 ###Util更新日志：
 
-#### v1.0.7(未发布)
+#### v1.0.7
 
 1.添加DiskLruCache工具；
+
+2.AppUtil更新应用属性相关方法；
+
+3.添加工具类ProcessUtils；
 
 #### v1.0.6
 

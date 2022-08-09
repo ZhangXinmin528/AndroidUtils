@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.layout_toolbar_back.*
  * Created by ZhangXinmin on 2021/06/16.
  * Copyright (c) 2021/6/16 . All rights reserved.
  */
-@Function(group = Group.Component, funcName = "应用信息", funcIconRes = R.mipmap.ic_launcher)
+@Function(group = Group.UTILS, funcName = "应用信息", funcIconRes = R.mipmap.icon_app)
 class AppInfoFragment : BaseFragment(), View.OnClickListener {
 
     override fun setLayoutId(): Int {
@@ -42,13 +42,14 @@ class AppInfoFragment : BaseFragment(), View.OnClickListener {
             .append("\n应用是否Debug版本：${AppUtil.isAppDebug(mContext!!)}")
             .append("\n是否系统应用：${AppUtil.isAppSystem(mContext!!)}")
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            sb.append("\n目标系统版本：${AppUtil.getTargetSdkVersion(mContext!!)}")
-                .append("\n最小系统版本：${AppUtil.getMinSdkVersion(mContext!!)}")
-        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             sb.append("\n是否前台应用：${AppUtil.isAppForeground(mContext!!)}")
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            sb.append("\n目标系统版本：${AppUtil.getTargetSdkVersion(mContext!!)}")
+                .append("\n最小系统版本：${AppUtil.getMinSdkVersion(mContext!!)}")
         }
 
         return sb.toString()

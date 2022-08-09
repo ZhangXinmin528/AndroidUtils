@@ -1,7 +1,7 @@
 package com.example.androidutils.manager
 
 import com.coding.zxm.lib_core.base.BaseFragment
-import com.example.androidutils.fragment.SettingFragment
+import com.example.androidutils.fragment.util.SettingFragment
 import com.example.androidutils.fragment.component.*
 import com.example.androidutils.fragment.lab.CrashFragment
 import com.example.androidutils.fragment.lab.PaletteFrament
@@ -22,7 +22,7 @@ class FuncDataManager private constructor() {
     init {
         initComponentsDesc()
         initLabsDesc()
-        initUtilssDesc()
+        initUtilsDesc()
     }
 
     companion object {
@@ -40,11 +40,11 @@ class FuncDataManager private constructor() {
     }
 
     private fun initComponentsDesc() {
-        mComponentsNames.add(AppInfoFragment::class.java)
+
         mComponentsNames.add(StatusBarFragment::class.java)
         mComponentsNames.add(SpanFragment::class.java)
         mComponentsNames.add(DialogFragment::class.java)
-        mComponentsNames.add(NetworkFragment::class.java)
+        mComponentsNames.add(NotificationFragment::class.java)
     }
 
     private fun initLabsDesc() {
@@ -53,7 +53,8 @@ class FuncDataManager private constructor() {
         mLabsNames.add(PingFragment::class.java)
     }
 
-    private fun initUtilssDesc() {
+    private fun initUtilsDesc() {
+        mUtilsNames.add(AppInfoFragment::class.java)
         mUtilsNames.add(DeviceFragment::class.java)
         mUtilsNames.add(ScreenFragment::class.java)
         mUtilsNames.add(PermissionFragment::class.java)
@@ -62,7 +63,8 @@ class FuncDataManager private constructor() {
         mUtilsNames.add(ColorFragment::class.java)
         mUtilsNames.add(EncryptFragment::class.java)
         mUtilsNames.add(ImageFragment::class.java)
-        mUtilsNames.add(NotificationFragment::class.java)
+
+        mUtilsNames.add(NetworkFragment::class.java)
         mUtilsNames.add(SettingFragment::class.java)
     }
 

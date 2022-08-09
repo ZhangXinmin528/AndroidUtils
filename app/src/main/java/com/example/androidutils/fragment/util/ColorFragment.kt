@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.layout_toolbar_back.*
  * Created by ZhangXinmin on 2021/06/17.
  * Copyright (c) 2021/6/17 . All rights reserved.
  */
-@Function(group = Group.UTILS, funcName = "颜色工具", funcIconRes = R.drawable.icon_color)
+@Function(group = Group.UTILS, funcName = "颜色工具", funcIconRes = R.mipmap.icon_color)
 class ColorFragment : BaseFragment(), View.OnClickListener {
 
     override fun setLayoutId(): Int {

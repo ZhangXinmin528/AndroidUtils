@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.layout_toolbar_back.*
  * Copyright (c) 2018 . All rights reserved.
  * 展示Dialog的使用
  */
-@Function(group = Group.Component, funcName = "应用弹窗", funcIconRes = R.drawable.icon_grid_dialog)
+@Function(group = Group.Component, funcName = "应用弹窗", funcIconRes = R.mipmap.icon_dialog)
 class DialogFragment : BaseFragment(), View.OnClickListener {
 
     private var mConfirmWindow: ConfirmWindow? = null

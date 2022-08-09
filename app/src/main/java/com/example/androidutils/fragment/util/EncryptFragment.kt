@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.layout_toolbar_back.*
  * Copyright (c) 2018 . All rights reserved.
  * 加解密工具的使用
  */
-@Function(group = Group.UTILS, funcName = "信息加密", funcIconRes = R.drawable.icon_encrypt)
+@Function(group = Group.UTILS, funcName = "信息加密", funcIconRes = R.mipmap.icon_encrypt)
 class EncryptFragment : BaseFragment(), View.OnClickListener {
     private val key = "42581693"
     private var encryptResult: String? = null

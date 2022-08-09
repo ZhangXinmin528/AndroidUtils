@@ -19,7 +19,7 @@ import java.util.*
  * 查看设备信息
  */
 @SuppressLint("NonConstantResourceId")
-@Function(group = Group.UTILS, funcName = "设备信息", funcIconRes = R.drawable.icon_device_info)
+@Function(group = Group.UTILS, funcName = "设备信息", funcIconRes = R.mipmap.icon_device_info)
 class DeviceFragment : BaseFragment(), View.OnClickListener {
 
     override fun setLayoutId(): Int {
@@ -83,7 +83,7 @@ class DeviceFragment : BaseFragment(), View.OnClickListener {
             }
 
 
-                    R . id . btn_reboot -> if (DeviceUtil.isDeviceRooted()) {
+            R.id.btn_reboot -> if (DeviceUtil.isDeviceRooted()) {
                 DeviceUtil.reboot(mContext!!)
             } else {
                 DeviceUtil.reboot(mContext!!, "")
