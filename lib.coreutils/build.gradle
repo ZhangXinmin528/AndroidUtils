@@ -41,6 +41,7 @@ dependencies {
 
     implementation deps.constraint_layout
     implementation deps.coordinatorlayout
+    implementation deps.recyclerview
 }
 
 apply from: '../mavenPublishing.gradle'

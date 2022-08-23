@@ -38,7 +38,7 @@ class AppInfoFragment : BaseFragment(), View.OnClickListener {
         sb.append("应用名称：${AppUtil.getAppName(mContext!!)}")
             .append("\n应用包名：${AppUtil.getAppPackageName(mContext!!)}")
             .append("\n编译版本：${AppUtil.getAppVersionCode(mContext!!)}")
-            .append("\n版本号：${AppUtil.getAppVersionName(mContext!!)}")
+            .append("\n版本名：${AppUtil.getAppVersionName(mContext!!)}")
             .append("\n应用是否Debug版本：${AppUtil.isAppDebug(mContext!!)}")
             .append("\n是否系统应用：${AppUtil.isAppSystem(mContext!!)}")
 

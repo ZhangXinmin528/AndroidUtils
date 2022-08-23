@@ -1,5 +1,8 @@
 package com.zxm.utils.core.device;
 
+import static android.Manifest.permission.ACCESS_WIFI_STATE;
+import static android.Manifest.permission.INTERNET;
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -10,6 +13,7 @@ import android.os.Build;
 import android.os.PowerManager;
 import android.provider.Settings;
 import android.text.TextUtils;
+import android.webkit.WebView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresPermission;
@@ -20,10 +24,12 @@ import java.io.File;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Enumeration;
-
-import static android.Manifest.permission.ACCESS_WIFI_STATE;
-import static android.Manifest.permission.INTERNET;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by ZhangXinmin on 2018/11/23.
@@ -443,5 +449,41 @@ public final class DeviceUtil {
      */
     public static void reboot2Bootloader() {
         ShellUtils.execCmd("reboot bootloader", true);
+    }
+
+    /**
+     * 获取WebView版本信息
+     *
+     * @param context
+     * @return
+     */
+    public static String getWebViewChromeVersion(Context context) {
+        WebView webView = new WebView(context);
+        String userAgentString = webView.getSettings().getUserAgentString();
+        webView.destroy();
+        List<String> matches = getMatches("(?<=Chrome/)[.0-9]*(?= Mobile)", userAgentString);
+        if (matches.isEmpty()) {
+            return null;
+        } else {
+            return matches.get(0);
+        }
+    }
+
+    /**
+     * Return the list of input matches the regex.
+     *
+     * @param regex The regex.
+     * @param input The input.
+     * @return the list of input matches the regex
+     */
+    private static List<String> getMatches(final String regex, final CharSequence input) {
+        if (input == null) return Collections.emptyList();
+        List<String> matches = new ArrayList<>();
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(input);
+        while (matcher.find()) {
+            matches.add(matcher.group());
+        }
+        return matches;
     }
 }

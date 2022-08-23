@@ -1,5 +1,7 @@
 <resources>
 
+    <style name="ThemeCore" />
+
     <style name="Theme.Style.Dialog" parent="android:style/Theme.Dialog">
         <item name="android:background">#00000000</item>
         <!--背景是否模糊显示-->
@@ -27,5 +29,76 @@
         <item name="android:windowIsFloating">true</item>
         <!--是否半透明-->
         <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="ThemeCore.TitleBig">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">#324456</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ThemeCore.Shadow">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">8dp</item>
+    </style>
+
+    <style name="ThemeCore.Shadow.Bottom">
+        <item name="android:background">@drawable/dk_shadow_bottom</item>
+    </style>
+
+    <style name="ThemeCore.Input">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical|left</item>
+        <item name="android:textColor">#333333</item>
+        <item name="android:textColorHint">#CCCCCC</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:background">@null</item>
+        <item name="android:textCursorDrawable">@drawable/dk_input_cursor</item>
+    </style>
+
+
+    <style name="ThemeCore.RadioButton">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/dk_radio_button_text_color</item>
+        <item name="android:layout_height">34dp</item>
+        <item name="android:layout_width">70dp</item>
+        <item name="android:button">@null</item>
+        <item name="android:background">@drawable/dk_radio_button_background</item>
+    </style>
+
+    <style name="ThemeCore.RadioButton.Left">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/dk_radio_button_text_color</item>
+        <item name="android:layout_height">34dp</item>
+        <item name="android:layout_width">70dp</item>
+        <item name="android:button">@null</item>
+        <item name="android:background">@drawable/dk_radio_button_background_left</item>
+    </style>
+
+
+    <style name="ThemeCore.RadioButton.middle">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/dk_radio_button_text_color</item>
+        <item name="android:layout_height">34dp</item>
+        <item name="android:layout_width">70dp</item>
+        <item name="android:button">@null</item>
+        <item name="android:background">@drawable/dk_radio_button_background_middle</item>
+    </style>
+
+    <style name="ThemeCore.RadioButton.Right">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/dk_radio_button_text_color</item>
+        <item name="android:layout_height">34dp</item>
+        <item name="android:layout_width">70dp</item>
+        <item name="android:button">@null</item>
+        <item name="android:background">@drawable/dk_radio_button_background_right</item>
     </style>
 </resources>

@@ -3,11 +3,6 @@
 buildscript {
     apply from: 'versions.gradle'
 
-    ext {
-        kotlin_version = '1.3.72'
-        versions.kotlin = '1.5.0'
-    }
-
     addRepos(repositories)
 
     dependencies {
@@ -25,5 +20,12 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+ext {
+    repo_config = [
+            "use_local": true
+    ]
+
 }
 

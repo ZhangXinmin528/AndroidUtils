@@ -18,6 +18,23 @@
         <entry key="app/src/main/res/layout/fragment_netwatcher.xml" value="0.20572916666666666" />
         <entry key="app/src/main/res/layout/fragment_status_bar.xml" value="0.20572916666666666" />
         <entry key="app/src/main/res/layout/layout_navigation_list_item.xml" value="0.20572916666666666" />
+        <entry key="lib.coreutils/src/main/res/drawable/dk_input_cursor.xml" value="0.2055" />
+        <entry key="lib.coreutils/src/main/res/drawable/dk_log_filter_background.xml" value="0.1845" />
+        <entry key="lib.coreutils/src/main/res/drawable/dk_radio_button_background.xml" value="0.181" />
+        <entry key="lib.coreutils/src/main/res/drawable/dk_radio_button_background_left.xml" value="0.181" />
+        <entry key="lib.coreutils/src/main/res/drawable/dk_radio_button_background_middle.xml" value="0.181" />
+        <entry key="lib.coreutils/src/main/res/drawable/dk_radio_button_background_right.xml" value="0.181" />
+        <entry key="lib.coreutils/src/main/res/drawable/dk_radio_button_checked_background.xml" value="0.181" />
+        <entry key="lib.coreutils/src/main/res/drawable/dk_radio_button_checked_background_left.xml" value="0.181" />
+        <entry key="lib.coreutils/src/main/res/drawable/dk_radio_button_checked_background_middle.xml" value="0.181" />
+        <entry key="lib.coreutils/src/main/res/drawable/dk_radio_button_checked_background_right.xml" value="0.181" />
+        <entry key="lib.coreutils/src/main/res/drawable/dk_radio_button_normal_background.xml" value="0.181" />
+        <entry key="lib.coreutils/src/main/res/drawable/dk_radio_button_normal_background_left.xml" value="0.181" />
+        <entry key="lib.coreutils/src/main/res/drawable/dk_radio_button_normal_background_middle.xml" value="0.181" />
+        <entry key="lib.coreutils/src/main/res/drawable/dk_radio_button_normal_background_right.xml" value="0.181" />
+        <entry key="lib.coreutils/src/main/res/layout/dk_float_log_info.xml" value="0.20572916666666666" />
+        <entry key="lib.coreutils/src/main/res/layout/dk_item_log.xml" value="0.1648148148148148" />
+        <entry key="lib.coreutils/src/main/res/layout/dk_log_title_bar.xml" value="0.14629629629629629" />
       </map>
     </option>
   </component>

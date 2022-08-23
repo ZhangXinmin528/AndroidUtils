@@ -8,5 +8,22 @@
     <string name="rationale_sms">Disable SMS permission, you will not be able to use device SMS related function~</string>
     <string name="rationale_storage">Disable storage space permissions, you will not be able to use the file read and write or delete function ~</string>
 
+    <string name="dk_kit_log_info">Log</string>
+    <string name="dk_log_text_loading">Loading...</string>
+    <string name="dk_health_back_top">back to the top</string>
+    <string name="dk_log_btn_clean">Clear</string>
+    <string name="dk_log_btn_export">Export</string>
+    <string name="dk_log_btn_back_top">Top</string>
+    <string name="dk_log_btn_to_bottom">Bottom</string>
+
+    <string name="dk_log_info_edt_hint">Enter the keywords you want to filter</string>
+    <string name="dk_log_info_verbose">Verbose</string>
+    <string name="dk_log_info_debug">Debug</string>
+    <string name="dk_log_info_info">Info</string>
+    <string name="dk_log_info_warn">Warn</string>
+    <string name="dk_log_info_error">Error</string>
+
+    <string name="dk_kit_log_min">Min</string>
+
     <string name="all_loading">loading...</string>
 </resources>
