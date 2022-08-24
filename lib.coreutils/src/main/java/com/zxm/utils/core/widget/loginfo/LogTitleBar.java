@@ -1,4 +1,4 @@
-package com.zxm.utils.core.widget;
+package com.zxm.utils.core.widget.loginfo;
 
 import android.content.Context;
 import android.content.res.TypedArray;

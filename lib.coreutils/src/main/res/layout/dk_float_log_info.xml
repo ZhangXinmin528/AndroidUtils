@@ -11,7 +11,7 @@
         android:background="#ffffff"
         android:orientation="vertical">
 
-        <com.zxm.utils.core.widget.LogTitleBar
+        <com.zxm.utils.core.widget.loginfo.LogTitleBar
             android:id="@+id/dokit_title_bar"
             android:layout_width="match_parent"
             android:layout_height="68dp"

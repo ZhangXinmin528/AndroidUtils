@@ -1,14 +1,17 @@
 package com.zxm.utils.core.loginfo.util;
 
 import android.content.Context;
-import androidx.core.content.ContextCompat;
+import android.graphics.Color;
 import android.util.Log;
 import android.util.SparseIntArray;
-import com.didichuxing.doraemonkit.R;
+
+import androidx.core.content.ContextCompat;
+
+import com.zxm.utils.core.R;
 
 /**
  * @author: linjizong
- *  2019/4/30
+ * 2019/4/30
  * @desc:
  */
 public class TagColorUtil {

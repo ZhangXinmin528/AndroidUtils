@@ -74,4 +74,25 @@
     <!--drawable-->
     <color name="drawable_color_list_separator">#DEE0E2</color>
     <color name="drawable_color_list_pressed">#DEE0E2</color>
+
+
+    <color name="dk_color_000000">#000000</color>
+    <color name="dk_color_8F0005">#8F0005</color>
+    <color name="dk_color_FF0006">#FF0006</color>
+    <color name="dk_color_0099dd">#0099dd</color>
+    <color name="dk_color_FFFFFF">#FFFFFF</color>
+
+    <color name="background_wtf">#FF999900</color>
+    <color name="background_error">#FFCC0000</color>
+    <color name="background_verbose">#FF666666</color>
+    <color name="background_debug">#FFFFFF00</color>
+    <color name="background_info">#FF00CC00</color>
+    <color name="background_warn">#FF0066CC</color>
+
+    <color name="foreground_wtf">#FFFFFFFF</color>
+    <color name="foreground_error">#FFFFFFFF</color>
+    <color name="foreground_verbose">#FFCCCCCC</color>
+    <color name="foreground_debug">#FF333333</color>
+    <color name="foreground_info">#FF333333</color>
+    <color name="foreground_warn">#FFCCCCCC</color>
 </resources>

@@ -4,6 +4,7 @@ import com.coding.zxm.lib_core.base.BaseFragment
 import com.example.androidutils.fragment.util.SettingFragment
 import com.example.androidutils.fragment.component.*
 import com.example.androidutils.fragment.lab.CrashFragment
+import com.example.androidutils.fragment.lab.LogInfoFragment
 import com.example.androidutils.fragment.lab.PaletteFrament
 import com.example.androidutils.fragment.lab.PingFragment
 import com.example.androidutils.fragment.util.*
@@ -51,6 +52,7 @@ class FuncDataManager private constructor() {
         mLabsNames.add(CrashFragment::class.java)
         mLabsNames.add(PaletteFrament::class.java)
         mLabsNames.add(PingFragment::class.java)
+        mLabsNames.add(LogInfoFragment::class.java)
     }
 
     private fun initUtilsDesc() {

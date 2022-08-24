@@ -1,7 +1,8 @@
-package com.zxm.utils.core.loginfo;
+package com.zxm.utils.core.widget.loginfo;
 
 import static android.content.Context.CLIPBOARD_SERVICE;
 
+import android.annotation.SuppressLint;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.zxm.utils.core.R;
+import com.zxm.utils.core.loginfo.LogLine;
 import com.zxm.utils.core.loginfo.util.SearchCriteria;
 import com.zxm.utils.core.loginfo.util.TagColorUtil;
 import com.zxm.utils.core.widget.recyclerview.AbsRecyclerAdapter;
@@ -46,6 +48,7 @@ public class LogItemAdapter extends AbsRecyclerAdapter<AbsViewBinder<LogLine>, L
     /**
      * 清空log
      */
+    @SuppressLint("NotifyDataSetChanged")
     public void clearLog() {
         if (mOriginalValues != null && mOriginalValues.size() > 0) {
             mOriginalValues.clear();
@@ -61,7 +64,7 @@ public class LogItemAdapter extends AbsRecyclerAdapter<AbsViewBinder<LogLine>, L
 
     @Override
     protected View createView(LayoutInflater inflater, ViewGroup parent, int viewType) {
-        return inflater.inflate(R.layout.dk_item_log, parent, false);
+        return inflater.inflate(R.layout.layout_log_info_list_item, parent, false);
     }
 
     @Override
@@ -82,6 +85,7 @@ public class LogItemAdapter extends AbsRecyclerAdapter<AbsViewBinder<LogLine>, L
         return mOriginalValues != null ? mOriginalValues : mList;
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void removeFirst(int n) {
         if (mOriginalValues != null) {
             List<LogLine> subList = mOriginalValues.subList(n, mOriginalValues.size());
@@ -260,6 +264,7 @@ public class LogItemAdapter extends AbsRecyclerAdapter<AbsViewBinder<LogLine>, L
             return finalValues;
         }
 
+        @SuppressLint("NotifyDataSetChanged")
         @SuppressWarnings("unchecked")
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
