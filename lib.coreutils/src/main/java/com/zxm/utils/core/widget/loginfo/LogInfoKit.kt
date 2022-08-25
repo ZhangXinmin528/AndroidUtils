@@ -28,7 +28,6 @@ class LogInfoKit private constructor() {
      * @param context
      */
     fun onAttach(context: Context) {
-        MLogger.d(sTAG, "onAttach..${logInfoPanel == null}")
         if (logInfoPanel == null) {
             logInfoPanel = LogInfoPanel(context)
         }
@@ -39,7 +38,6 @@ class LogInfoKit private constructor() {
      * 移除日志信息展板
      */
     fun onDetach() {
-        MLogger.d(sTAG, "onDetach..${logInfoPanel == null}")
         if (logInfoPanel != null) {
             logInfoPanel?.closePanel()
 //            logInfoPanel == null

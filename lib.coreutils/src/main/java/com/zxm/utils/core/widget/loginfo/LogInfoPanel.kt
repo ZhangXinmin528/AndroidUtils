@@ -179,7 +179,6 @@ internal class LogInfoPanel : LogInfoManager.OnLogCatchListener, View.OnClickLis
             layoutParams.format = PixelFormat.RGBA_8888
             mWindowManager?.addView(mRootView, layoutParams)
         } else {
-            Toast.makeText(mContext, "已经添加过了", Toast.LENGTH_SHORT).show()
             maximize()
         }
     }
