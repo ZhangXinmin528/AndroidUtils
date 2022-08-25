@@ -37,6 +37,8 @@
         <entry key="lib.coreutils/src/main/res/layout/dk_float_log_info.xml" value="0.20572916666666666" />
         <entry key="lib.coreutils/src/main/res/layout/dk_item_log.xml" value="0.335" />
         <entry key="lib.coreutils/src/main/res/layout/dk_log_title_bar.xml" value="0.14629629629629629" />
+        <entry key="lib.coreutils/src/main/res/layout/layout_log_info_list_item.xml" value="0.20572916666666666" />
+        <entry key="lib.coreutils/src/main/res/layout/layout_log_info_panel.xml" value="0.20572916666666666" />
       </map>
     </option>
   </component>

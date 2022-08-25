@@ -127,14 +127,14 @@ public class LogItemAdapter extends AbsRecyclerAdapter<AbsViewBinder<LogLine>, L
                 mLogText.setSingleLine(false);
                 mTime.setVisibility(View.VISIBLE);
                 mPid.setVisibility(View.VISIBLE);
-                view.setBackgroundColor(Color.BLACK);
+                view.setBackgroundColor(Color.parseColor("#99A0AA"));
                 mLogText.setTextColor(TagColorUtil.getTextColor(getContext(), data.getLogLevel(), true));
                 mTag.setTextColor(TagColorUtil.getTextColor(getContext(), data.getLogLevel(), true));
             } else {
                 mLogText.setSingleLine(true);
                 mTime.setVisibility(View.GONE);
                 mPid.setVisibility(View.GONE);
-                view.setBackgroundColor(Color.WHITE);
+                view.setBackgroundColor(Color.parseColor("#FFFFFF"));
                 mLogText.setTextColor(TagColorUtil.getTextColor(getContext(), data.getLogLevel(), false));
                 mTag.setTextColor(TagColorUtil.getTextColor(getContext(), data.getLogLevel(), false));
             }
@@ -169,7 +169,7 @@ public class LogItemAdapter extends AbsRecyclerAdapter<AbsViewBinder<LogLine>, L
                 mPid.setVisibility(View.VISIBLE);
                 mLogText.setTextColor(TagColorUtil.getTextColor(getContext(), item.getLogLevel(), true));
                 mTag.setTextColor(TagColorUtil.getTextColor(getContext(), item.getLogLevel(), true));
-                itemView.setBackgroundColor(Color.BLACK);
+                itemView.setBackgroundColor(Color.parseColor("#99A0AA"));
 
             } else {
                 mLogText.setSingleLine(true);

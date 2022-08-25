@@ -3,6 +3,7 @@ package com.zxm.utils.core.widget.loginfo
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
+import android.graphics.PixelFormat
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -24,14 +25,16 @@ import java.util.concurrent.Executors
 /**
  * Created by ZhangXinmin on 2022/08/24.
  * Copyright (c) 2022/8/24 . All rights reserved.
+ * 日志信息面板
  */
-class LogInfoPanel : LogInfoManager.OnLogCatchListener, View.OnClickListener {
-
+internal class LogInfoPanel : LogInfoManager.OnLogCatchListener, View.OnClickListener,
+    View.OnAttachStateChangeListener {
 
     private val sTag: String = "LogInfoPannel"
     private lateinit var mContext: Context
     private lateinit var mRootView: View
     private var mWindowManager: WindowManager? = null
+    private var isAttachedToWindow: Boolean = false
 
     /**
      * 单行的log
@@ -61,8 +64,9 @@ class LogInfoPanel : LogInfoManager.OnLogCatchListener, View.OnClickListener {
     }
 
     private fun initParamsAndViews(context: Context) {
+        Log.e(sTag, "initParamsAndViews()")
         mContext = context
-        mRootView = LayoutInflater.from(context).inflate(R.layout.dk_float_log_info, null)
+        mRootView = LayoutInflater.from(context).inflate(R.layout.layout_log_info_panel, null)
 
         mWindowManager = if (context is Activity) {
             context.windowManager
@@ -112,6 +116,10 @@ class LogInfoPanel : LogInfoManager.OnLogCatchListener, View.OnClickListener {
             //最大化窗口
             maximize()
         }
+
+        mRootView.setOnClickListener {
+//            Toast.makeText(mContext, "点击了面板", Toast.LENGTH_SHORT).show()
+        }
         mRadioGroup = mRootView.findViewById(R.id.radio_group)
         mRadioGroup?.setOnCheckedChangeListener { group, checkedId ->
             when (checkedId) {
@@ -150,25 +158,37 @@ class LogInfoPanel : LogInfoManager.OnLogCatchListener, View.OnClickListener {
         mRootView.findViewById<Button>(R.id.btn_clean).setOnClickListener(this)
         mRootView.findViewById<Button>(R.id.btn_export).setOnClickListener(this)
 
-
         LogInfoManager.getInstance().registerListener(this)
 
-        val layoutParams = WindowManager.LayoutParams()
-        layoutParams.width = WindowManager.LayoutParams.MATCH_PARENT
-        layoutParams.height = WindowManager.LayoutParams.MATCH_PARENT
-        layoutParams.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL or
-                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
 
-        mWindowManager?.addView(mRootView, layoutParams)
+        mRootView.addOnAttachStateChangeListener(this)
+    }
 
+    internal fun attach() {
+        Log.d(sTag, "attach()..isAttachedToWindow:$isAttachedToWindow)")
+        if (!isAttachedToWindow) {
+            mLogHint?.visibility = View.GONE
+            mLogRvWrap?.visibility = View.VISIBLE
 
+            val layoutParams = WindowManager.LayoutParams()
+            layoutParams.width = WindowManager.LayoutParams.MATCH_PARENT
+            layoutParams.height = WindowManager.LayoutParams.MATCH_PARENT
+            layoutParams.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
+
+            //The desired bitmap format
+            layoutParams.format = PixelFormat.RGBA_8888
+            mWindowManager?.addView(mRootView, layoutParams)
+        } else {
+            Toast.makeText(mContext, "已经添加过了", Toast.LENGTH_SHORT).show()
+            maximize()
+        }
     }
 
     /**
      * 是否最大化
      */
     private var isMaximize = true
-    private fun minimize() {
+    internal fun minimize() {
         isMaximize = false
         mLogHint?.visibility = View.VISIBLE
         mLogRvWrap?.visibility = View.GONE
@@ -180,13 +200,15 @@ class LogInfoPanel : LogInfoManager.OnLogCatchListener, View.OnClickListener {
         layoutParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
         layoutParams.width = WindowManager.LayoutParams.MATCH_PARENT
         layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT
+        //The desired bitmap format
+        layoutParams.format = PixelFormat.RGBA_8888
 
         layoutParams.gravity = Gravity.TOP or Gravity.START
         mWindowManager?.updateViewLayout(mRootView, layoutParams)
 
     }
 
-    private fun maximize() {
+    internal fun maximize() {
         isMaximize = false
         mLogHint?.visibility = View.GONE
         mLogRvWrap?.visibility = View.VISIBLE
@@ -198,6 +220,8 @@ class LogInfoPanel : LogInfoManager.OnLogCatchListener, View.OnClickListener {
         layoutParams.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
         layoutParams.width = WindowManager.LayoutParams.MATCH_PARENT
         layoutParams.height = WindowManager.LayoutParams.MATCH_PARENT
+        //The desired bitmap format
+        layoutParams.format = PixelFormat.RGBA_8888
 
         layoutParams.gravity = Gravity.TOP or Gravity.START
         mWindowManager?.updateViewLayout(mRootView, layoutParams)
@@ -276,51 +300,61 @@ class LogInfoPanel : LogInfoManager.OnLogCatchListener, View.OnClickListener {
     }
 
     private fun exportFile() {
-        Toast.makeText(mContext, "日志保存中，请稍后...", Toast.LENGTH_SHORT).show()
         val filePath =
             mContext.filesDir.absolutePath + File.separator + "logInfo" + File.separator + TimeUtil.getNowString() + ".log"
 
         val file = File(filePath)
-        mExecutorService.execute(object : Runnable {
-            override fun run() {
-                try {
-                    mLogItemAdapter?.let {
-                        val logLines = ArrayList<LogLine>(it.trueValues)
-                        logLines.forEach { line ->
-                            val logContent: String = line.processId
-                                .toString() + "   " + "   " + line.timestamp + "   " + line.tag +
-                                    "   " + line.logLevelText + "   " + line.logOutput + "\n"
-                            FileIOUtils.writeFileFromString(file, logContent, true)
-                        }
-                    }
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                } finally {
-                    if (file.exists()) {
-                        Toast.makeText(mContext, "日志文件保存在：$filePath", Toast.LENGTH_SHORT).show()
-                    } else {
-                        Toast.makeText(mContext, "日志文件保存失败", Toast.LENGTH_SHORT).show()
+        mExecutorService.execute {
+            try {
+                mLogItemAdapter?.let {
+                    val logLines = ArrayList<LogLine>(it.trueValues)
+                    logLines.forEach { line ->
+                        val logContent: String = line.processId
+                            .toString() + "   " + "   " + line.timestamp + "   " + line.tag +
+                                "   " + line.logLevelText + "   " + line.logOutput + "\n"
+                        FileIOUtils.writeFileFromString(file, logContent, true)
                     }
                 }
-
+            } catch (e: Exception) {
+                e.printStackTrace()
+            } finally {
+                if (file.exists()) {
+                    Log.d(sTag, "日志文件保存在：$filePath")
+                } else {
+                    Log.e(sTag, "日志文件保存失败")
+                }
             }
-
-        })
+        }
     }
+
 
     /**
      * 关闭面板
      */
-    fun closePanel() {
+    internal fun closePanel() {
+        Log.d(sTag, "closePanel()")
         try {
             //关闭日志服务
             LogInfoManager.getInstance().stop()
             //清空回调
             LogInfoManager.getInstance().removeListener()
 
-            mWindowManager?.removeViewImmediate(mRootView)
+            if (isAttachedToWindow) {
+                mWindowManager?.removeViewImmediate(mRootView)
+            }
         } catch (e: Exception) {
             e.printStackTrace()
         }
     }
+
+    override fun onViewAttachedToWindow(v: View?) {
+        isAttachedToWindow = true
+        Log.d(sTag, "mRootView has attached to window!")
+    }
+
+    override fun onViewDetachedFromWindow(v: View?) {
+        isAttachedToWindow = false
+        Log.d(sTag, "mRootView has detached from window!")
+    }
+
 }

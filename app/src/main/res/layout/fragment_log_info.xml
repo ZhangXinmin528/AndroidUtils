@@ -1,10 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_bg"
     android:orientation="vertical">
 
     <include layout="@layout/layout_toolbar_back" />
+
+
+    <Button
+        android:id="@+id/btn_show_log"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:text="展示日志面板"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/btn_remove_log"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:text="移除日志面板"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/btn_max_log"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:text="最大化日志面板"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/btn_min_log"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:text="最小化日志面板"
+        tools:ignore="HardcodedText" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

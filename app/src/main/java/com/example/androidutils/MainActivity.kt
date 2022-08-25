@@ -10,5 +10,4 @@ class MainActivity : BaseFragmentActivity() {
 
         startFragment(HomeFragment.newInstance())
     }
-
 }
