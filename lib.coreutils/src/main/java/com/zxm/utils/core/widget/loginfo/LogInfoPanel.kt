@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.graphics.PixelFormat
+import android.os.Build
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -39,6 +40,8 @@ internal class LogInfoPanel : LogInfoManager.OnLogCatchListener, View.OnClickLis
     /**
      * 单行的log
      */
+    private var mLogHintLayout: View? = null
+
     private var mLogHint: TextView? = null
     private var mLogRvWrap: RelativeLayout? = null
 
@@ -79,7 +82,8 @@ internal class LogInfoPanel : LogInfoManager.OnLogCatchListener, View.OnClickLis
             return
         }
 
-        mLogHint = mRootView.findViewById(R.id.log_hint)
+        mLogHintLayout = mRootView.findViewById(R.id.layout_log_hint)
+        mLogHint = mRootView.findViewById(R.id.tv_log_hint)
         mLogRvWrap = mRootView.findViewById(R.id.log_page)
         mLogRv = mRootView.findViewById(R.id.log_list)
         mLogRv?.layoutManager = LinearLayoutManager(mContext)
@@ -167,7 +171,7 @@ internal class LogInfoPanel : LogInfoManager.OnLogCatchListener, View.OnClickLis
     internal fun attach() {
         Log.d(sTag, "attach()..isAttachedToWindow:$isAttachedToWindow)")
         if (!isAttachedToWindow) {
-            mLogHint?.visibility = View.GONE
+            mLogHintLayout?.visibility = View.GONE
             mLogRvWrap?.visibility = View.VISIBLE
 
             val layoutParams = WindowManager.LayoutParams()
@@ -177,6 +181,12 @@ internal class LogInfoPanel : LogInfoManager.OnLogCatchListener, View.OnClickLis
 
             //The desired bitmap format
             layoutParams.format = PixelFormat.RGBA_8888
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                layoutParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
+            } else {
+                layoutParams.type = WindowManager.LayoutParams.TYPE_PHONE
+            }
+
             mWindowManager?.addView(mRootView, layoutParams)
         } else {
             maximize()
@@ -188,8 +198,12 @@ internal class LogInfoPanel : LogInfoManager.OnLogCatchListener, View.OnClickLis
      */
     private var isMaximize = true
     internal fun minimize() {
+        if (!isAttachedToWindow) {
+            Toast.makeText(mContext, "面板未初始化", Toast.LENGTH_SHORT).show()
+            return
+        }
         isMaximize = false
-        mLogHint?.visibility = View.VISIBLE
+        mLogHintLayout?.visibility = View.VISIBLE
         mLogRvWrap?.visibility = View.GONE
 
         val layoutParams =
@@ -202,14 +216,24 @@ internal class LogInfoPanel : LogInfoManager.OnLogCatchListener, View.OnClickLis
         //The desired bitmap format
         layoutParams.format = PixelFormat.RGBA_8888
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            layoutParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
+        } else {
+            layoutParams.type = WindowManager.LayoutParams.TYPE_PHONE
+        }
+
         layoutParams.gravity = Gravity.TOP or Gravity.START
         mWindowManager?.updateViewLayout(mRootView, layoutParams)
 
     }
 
     internal fun maximize() {
+        if (!isAttachedToWindow) {
+            Toast.makeText(mContext, "面板未初始化", Toast.LENGTH_SHORT).show()
+            return
+        }
         isMaximize = false
-        mLogHint?.visibility = View.GONE
+        mLogHintLayout?.visibility = View.GONE
         mLogRvWrap?.visibility = View.VISIBLE
 
         val layoutParams =
@@ -221,6 +245,12 @@ internal class LogInfoPanel : LogInfoManager.OnLogCatchListener, View.OnClickLis
         layoutParams.height = WindowManager.LayoutParams.MATCH_PARENT
         //The desired bitmap format
         layoutParams.format = PixelFormat.RGBA_8888
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            layoutParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
+        } else {
+            layoutParams.type = WindowManager.LayoutParams.TYPE_PHONE
+        }
 
         layoutParams.gravity = Gravity.TOP or Gravity.START
         mWindowManager?.updateViewLayout(mRootView, layoutParams)
@@ -285,7 +315,6 @@ internal class LogInfoPanel : LogInfoManager.OnLogCatchListener, View.OnClickLis
                     return
                 }
 
-                //todo:保存 or 分享
                 exportFile()
             }
             R.id.btn_clean -> {

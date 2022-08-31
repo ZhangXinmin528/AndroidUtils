@@ -5,7 +5,7 @@ import com.coding.zxm.annotation.Function
 import com.coding.zxm.annotation.Group
 import com.coding.zxm.lib_core.base.BaseFragment
 import com.example.androidutils.R
-import com.zxm.utils.core.log.MLogger
+import com.zxm.utils.core.permission.PermissionChecker
 import com.zxm.utils.core.widget.loginfo.LogInfoKit
 import kotlinx.android.synthetic.main.fragment_log_info.*
 import kotlinx.android.synthetic.main.layout_toolbar_back.*
@@ -27,11 +27,8 @@ class LogInfoFragment : BaseFragment(), View.OnClickListener {
         return R.layout.fragment_log_info
     }
 
-    override fun onResume() {
-        super.onResume()
-    }
-
     override fun initParamsAndValues() {
+        checkCanDrawOverlay()
     }
 
     override fun initViews(rootView: View) {
@@ -42,6 +39,12 @@ class LogInfoFragment : BaseFragment(), View.OnClickListener {
         btn_remove_log.setOnClickListener(this)
         btn_max_log.setOnClickListener(this)
         btn_min_log.setOnClickListener(this)
+    }
+
+    private fun checkCanDrawOverlay() {
+        if (!PermissionChecker.canDrawOverlays(mContext)) {
+            PermissionChecker.requestDrawOverlays(mContext)
+        }
     }
 
     override fun onClick(v: View?) {
