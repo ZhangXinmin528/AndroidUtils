@@ -1,17 +1,21 @@
 package com.zxm.utils.core.widget.loginfo
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
+import android.animation.ValueAnimator.AnimatorUpdateListener
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.graphics.PixelFormat
+import android.graphics.Point
 import android.os.Build
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
-import android.view.WindowManager
+import android.view.*
+import android.view.animation.BounceInterpolator
 import android.widget.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -29,13 +33,17 @@ import java.util.concurrent.Executors
  * 日志信息面板
  */
 internal class LogInfoPanel : LogInfoManager.OnLogCatchListener, View.OnClickListener,
-    View.OnAttachStateChangeListener {
+    View.OnAttachStateChangeListener, View.OnTouchListener {
 
     private val sTag: String = "LogInfoPannel"
     private lateinit var mContext: Context
     private lateinit var mRootView: View
+
     private var mWindowManager: WindowManager? = null
     private var isAttachedToWindow: Boolean = false
+    private var mLayoutParams: WindowManager.LayoutParams? = null
+    private var mScreenWidth = 0
+    private var mScreenHeight = 0
 
     /**
      * 单行的log
@@ -55,6 +63,15 @@ internal class LogInfoPanel : LogInfoManager.OnLogCatchListener, View.OnClickLis
     private var mIsLoaded = false
     private val mExecutorService = Executors.newSingleThreadExecutor()
 
+    //ACTION_DOWN, the position x coordinate parent view
+    private var lastX = 0f
+
+    //ACTION_DOWN, the position y coordinate parent view
+    private var lastY = 0f
+
+    private var mAnimator: ValueAnimator? = null
+    private var mBounceInterpolator: BounceInterpolator? = null
+
     companion object {
 
         private const val MAX_LOG_LINE_NUM = 10000
@@ -71,6 +88,8 @@ internal class LogInfoPanel : LogInfoManager.OnLogCatchListener, View.OnClickLis
         mContext = context
         mRootView = LayoutInflater.from(context).inflate(R.layout.layout_log_info_panel, null)
 
+        initViews()
+
         mWindowManager = if (context is Activity) {
             context.windowManager
         } else {
@@ -82,7 +101,51 @@ internal class LogInfoPanel : LogInfoManager.OnLogCatchListener, View.OnClickLis
             return
         }
 
+        mLayoutParams = WindowManager.LayoutParams()
+
+
+        //get default screen information
+        val mDisplay = mWindowManager!!.defaultDisplay
+        mLayoutParams = WindowManager.LayoutParams()
+        //get screen size
+        val mOutSize = Point()
+        mDisplay.getSize(mOutSize)
+        mScreenWidth = mOutSize.x
+        mScreenHeight = mOutSize.y
+
+        //The desired bitmap format
+        mLayoutParams?.format = PixelFormat.RGBA_8888
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            mLayoutParams?.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
+        } else {
+            mLayoutParams?.type = WindowManager.LayoutParams.TYPE_PHONE
+        }
+
+        //calculation initial position
+        val initialX: Int =
+            (mScreenWidth * 0.75f).toInt()
+        val initialY: Int =
+            (mScreenHeight * 0.75f).toInt()
+        Log.d(sTag, "初始位置..X:$initialX..Y:$initialY")
+        //init initial position
+        mLayoutParams!!.x = initialX
+        mLayoutParams!!.y = initialY
+
+        LogInfoManager.getInstance().registerListener(this)
+
+        mBounceInterpolator = BounceInterpolator()
+
+        mRootView.addOnAttachStateChangeListener(this)
+    }
+
+    private fun initViews() {
+
         mLogHintLayout = mRootView.findViewById(R.id.layout_log_hint)
+        mRootView.findViewById<View>(R.id.iv_log_hint_close).setOnClickListener(this)
+        val titleLayout = mRootView.findViewById<View>(R.id.layout_log_hint_title)
+//        titleLayout.setOnTouchListener(this)
+
         mLogHint = mRootView.findViewById(R.id.tv_log_hint)
         mLogRvWrap = mRootView.findViewById(R.id.log_page)
         mLogRv = mRootView.findViewById(R.id.log_list)
@@ -121,9 +184,6 @@ internal class LogInfoPanel : LogInfoManager.OnLogCatchListener, View.OnClickLis
             maximize()
         }
 
-        mRootView.setOnClickListener {
-//            Toast.makeText(mContext, "点击了面板", Toast.LENGTH_SHORT).show()
-        }
         mRadioGroup = mRootView.findViewById(R.id.radio_group)
         mRadioGroup?.setOnCheckedChangeListener { group, checkedId ->
             when (checkedId) {
@@ -161,11 +221,6 @@ internal class LogInfoPanel : LogInfoManager.OnLogCatchListener, View.OnClickLis
         mRootView.findViewById<Button>(R.id.btn_bottom).setOnClickListener(this)
         mRootView.findViewById<Button>(R.id.btn_clean).setOnClickListener(this)
         mRootView.findViewById<Button>(R.id.btn_export).setOnClickListener(this)
-
-        LogInfoManager.getInstance().registerListener(this)
-
-
-        mRootView.addOnAttachStateChangeListener(this)
     }
 
     internal fun attach() {
@@ -174,20 +229,14 @@ internal class LogInfoPanel : LogInfoManager.OnLogCatchListener, View.OnClickLis
             mLogHintLayout?.visibility = View.GONE
             mLogRvWrap?.visibility = View.VISIBLE
 
-            val layoutParams = WindowManager.LayoutParams()
-            layoutParams.width = WindowManager.LayoutParams.MATCH_PARENT
-            layoutParams.height = WindowManager.LayoutParams.MATCH_PARENT
-            layoutParams.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
+            mLayoutParams?.width = WindowManager.LayoutParams.MATCH_PARENT
+            mLayoutParams?.height = WindowManager.LayoutParams.MATCH_PARENT
+            mLayoutParams?.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
 
-            //The desired bitmap format
-            layoutParams.format = PixelFormat.RGBA_8888
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                layoutParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
-            } else {
-                layoutParams.type = WindowManager.LayoutParams.TYPE_PHONE
+            mLayoutParams?.let {
+                mWindowManager?.addView(mRootView, it)
             }
 
-            mWindowManager?.addView(mRootView, layoutParams)
         } else {
             maximize()
         }
@@ -206,24 +255,19 @@ internal class LogInfoPanel : LogInfoManager.OnLogCatchListener, View.OnClickLis
         mLogHintLayout?.visibility = View.VISIBLE
         mLogRvWrap?.visibility = View.GONE
 
-        val layoutParams =
-            mRootView.layoutParams as WindowManager.LayoutParams?
-                ?: return
 
-        layoutParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
-        layoutParams.width = WindowManager.LayoutParams.MATCH_PARENT
-        layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT
-        //The desired bitmap format
-        layoutParams.format = PixelFormat.RGBA_8888
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            layoutParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
-        } else {
-            layoutParams.type = WindowManager.LayoutParams.TYPE_PHONE
+        mLayoutParams?.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+        mLayoutParams?.width = WindowManager.LayoutParams.WRAP_CONTENT
+        mLayoutParams?.height = WindowManager.LayoutParams.WRAP_CONTENT
+
+
+        mLayoutParams?.gravity = Gravity.TOP or Gravity.END
+
+        mLayoutParams?.let {
+            mWindowManager?.updateViewLayout(mRootView, it)
         }
 
-        layoutParams.gravity = Gravity.TOP or Gravity.START
-        mWindowManager?.updateViewLayout(mRootView, layoutParams)
 
     }
 
@@ -236,24 +280,17 @@ internal class LogInfoPanel : LogInfoManager.OnLogCatchListener, View.OnClickLis
         mLogHintLayout?.visibility = View.GONE
         mLogRvWrap?.visibility = View.VISIBLE
 
-        val layoutParams =
-            mRootView.layoutParams as WindowManager.LayoutParams?
-                ?: return
 
-        layoutParams.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
-        layoutParams.width = WindowManager.LayoutParams.MATCH_PARENT
-        layoutParams.height = WindowManager.LayoutParams.MATCH_PARENT
-        //The desired bitmap format
-        layoutParams.format = PixelFormat.RGBA_8888
+        mLayoutParams?.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
+        mLayoutParams?.width = WindowManager.LayoutParams.MATCH_PARENT
+        mLayoutParams?.height = WindowManager.LayoutParams.MATCH_PARENT
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            layoutParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
-        } else {
-            layoutParams.type = WindowManager.LayoutParams.TYPE_PHONE
+
+        mLayoutParams?.gravity = Gravity.TOP or Gravity.START
+        mLayoutParams?.let {
+            mWindowManager?.updateViewLayout(mRootView, it)
         }
 
-        layoutParams.gravity = Gravity.TOP or Gravity.START
-        mWindowManager?.updateViewLayout(mRootView, layoutParams)
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -324,6 +361,9 @@ internal class LogInfoPanel : LogInfoManager.OnLogCatchListener, View.OnClickLis
                 counter = 0
                 mLogItemAdapter!!.clearLog()
             }
+            R.id.iv_log_hint_close -> {
+                closePanel()
+            }
         }
     }
 
@@ -375,6 +415,50 @@ internal class LogInfoPanel : LogInfoManager.OnLogCatchListener, View.OnClickLis
         }
     }
 
+    /**
+     * 获取状态栏高度
+     *
+     * @return
+     * @hide
+     */
+    private fun getStatusBarHeight(): Int {
+        var result = 0
+        val resourceId = mContext.resources.getIdentifier("status_bar_height", "dimen", "android")
+        if (resourceId > 0) {
+            result = mContext.resources.getDimensionPixelSize(resourceId)
+        }
+        return result
+    }
+
+    /**
+     * 开始Bounce动画
+     *
+     * @hide
+     */
+    private fun startBounceAnimator() {
+        mAnimator!!.interpolator = mBounceInterpolator
+        mAnimator!!.addListener(object : AnimatorListenerAdapter() {
+            override fun onAnimationEnd(animation: Animator) {
+                mAnimator!!.removeAllUpdateListeners()
+                mAnimator!!.removeAllListeners()
+                mAnimator = null
+            }
+        })
+        mAnimator!!.setDuration(300)
+            .start()
+    }
+
+    /**
+     * 关闭Bounce动画
+     *
+     * @hide
+     */
+    private fun cancelBounceAnimator() {
+        if (mAnimator != null && mAnimator!!.isRunning) {
+            mAnimator!!.cancel()
+        }
+    }
+
     override fun onViewAttachedToWindow(v: View?) {
         isAttachedToWindow = true
         Log.d(sTag, "mRootView has attached to window!")
@@ -383,6 +467,39 @@ internal class LogInfoPanel : LogInfoManager.OnLogCatchListener, View.OnClickLis
     override fun onViewDetachedFromWindow(v: View?) {
         isAttachedToWindow = false
         Log.d(sTag, "mRootView has detached from window!")
+    }
+
+
+    override fun onTouch(v: View, event: MotionEvent): Boolean {
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+                lastX = event.x
+                lastY = event.y
+                //cancle bounce animator
+                cancelBounceAnimator()
+            }
+            MotionEvent.ACTION_MOVE -> {
+                val changeX: Float = event.rawX - lastX
+                val changeY: Float = event.rawY - getStatusBarHeight() - lastY
+                mLayoutParams!!.x = changeX.toInt()
+                mLayoutParams!!.y = changeY.toInt()
+                Log.d(sTag, "移动位置：changeX-${changeX}..changeY-${changeY}")
+                mWindowManager!!.updateViewLayout(mRootView, mLayoutParams)
+            }
+            MotionEvent.ACTION_UP -> {
+                val startX = mLayoutParams!!.x
+                val endX = if (startX * 2 + v.width > mScreenWidth) mScreenWidth - v.width else 0
+                mAnimator = ObjectAnimator.ofInt(startX, endX)
+                mAnimator?.addUpdateListener(AnimatorUpdateListener { animation ->
+                    mLayoutParams!!.x = animation.animatedValue as Int
+                    mWindowManager!!.updateViewLayout(mRootView, mLayoutParams)
+                })
+                //start bounce animator
+                startBounceAnimator()
+            }
+            else -> {}
+        }
+        return true
     }
 
 }

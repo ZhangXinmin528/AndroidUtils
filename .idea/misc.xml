@@ -34,12 +34,14 @@
         <entry key="lib.coreutils/src/main/res/drawable/dk_radio_button_normal_background_left.xml" value="0.181" />
         <entry key="lib.coreutils/src/main/res/drawable/dk_radio_button_normal_background_middle.xml" value="0.181" />
         <entry key="lib.coreutils/src/main/res/drawable/dk_radio_button_normal_background_right.xml" value="0.181" />
+        <entry key="lib.coreutils/src/main/res/drawable/shape_log_hint_bar_bg.xml" value="0.1305" />
         <entry key="lib.coreutils/src/main/res/drawable/shape_log_hint_bg.xml" value="0.1365" />
+        <entry key="lib.coreutils/src/main/res/drawable/shape_log_hint_title_bg.xml" value="0.1235" />
         <entry key="lib.coreutils/src/main/res/layout/dk_float_log_info.xml" value="0.20572916666666666" />
         <entry key="lib.coreutils/src/main/res/layout/dk_item_log.xml" value="0.335" />
         <entry key="lib.coreutils/src/main/res/layout/dk_log_title_bar.xml" value="0.14629629629629629" />
         <entry key="lib.coreutils/src/main/res/layout/layout_log_info_list_item.xml" value="0.20572916666666666" />
-        <entry key="lib.coreutils/src/main/res/layout/layout_log_info_panel.xml" value="0.20572916666666666" />
+        <entry key="lib.coreutils/src/main/res/layout/layout_log_info_panel.xml" value="0.375" />
       </map>
     </option>
   </component>
