@@ -126,7 +126,7 @@ internal class LogInfoPanel : LogInfoManager.OnLogCatchListener, View.OnClickLis
         val initialX: Int =
             (mScreenWidth * 0.75f).toInt()
         val initialY: Int =
-            (mScreenHeight * 0.75f).toInt()
+            (mScreenHeight * 0.25f).toInt()
         Log.d(sTag, "初始位置..X:$initialX..Y:$initialY")
         //init initial position
         mLayoutParams!!.x = initialX
@@ -144,7 +144,7 @@ internal class LogInfoPanel : LogInfoManager.OnLogCatchListener, View.OnClickLis
         mLogHintLayout = mRootView.findViewById(R.id.layout_log_hint)
         mRootView.findViewById<View>(R.id.iv_log_hint_close).setOnClickListener(this)
         val titleLayout = mRootView.findViewById<View>(R.id.layout_log_hint_title)
-//        titleLayout.setOnTouchListener(this)
+        titleLayout.setOnTouchListener(this)
 
         mLogHint = mRootView.findViewById(R.id.tv_log_hint)
         mLogRvWrap = mRootView.findViewById(R.id.log_page)
@@ -255,14 +255,12 @@ internal class LogInfoPanel : LogInfoManager.OnLogCatchListener, View.OnClickLis
         mLogHintLayout?.visibility = View.VISIBLE
         mLogRvWrap?.visibility = View.GONE
 
-
-
         mLayoutParams?.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
         mLayoutParams?.width = WindowManager.LayoutParams.WRAP_CONTENT
         mLayoutParams?.height = WindowManager.LayoutParams.WRAP_CONTENT
 
 
-        mLayoutParams?.gravity = Gravity.TOP or Gravity.END
+        mLayoutParams?.gravity = Gravity.TOP or Gravity.LEFT
 
         mLayoutParams?.let {
             mWindowManager?.updateViewLayout(mRootView, it)
@@ -286,7 +284,7 @@ internal class LogInfoPanel : LogInfoManager.OnLogCatchListener, View.OnClickLis
         mLayoutParams?.height = WindowManager.LayoutParams.MATCH_PARENT
 
 
-        mLayoutParams?.gravity = Gravity.TOP or Gravity.START
+        mLayoutParams?.gravity = Gravity.TOP or Gravity.LEFT
         mLayoutParams?.let {
             mWindowManager?.updateViewLayout(mRootView, it)
         }
@@ -483,7 +481,6 @@ internal class LogInfoPanel : LogInfoManager.OnLogCatchListener, View.OnClickLis
                 val changeY: Float = event.rawY - getStatusBarHeight() - lastY
                 mLayoutParams!!.x = changeX.toInt()
                 mLayoutParams!!.y = changeY.toInt()
-                Log.d(sTag, "移动位置：changeX-${changeX}..changeY-${changeY}")
                 mWindowManager!!.updateViewLayout(mRootView, mLayoutParams)
             }
             MotionEvent.ACTION_UP -> {
