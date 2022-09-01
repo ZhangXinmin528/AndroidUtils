@@ -1,5 +1,7 @@
 package com.zxm.utils.core.screen;
 
+import static android.Manifest.permission.WRITE_SETTINGS;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.KeyguardManager;
@@ -12,6 +14,7 @@ import android.graphics.Point;
 import android.os.Build;
 import android.provider.Settings;
 import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.Surface;
 import android.view.View;
 import android.view.WindowManager;
@@ -19,8 +22,6 @@ import android.view.WindowManager;
 import androidx.annotation.FloatRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresPermission;
-
-import static android.Manifest.permission.WRITE_SETTINGS;
 
 /**
  * Created by ZhangXinmin on 2018/5/24.
@@ -42,6 +43,16 @@ public final class ScreenUtil {
     }
 
     /**
+     * dp to px
+     *
+     * @param dip
+     * @return
+     */
+    public static float dp2px(float dip) {
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dip, Resources.getSystem().getDisplayMetrics());
+    }
+
+    /**
      * px to dp
      */
     public static int px2dp(@NonNull Context context, @FloatRange(from = 0.0) float pxValue) {
@@ -60,6 +71,16 @@ public final class ScreenUtil {
     public static int sp2px(@NonNull Context context, @FloatRange(from = 0.0) final float spValue) {
         final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
         return (int) (spValue * fontScale + 0.5f);
+    }
+
+    /**
+     * sp to px
+     *
+     * @param sp
+     * @return
+     */
+    public static float sp2px(float sp) {
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, Resources.getSystem().getDisplayMetrics());
     }
 
     /**
