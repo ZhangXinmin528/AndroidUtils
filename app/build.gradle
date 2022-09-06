@@ -100,7 +100,8 @@ dependencies {
     api deps.glide.runtime
     kapt deps.glide.compiler
 
-    implementation project(path: ':lib.coreutils')
+//    implementation project(path: ':lib.coreutils')
+    implementation 'io.github.zhangxinmin528.androidutils:coreutils:1.0.8'
     implementation project(path: ':lib.core')
 
     implementation project(path: ':annotation')

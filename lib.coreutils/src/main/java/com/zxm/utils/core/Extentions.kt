@@ -9,12 +9,25 @@ import android.util.TypedValue
  * 扩展工具
  */
 
-/**
- * dp to px
- */
-val Float.px
+// dp to px
+val Float.dpToPx
     get() = TypedValue.applyDimension(
         TypedValue.COMPLEX_UNIT_DIP,
         this,
         Resources.getSystem().displayMetrics
     )
+
+// sp to px
+val Float.spToPx
+    get() = TypedValue.applyDimension(
+        TypedValue.COMPLEX_UNIT_SP,
+        this, Resources.getSystem().displayMetrics
+    )
+
+//dp to px
+val Int.dpTopx
+    get() = this.toFloat().dpToPx
+
+//dsp to px
+val Int.spToPx
+    get() = this.toFloat().spToPx
