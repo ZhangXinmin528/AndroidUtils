@@ -1,15 +1,16 @@
 package com.example.androidutils.fragment.component
 
 import android.annotation.SuppressLint
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.SeekBar
 import com.coding.zxm.annotation.Function
 import com.coding.zxm.annotation.Group
 import com.coding.zxm.lib_core.base.BaseFragment
 import com.example.androidutils.R
+import com.example.androidutils.databinding.FragmentStatusBarBinding
 import com.zxm.utils.core.bar.StatusBarCompat
-import kotlinx.android.synthetic.main.fragment_status_bar.*
-import kotlinx.android.synthetic.main.layout_toolbar_back.*
 
 /**
  * Created by ZhangXinmin on 2021/06/16.
@@ -18,29 +19,28 @@ import kotlinx.android.synthetic.main.layout_toolbar_back.*
 @SuppressLint("NonConstantResourceId")
 @Function(group = Group.Component, funcName = "状态栏", funcIconRes = R.drawable.icon_status_bar)
 class StatusBarFragment : BaseFragment(), View.OnClickListener {
+    private lateinit var statusBarBinding: FragmentStatusBarBinding
 
-    override fun setLayoutId(): Int {
-        return R.layout.fragment_status_bar
+    override fun setLayoutId(inflater: LayoutInflater, container: ViewGroup?): View {
+        statusBarBinding = FragmentStatusBarBinding.inflate(inflater, container, false)
+        return statusBarBinding.root
     }
 
     override fun initParamsAndValues() {
+        statusBarBinding.layoutTitle.tvToolbarTitle.text = "状态栏"
+        statusBarBinding.layoutTitle.ivToolbarBack.setOnClickListener(this)
 
-    }
+        statusBarBinding.tvBarInfo.text = getStatusBarInfo()
 
-    override fun initViews(rootView: View) {
-        tv_toolbar_title.text = "状态栏"
-        iv_toolbar_back.setOnClickListener(this)
-
-        tv_bar_info.text = getStatusBarInfo()
-
-        switch_mode.isChecked = StatusBarCompat.isStatusBarLightMode(activity!!)
-        switch_mode.setOnCheckedChangeListener { buttonView, isChecked ->
+        statusBarBinding.switchMode.isChecked = StatusBarCompat.isStatusBarLightMode(activity!!)
+        statusBarBinding.switchMode.setOnCheckedChangeListener { buttonView, isChecked ->
             StatusBarCompat.setStatusBarLightMode(activity!!, isChecked)
-            tv_bar_info.text = getStatusBarInfo()
+            statusBarBinding.tvBarInfo.text = getStatusBarInfo()
         }
 
-        seekbar.max = 255
-        seekbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        statusBarBinding.seekbar.max = 255
+        statusBarBinding.seekbar.setOnSeekBarChangeListener(object :
+            SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 StatusBarCompat.setColor(
                     activity,

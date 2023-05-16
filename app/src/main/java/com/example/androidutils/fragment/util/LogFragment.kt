@@ -1,22 +1,27 @@
 package com.example.androidutils.fragment.util
 
+import android.annotation.SuppressLint
 import android.os.Environment
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import com.coding.zxm.annotation.Function
 import com.coding.zxm.annotation.Group
 import com.coding.zxm.lib_core.base.BaseFragment
 import com.example.androidutils.R
+import com.example.androidutils.databinding.FragmentLogBinding
 import com.zxm.utils.core.log.MLogger
 import com.zxm.utils.core.log.MLogger.LogConfig
-import kotlinx.android.synthetic.main.fragment_log.*
-import kotlinx.android.synthetic.main.layout_toolbar_back.*
 
 /**
  * Created by ZhangXinmin on 2019/3/19.
  * Copyright (c) 2018 . All rights reserved.
  */
+@SuppressLint("NonConstantResourceId")
 @Function(group = Group.UTILS, funcName = "日志工具", funcIconRes = R.mipmap.icon_log_info)
 class LogFragment : BaseFragment(), View.OnClickListener {
+
+    private lateinit var logBinding: FragmentLogBinding
 
     companion object {
         private val TAG = LogFragment::class.java.simpleName
@@ -63,37 +68,40 @@ class LogFragment : BaseFragment(), View.OnClickListener {
         MLogger.a("assert")
     }
 
-    override fun setLayoutId(): Int {
-        return R.layout.fragment_log
+    override fun setLayoutId(inflater: LayoutInflater, container: ViewGroup?): View {
+        logBinding = FragmentLogBinding.inflate(inflater, container, false)
+        return logBinding.root
     }
 
-    override fun initParamsAndValues() {}
+    override fun initParamsAndValues() {
+        initViews()
+    }
 
-    override fun initViews(rootView: View) {
-        tv_toolbar_title.text = "日志工具"
-        iv_toolbar_back.setOnClickListener(this)
+    fun initViews() {
+        logBinding.layoutTitle.tvToolbarTitle.text = "日志工具"
+        logBinding.layoutTitle.ivToolbarBack.setOnClickListener(this)
 
         //默认设置
-        tv_about_log.setText(builder.toString())
-        btn_toggle_log.setOnClickListener(this)
-        btn_toggle_console.setOnClickListener(this)
-        btn_toggle_tag.setOnClickListener(this)
-        btn_toggle_head.setOnClickListener(this)
-        btn_toggle_border.setOnClickListener(this)
-        btn_toggle_single.setOnClickListener(this)
-        btn_toggle_file.setOnClickListener(this)
-        btn_toggle_dir.setOnClickListener(this)
-        btn_toggle_conole_filter.setOnClickListener(this)
-        btn_toggle_file_filter.setOnClickListener(this)
-        btn_log_no_tag.setOnClickListener(this)
-        btn_log_with_tag.setOnClickListener(this)
-        btn_log_in_new_thread.setOnClickListener(this)
-        btn_log_null.setOnClickListener(this)
-        btn_log_many_params.setOnClickListener(this)
-        btn_log_long.setOnClickListener(this)
-        btn_log_file.setOnClickListener(this)
-        btn_log_json.setOnClickListener(this)
-        btn_log_xml.setOnClickListener(this)
+        logBinding.tvAboutLog.setText(builder.toString())
+        logBinding.btnToggleLog.setOnClickListener(this)
+        logBinding.btnToggleConsole.setOnClickListener(this)
+        logBinding.btnToggleTag.setOnClickListener(this)
+        logBinding.btnToggleHead.setOnClickListener(this)
+        logBinding.btnToggleBorder.setOnClickListener(this)
+        logBinding.btnToggleSingle.setOnClickListener(this)
+        logBinding.btnToggleFile.setOnClickListener(this)
+        logBinding.btnToggleDir.setOnClickListener(this)
+        logBinding.btnToggleConoleFilter.setOnClickListener(this)
+        logBinding.btnToggleFileFilter.setOnClickListener(this)
+        logBinding.btnLogNoTag.setOnClickListener(this)
+        logBinding.btnLogWithTag.setOnClickListener(this)
+        logBinding.btnLogInNewThread.setOnClickListener(this)
+        logBinding.btnLogNull.setOnClickListener(this)
+        logBinding.btnLogManyParams.setOnClickListener(this)
+        logBinding.btnLogLong.setOnClickListener(this)
+        logBinding.btnLogFile.setOnClickListener(this)
+        logBinding.btnLogJson.setOnClickListener(this)
+        logBinding.btnLogXml.setOnClickListener(this)
     }
 
     override fun onClick(view: View) {
@@ -205,7 +213,7 @@ class LogFragment : BaseFragment(), View.OnClickListener {
             .setSingleTagSwitch(single)
             .setConsoleFilter(consoleFilter)
             .setFileFilter(fileFilter)
-        tv_about_log.setText(builder.toString())
+        logBinding.tvAboutLog.setText(builder.toString())
     }
 
     private fun getDir(): String {

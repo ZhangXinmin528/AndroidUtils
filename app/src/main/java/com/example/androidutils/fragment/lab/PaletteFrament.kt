@@ -1,34 +1,40 @@
 package com.example.androidutils.fragment.lab
 
+import android.annotation.SuppressLint
 import android.graphics.BitmapFactory
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.palette.graphics.Palette
 import com.coding.zxm.annotation.Function
 import com.coding.zxm.annotation.Group
 import com.coding.zxm.lib_core.base.BaseFragment
 import com.example.androidutils.R
-import kotlinx.android.synthetic.main.fragment_palette.*
-import kotlinx.android.synthetic.main.layout_toolbar_back.*
+import com.example.androidutils.databinding.FragmentPaletteBinding
 
 /**
  * Created by ZhangXinmin on 2018/11/20.
  * Copyright (c) 2018.
  * 取色功能
  */
+@SuppressLint("NonConstantResourceId")
 @Function(group = Group.Lab, funcName = "图片取色", funcIconRes = R.drawable.icon_color_picker)
 class PaletteFrament : BaseFragment(), View.OnClickListener {
 
-    override fun setLayoutId(): Int {
-        return R.layout.fragment_palette
+    private lateinit var paletteBinding: FragmentPaletteBinding
+
+    override fun setLayoutId(inflater: LayoutInflater, container: ViewGroup?): View {
+        paletteBinding = FragmentPaletteBinding.inflate(inflater, container, false)
+        return paletteBinding.root
     }
 
-    override fun initViews(rootView: View) {
-        tv_toolbar_title.text = "图片取色"
-        iv_toolbar_back.setOnClickListener(this)
+    override fun initParamsAndValues() {
+        paletteBinding.layoutTitle.tvToolbarTitle.text = "图片取色"
+        paletteBinding.layoutTitle.tvToolbarTitle.setOnClickListener(this)
 
         val bitmap = BitmapFactory.decodeResource(resources, R.drawable.palette_simple)
         if (bitmap != null) {
-            iv_palette_simple!!.setImageBitmap(bitmap)
+            paletteBinding.ivPaletteSimple.setImageBitmap(bitmap)
             Palette.from(bitmap).generate { palette ->
                 if (palette != null) {
                     //
@@ -37,14 +43,13 @@ class PaletteFrament : BaseFragment(), View.OnClickListener {
                     val bodyColor = swatch.bodyTextColor
                     val titleColor = swatch.titleTextColor
 
-                    tv_palette_simple.setBackgroundColor(bgColor)
-                    tv_palette_simple.setTextColor(titleColor)
+                    paletteBinding.tvPaletteSimple.setBackgroundColor(bgColor)
+                    paletteBinding.tvPaletteSimple.setTextColor(titleColor)
                 }
             }
         }
     }
 
-    override fun initParamsAndValues() {}
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.iv_toolbar_back -> {

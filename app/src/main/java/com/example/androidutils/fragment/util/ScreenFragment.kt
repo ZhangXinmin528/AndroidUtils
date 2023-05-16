@@ -1,36 +1,45 @@
 package com.example.androidutils.fragment.util
 
+import android.annotation.SuppressLint
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import com.coding.zxm.annotation.Function
 import com.coding.zxm.annotation.Group
-import com.example.androidutils.R
 import com.coding.zxm.lib_core.base.BaseFragment
+import com.example.androidutils.R
+import com.example.androidutils.databinding.FragmentScreenBinding
 import com.zxm.utils.core.screen.ScreenUtil
-import kotlinx.android.synthetic.main.fragment_screen.*
-import kotlinx.android.synthetic.main.layout_toolbar_back.*
 
 /**
  * Created by ZhangXinmin on 2018/8/30.
  * Copyright (c) 2018 . All rights reserved.
  */
+@SuppressLint("NonConstantResourceId")
 @Function(group = Group.UTILS, funcName = "屏幕相关", funcIconRes = R.mipmap.icon_screen_info)
 class ScreenFragment : BaseFragment(), View.OnClickListener {
 
-    override fun setLayoutId(): Int {
-        return R.layout.fragment_screen
+
+    private lateinit var screenBinding: FragmentScreenBinding
+
+    override fun setLayoutId(inflater: LayoutInflater, container: ViewGroup?): View {
+        screenBinding = FragmentScreenBinding.inflate(inflater, container, false)
+        return screenBinding.root
     }
 
-    override fun initViews(rootView: View) {
-
-        tv_toolbar_title.text = "屏幕相关"
-        iv_toolbar_back.setOnClickListener(this)
-
-        tv_device_info.text = getString(R.string.all_screen_info, getDeviceInfo())
-        btn_fullscreen.setOnClickListener(this)
-        btn_screenShot.setOnClickListener(this)
+    override fun initParamsAndValues() {
+        initViews()
     }
 
-    override fun initParamsAndValues() {}
+    fun initViews() {
+
+        screenBinding.layoutTitle.tvToolbarTitle.text = "屏幕相关"
+        screenBinding.layoutTitle.ivToolbarBack.setOnClickListener(this)
+
+        screenBinding.tvDeviceInfo.text = getString(R.string.all_screen_info, getDeviceInfo())
+        screenBinding.btnFullscreen.setOnClickListener(this)
+        screenBinding.btnScreenShot.setOnClickListener(this)
+    }
 
     /**
      * 获取设备信息
@@ -61,7 +70,7 @@ class ScreenFragment : BaseFragment(), View.OnClickListener {
             R.id.btn_fullscreen -> ScreenUtil.setFullScreen(activity!!)
             R.id.btn_screenShot -> {
                 val bitmap = ScreenUtil.screenShot(activity!!)
-                iv_test.post(Runnable { iv_test.setImageBitmap(bitmap) })
+                screenBinding.ivTest.post(Runnable { screenBinding.ivTest.setImageBitmap(bitmap) })
             }
         }
     }

@@ -35,7 +35,6 @@ abstract class BaseFragment() : Fragment(), FragmentLazyLifecycleOwner.Callback 
 
     var mContext: Context? = null
 
-    protected var rootView: View? = null
 
     //lifecycle
     private var mLazyViewLifecycleOwner: FragmentLazyLifecycleOwner? = null
@@ -77,7 +76,10 @@ abstract class BaseFragment() : Fragment(), FragmentLazyLifecycleOwner.Callback 
         const val ANIMATION_ENTER_STATUS_END = 1
     }
 
-    abstract fun setLayoutId(): Int
+    abstract fun setLayoutId(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): View
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -92,8 +94,7 @@ abstract class BaseFragment() : Fragment(), FragmentLazyLifecycleOwner.Callback 
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        rootView = inflater.inflate(setLayoutId(), container, false)
-        return rootView
+        return setLayoutId(inflater, container)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -111,10 +112,6 @@ abstract class BaseFragment() : Fragment(), FragmentLazyLifecycleOwner.Callback 
 
         initParamsAndValues()
 
-        rootView?.let {
-            initViews(it)
-        }
-
     }
 
     protected fun setStatusBarColorNoTranslucent(@ColorRes colorRes: Int) {
@@ -129,7 +126,6 @@ abstract class BaseFragment() : Fragment(), FragmentLazyLifecycleOwner.Callback 
 
     abstract fun initParamsAndValues()
 
-    abstract fun initViews(rootView: View)
 
     override fun onCreateAnimation(transit: Int, enter: Boolean, nextAnim: Int): Animation? {
         if (!enter) {
@@ -177,13 +173,11 @@ abstract class BaseFragment() : Fragment(), FragmentLazyLifecycleOwner.Callback 
 
 
     fun isAttachedToActivity(): Boolean {
-        return !isRemoving && rootView != null
+        return !isRemoving
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        rootView = null
-
     }
 
     //===============================start fragment=======================================//

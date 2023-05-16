@@ -1,36 +1,38 @@
-package com.example.androidutils.fragment.component
+package com.example.androidutils.fragment.util
 
+import android.annotation.SuppressLint
 import android.os.Build
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import com.coding.zxm.annotation.Function
 import com.coding.zxm.annotation.Group
 import com.coding.zxm.lib_core.base.BaseFragment
 import com.example.androidutils.R
+import com.example.androidutils.databinding.FragmentAppInfoBinding
 import com.zxm.utils.core.app.AppUtil
-import kotlinx.android.synthetic.main.fragment_app_info.*
-import kotlinx.android.synthetic.main.layout_toolbar_back.*
 
 /**
  * Created by ZhangXinmin on 2021/06/16.
  * Copyright (c) 2021/6/16 . All rights reserved.
  */
+@SuppressLint("NonConstantResourceId")
 @Function(group = Group.UTILS, funcName = "应用信息", funcIconRes = R.mipmap.icon_app)
 class AppInfoFragment : BaseFragment(), View.OnClickListener {
 
-    override fun setLayoutId(): Int {
-        return R.layout.fragment_app_info
+    private lateinit var infoBinding: FragmentAppInfoBinding
+
+    override fun setLayoutId(inflater: LayoutInflater, container: ViewGroup?): View {
+        infoBinding = FragmentAppInfoBinding.inflate(inflater, container, false)
+        return infoBinding.root
     }
 
     override fun initParamsAndValues() {
-        tv_toolbar_title.text = "应用信息"
-        iv_toolbar_back.setOnClickListener(this)
+        infoBinding.layoutTitle.tvToolbarTitle.text = "应用信息"
+        infoBinding.layoutTitle.ivToolbarBack.setOnClickListener(this)
 
-        iv_app_logo.setImageDrawable(AppUtil.getAppIcon(mContext!!))
-
-    }
-
-    override fun initViews(rootView: View) {
-        tv_app_info.text = getAppInfo()
+        infoBinding.ivAppLogo.setImageDrawable(AppUtil.getAppIcon(mContext!!))
+        infoBinding.tvAppInfo.text = getAppInfo()
     }
 
     private fun getAppInfo(): String {

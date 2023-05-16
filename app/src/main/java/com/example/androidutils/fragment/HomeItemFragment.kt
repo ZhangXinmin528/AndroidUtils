@@ -1,15 +1,16 @@
 package com.example.androidutils.fragment
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import com.coding.zxm.lib_core.base.BaseFragment
 import com.example.androidutils.R
+import com.example.androidutils.databinding.FragmentHomeTabBinding
 import com.example.androidutils.fragment.decorator.GridDividerItemDecoration
 import com.example.androidutils.manager.FuncDataManager
 import com.example.androidutils.model.FuncItemDescription
-import kotlinx.android.synthetic.main.fragment_home_tab.*
-import kotlinx.android.synthetic.main.layout_toolbar.*
 
 /**
  * Created by ZhangXinmin on 2021/3/16.
@@ -36,9 +37,10 @@ class HomeItemFragment : BaseFragment() {
 
     private val mDataList: MutableList<FuncItemDescription> = ArrayList()
     private lateinit var mAdapter: HomeItemAdapter
-
-    override fun setLayoutId(): Int {
-        return R.layout.fragment_home_tab
+    private lateinit var homeTabBinding: FragmentHomeTabBinding
+    override fun setLayoutId(inflater: LayoutInflater, container: ViewGroup?): View {
+        homeTabBinding = FragmentHomeTabBinding.inflate(inflater, container, false)
+        return homeTabBinding.root
     }
 
     override fun initParamsAndValues() {
@@ -53,30 +55,32 @@ class HomeItemFragment : BaseFragment() {
                 if (list != null && list.isNotEmpty()) {
                     mDataList.addAll(list)
                 }
-                tv_toolbar_title.setText(R.string.nav_compontents)
+                homeTabBinding.layoutTitle.tvToolbarTitle.setText(R.string.nav_compontents)
             }
             TAB_UTIL -> {
                 val list = FuncDataManager.getInstance()?.getUtilsDescriptions()
                 if (list != null && list.isNotEmpty()) {
                     mDataList.addAll(list)
                 }
-                tv_toolbar_title.setText(R.string.nav_tools)
+                homeTabBinding.layoutTitle.tvToolbarTitle.setText(R.string.nav_tools)
             }
             TAB_LAB -> {
                 val list = FuncDataManager.getInstance()?.getLabsDescriptions()
                 if (list != null && list.isNotEmpty()) {
                     mDataList.addAll(list)
                 }
-                tv_toolbar_title.setText(R.string.nav_lab)
+                homeTabBinding.layoutTitle.tvToolbarTitle.setText(R.string.nav_lab)
             }
         }
         mAdapter = HomeItemAdapter(dataList = mDataList)
+
+        initViews()
     }
 
-    override fun initViews(rootView: View) {
-        rv_home_tab.adapter = mAdapter
-        rv_home_tab.layoutManager = GridLayoutManager(mContext, 4)
-        rv_home_tab.addItemDecoration(GridDividerItemDecoration(mContext, 4))
+    fun initViews() {
+        homeTabBinding.rvHomeTab.adapter = mAdapter
+        homeTabBinding.rvHomeTab.layoutManager = GridLayoutManager(mContext, 4)
+        homeTabBinding.rvHomeTab.addItemDecoration(GridDividerItemDecoration(mContext, 4))
 
         mAdapter.setOnItemClickListener { adapter, view, position ->
             val entity = (adapter as HomeItemAdapter).getItem(position)

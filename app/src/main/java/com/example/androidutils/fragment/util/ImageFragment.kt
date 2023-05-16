@@ -2,7 +2,9 @@ package com.example.androidutils.fragment.util
 
 import android.graphics.Color
 import android.os.Build
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.coding.zxm.annotation.Function
 import com.coding.zxm.annotation.Group
@@ -10,10 +12,8 @@ import com.coding.zxm.lib_core.base.BaseFragment
 import com.example.androidutils.R
 import com.example.androidutils.adapter.ImageAdapter
 import com.example.androidutils.bean.ImageEntity
+import com.example.androidutils.databinding.FragmentImageBinding
 import com.zxm.utils.core.image.ImageUtil
-import kotlinx.android.synthetic.main.fragment_image.*
-import kotlinx.android.synthetic.main.layout_toolbar_back.*
-import java.util.*
 
 /**
  * Created by ZhangXinmin on 2018/9/1.
@@ -24,13 +24,22 @@ import java.util.*
 class ImageFragment : BaseFragment(), View.OnClickListener {
 
     private val mList: MutableList<ImageEntity> = ArrayList()
-    override fun setLayoutId(): Int {
-        return R.layout.fragment_image
+
+    private lateinit var imageBinding: FragmentImageBinding
+
+    override fun setLayoutId(inflater: LayoutInflater, container: ViewGroup?): View {
+        imageBinding = FragmentImageBinding.inflate(inflater, container, false)
+        return imageBinding.root
     }
 
-    override fun initViews(rootView: View) {
-        tv_toolbar_title.text = "图片工具"
-        iv_toolbar_back.setOnClickListener(this)
+    override fun initParamsAndValues() {
+        initViews()
+    }
+
+
+    fun initViews() {
+        imageBinding.layoutTitle.tvToolbarTitle.text = "图片工具"
+        imageBinding.layoutTitle.ivToolbarBack.setOnClickListener(this)
 
         val src = ImageUtil.getBitmap(mContext!!, R.drawable.img_lena)
         val round = ImageUtil.getBitmap(mContext!!, R.drawable.avatar_round)
@@ -177,12 +186,11 @@ class ImageFragment : BaseFragment(), View.OnClickListener {
             )
         )
         val adapter = ImageAdapter(mContext, mList)
-        rv_image.adapter = adapter
-        rv_image.layoutManager = LinearLayoutManager(activity)
+        imageBinding.rvImage.adapter = adapter
+        imageBinding.rvImage.layoutManager = LinearLayoutManager(activity)
 
     }
 
-    override fun initParamsAndValues() {}
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.iv_toolbar_back -> {

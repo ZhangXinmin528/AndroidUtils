@@ -1,14 +1,15 @@
 package com.example.androidutils.fragment.lab
 
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import com.coding.zxm.annotation.Function
 import com.coding.zxm.annotation.Group
 import com.coding.zxm.lib_core.base.BaseFragment
 import com.example.androidutils.R
+import com.example.androidutils.databinding.FragmentLogInfoBinding
 import com.zxm.utils.core.permission.PermissionChecker
 import com.zxm.utils.core.widget.loginfo.LogInfoKit
-import kotlinx.android.synthetic.main.fragment_log_info.*
-import kotlinx.android.synthetic.main.layout_toolbar_back.*
 
 /**
  * Created by ZhangXinmin on 2022/08/24.
@@ -23,22 +24,23 @@ class LogInfoFragment : BaseFragment(), View.OnClickListener {
         }
     }
 
-    override fun setLayoutId(): Int {
-        return R.layout.fragment_log_info
+    private lateinit var logInfoBinding: FragmentLogInfoBinding
+
+    override fun setLayoutId(inflater: LayoutInflater, container: ViewGroup?): View {
+        logInfoBinding = FragmentLogInfoBinding.inflate(inflater, container, false)
+        return logInfoBinding.root
     }
 
     override fun initParamsAndValues() {
         checkCanDrawOverlay()
-    }
 
-    override fun initViews(rootView: View) {
-        tv_toolbar_title.text = "日志信息"
-        iv_toolbar_back.setOnClickListener(this)
+        logInfoBinding.layoutTitle.tvToolbarTitle.text = "日志信息"
+        logInfoBinding.layoutTitle.ivToolbarBack.setOnClickListener(this)
 
-        btn_show_log.setOnClickListener(this)
-        btn_remove_log.setOnClickListener(this)
-        btn_max_log.setOnClickListener(this)
-        btn_min_log.setOnClickListener(this)
+        logInfoBinding.btnShowLog.setOnClickListener(this)
+        logInfoBinding.btnRemoveLog.setOnClickListener(this)
+        logInfoBinding.btnMaxLog.setOnClickListener(this)
+        logInfoBinding.btnMinLog.setOnClickListener(this)
     }
 
     private fun checkCanDrawOverlay() {

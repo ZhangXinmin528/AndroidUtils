@@ -1,8 +1,10 @@
 package com.zxm.utils.core.permission;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AppOpsManager;
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -14,6 +16,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -24,16 +27,18 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
+import kotlin.Deprecated;
+
 /**
  * Created by ZhangXinmin on 2018/12/17.
  * Copyright (c) 2018 . All rights reserved.
  */
-public final class PermissionChecker {
-    private PermissionChecker() {
+public final class PermissionUtils {
+    private PermissionUtils() {
         throw new UnsupportedOperationException("U con't do this!");
     }
 
-    private static final String sTag = "PermissionChecker";
+    private static final String sTag = "PermissionUtils";
     private static final int OP_SYSTEM_ALERT_WINDOW = 24;
 
     /**
@@ -44,10 +49,12 @@ public final class PermissionChecker {
      * @param permissions
      * @param requestCode
      */
-    public static void requestPermissions(@NonNull Activity activity, @NonNull String[] permissions, int requestCode) {
+    public static void requestPermissions(@NonNull Activity activity,
+                                          @NonNull String[] permissions, int requestCode) {
         if (permissions != null) {
             //先获取未被允许的权限
-            String[] deniedPermissions = PermissionChecker.checkDeniedPermissions(activity, permissions);
+            String[] deniedPermissions = PermissionUtils.checkDeniedPermissions(activity,
+                    permissions);
             if (deniedPermissions != null && deniedPermissions.length > 0) {
                 ActivityCompat.requestPermissions(activity, deniedPermissions, requestCode);
             }
@@ -62,7 +69,8 @@ public final class PermissionChecker {
      * @param permissions
      * @return if the permission has not been granted to the given package , return false.
      */
-    public static boolean checkSeriesPermissions(@NonNull Context context, @NonNull String[] permissions) {
+    public static boolean checkSeriesPermissions(@NonNull Context context,
+                                                 @NonNull String[] permissions) {
         for (String permission : permissions) {
             if (!checkPersmission(context, permission)) {
                 return false;
@@ -122,6 +130,7 @@ public final class PermissionChecker {
      * @param context
      * @return
      */
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public static boolean canDrawOverlays(Context context) {
         //android 6.0及以上的判断条件
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -132,11 +141,15 @@ public final class PermissionChecker {
 
     private static boolean checkOp(Context context, int op) {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
-            AppOpsManager manager = (AppOpsManager) context.getSystemService(Context.APP_OPS_SERVICE);
+            AppOpsManager manager =
+                    (AppOpsManager) context.getSystemService(Context.APP_OPS_SERVICE);
             Class clazz = AppOpsManager.class;
             try {
-                Method method = clazz.getDeclaredMethod("checkOp", int.class, int.class, String.class);
-                return AppOpsManager.MODE_ALLOWED == (int) method.invoke(manager, op, Process.myUid(), context.getPackageName());
+                @SuppressLint("DiscouragedPrivateApi") Method method = clazz.getDeclaredMethod(
+                        "checkOp", int.class, int.class,
+                        String.class);
+                return AppOpsManager.MODE_ALLOWED == (int) method.invoke(manager, op,
+                        Process.myUid(), context.getPackageName());
             } catch (NoSuchMethodException e) {
                 e.printStackTrace();
             } catch (IllegalAccessException e) {
@@ -148,6 +161,14 @@ public final class PermissionChecker {
         return true;
     }
 
+    /**
+     * 请求悬浮窗权限
+     *
+     * @param context
+     * @see #requestDrawOverlays(Activity, int)
+     */
+    @Deprecated(message = "not friendly")
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public static void requestDrawOverlays(Context context) {
         final Intent intent = new Intent("android.settings.action.MANAGE_OVERLAY_PERMISSION",
                 Uri.parse("package:" + context.getPackageName()));
@@ -161,7 +182,54 @@ public final class PermissionChecker {
         }
     }
 
-    public static String matchRequestPermissionRationale(@NonNull Context context, @NonNull String permission) {
+    /**
+     * 请求悬浮窗权限
+     *
+     * @param activity
+     * @param requestCode
+     */
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public static void requestDrawOverlays(Activity activity, int requestCode) {
+        final Intent intent = new Intent("android.settings.action.MANAGE_OVERLAY_PERMISSION",
+                Uri.parse("package:" + activity.getPackageName()));
+        if (intent.resolveActivity(activity.getPackageManager()) != null) {
+            activity.startActivityForResult(intent, requestCode);
+        } else {
+            Log.e(sTag, "No activity to handle intent");
+        }
+    }
+
+    /**
+     * Return whether the app can modify system settings.
+     *
+     * @param application
+     * @return {@code true}: yes<br>{@code false}: no
+     */
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public static boolean canWriteSetting(Application application) {
+        return Settings.System.canWrite(application);
+    }
+
+    /**
+     * Request the permission of modify settings
+     *
+     * @param activity
+     * @param requestCode
+     */
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public static void requestWriteSettingPermission(Activity activity, int requestCode) {
+        final Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
+        intent.setData(Uri.parse("package:" + activity.getPackageName()));
+        if (intent.resolveActivity(activity.getPackageManager()) != null) {
+            activity.startActivityForResult(intent, requestCode);
+        } else {
+            Log.e(sTag, "No activity to handle intent");
+        }
+
+    }
+
+    public static String matchRequestPermissionRationale(@NonNull Context context,
+                                                         @NonNull String permission) {
         if (!TextUtils.isEmpty(permission)) {
             switch (permission) {
                 case Manifest.permission.CAMERA:

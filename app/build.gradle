@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+//apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
@@ -33,6 +33,11 @@ android {
         }
 
     }
+
+    buildFeatures {
+        viewBinding true
+    }
+
 
     buildTypes {
         release {
@@ -100,8 +105,8 @@ dependencies {
     api deps.glide.runtime
     kapt deps.glide.compiler
 
-//    implementation project(path: ':lib.coreutils')
-    implementation 'io.github.zhangxinmin528.androidutils:coreutils:1.0.8'
+    implementation project(path: ':lib.coreutils')
+//    implementation 'io.github.zhangxinmin528.androidutils:coreutils:1.0.8'
     implementation project(path: ':lib.core')
 
     implementation project(path: ':annotation')

@@ -12,7 +12,7 @@ import com.zxm.utils.core.constant.TimeConstants;
 import com.zxm.utils.core.file.MemoryConstants;
 import com.zxm.utils.core.phone.PhoneUtil;
 
-import static com.zxm.utils.core.permission.PermissionChecker.checkPersmission;
+import static com.zxm.utils.core.permission.PermissionUtils.checkPersmission;
 
 /**
  * Created by ZhangXinmin on 2019/8/15.

@@ -1,12 +1,14 @@
 package com.example.androidutils
 
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.coding.zxm.lib_core.base.BaseFragment
 import com.example.androidutils.adapter.HomeTabAdapter
+import com.example.androidutils.databinding.FragmentHomeBinding
 import com.example.androidutils.fragment.HomeItemFragment
-import kotlinx.android.synthetic.main.fragment_home.*
 
 /**
  * Created by ZhangXinmin on 2021/06/15.
@@ -15,6 +17,7 @@ import kotlinx.android.synthetic.main.fragment_home.*
 class HomeFragment : BaseFragment() {
 
     private val mFragments: MutableList<Fragment> = ArrayList()
+    private lateinit var homeBinding: FragmentHomeBinding
 
     companion object {
         fun newInstance(): HomeFragment {
@@ -22,8 +25,9 @@ class HomeFragment : BaseFragment() {
         }
     }
 
-    override fun setLayoutId(): Int {
-        return R.layout.fragment_home
+    override fun setLayoutId(inflater: LayoutInflater, container: ViewGroup?): View {
+        homeBinding = FragmentHomeBinding.inflate(inflater, container, false)
+        return homeBinding.root
     }
 
     override fun initParamsAndValues() {
@@ -32,20 +36,22 @@ class HomeFragment : BaseFragment() {
         mFragments.add(HomeItemFragment.newInstance(HomeItemFragment.TAB_COMPONENT))
         mFragments.add(HomeItemFragment.newInstance(HomeItemFragment.TAB_UTIL))
         mFragments.add(HomeItemFragment.newInstance(HomeItemFragment.TAB_LAB))
+
+        initViews()
     }
 
-    override fun initViews(rootView: View) {
-        vp_home.adapter =
+    fun initViews() {
+        homeBinding.vpHome.adapter =
             HomeTabAdapter(fragmentManager = childFragmentManager, dataList = mFragments)
-        vp_home.offscreenPageLimit = 2
+        homeBinding.vpHome.offscreenPageLimit = 2
 
-        vp_home.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+        homeBinding.vpHome.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(
                 position: Int,
                 positionOffset: Float,
                 positionOffsetPixels: Int
             ) {
-                nav_main.selectedItemId = position
+                homeBinding.navMain.selectedItemId = position
             }
 
             override fun onPageSelected(position: Int) {
@@ -58,19 +64,19 @@ class HomeFragment : BaseFragment() {
 
         })
 
-        nav_main.setupWithViewPager(vp_home)
-        nav_main.setOnNavigationItemSelectedListener {
+        homeBinding.navMain.setupWithViewPager(homeBinding.vpHome)
+        homeBinding.navMain.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.nav_component -> {
-                    vp_home.currentItem = 0
+                    homeBinding.vpHome.currentItem = 0
                     true
                 }
                 R.id.nav_util -> {
-                    vp_home.currentItem = 1
+                    homeBinding.vpHome.currentItem = 1
                     true
                 }
                 R.id.nav_lab -> {
-                    vp_home.currentItem = 2
+                    homeBinding.vpHome.currentItem = 2
                     true
                 }
                 else -> {

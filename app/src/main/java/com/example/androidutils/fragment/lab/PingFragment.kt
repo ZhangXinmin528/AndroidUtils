@@ -1,43 +1,47 @@
 package com.example.androidutils.fragment.lab
 
+import android.annotation.SuppressLint
 import android.text.TextUtils
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import com.alibaba.fastjson.JSONObject
 import com.coding.zxm.annotation.Function
 import com.coding.zxm.annotation.Group
 import com.coding.zxm.lib_core.base.BaseFragment
 import com.example.androidutils.R
+import com.example.androidutils.databinding.FragmentPingBinding
 import com.zxm.utils.core.log.MLogger
 import com.zxm.utils.core.net.PingUtil
-import kotlinx.android.synthetic.main.fragment_ping.*
-import kotlinx.android.synthetic.main.layout_toolbar_back.*
 
 /**
  * Created by ZhangXinmin on 2019/5/17.
  * Copyright (c) 2018 . All rights reserved.
  */
+@SuppressLint("NonConstantResourceId")
 @Function(group = Group.Lab, funcName = "网络连接", funcIconRes = R.drawable.icon_network_connection)
 class PingFragment : BaseFragment(), View.OnClickListener {
-    override fun setLayoutId(): Int {
-        return R.layout.fragment_ping
+    private lateinit var pingBinding: FragmentPingBinding
+
+    override fun setLayoutId(inflater: LayoutInflater, container: ViewGroup?): View {
+        pingBinding = FragmentPingBinding.inflate(inflater, container, false)
+        return pingBinding.root
     }
 
-    override fun initParamsAndValues() {}
+    override fun initParamsAndValues() {
+        pingBinding.layoutTitle.tvToolbarTitle.text = "网络连接"
+        pingBinding.layoutTitle.ivToolbarBack.setOnClickListener(this)
 
-    override fun initViews(rootView: View) {
-        tv_toolbar_title.text = "网络连接"
-        iv_toolbar_back.setOnClickListener(this)
-
-        tv_ping.setOnClickListener(this)
+        pingBinding.tvPing.setOnClickListener(this)
     }
 
     private fun excuteCommand() {
-        val ip: String = et_input_ping.text.toString().trim()
+        val ip: String = pingBinding.etInputPing.text.toString().trim()
         if (!TextUtils.isEmpty(ip)) {
             val pingResult = PingUtil.ping(3, 0.5f, ip, false)
             if (pingResult != null) {
                 if (pingResult.getCode() == 0) {
-                    tv_ping_result.text = JSONObject.toJSONString(pingResult)
+                    pingBinding.tvPingResult.text = JSONObject.toJSONString(pingResult)
                 }
             }
             MLogger.i(sTAG, "result : $pingResult")

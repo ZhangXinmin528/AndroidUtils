@@ -1,13 +1,16 @@
 package com.example.androidutils.manager
 
 import com.coding.zxm.lib_core.base.BaseFragment
-import com.example.androidutils.fragment.util.SettingFragment
-import com.example.androidutils.fragment.component.*
+import com.example.androidutils.fragment.component.DialogFragment
+import com.example.androidutils.fragment.component.NotificationFragment
+import com.example.androidutils.fragment.component.SpanFragment
+import com.example.androidutils.fragment.component.StatusBarFragment
 import com.example.androidutils.fragment.lab.CrashFragment
 import com.example.androidutils.fragment.lab.LogInfoFragment
 import com.example.androidutils.fragment.lab.PaletteFrament
 import com.example.androidutils.fragment.lab.PingFragment
 import com.example.androidutils.fragment.util.*
+import com.example.androidutils.fragment.util.SettingFragment
 import com.example.androidutils.model.FuncItemDescription
 
 /**
@@ -65,7 +68,7 @@ class FuncDataManager private constructor() {
         mUtilsNames.add(ColorFragment::class.java)
         mUtilsNames.add(EncryptFragment::class.java)
         mUtilsNames.add(ImageFragment::class.java)
-
+        mUtilsNames.add(BrightnessFragment::class.java)
         mUtilsNames.add(NetworkFragment::class.java)
         mUtilsNames.add(SettingFragment::class.java)
     }

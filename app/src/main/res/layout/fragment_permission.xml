@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/layout_toolbar_back" />
+    <include
+        android:id="@+id/layout_title"
+        layout="@layout/layout_toolbar_back" />
 
     <Button
         android:id="@+id/btn_single"

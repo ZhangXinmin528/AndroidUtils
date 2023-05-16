@@ -1,20 +1,23 @@
 package com.example.androidutils.fragment.util
 
+import android.annotation.SuppressLint
 import android.os.Build
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import com.coding.zxm.annotation.Function
 import com.coding.zxm.annotation.Group
 import com.coding.zxm.lib_core.base.BaseFragment
 import com.example.androidutils.R
+import com.example.androidutils.databinding.FragmentSettingBinding
 import com.zxm.utils.core.setting.SettingUtils
-import kotlinx.android.synthetic.main.fragment_setting.*
-import kotlinx.android.synthetic.main.layout_toolbar_back.*
 
 /**
  * Created by ZhangXinmin on 2019/6/11.
  * Copyright (c) 2018 . All rights reserved.
  */
+@SuppressLint("NonConstantResourceId")
 @Function(group = Group.UTILS, funcName = "系统设置", funcIconRes = R.mipmap.icon_setting)
 class SettingFragment : BaseFragment(), View.OnClickListener {
 
@@ -22,25 +25,30 @@ class SettingFragment : BaseFragment(), View.OnClickListener {
         private const val REQUEST_UNKNOWN_SOURCE = 1001
     }
 
-    override fun setLayoutId(): Int {
-        return R.layout.fragment_setting
+    private lateinit var settingBinding: FragmentSettingBinding
+
+    override fun setLayoutId(inflater: LayoutInflater, container: ViewGroup?): View {
+        settingBinding = FragmentSettingBinding.inflate(inflater, container, false)
+        return settingBinding.root
     }
 
-    override fun initParamsAndValues() {}
+    override fun initParamsAndValues() {
+        initViews()
+    }
 
-    override fun initViews(rootView: View) {
-        tv_toolbar_title.text = "系统设置"
-        iv_toolbar_back.setOnClickListener(this)
+    fun initViews() {
+        settingBinding.layoutTitle.tvToolbarTitle.text = "系统设置"
+        settingBinding.layoutTitle.ivToolbarBack.setOnClickListener(this)
 
-        tv_app_detial.setOnClickListener(this)
-        tv_self_start.setOnClickListener(this)
-        tv_setting_install_not_market.setOnClickListener(this)
-        tv_setting_nfc.setOnClickListener(this)
-        tv_setting_wifi.setOnClickListener(this)
-        tv_setting_bluetooth.setOnClickListener(this)
-        tv_setting_accessibility.setOnClickListener(this)
-        tv_setting_application.setOnClickListener(this)
-        tv_setting_app_dev.setOnClickListener(this)
+        settingBinding.tvAppDetial.setOnClickListener(this)
+        settingBinding.tvSelfStart.setOnClickListener(this)
+        settingBinding.tvSettingInstallNotMarket.setOnClickListener(this)
+        settingBinding.tvSettingNfc.setOnClickListener(this)
+        settingBinding.tvSettingWifi.setOnClickListener(this)
+        settingBinding.tvSettingBluetooth.setOnClickListener(this)
+        settingBinding.tvSettingAccessibility.setOnClickListener(this)
+        settingBinding.tvSettingApplication.setOnClickListener(this)
+        settingBinding.tvSettingAppDev.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
