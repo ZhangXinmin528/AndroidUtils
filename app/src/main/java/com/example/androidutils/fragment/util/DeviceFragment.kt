@@ -11,7 +11,7 @@ import com.coding.zxm.lib_core.base.BaseFragment
 import com.example.androidutils.R
 import com.example.androidutils.databinding.FragmentDeviceBinding
 import com.zxm.utils.core.device.DeviceUtil
-import com.zxm.utils.core.permission.PermissionChecker
+import com.zxm.utils.core.permission.PermissionUtils
 import java.util.*
 
 /**
@@ -31,8 +31,8 @@ class DeviceFragment : BaseFragment(), View.OnClickListener {
     }
 
     override fun initParamsAndValues() {
-        if (!PermissionChecker.checkPersmission(mContext!!, Manifest.permission.READ_PHONE_STATE)) {
-            PermissionChecker.requestPermissions(
+        if (!PermissionUtils.checkPersmission(mContext!!, Manifest.permission.READ_PHONE_STATE)) {
+            PermissionUtils.requestPermissions(
                 activity!!, arrayOf(Manifest.permission.READ_PHONE_STATE), 1001
             )
         }

@@ -1,14 +1,16 @@
 package com.example.androidutils.fragment.lab
 
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import com.coding.zxm.annotation.Function
 import com.coding.zxm.annotation.Group
 import com.coding.zxm.lib_core.base.BaseFragment
 import com.example.androidutils.R
 import com.example.androidutils.databinding.FragmentLogInfoBinding
-import com.zxm.utils.core.permission.PermissionChecker
+import com.zxm.utils.core.permission.PermissionUtils
 import com.zxm.utils.core.widget.loginfo.LogInfoKit
 
 /**
@@ -31,6 +33,7 @@ class LogInfoFragment : BaseFragment(), View.OnClickListener {
         return logInfoBinding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun initParamsAndValues() {
         checkCanDrawOverlay()
 
@@ -43,9 +46,10 @@ class LogInfoFragment : BaseFragment(), View.OnClickListener {
         logInfoBinding.btnMinLog.setOnClickListener(this)
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     private fun checkCanDrawOverlay() {
-        if (!PermissionChecker.canDrawOverlays(mContext)) {
-            PermissionChecker.requestDrawOverlays(mContext)
+        if (!PermissionUtils.canDrawOverlays(mContext)) {
+            PermissionUtils.requestDrawOverlays(mContext)
         }
     }
 

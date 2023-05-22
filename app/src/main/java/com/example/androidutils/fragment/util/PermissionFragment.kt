@@ -13,7 +13,7 @@ import com.coding.zxm.lib_core.base.BaseFragment
 import com.example.androidutils.R
 import com.example.androidutils.databinding.FragmentPermissionBinding
 import com.zxm.utils.core.dialog.DialogUtil
-import com.zxm.utils.core.permission.PermissionChecker
+import com.zxm.utils.core.permission.PermissionUtils
 
 /**
  * Created by ZhangXinmin on 2019/1/4.
@@ -57,12 +57,12 @@ class PermissionFragment : BaseFragment(), View.OnClickListener {
      * check permission
      */
     private fun checkSinglePermission() {
-        if (!PermissionChecker.checkPersmission(
+        if (!PermissionUtils.checkPersmission(
                 mContext!!,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE
             )
         ) {
-            PermissionChecker.requestPermissions(
+            PermissionUtils.requestPermissions(
                 activity!!, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
                 REQUEST_EXTERNAL
             )
@@ -80,8 +80,8 @@ class PermissionFragment : BaseFragment(), View.OnClickListener {
     }
 
     private fun checkPermissions() {
-        if (!PermissionChecker.checkSeriesPermissions(mContext!!, permissions)) { //存在未被允许的权限
-            PermissionChecker.requestPermissions(activity!!, permissions, REQUEST_PERMISSIONS)
+        if (!PermissionUtils.checkSeriesPermissions(mContext!!, permissions)) { //存在未被允许的权限
+            PermissionUtils.requestPermissions(activity!!, permissions, REQUEST_PERMISSIONS)
         }
     }
 
@@ -101,7 +101,7 @@ class PermissionFragment : BaseFragment(), View.OnClickListener {
                     if (showRequest) {
                         DialogUtil.showForceDialog(
                             mContext!!,
-                            PermissionChecker.matchRequestPermissionRationale(
+                            PermissionUtils.matchRequestPermissionRationale(
                                 mContext!!,
                                 permissions[i]
                             )
