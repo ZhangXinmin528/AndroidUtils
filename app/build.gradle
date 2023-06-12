@@ -8,12 +8,19 @@ android {
     buildToolsVersion build_versions.build_tools
 
     defaultConfig {
+
         applicationId "com.example.androidutils"
         minSdkVersion build_versions.min_sdk
         targetSdkVersion build_versions.target_sdk
         versionCode 5
         versionName "1.0.5"
         multiDexEnabled true
+
+        resValue "string", "build_time", buildTime()
+        resValue "string", "build_host", hostName()
+        resValue "string", "build_revision", revision()
+        resValue "string", "changelog", changelog()
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -59,7 +66,12 @@ android {
 
             signingConfig signingConfigs.release
         }
+        develop {
+            initWith debug
+            signingConfig signingConfigs.release
+        }
     }
+
     compileOptions {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
@@ -105,10 +117,53 @@ dependencies {
     api deps.glide.runtime
     kapt deps.glide.compiler
 
-    implementation project(path: ':lib.coreutils')
-//    implementation 'io.github.zhangxinmin528.androidutils:coreutils:1.0.8'
+
     implementation project(path: ':lib.core')
 
     implementation project(path: ':annotation')
     kapt project(path: ':compiler')
+
+    debugImplementation project(path: ':lib.coreutils')
+    developImplementation project(path: ':lib.coreutils')
+    releaseImplementation 'io.github.zhangxinmin528.androidutils:coreutils:1.0.8'
+}
+
+static def buildTime() {
+    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
+}
+
+static def hostName() {
+    return "${System.getProperty("user.name")}@${InetAddress.localHost.hostName}"
+}
+
+
+def revision() {
+    def code = new ByteArrayOutputStream()
+    exec {
+        commandLine 'git', 'rev-parse', '--short', 'HEAD'
+        standardOutput = code
+    }
+    return code.toString()
+}
+
+/**
+ * Generate a changelog string from the NEWS file
+ * @return a string containing the latest changelog entry
+ */
+def changelog() {
+    def newsFile = new File("NEWS")
+    def line, output = "", started = false
+    if (newsFile.exists()) {
+        newsFile.withReader { reader ->
+            while ((line = reader.readLine()) != null) {
+                if (started && !line?.trim()) break
+                if (started) {
+                    if (output != "") output += "\\n"
+                    output += line.trim()
+                }
+                if (line.contains("---")) started = true
+            }
+        }
+    }
+    return output
 }
