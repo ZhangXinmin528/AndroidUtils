@@ -6,7 +6,7 @@ buildscript {
     addRepos(repositories)
 
     dependencies {
-        classpath deps.android_gradle_plugin
+        classpath "com.android.tools.build:gradle:$versions.android_gradle_plugin"
         classpath deps.kotlin.plugin
 
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'

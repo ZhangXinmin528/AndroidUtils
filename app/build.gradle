@@ -73,14 +73,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = 1.8
-        targetCompatibility = 1.8
-    }
-
-    repositories {
-        flatDir {
-            dirs 'libs'
-        }
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 
     applicationVariants.all { variant ->
@@ -110,7 +104,7 @@ dependencies {
     implementation 'androidx.palette:palette-ktx:1.0.0'
 
     //底部导航栏
-    implementation(name: 'BottomNavigationViewEx_2.0.4_debug', ext: 'aar')
+    implementation files('libs/BottomNavigationViewEx_2.0.4_debug.aar')
 
     //图片加载框架
     //Glide

@@ -1,8 +1,8 @@
 ext.deps = [:]
 def versions = [:]
 //classpath
-versions.android_gradle_plugin = '4.1.0'
-versions.kotlin = "1.5.10"
+versions.android_gradle_plugin = '7.3.1'
+versions.kotlin = "1.8.10"
 versions.arouter_register = "1.0.2"
 versions.bugly_tinker_support = "1.1.5"
 
@@ -79,9 +79,9 @@ ext.versions = versions
 //TODO:base project config
 def build_versions = [:]
 build_versions.min_sdk = 17
-build_versions.compile_sdk = 29
-build_versions.target_sdk = 29
-build_versions.build_tools = "29.0.3"
+build_versions.compile_sdk = 30
+build_versions.target_sdk = 30
+build_versions.build_tools = "30.0.3"
 ext.build_versions = build_versions
 
 //================================================================================================//
