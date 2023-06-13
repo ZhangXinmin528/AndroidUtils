@@ -2,12 +2,16 @@ package com.zxm.utils.core
 
 import android.content.res.Resources
 import android.util.TypedValue
+import java.math.BigDecimal
 
 /**
  * Created by ZhangXinmin on 2022/09/01.
  * Copyright (c) 2022/9/1 . All rights reserved.
  * 扩展工具
  */
+
+val Float.roundHalfUp
+    get() = BigDecimal(this.toDouble()).setScale(2, BigDecimal.ROUND_HALF_UP).toFloat()
 
 // dp to px
 val Float.dpToPx
