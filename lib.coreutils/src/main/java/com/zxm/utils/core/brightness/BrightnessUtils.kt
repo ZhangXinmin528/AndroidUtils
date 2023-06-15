@@ -77,8 +77,9 @@ object BrightnessUtils {
             0
         }
     }
+
     /**
-     * Set the brightness for window.
+     * Set the brightness for window(current app window).
      * @param window
      * @param brightness
      */

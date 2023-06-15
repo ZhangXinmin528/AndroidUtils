@@ -111,7 +111,6 @@ dependencies {
     api deps.glide.runtime
     kapt deps.glide.compiler
 
-
     implementation project(path: ':lib.core')
 
     implementation project(path: ':annotation')

@@ -26,7 +26,6 @@ import com.zxm.utils.core.permission.PermissionUtils
 @Function(group = Group.UTILS, funcName = "亮度调节", funcIconRes = R.mipmap.icon_brightness)
 class BrightnessFragment : BaseFragment() {
 
-
     companion object {
         const val REQUEST_CODE = 1001
     }

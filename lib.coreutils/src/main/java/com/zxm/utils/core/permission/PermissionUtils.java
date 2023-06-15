@@ -49,12 +49,10 @@ public final class PermissionUtils {
      * @param permissions
      * @param requestCode
      */
-    public static void requestPermissions(@NonNull Activity activity,
-                                          @NonNull String[] permissions, int requestCode) {
+    public static void requestPermissions(@NonNull Activity activity, @NonNull String[] permissions, int requestCode) {
         if (permissions != null) {
             //先获取未被允许的权限
-            String[] deniedPermissions = PermissionUtils.checkDeniedPermissions(activity,
-                    permissions);
+            String[] deniedPermissions = PermissionUtils.checkDeniedPermissions(activity, permissions);
             if (deniedPermissions != null && deniedPermissions.length > 0) {
                 ActivityCompat.requestPermissions(activity, deniedPermissions, requestCode);
             }
@@ -69,8 +67,7 @@ public final class PermissionUtils {
      * @param permissions
      * @return if the permission has not been granted to the given package , return false.
      */
-    public static boolean checkSeriesPermissions(@NonNull Context context,
-                                                 @NonNull String[] permissions) {
+    public static boolean checkSeriesPermissions(@NonNull Context context, @NonNull String[] permissions) {
         for (String permission : permissions) {
             if (!checkPersmission(context, permission)) {
                 return false;
@@ -87,8 +84,7 @@ public final class PermissionUtils {
      * @param permissions
      * @return
      */
-    public static String[] checkDeniedPermissions(@NonNull Context context,
-                                                  @NonNull String[] permissions) {
+    public static String[] checkDeniedPermissions(@NonNull Context context, @NonNull String[] permissions) {
         final List<String> deniedList = new ArrayList<>();
         if (permissions != null) {
             for (String permission : permissions) {
@@ -141,15 +137,11 @@ public final class PermissionUtils {
 
     private static boolean checkOp(Context context, int op) {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
-            AppOpsManager manager =
-                    (AppOpsManager) context.getSystemService(Context.APP_OPS_SERVICE);
+            AppOpsManager manager = (AppOpsManager) context.getSystemService(Context.APP_OPS_SERVICE);
             Class clazz = AppOpsManager.class;
             try {
-                @SuppressLint("DiscouragedPrivateApi") Method method = clazz.getDeclaredMethod(
-                        "checkOp", int.class, int.class,
-                        String.class);
-                return AppOpsManager.MODE_ALLOWED == (int) method.invoke(manager, op,
-                        Process.myUid(), context.getPackageName());
+                @SuppressLint("DiscouragedPrivateApi") Method method = clazz.getDeclaredMethod("checkOp", int.class, int.class, String.class);
+                return AppOpsManager.MODE_ALLOWED == (int) method.invoke(manager, op, Process.myUid(), context.getPackageName());
             } catch (NoSuchMethodException e) {
                 e.printStackTrace();
             } catch (IllegalAccessException e) {
@@ -170,8 +162,7 @@ public final class PermissionUtils {
     @Deprecated(message = "not friendly")
     @RequiresApi(api = Build.VERSION_CODES.M)
     public static void requestDrawOverlays(Context context) {
-        final Intent intent = new Intent("android.settings.action.MANAGE_OVERLAY_PERMISSION",
-                Uri.parse("package:" + context.getPackageName()));
+        final Intent intent = new Intent("android.settings.action.MANAGE_OVERLAY_PERMISSION", Uri.parse("package:" + context.getPackageName()));
         if (!(context instanceof Activity)) {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         }
@@ -190,8 +181,7 @@ public final class PermissionUtils {
      */
     @RequiresApi(api = Build.VERSION_CODES.M)
     public static void requestDrawOverlays(Activity activity, int requestCode) {
-        final Intent intent = new Intent("android.settings.action.MANAGE_OVERLAY_PERMISSION",
-                Uri.parse("package:" + activity.getPackageName()));
+        final Intent intent = new Intent("android.settings.action.MANAGE_OVERLAY_PERMISSION", Uri.parse("package:" + activity.getPackageName()));
         if (intent.resolveActivity(activity.getPackageManager()) != null) {
             activity.startActivityForResult(intent, requestCode);
         } else {
@@ -228,8 +218,7 @@ public final class PermissionUtils {
 
     }
 
-    public static String matchRequestPermissionRationale(@NonNull Context context,
-                                                         @NonNull String permission) {
+    public static String matchRequestPermissionRationale(@NonNull Context context, @NonNull String permission) {
         if (!TextUtils.isEmpty(permission)) {
             switch (permission) {
                 case Manifest.permission.CAMERA:
