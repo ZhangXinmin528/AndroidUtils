@@ -69,6 +69,7 @@ class FuncDataManager private constructor() {
         mUtilsNames.add(EncryptFragment::class.java)
         mUtilsNames.add(ImageFragment::class.java)
         mUtilsNames.add(BrightnessFragment::class.java)
+        mUtilsNames.add(PinyinFragment::class.java)
         mUtilsNames.add(NetworkFragment::class.java)
         mUtilsNames.add(SettingFragment::class.java)
     }
