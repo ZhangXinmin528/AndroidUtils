@@ -1,8 +1,9 @@
 apply plugin: 'maven'
 apply plugin: 'signing'
 
+//适用于gradle 7.0以下
 def isReleaseBuild() {
-    return VERSION_NAME.contains("SNAPSHOT") == false
+    return !VERSION_NAME.contains("SNAPSHOT")
 }
 
 //仓库地址
