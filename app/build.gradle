@@ -118,7 +118,7 @@ dependencies {
 
     debugImplementation project(path: ':lib.coreutils')
     developImplementation project(path: ':lib.coreutils')
-    releaseImplementation 'io.github.zhangxinmin528.androidutils:coreutils:1.0.8'
+    releaseImplementation 'io.github.zhangxinmin528.androidutils:coreutils:1.0.9'
 }
 
 static def buildTime() {

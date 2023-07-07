@@ -36,50 +36,50 @@ task sourceJar(type: Jar) {
     }
 }
 
-afterEvaluate { project ->
-    publishing {
-
-        publications {
-            uploadArchives(MavenPublication) {
-                groupId GROUP_ID
-                artifactId POM_ARTIFACT_ID
-                version VERSION_NAME
-//                artifact(sourceJar)
-//                artifact("$buildDir/outputs/aar/${project.name}-release.aar")
-                pom {
-                    name = POM_NAME
-                    packaging POM_PACKAGING
-                    description = POM_DESCRIPTION
-                    url = POM_URL
-                    licenses {
-                        license {
-                            name = 'The Apache License, Version 2.0'
-                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                        }
+publishing {
+    publications {
+        uploadArchives(MavenPublication) {
+            groupId GROUP_ID
+            artifactId POM_ARTIFACT_ID
+            version VERSION_NAME
+            afterEvaluate {
+                artifact bundleReleaseAar
+            }
+            artifact(sourceJar)
+//            artifact("$buildDir/outputs/aar/${project.name}-release.aar")
+            pom {
+                name = POM_NAME
+                packaging POM_PACKAGING
+                description = POM_DESCRIPTION
+                url = POM_URL
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
                     }
-                    developers {
-                        developer {
-                            id = POM_DEVELOPER_ID
-                            name = POM_DEVELOPER_NAME
-                            email = POM_DEVELOPER_EMAIL
-                        }
+                }
+                developers {
+                    developer {
+                        id = POM_DEVELOPER_ID
+                        name = POM_DEVELOPER_NAME
+                        email = POM_DEVELOPER_EMAIL
                     }
-                    scm {
-                        url = POM_SCM_URL
-                        connection = POM_SCM_CONNECTION
-                        developerConnection = POM_SCM_DEV_CONNECTION
-                    }
+                }
+                scm {
+                    url = POM_SCM_URL
+                    connection = POM_SCM_CONNECTION
+                    developerConnection = POM_SCM_DEV_CONNECTION
                 }
             }
         }
-        repositories {
-            maven {
-                allowInsecureProtocol true
-                url = isReleaseBuild() ? getReleaseRepositoryUrl() : getSnapshotRepositoryUrl()
-                credentials {
-                    username = getRepositoryUsername()
-                    password = getRepositoryPassword()
-                }
+    }
+    repositories {
+        maven {
+            allowInsecureProtocol true
+            url = isReleaseBuild() ? getReleaseRepositoryUrl() : getSnapshotRepositoryUrl()
+            credentials {
+                username = getRepositoryUsername()
+                password = getRepositoryPassword()
             }
         }
     }
@@ -93,37 +93,6 @@ def isAndroidPlugin() {
     return plugins.hasPlugin("com.android.library")
 }
 
-task androidJavadocs(type: Javadoc) {
-    failOnError = false
-    source = android.sourceSets.main.java.srcDirs
-    ext.androidJar = "${android.sdkDirectory}/platforms/${android.compileSdkVersion}/android.jar"
-    classpath += files(ext.androidJar)
-}
-
-task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
-    classifier = 'javadoc'
-    from androidJavadocs.destinationDir
-}
-
-task androidSourcesJar(type: Jar) {
-    classifier = 'sources'
-    from android.sourceSets.main.java.sourceFiles
-}
-
-if (JavaVersion.current().isJava8Compatible()) {
-    allprojects {
-        tasks.withType(Javadoc) {
-            options.addStringOption('Xdoclint:none', '-quiet')
-        }
-    }
-}
-
-artifacts {
-    archives androidSourcesJar
-    archives androidJavadocsJar
-}
-
 signing {
-    required { isReleaseBuild() && gradle.taskGraph.hasTask("uploadArchives") }
-    sign configurations.archives
+    sign publishing.publications.uploadArchives
 }
