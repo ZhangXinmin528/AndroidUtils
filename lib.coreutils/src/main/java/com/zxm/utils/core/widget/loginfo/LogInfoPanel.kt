@@ -457,12 +457,12 @@ internal class LogInfoPanel : LogInfoManager.OnLogCatchListener, View.OnClickLis
         }
     }
 
-    override fun onViewAttachedToWindow(v: View?) {
+    override fun onViewAttachedToWindow(v: View) {
         isAttachedToWindow = true
         Log.d(sTag, "mRootView has attached to window!")
     }
 
-    override fun onViewDetachedFromWindow(v: View?) {
+    override fun onViewDetachedFromWindow(v: View) {
         isAttachedToWindow = false
         Log.d(sTag, "mRootView has detached from window!")
     }

@@ -79,9 +79,9 @@ ext.versions = versions
 //TODO:base project config
 def build_versions = [:]
 build_versions.min_sdk = 17
-build_versions.compile_sdk = 30
-build_versions.target_sdk = 30
-build_versions.build_tools = "30.0.3"
+build_versions.compile_sdk = 33
+build_versions.target_sdk = 33
+build_versions.build_tools = "33.0.2"
 ext.build_versions = build_versions
 
 //================================================================================================//
