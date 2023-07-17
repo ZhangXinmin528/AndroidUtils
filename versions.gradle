@@ -57,7 +57,7 @@ versions.amap_search = "7.7.0"
 versions.amap_location = "5.2.0"
 
 //util
-versions.coreutils = "1.0.6"
+versions.coreutils = "1.0.10"
 versions.tbssdk = "43939"
 
 //Tinker & Bugly

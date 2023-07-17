@@ -36,7 +36,7 @@ Add dependencies in build.gradle.
 		}
 	
 	dependencies {
-		implementation 'io.github.zhangxinmin528.androidutils:coreutils:1.0.9'
+		implementation 'io.github.zhangxinmin528.androidutils:coreutils:1.0.10'
 	}
 	
 	2.Jcenter (No longer maintained)

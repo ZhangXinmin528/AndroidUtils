@@ -50,7 +50,7 @@ dependencies {
     implementation deps.constraint_layout
 
     //utils
-    implementation project(':lib.coreutils')
+//    implementation project(':lib.coreutils')
 //    implementation(name: 'AndroidUtils_1.0.1_release', ext: 'aar')
-//    implementation deps.coreUtils
+    implementation deps.coreUtils
 }

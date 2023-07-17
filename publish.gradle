@@ -42,11 +42,8 @@ publishing {
             groupId GROUP_ID
             artifactId POM_ARTIFACT_ID
             version VERSION_NAME
-            afterEvaluate {
-                artifact bundleReleaseAar
-            }
             artifact(sourceJar)
-//            artifact("$buildDir/outputs/aar/${project.name}-release.aar")
+            artifact("$buildDir/outputs/aar/${project.name}-release.aar")
             pom {
                 name = POM_NAME
                 packaging POM_PACKAGING
