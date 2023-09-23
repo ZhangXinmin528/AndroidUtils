@@ -4,6 +4,7 @@
     <!--bottom navigation-->
     <string name="nav_compontents">组件</string>
     <string name="nav_tools">工具</string>
+    <string name="nav_tv">TV</string>
     <string name="nav_lab">实验</string>
 
     <string name="all_screen_info">设备屏幕信息：%1$s</string>

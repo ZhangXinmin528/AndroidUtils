@@ -12,6 +12,11 @@
         android:title="@string/nav_tools" />
 
     <item
+        android:id="@+id/nav_tv"
+        android:icon="@drawable/selector_nav_tv"
+        android:title="@string/nav_tv" />
+
+    <item
         android:id="@+id/nav_lab"
         android:icon="@drawable/selector_nav_lab"
         android:title="@string/nav_lab" />

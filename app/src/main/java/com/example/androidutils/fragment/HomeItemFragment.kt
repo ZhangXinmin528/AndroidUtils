@@ -22,7 +22,8 @@ class HomeItemFragment : BaseFragment() {
         private const val PARAMS_TAB = "params_tab"
         const val TAB_COMPONENT = 1001
         const val TAB_UTIL = 1002
-        const val TAB_LAB = 1003
+        const val TAB_TV = 1003
+        const val TAB_LAB = 1004
 
         fun newInstance(tab: Int): HomeItemFragment {
             val fragment = HomeItemFragment()
@@ -52,21 +53,31 @@ class HomeItemFragment : BaseFragment() {
         when (mTabType) {
             TAB_COMPONENT -> {
                 val list = FuncDataManager.getInstance()?.getComponentsDescriptions()
-                if (list != null && list.isNotEmpty()) {
+                if (!list.isNullOrEmpty()) {
                     mDataList.addAll(list)
                 }
                 homeTabBinding.layoutTitle.tvToolbarTitle.setText(R.string.nav_compontents)
             }
+
             TAB_UTIL -> {
                 val list = FuncDataManager.getInstance()?.getUtilsDescriptions()
-                if (list != null && list.isNotEmpty()) {
+                if (!list.isNullOrEmpty()) {
                     mDataList.addAll(list)
                 }
                 homeTabBinding.layoutTitle.tvToolbarTitle.setText(R.string.nav_tools)
             }
+
+            TAB_TV -> {
+                val list = FuncDataManager.getInstance()?.getUtilsDescriptions()
+                if (!list.isNullOrEmpty()) {
+                    mDataList.addAll(list)
+                }
+                homeTabBinding.layoutTitle.tvToolbarTitle.setText(R.string.nav_tv)
+            }
+
             TAB_LAB -> {
                 val list = FuncDataManager.getInstance()?.getLabsDescriptions()
-                if (list != null && list.isNotEmpty()) {
+                if (!list.isNullOrEmpty()) {
                     mDataList.addAll(list)
                 }
                 homeTabBinding.layoutTitle.tvToolbarTitle.setText(R.string.nav_lab)

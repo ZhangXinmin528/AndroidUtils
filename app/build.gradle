@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-//apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
@@ -14,6 +13,7 @@ android {
         targetSdkVersion build_versions.target_sdk
         versionCode 5
         versionName "1.0.5"
+
         multiDexEnabled true
 
         resValue "string", "build_time", buildTime()
@@ -44,7 +44,6 @@ android {
     buildFeatures {
         viewBinding true
     }
-
 
     buildTypes {
         release {

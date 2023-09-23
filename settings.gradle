@@ -1,6 +1,7 @@
 include ':app'
 include ':lib.core'
 include ':lib.coreutils'
+include ':lib.tvutils'
 include ':annotation'
 include ':compiler'
 

@@ -35,6 +35,7 @@ class HomeFragment : BaseFragment() {
         mFragments.clear()
         mFragments.add(HomeItemFragment.newInstance(HomeItemFragment.TAB_COMPONENT))
         mFragments.add(HomeItemFragment.newInstance(HomeItemFragment.TAB_UTIL))
+        mFragments.add(HomeItemFragment.newInstance(HomeItemFragment.TAB_TV))
         mFragments.add(HomeItemFragment.newInstance(HomeItemFragment.TAB_LAB))
 
         initViews()
@@ -75,8 +76,12 @@ class HomeFragment : BaseFragment() {
                     homeBinding.vpHome.currentItem = 1
                     true
                 }
-                R.id.nav_lab -> {
+                R.id.nav_tv -> {
                     homeBinding.vpHome.currentItem = 2
+                    true
+                }
+                R.id.nav_lab -> {
+                    homeBinding.vpHome.currentItem = 3
                     true
                 }
                 else -> {
