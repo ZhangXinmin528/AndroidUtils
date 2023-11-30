@@ -121,7 +121,7 @@ dependencies {
 }
 
 static def buildTime() {
-    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
+    return new Date().format("yyyy-MM-dd HH:mm", TimeZone.getTimeZone("GMT+8:00"))
 }
 
 static def hostName() {
