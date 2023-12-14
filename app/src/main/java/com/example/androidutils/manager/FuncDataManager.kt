@@ -1,10 +1,12 @@
 package com.example.androidutils.manager
 
+import android.os.Build
 import com.coding.zxm.lib_core.base.BaseFragment
 import com.example.androidutils.fragment.component.DialogFragment
 import com.example.androidutils.fragment.component.NotificationFragment
 import com.example.androidutils.fragment.component.SpanFragment
 import com.example.androidutils.fragment.component.StatusBarFragment
+import com.example.androidutils.fragment.lab.AudioFocusFragment
 import com.example.androidutils.fragment.lab.CrashFragment
 import com.example.androidutils.fragment.lab.LogInfoFragment
 import com.example.androidutils.fragment.lab.PaletteFrament
@@ -56,6 +58,7 @@ class FuncDataManager private constructor() {
         mLabsNames.add(PaletteFrament::class.java)
         mLabsNames.add(PingFragment::class.java)
         mLabsNames.add(LogInfoFragment::class.java)
+        mLabsNames.add(AudioFocusFragment::class.java)
     }
 
     private fun initUtilsDesc() {
@@ -68,7 +71,9 @@ class FuncDataManager private constructor() {
         mUtilsNames.add(ColorFragment::class.java)
         mUtilsNames.add(EncryptFragment::class.java)
         mUtilsNames.add(ImageFragment::class.java)
-        mUtilsNames.add(BrightnessFragment::class.java)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            mUtilsNames.add(BrightnessFragment::class.java)
+        }
         mUtilsNames.add(PinyinFragment::class.java)
         mUtilsNames.add(NetworkFragment::class.java)
         mUtilsNames.add(SettingFragment::class.java)

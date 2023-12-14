@@ -1,15 +1,20 @@
-
 ### Util更新日志：
 
 #### v1.0.11(未发布)
 
-1.添加TvUtils
+1.添加TvUtils;
+
+2.添加UIExtentions;
+
+3.添加AudioFocusHelper;
+
+4.添加AndroidUtil;
 
 #### v1.0.10
 
 1. 修复上传的1.0.9版本的问题；
 
-####  ~~v1.0.9~~
+#### ~~v1.0.9~~
 
 1.优化权限请求工具中的方法；
 

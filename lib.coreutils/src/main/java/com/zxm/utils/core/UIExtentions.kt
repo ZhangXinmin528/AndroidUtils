@@ -1,7 +1,9 @@
 package com.zxm.utils.core
 
+import android.content.Context
 import android.content.res.Resources
 import android.util.TypedValue
+import android.widget.Toast
 import java.math.BigDecimal
 
 /**
@@ -35,3 +37,11 @@ val Int.dpTopx
 //dsp to px
 val Int.spToPx
     get() = this.toFloat().spToPx
+
+//short toast
+fun Context.toastShort(msg: String) {
+    Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+}
+
+
+
