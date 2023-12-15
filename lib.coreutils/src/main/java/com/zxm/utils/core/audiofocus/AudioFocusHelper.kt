@@ -7,7 +7,6 @@ import android.media.AudioFocusRequest
 import android.media.AudioManager
 import android.os.Build
 import android.util.Log
-import androidx.annotation.RequiresApi
 import com.zxm.utils.core.BuildConfig
 import com.zxm.utils.core.device.AndroidUtil
 
@@ -37,10 +36,13 @@ class AudioFocusHelper(
      * Change the audio focus.
      *
      * @param acquire
+     * @param focusGain AudioManager.AUDIOFOCUS_GAIN or AUDIOFOCUS_GAIN_TRANSIENT
+     *                  or AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK or AUDIOFOCUS_GAIN_TRANSIENT_EXCLUSIVE;
      * @param contentType AudioAttributes.CONTENT_TYPE_MOVIE or AudioAttributes.CONTENT_TYPE_MUSIC
      */
     fun changeAudioFocus(
         acquire: Boolean,
+        focusGain: Int = AudioManager.AUDIOFOCUS_GAIN,
         contentType: Int = AudioAttributes.CONTENT_TYPE_MUSIC
     ) {
         if (!this::audioManager.isInitialized) audioManager =
@@ -48,12 +50,12 @@ class AudioFocusHelper(
 
         if (acquire) {
             if (!hasAudioFocus) {
-                val result = requestAudioFocus(contentType = contentType)
+                val result = requestAudioFocus(focusGain = focusGain, contentType = contentType)
                 if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
                     audioManager.setParameters("bgm_state=true")
                     hasAudioFocus = true
                     focusChangedCallback?.onAudioFocusGain()
-                }else{
+                } else {
                     hasAudioFocus = false
                     focusChangedCallback?.onAudioFocusLoss()
                 }
@@ -84,27 +86,31 @@ class AudioFocusHelper(
 
     /**
      * 请求音频焦点
-     * @param contentType AudioAttributes.CONTENT_TYPE_MOVIE or AudioAttributes.CONTENT_TYPE_MUSIC
+     * @param focusGain AudioManager.AUDIOFOCUS_GAIN or AUDIOFOCUS_GAIN_TRANSIENT
+     *                  or AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK or AUDIOFOCUS_GAIN_TRANSIENT_EXCLUSIVE;
+     * @param contentType AudioAttributes.CONTENT_TYPE_MOVIE or AudioAttributes.CONTENT_TYPE_MUSIC;
      */
     @TargetApi(Build.VERSION_CODES.O)
-    private fun requestAudioFocus(contentType: Int = AudioAttributes.CONTENT_TYPE_MUSIC) =
-        if (AndroidUtil.isOOrLater) {
-            val attributes = AudioAttributes.Builder().setContentType(contentType).build()
+    private fun requestAudioFocus(
+        focusGain: Int = AudioManager.AUDIOFOCUS_GAIN,
+        contentType: Int = AudioAttributes.CONTENT_TYPE_MUSIC
+    ) = if (AndroidUtil.isOOrLater) {
+        val attributes = AudioAttributes.Builder().setContentType(contentType).build()
 
-            audioFocusRequest = AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN)
-                .setOnAudioFocusChangeListener(audioFocusListener).setAudioAttributes(attributes)
-                .build()
-            audioManager.requestAudioFocus(audioFocusRequest)
-        } else {
-            audioManager.requestAudioFocus(
-                audioFocusListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN
-            )
-        }
+        audioFocusRequest =
+            AudioFocusRequest.Builder(focusGain).setOnAudioFocusChangeListener(audioFocusListener)
+                .setAudioAttributes(attributes).build()
+        audioManager.requestAudioFocus(audioFocusRequest)
+    } else {
+        audioManager.requestAudioFocus(
+            audioFocusListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN
+        )
+    }
 
     /**
      * 设置回调
      */
-     fun setOnAudioFocusChangedCallback(callback: OnAudioFocusChangedCallback) {
+    fun setOnAudioFocusChangedCallback(callback: OnAudioFocusChangedCallback) {
         focusChangedCallback = callback
     }
 
