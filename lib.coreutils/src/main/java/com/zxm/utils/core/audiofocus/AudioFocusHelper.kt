@@ -15,6 +15,11 @@ private const val TAG = "AudioFocusHelper"
 /**
  * Created by zhangxinmin on 2023/12/13.
  * 音频焦点相关管理类
+ * 音频焦点
+ * AUDIOFOCUS_GAIN:用于时间未知的音频焦点的获取请求,释放焦点后其他应用无法获取焦点；
+ * AUDIOFOCUS_GAIN_TRANSIENT:用于持续时间很短的音频焦点的获取请求，例如事件通知或者驾驶场景；释放焦点后其他应用可以获取焦点；
+ * AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK:用于持续时间很短的音频焦点请求，并且允许其他应用降低输出级别以继续播放，例如驾驶场景中背景音乐的播放；
+ * AUDIOFOCUS_GAIN_TRANSIENT_EXCLUSIVE:用于持续时间很短的音频焦点请求，在此期间其他应用和组件不允许播放任何内容，包括通知.使用场景为语音备忘录和语音识别；
  *
  */
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -100,6 +105,7 @@ class AudioFocusHelper(
         audioFocusRequest =
             AudioFocusRequest.Builder(focusGain).setOnAudioFocusChangeListener(audioFocusListener)
                 .setAudioAttributes(attributes).build()
+
         audioManager.requestAudioFocus(audioFocusRequest)
     } else {
         audioManager.requestAudioFocus(
@@ -114,6 +120,12 @@ class AudioFocusHelper(
         focusChangedCallback = callback
     }
 
+    /**
+     * 音频焦点状态
+     */
+    fun getAudioFocusState():Boolean{
+        return hasAudioFocus
+    }
     private fun createOnAudioFocusChangeListener(): AudioManager.OnAudioFocusChangeListener {
         return AudioManager.OnAudioFocusChangeListener { focusChange ->
             /*
