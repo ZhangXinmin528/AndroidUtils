@@ -1,7 +1,6 @@
 package com.example.androidutils.fragment.lab
 
 import android.annotation.SuppressLint
-import android.media.AudioManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -55,8 +54,7 @@ class AudioFocusFragment : BaseFragment(), OnClickListener, OnAudioFocusChangedC
 
             R.id.btn_requst_focus -> {
                 audioFocusHelper.changeAudioFocus(
-                    true,
-                    focusGain = AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_EXCLUSIVE
+                    true
                 )
             }
 
